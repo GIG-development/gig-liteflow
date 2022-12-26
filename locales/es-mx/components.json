@@ -1,4 +1,17 @@
 {
+  "categories": {
+    "Arquitecture": "Arquitectura",
+    "Design": "Diseño",
+    "Digital Art": "Arte Digital",
+    "Animation": "Animación",
+    "Illustration": "Ilustración",
+    "Generative": "Arte Generativo",
+    "Photography": "Fotografía",
+    "Multimedia": "Multimedia",
+    "Access": "Accesos",
+    "Gaming": "Gaming",
+    "Fashion": "Moda"
+  },
   "account": {
     "title": "Cuenta",
     "tabs": {
@@ -37,7 +50,21 @@
     "required": "Este campo es obligatorio."
   },
   "footer": {
-    "copyright": "© {{date}} {{name}} Todos los derechos reservados."
+    "text": "Somos una plataforma descentralizada que empodera almas creativas. Colecciona, crea y comercializa NFTs sin tanto rollo. No necesitas ser experto, solo necesitas tu talente. Nosotros te ayudamos.",
+    "listTitle1": "Navega",
+    "myProfile":"Mi perfil",
+    "aboutUs": "Nosotros",
+    "creators": "Creadores",
+    "family": "Familia GIG",
+    "glosary": "GIGcionario",
+    "listTitle2": "Soporte",
+    "tutorials":"Tutoriales",
+    "faqs":"Preguntas Frecuentes",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
+    "contact": "Contáctanos",
+    "listTitle3": "Síguenos",
+    "copyright": "© 2022 GIG. Todos los derechos reservados"
   },
   "history": {
     "none": "Sin historial",

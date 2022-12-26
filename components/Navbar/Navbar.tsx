@@ -464,9 +464,18 @@ const Navbar: VFC<{
         <Flex as="form" my="auto" grow={1} onSubmit={onSubmit}>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
-              <Icon as={HiOutlineSearch} w={6} h={6} color="gray.400" />
+              <Icon as={HiOutlineSearch} w={6} h={6} color="brand.black" />
             </InputLeftElement>
-            <Input placeholder={t('navbar.search')} {...register('search')} />
+            <Input
+              placeholder={t('navbar.search')} {...register('search')}
+              color="brand.black"
+              _placeholder={{ color: 'brand.black' }}
+              border='1px solid'
+              borderColor={'gray.200'}
+              _focus={{
+                border: '1px solid'
+              }}
+            />
           </InputGroup>
         </Flex>
         <Flex display={{ base: 'none', lg: 'flex' }} align="center" gap={6}>

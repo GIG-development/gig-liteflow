@@ -37,7 +37,21 @@
     "required": "This field is required."
   },
   "footer": {
-    "copyright": "© {{date}} {{name}} All rights reserved."
+    "text": "We're a decentralized platform that empowers creative souls. Collect, create, buy or sell NFTs without the hassle. You don't need to be an expert, just bring your talent and we'll help you out.",
+    "listTitle1": "Navigate",
+    "myProfile":"My Profile",
+    "aboutUs": "About Us",
+    "creators": "Creators",
+    "family": "GIG Family",
+    "glosary": "GIGcionary",
+    "listTitle2": "Support",
+    "tutorials":"Tutorials",
+    "faqs":"FAQs",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us",
+    "listTitle3": "Follow Us",
+    "copyright": "© 2022 GIG. All Rights Reserved."
   },
   "history": {
     "none": "No history",

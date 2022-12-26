@@ -5,18 +5,20 @@ import environment from '../environment'
 type Props = {
   title: string
   description?: string
+  keywords?: string
   image?: string
 }
 
 const Head: FC<PropsWithChildren<Props>> = ({
   title,
   description,
+  keywords,
   image,
   children,
 }) => {
   return (
     <NextHead>
-      <title>{title} - Acme NFT Marketplace</title>
+            <title>{title} | GIG - Más que un marketplace, la mejor comunidad NFT de creativos en Latinoamérica</title>
       <meta property="og:title" content={title} />
       <meta name="twitter:title" content={title} />
       {description && (
@@ -27,12 +29,20 @@ const Head: FC<PropsWithChildren<Props>> = ({
         </>
       )}
       <meta
+        name="keywords"
+        content={keywords!=='' ? keywords : 'nfts, marketplace, latam, artistas digitales, ganar royalties, arte, latinoamerica, plataforma de venta de arte digital'}
+      />
+      <meta
         property="og:image"
-        content={image || `${environment.BASE_URL}/og-image.jpg`}
+        content={image || `${environment.BASE_URL}/social_og-image.jpg`}
       />
       <meta
         name="twitter:image"
-        content={image || `${environment.BASE_URL}/twitter-card.jpg`}
+        content={image || `${environment.BASE_URL}/social_twitter-card.jpg`}
+      />
+      <link
+        rel="apple-touch-icon"
+        href={`${environment.BASE_URL}/apple-touch-icon.png`}
       />
       {children}
     </NextHead>

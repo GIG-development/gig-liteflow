@@ -5,5 +5,17 @@ enum Trait {
 export const keys = [Trait.Category]
 
 export const values = {
-  [Trait.Category]: ['Art', 'Currency', 'DeFi', 'Games', 'Photography'].sort(),
+  [Trait.Category]: [
+    'Arquitecture',
+    'Design',
+    'Digital Art',
+    'Animation',
+    'Illustration',
+    'Generative',
+    'Photography',
+    'Multimedia',
+    'Access',
+    'Gaming',
+    'Fashion'
+  ].sort(),
 }

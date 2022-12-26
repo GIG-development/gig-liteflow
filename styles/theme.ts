@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
+import { StyleFunctionProps } from '@chakra-ui/theme-tools'
 
 export const theme = extendTheme({
   breakPoints: {
@@ -10,11 +11,20 @@ export const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {
-        rounded: 'xl',
+        rounded: 'full'
+      },
+      variants: {
+        'outline': {
+          border: 'none',
+          boxShadow: 'none'
+        },
+        'icon': {
+          borderRadius: 'full'
+        }
       },
       defaultProps: {
-        colorScheme: 'brand',
-      },
+        colorScheme: 'brand'
+      }
     },
     Checkbox: {
       baseStyle: {
@@ -54,34 +64,57 @@ export const theme = extendTheme({
         title: {
           fontSize: '36px',
           lineHeight: '40px',
-          fontWeight: 800,
+          fontWeight: 800
         },
         subtitle: {
           fontSize: '24px',
           lineHeight: '32px',
-          fontWeight: 700,
+          fontWeight: 700
         },
         heading1: {
           fontSize: '20px',
           lineHeight: '28px',
-          fontWeight: 700,
+          fontWeight: 700
         },
         heading2: {
           fontSize: '16px',
           lineHeight: '24px',
-          fontWeight: 600,
+          fontWeight: 600
         },
         heading3: {
           fontSize: '16px',
           lineHeight: '24px',
-          fontWeight: 500,
+          fontWeight: 500
         },
         heading4: {
           fontSize: '14px',
           lineHeight: '20px',
-          fontWeight: 700,
-        },
+          fontWeight: 700
+        }
+      }
+    },
+    Icon: {
+      baseStyle: {
+        w: '10',
+        h: '10'
       },
+      defaultProps: {
+        w: '10',
+        h: '10'
+      }
+    },
+    Image: {
+      baseStyle: {
+        _focus: {
+          outline: 'none'
+        }
+      }
+    },
+    Input: {
+      defaultProps: {
+        borderColor: 'gray.200',
+        focusBorderColor: 'brand.black'
+      }
     },
     Text: {
       variants: {
@@ -125,12 +158,14 @@ export const theme = extendTheme({
           lineHeight: '20px',
           fontWeight: 500,
           color: 'red.500',
-        },
-      },
-    },
+        }
+      }
+    }
   },
   fonts: {
-    banner: 'Poppins',
+    heading: 'Montserrat',
+    body: 'Montserrat',
+    mono: 'Source Code Pro',
   },
   colors: {
     white: '#FFFFFF',
@@ -143,16 +178,16 @@ export const theme = extendTheme({
       600: '#2563EB',
     },
     brand: {
-      50: '#F5F7FF',
-      100: '#D3E2FF',
-      200: '#A7C4FF',
-      300: '#7BA3FF',
-      400: '#5A88FF',
-      500: '#245BFF',
-      600: '#1A45DB',
-      700: '#1233B7',
-      800: '#0B2393',
-      900: '#06177A',
+      50: '#F4F3FA',
+      100: '#DFCCFA',
+      200: '#BF9AF5',
+      300: '#9365E3',
+      400: '#BE94FF',
+      500: '#CEAFFF',
+      600: '#BE94FF',
+      700: '#200675',
+      800: '#16035E',
+      900: '#0F024E',
       black: '#060F27',
     },
     secondary: {
@@ -191,13 +226,36 @@ export const theme = extendTheme({
   },
   radii: {
     none: '0',
-    sm: '12px',
-    base: '12px',
-    md: '12px',
-    lg: '12px',
-    xl: '12px',
+    sm: '2px',
+    base: '4px',
+    md: '4px',
+    lg: '4px',
+    xl: '4px',
     '2xl': '12px',
-    '3xl': '12px',
+    '3xl': '14px',
     full: '9999px',
   },
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      body: {
+        bg: props.colorMode === 'dark' ? 'white' : 'white'
+      },
+      h1: {
+        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+      },
+      h2: {
+        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+      },
+      h3: {
+        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+      },
+      h4: {
+        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+      }
+    })
+  }
 })

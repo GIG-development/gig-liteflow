@@ -1,102 +1,140 @@
-import { Box, Divider, Flex, Show, Text } from '@chakra-ui/react'
-import useTranslation from 'next-translate/useTranslation'
-import { VFC } from 'react'
+import {
+    Box,
+    chakra,
+    Container,
+    Image,
+    SimpleGrid,
+    Stack,
+    Text,
+    VisuallyHidden,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import Link from '../Link/Link'
-import LiteflowLogo from './LiteflowLogo'
+import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
+import { FC, PropsWithChildren, ReactNode } from 'react'
+import useTranslation from 'next-translate/useTranslation'
+  
+const SocialButton = ({
+    children,
+    label,
+    href,
+  }: {
+    children?: ReactNode;
+    label: string;
+    href: string;
+  }) => {
+    return (
+      <chakra.button
+        bg={useColorModeValue('brand.black', 'brand.black')}
+        color={'white'}
+        rounded={'full'}
+        w={8}
+        h={8}
+        cursor={'pointer'}
+        as={'a'}
+        href={href}
+        display={'inline-flex'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        transition={'background 0.3s ease'}
+        _hover={{
+          bg: useColorModeValue('grey.600', 'grey.600'),
+        }}>
+        <VisuallyHidden>{label}</VisuallyHidden>
+        {children}
+      </chakra.button>
+    );
+};
+  
+const ListHeader = ({ children }: { children?: ReactNode }) => {
+    return (
+      <Text fontWeight={'700'} fontSize={'lg'} mb={2}>
+        {children}
+      </Text>
+    );
+};
 
 type Props = {
-  name: string
-  links: {
-    href: string
-    label: string
-  }[]
+  userProfileLink: string
 }
-
-const Footer: VFC<Props> = ({ name, links }) => {
-  const { t } = useTranslation('components')
-  return (
-    <>
-      <hr />
-      <footer>
-        <Box mx="auto" px={{ base: 6, lg: 8 }} maxW="80rem">
-          <Flex justify="center">
-            <Flex as="nav" wrap="wrap" justify="center" gap={6} pt={12} pb={8}>
-              {links.map((link, i) =>
-                link.href.match(/^[http|mailto]/) ? (
-                  <Text
-                    as="a"
-                    color="gray.500"
-                    fontWeight="medium"
-                    cursor="pointer"
-                    _hover={{
-                      color: 'brand.black',
-                    }}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopenner noreferrer"
-                    key={i}
-                  >
-                    {link.label}
-                  </Text>
-                ) : (
-                  <Link href={link.href} key={i}>
-                    <Text
-                      color="gray.500"
-                      fontWeight="medium"
-                      cursor="pointer"
-                      _hover={{
-                        color: 'brand.black',
-                      }}
-                    >
-                      {link.label}
-                    </Text>
-                  </Link>
-                ),
-              )}
-            </Flex>
-          </Flex>
-          <Box
-            as="hr"
-            borderTop="1px"
-            borderStyle="solid"
-            borderColor="gray.200"
-          />
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            align="center"
-            justify="center"
-            pt={8}
-            pb={14}
-            gap={{ base: 4, md: 0 }}
-          >
-            <Text as="p" variant="text" color="gray.500" display="flex">
-              {t('footer.copyright', {
-                date: new Date().getFullYear(),
-                name,
-              })}
-            </Text>
-            <Flex>
-              <Show above="md">
-                <Divider orientation="vertical" mx={6} color="gray.200" h={6} />
-              </Show>
-              <Text
-                as="p"
-                variant="text"
-                color="gray.500"
-                fontWeight="500"
-                mr={1}
-              >
-                Powered by
+  
+const Footer: FC<PropsWithChildren<Props>> = ({
+  userProfileLink = '/login'
+}) => {
+    const { t } = useTranslation('components')
+    return (
+      <Box
+        bg={useColorModeValue('gray.100', 'gray.900')}
+        color={useColorModeValue('gray.700', 'gray.200')}
+        padding={'20px'}>
+        <Container as={Stack} maxW={'6xl'} py={10}>
+          <SimpleGrid
+            templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr' }}
+            spacing={8}>
+            <Stack spacing={6}>
+              <Box>
+                <Link href='/' title="GIG Marketplace | Inicio">
+                  <Image
+                      alt={'GIG Logo'}
+                      w={'150px'}
+                      h={'80px'}
+                      src={'/logo_beta_bn.png'}
+                  />
+                </Link>
+              </Box>
+              <Text fontSize={'xs'}>
+                {t('footer.text')}
               </Text>
-              <Link href="https://liteflow.com" isExternal>
-                {LiteflowLogo}
-              </Link>
-            </Flex>
-          </Flex>
-        </Box>
-      </footer>
-    </>
-  )
-}
-
+            </Stack>
+            <Stack align={'flex-start'}>
+              <ListHeader>{t('footer.listTitle1')}</ListHeader>
+              <Link href={userProfileLink}>{t('footer.myProfile')}</Link>
+              <Link href={'/nosotros'}>{t('footer.aboutUs')}</Link>
+              <Link href={'/creadores'}>{t('footer.creators')}</Link>
+              <Link href={'/familia-gig'}>{t('footer.family')}</Link>
+              <Link href={'/gigcionario'}>{t('footer.glosary')}</Link>
+            </Stack>
+            <Stack align={'flex-start'}>
+              <ListHeader>{t('footer.listTitle2')}</ListHeader>
+              <Link href={'/tutoriales'}>{t('footer.tutorials')}</Link>
+              <Link href={'/faq'}>{t('footer.faqs')}</Link>
+              <Link href={'/GIG_terminos-y-condiciones.pdf'}>{t('footer.terms')}</Link>
+              <Link href={'/GIG_terminos-y-condiciones.pdf'}>{t('footer.privacy')}</Link>
+              <Link href={'/contacto'}>{t('footer.contact')}</Link>
+            </Stack>
+            <Stack align={'flex-start'}>
+              <ListHeader>{t('footer.listTitle3')}</ListHeader>
+            
+              <Stack direction={'column'} spacing={6} align={'flex-start'}>
+                <Box>
+                  <SocialButton label={'Twitter'} href={'https://twitter.com/holagig'}>
+                    <FaTwitter /> 
+                  </SocialButton>
+                  <Link ml={2} href={'https://twitter.com/holagig'}>Twitter</Link>
+                </Box>
+                <Box>
+                  <SocialButton label={'YouTube'} href={'https://youtube.com/holagig'}>
+                    <FaYoutube /> 
+                  </SocialButton>
+                  <Link ml={2} href={'https://youtube.com/holagig'}>Youtube</Link>
+                </Box>
+                <Box>
+                  <SocialButton label={'Instagram'} href={'https://instagram.com/holagig'}>
+                    <FaInstagram /> 
+                  </SocialButton>
+                  <Link ml={2} href={'https://instagram.com/holagig'}>Instagram</Link>
+                </Box>
+              </Stack>
+            </Stack>
+          </SimpleGrid>
+          
+          <Text pt={20} fontSize={'sm'} textAlign={'center'}>
+            {t('footer.copyright')}
+          </Text>
+        </Container>
+      </Box>
+    );
+  }
 export default Footer

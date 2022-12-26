@@ -43,6 +43,7 @@ import {
   jwtValidity,
 } from '../session'
 import { theme } from '../styles/theme'
+import '../styles/custom.css'
 require('dayjs/locale/ja')
 require('dayjs/locale/zh-cn')
 require('dayjs/locale/es-mx')
@@ -70,64 +71,12 @@ function Layout({
     () => (userAddress ? `/users/${userAddress}` : '/login'),
     [userAddress],
   )
-  const footerLinks = useMemo(() => {
-    const texts = {
-      en: {
-        explore: 'Explore',
-        create: 'Create',
-        profile: 'Profile',
-        referral: 'Referral',
-        support: 'Support',
-        terms: 'Terms',
-        privacy: 'Privacy',
-      },
-      ja: {
-        explore: '検索',
-        create: '作成',
-        profile: 'プロフィール',
-        referral: '紹介',
-        support: 'サポート',
-        terms: '利用規約',
-        privacy: 'プライバシーポリシー',
-      },
-      'zh-cn': {
-        explore: '探讨',
-        create: '创造',
-        profile: '资料',
-        referral: '转介',
-        support: '支持',
-        terms: '条款',
-        privacy: '隐私',
-      },
-      'es-mx': {
-        explore: 'Explorar',
-        create: 'Crear',
-        profile: 'Perfil',
-        referral: 'Recomendación',
-        support: 'Apoyo',
-        terms: 'Letra chica',
-        privacy: 'Privacidad',
-      },
-    }
-    const locale = (router.locale || 'en') as keyof typeof texts
-    return [
-      { href: '/explore', label: texts[locale].explore },
-      { href: '/create', label: texts[locale].create },
-      { href: userProfileLink, label: texts[locale].profile },
-      { href: '/referral', label: texts[locale].referral },
-      { href: '/', label: texts[locale].support },
-      { href: '/', label: texts[locale].terms },
-      { href: '/', label: texts[locale].privacy },
-      { href: 'https://twitter.com', label: 'Twitter' },
-      { href: 'https://discord.com', label: 'Discord' },
-    ]
-  }, [router.locale, userProfileLink])
 
   return (
     <ChatWindow>
-      <Box mt={12}>
-        <Banner />
+      <Box>
         <Navbar
+          logo={{ path: '/logo_beta_bn.png', width: 100, height: 53 }}
           allowTopUp={true}
           router={{
             asPath: router.asPath,
@@ -144,17 +93,15 @@ function Layout({
             locale: router.locale,
             pathname: router.pathname,
             choices: [
-              { label: 'En', value: 'en' },
-              { label: '日本語', value: 'ja' },
-              { label: '中文', value: 'zh-cn' },
-              { label: 'Spanish', value: 'es-mx' },
+              { label: 'ES', value: 'es-mx' },
+              { label: 'EN', value: 'en' }
             ],
           }}
           signer={signer}
           disableMinting={environment.MINTABLE_COLLECTIONS.length === 0}
         />
         {children}
-        <Footer name="Acme, Inc." links={footerLinks} />
+        <Footer userProfileLink={userProfileLink}/>
       </Box>
     </ChatWindow>
   )
@@ -263,20 +210,13 @@ function MyApp({
   return (
     <ErrorBoundary>
       <Head
-        title="Acme NFT Marketplace"
-        description="The Web3 as a Service Company"
+        title="Home"
+        description="Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."
       >
-        <meta
-          name="keywords"
-          content="NFT, marketplace, platform, white-label, blockchain"
-        />
-
-        <meta name="author" content="Acme, Inc." />
-        <meta name="application-name" content="Acme NFT Marketplace" />
-
+        <meta name="author" content="GIG Development" />
+        <meta name="application-name" content="GIG Marketplace" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://demo.liteflow.com" />
-
+        <meta property="og:url" content="https://gig.io" />
         <meta name="twitter:card" content="summary" />
       </Head>
       <GoogleAnalytics strategy="lazyOnload" />
