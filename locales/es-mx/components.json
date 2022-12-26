@@ -285,6 +285,16 @@
     "search": "Buscar",
     "sign-in": "Iniciar sesión",
     "notifications": "Notificaciones",
+    "sections": {
+      "title": "GIG",
+      "about": "Nosotros",
+      "creators": "Creadores",
+      "family": "Familia GIG",
+      "glosary": "GIGcionario",
+      "tutorials": "Tutoriales",
+      "faqs": "Preguntas Frecuentes",
+      "contact": "Contáctanos"
+    },
     "activity": {
       "title": "Actividad",
       "bids": "Ofertas hechas",

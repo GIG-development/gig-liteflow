@@ -297,6 +297,46 @@ const DrawerMenu: VFC<{
 }
 
 // Activity menu for desktop. Only visible when signed in
+const SectionsMenu: VFC = () => {
+  const { t } = useTranslation('components')
+  return (
+    <Menu>
+      <MenuButton color="brand.black" _hover={{ color: 'gray.500' }}>
+        <HStack spacing={2}>
+          <Text as="span" variant="button2">
+            {t('navbar.sections.title')}
+          </Text>
+          <HiChevronDown />
+        </HStack>
+      </MenuButton>
+      <MenuList>
+        <Link href={`/nosotros`} w="full">
+          <MenuItem>{t('navbar.sections.about')}</MenuItem>
+        </Link>
+        <Link href={`/creadores`} w="full">
+          <MenuItem>{t('navbar.sections.creators')}</MenuItem>
+        </Link>
+        <Link href={`/familia-gig`} w="full">
+          <MenuItem>{t('navbar.sections.family')}</MenuItem>
+        </Link>
+        <Link href={`/gigcionario`} w="full">
+          <MenuItem>{t('navbar.sections.glosary')}</MenuItem>
+        </Link>
+        <Link href={`/tutoriales`} w="full">
+          <MenuItem>{t('navbar.sections.tutorials')}</MenuItem>
+        </Link>
+        <Link href={`/Preguntas Frecuentes`} w="full">
+          <MenuItem>{t('navbar.sections.faqs')}</MenuItem>
+        </Link>
+        <Link href={`/contacto`} w="full">
+          <MenuItem>{t('navbar.sections.contact')}</MenuItem>
+        </Link>
+      </MenuList>
+    </Menu>
+  )
+}
+
+// Activity menu for desktop. Only visible when signed in
 const ActivityMenu: VFC<{ account: string }> = ({ account }) => {
   const { t } = useTranslation('components')
   return (
@@ -503,6 +543,7 @@ const Navbar: VFC<{
               </Text>
             </Flex>
           )}
+          <SectionsMenu />
           {account && data?.account ? (
             <>
               <ActivityMenu account={account} />

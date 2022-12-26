@@ -272,6 +272,16 @@
     "search": "Search",
     "sign-in": "Sign in",
     "notifications": "Notifications",
+    "sections": {
+      "title": "GIG",
+      "about": "About Us",
+      "creators": "Creators",
+      "family": "GIG Family",
+      "glosary": "GIGcionary",
+      "tutorials": "Tutorials",
+      "faqs": "FAQs",
+      "contact": "Contact Us"
+    },
     "activity": {
       "title": "Activity",
       "bids": "Bids",
