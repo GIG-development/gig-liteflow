@@ -208,26 +208,26 @@ const Creadores: NextPage = () => {
           <Heading as={'h2'} variant="heading1" pt={20}>
           Preguntas frecuentes
           </Heading>
-          <Accordion>
+          <Accordion allowMultiple>
             <AccordionItem
-              question={'¿Necesito saber de cripto antes de empezar?'}
-              answer={'Para nada en lo absoluto. Nosotros te ayudamos a conceptualizar tus ideas.'}
+              title={'¿Necesito saber de cripto antes de empezar?'}
+              content={'Para nada en lo absoluto. Nosotros te ayudamos a conceptualizar tus ideas.'}
             />
             <AccordionItem
-              question={'¿Para quién es?'}
-              answer={'Para nuevos talentos, artistas, coleccionistas, inversores en Latinoamérica y todas las almas creativas que buscan un futuro mejor.'}
+              title={'¿Para quién es?'}
+              content={'Para nuevos talentos, artistas, coleccionistas, inversores en Latinoamérica y todas las almas creativas que buscan un futuro mejor.'}
             />
             <AccordionItem
-              question={'¿Tengo que ser Latin@ para unirme?'}
-              answer={'Sabemos que en Latinoamérica hay un mundo de creatividad sin descubrir, por eso iniciamos en México y Latam, pero no somos excluyentes. Si tienes un gran proyecto y quieres ser parte de esta evolución, más que bienvenidx.'}
+              title={'¿Tengo que ser Latin@ para unirme?'}
+              content={'Sabemos que en Latinoamérica hay un mundo de creatividad sin descubrir, por eso iniciamos en México y Latam, pero no somos excluyentes. Si tienes un gran proyecto y quieres ser parte de esta evolución, más que bienvenidx.'}
             />
             <AccordionItem
-              question={'¿Mi proyecto vivirá solamente en GIG?'}
-              answer={'Si subiste tu proyecto a través de GIG, éste aparecerá bajo contrato de GIG, sin embargo cualquier Marketplace que soporte Ethereum puede listar tus NFTs.'}
+              title={'¿Mi proyecto vivirá solamente en GIG?'}
+              content={'Si subiste tu proyecto a través de GIG, éste aparecerá bajo contrato de GIG, sin embargo cualquier Marketplace que soporte Ethereum puede listar tus NFTs.'}
             />
             <AccordionItem
-              question={'¿Qué tipo de proyectos puedo subir?'}
-              answer={'Prácticamente todos los formatos son bienvenidos: Arte digital, música, esculturas, videos, libros, videos. Coleccionables digitales como objetos, tarjetas, skins, avatares. Videojuegos y lo relativo a ellos. Certificados y títulos. Objetos físicos. Tickets o entradas a eventos. (Nos reservamos el derecho de admitir proyectos que pudieran ir en perjuicio de alguna persona o institución.)'}
+              title={'¿Qué tipo de proyectos puedo subir?'}
+              content={'Prácticamente todos los formatos son bienvenidos: Arte digital, música, esculturas, videos, libros, videos. Coleccionables digitales como objetos, tarjetas, skins, avatares. Videojuegos y lo relativo a ellos. Certificados y títulos. Objetos físicos. Tickets o entradas a eventos. (Nos reservamos el derecho de admitir proyectos que pudieran ir en perjuicio de alguna persona o institución.)'}
             />
           </Accordion>
         </Stack>

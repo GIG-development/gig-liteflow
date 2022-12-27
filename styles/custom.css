@@ -4,11 +4,11 @@
 .btn{
     border-radius: 9999px;
     background-color: #CEAFFF;
-    color: white;
+    color: white !important;
     font-weight: bold;
     padding: 12px 24px;
-    text-align: center;
-    justify-content: center;
+    text-align: center !important;
+    justify-content: center !important;
 }
 .btn:hover{
     background-color: #BE94FF;
@@ -47,4 +47,8 @@
     height: 40px;
     background-color: #F3F4F6;
     transform: rotate(45deg);
+}
+/* Explore - checkbox labels */
+#explore .chakra-checkbox__label {
+    font-size: 12px;
 }

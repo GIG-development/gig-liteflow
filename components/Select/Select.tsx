@@ -136,13 +136,14 @@ const Select = <T extends string>({
                         />
                       </Box>
                     )}
-                    <Text as="span" isTruncated fontWeight="normal">
+                    <Text as="span" fontSize={'sm'} isTruncated fontWeight="normal">
                       {selectedChoice.label}
                     </Text>
                   </>
                 ) : (
                   <Text
                     as="span"
+                    fontSize={'sm'}
                     fontWeight="normal"
                     isTruncated
                     color="gray.500"

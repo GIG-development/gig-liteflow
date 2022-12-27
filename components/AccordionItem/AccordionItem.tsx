@@ -9,29 +9,32 @@ import {
   } from '@chakra-ui/react'
 import { FC, PropsWithChildren } from 'react'
 type Props = {
-    question: string
-    answer: string
+    title: string
+    content?: string
+    children?: any
 }
   
 const AccordionItem: FC<PropsWithChildren<Props>> = ({
-    question,
-    answer
+    title,
+    content,
+    children
 }) => {
     return (
         <AI>
             <h2>
-                <AccordionButton>
-                <Box flex='1' textAlign='left'>
-                    <Heading variant={'heading3'}>
-                    {question}
-                    </Heading>
-                </Box>
-                <AccordionIcon />
+                <AccordionButton _expanded={{ bg: 'gray.200' }}>
+                    <Box flex='1' textAlign='left'>
+                        <Heading variant={'heading3'}>
+                        {title}
+                        </Heading>
+                    </Box>
+                    <AccordionIcon />
                 </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
                 <Text color={'gray.500'} fontSize={{base: 'sm', md: 'md'}}>
-                    {answer}
+                    {content}
+                    {children}
                 </Text>
             </AccordionPanel>
         </AI>

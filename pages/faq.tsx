@@ -24,42 +24,42 @@ const FAQ: NextPage = () => {
               <Heading as={'h1'} variant="title">
                   {t('faqs.title')}
               </Heading>
-              <Accordion>
+              <Accordion allowMultiple>
                 <AccordionItem
-                  question={t('faqs.question1.question')}
-                  answer={t('faqs.question1.answer')}
+                  title={t('faqs.question1.question')}
+                  content={t('faqs.question1.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question2.question')}
-                  answer={t('faqs.question2.answer')}
+                  title={t('faqs.question2.question')}
+                  content={t('faqs.question2.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question3.question')}
-                  answer={t('faqs.question3.answer')}
+                  title={t('faqs.question3.question')}
+                  content={t('faqs.question3.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question4.question')}
-                  answer={t('faqs.question4.answer')}
+                  title={t('faqs.question4.question')}
+                  content={t('faqs.question4.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question5.question')}
-                  answer={t('faqs.question5.answer')}
+                  title={t('faqs.question5.question')}
+                  content={t('faqs.question5.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question6.question')}
-                  answer={t('faqs.question6.answer')}
+                  title={t('faqs.question6.question')}
+                  content={t('faqs.question6.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question7.question')}
-                  answer={t('faqs.question7.answer')}
+                  title={t('faqs.question7.question')}
+                  content={t('faqs.question7.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question8.question')}
-                  answer={t('faqs.question8.answer')}
+                  title={t('faqs.question8.question')}
+                  content={t('faqs.question8.answer')}
                 />
                 <AccordionItem
-                  question={t('faqs.question9.question')}
-                  answer={t('faqs.question9.answer')}
+                  title={t('faqs.question9.question')}
+                  content={t('faqs.question9.answer')}
                 />
               </Accordion>
               <Heading as={'h4'} variant={'heading4'} textAlign={'center'}>

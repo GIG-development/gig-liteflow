@@ -103,7 +103,7 @@ const Nosotros: NextPage = () => {
                                 {t('about.block2.line1')}
                         </Text>
                         <Text textAlign={'center'} fontSize={useBreakpointValue({ base: 'md', md: 'lg' })} pt={4}>
-                            <b>{t('about.block2.line1')}</b>
+                            <b>{t('about.block2.line2')}</b>
                         </Text>
                     </Container>
                     

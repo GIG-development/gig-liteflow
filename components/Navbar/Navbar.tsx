@@ -171,6 +171,52 @@ const DrawerMenu: VFC<{
                 <NavItemMobile>{t('navbar.create')}</NavItemMobile>
               </Link>
             )}
+            <Accordion as="nav" allowMultiple>
+              <AccordionItem border="none">
+                <AccordionButton
+                  py={2}
+                  pr={4}
+                  pl={3}
+                  fontWeight="medium"
+                  borderColor="gray.200"
+                  borderLeftWidth="4px"
+                  color="gray.600"
+                  _hover={{
+                    color: 'gray.800',
+                    borderColor: 'brand.200',
+                    bgColor: 'brand.50',
+                  }}
+                >
+                  <Text variant="subtitle1" textAlign="left" flex="1">
+                    {t('navbar.sections.title')}
+                  </Text>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pt={2} pb={1} pl={3} pr={0}>
+                  <Link href={`/nosotros`} w="full">
+                    <NavItemMobile>{t('navbar.sections.about')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/creadores`} w="full">
+                    <NavItemMobile>{t('navbar.sections.creators')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/familia-gig`} w="full">
+                    <NavItemMobile>{t('navbar.sections.family')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/gigcionario`} w="full">
+                    <NavItemMobile>{t('navbar.sections.glosary')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/tutoriales`} w="full">
+                    <NavItemMobile>{t('navbar.sections.tutorials')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/Preguntas Frecuentes`} w="full">
+                    <NavItemMobile>{t('navbar.sections.faqs')}</NavItemMobile>
+                  </Link>
+                  <Link href={`/contacto`} w="full">
+                    <NavItemMobile>{t('navbar.sections.contact')}</NavItemMobile>
+                  </Link>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
             {account ? (
               <>
                 <Accordion as="nav" allowMultiple>

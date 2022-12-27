@@ -28,7 +28,9 @@ const SaleAuctionCardFooter: VFC<Props> = ({ href, endAt, bestBid }) => {
       <Tag
         as={HStack}
         spacing={2}
-        size="lg"
+        w='full'
+        justifyContent='center'
+        p='1 2'
         variant="outline"
         borderRadius="full"
         boxShadow="none"
@@ -47,6 +49,7 @@ const SaleAuctionCardFooter: VFC<Props> = ({ href, endAt, bestBid }) => {
       </Tag>
       <Flex
         as={Link}
+        className='btn'
         justify="space-between"
         color="brand.500"
         mt={3.5}

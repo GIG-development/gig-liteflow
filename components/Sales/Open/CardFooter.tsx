@@ -15,7 +15,9 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
   return (
     <div {...props}>
       <Tag
-        size="lg"
+        w='full'
+        justifyContent='center'
+        p='1 2'
         variant="outline"
         borderRadius="full"
         boxShadow="none"
@@ -28,6 +30,7 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
       </Tag>
       <Flex
         as={Link}
+        className='btn'
         color="brand.500"
         mt={3.5}
         w="full"

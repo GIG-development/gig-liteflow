@@ -29,17 +29,14 @@ export const theme = extendTheme({
     Checkbox: {
       baseStyle: {
         container: {
-          w: 'full',
-          shadow: 'sm',
-          rounded: 'xl',
-          border: '1px',
-          borderColor: 'gray.200',
-          py: 2.5,
-          px: 4,
+          w: 'full'
         },
+        label: {
+          fontSize: 'sm'
+        }
       },
       defaultProps: {
-        colorScheme: 'brand',
+        colorScheme: 'brand'
       },
     },
     Link: {
@@ -124,7 +121,7 @@ export const theme = extendTheme({
           fontWeight: 400,
         },
         'text-sm': {
-          fontSize: '14px',
+          fontSize: '12px',
           lineHeight: '20px',
           fontWeight: 400,
         },

@@ -32,7 +32,9 @@ const SaleDirectCardFooter: VFC<Props> = ({
         return (
           <Tag
             as="div"
-            size="lg"
+            w='full'
+            justifyContent='center'
+            p='1 2'
             variant="outline"
             borderRadius="full"
             boxShadow="none"
@@ -56,7 +58,9 @@ const SaleDirectCardFooter: VFC<Props> = ({
       default:
         return hasMultiCurrency ? (
           <Tag
-            size="lg"
+            w='full'
+            justifyContent='center'
+            p='1 2'
             variant="outline"
             borderRadius="full"
             boxShadow="none"
@@ -74,7 +78,9 @@ const SaleDirectCardFooter: VFC<Props> = ({
         ) : (
           <Tag
             as="div"
-            size="lg"
+            w='full'
+            justifyContent='center'
+            p='1 2'
             variant="outline"
             borderRadius="full"
             boxShadow="none"
@@ -103,6 +109,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
       {chip}
       <Flex
         as={Link}
+        className='btn'
         href={href}
         mt={3.5}
         w="full"

@@ -239,7 +239,7 @@
         "definition": "Programas que se ejecutan en la “blockchain” o red de bloques a través de reglas de código, se ejecutan de manera automática cuando se cumplen condiciones predeterminadas, es decir al pasar A, como consecuencia sucede B, de esta manera se evita la participación de intermediarios."
       },
       "term4": {
-        "term": "Drop",
+        "term": "Lanzamiento (Drop)",
         "definition": "El lanzamiento de una colección de NFTs. Se anuncia la fecha y hora, tan emocionante como la cuenta regresiva en Año Nuevo, solo que aquí, los inversionistas pueden cumplir de inmediato su propósito de adquirir dicho token. Se asocia a una edición limitada de coleccionables."
       },
       "term5": {
@@ -247,7 +247,7 @@
         "definition": "Son activos digitales que están cifrados, o sea no es algo físico, son registros de transacciones que se realizan en una cadena de bloques. Con las criptomonedas también se pueden hacer pagos pero solamente electrónicos."
       },
       "term6": {
-        "term": "Wallet",
+        "term": "Cartera (Wallet)",
         "definition": "Algo así como la cartera que traes en el bolsillo más una especie de paypal, solo que para criptomonedas. Lo que se almacena en este software y/o hardware es la clave pública y privada de dichas criptomonedas. La “wallet” permite enviar o recibir pagos."
       },
       "term7": {
@@ -283,15 +283,15 @@
         "definition": "No es el popular Hashtag #, el hash en el sistema criptográfico es una cadena de texto en código que se crea en la blockchain que toma datos para generar identificadores únicos que no se pueden repetir ni modificar, por tanto garantiza la seguridad digital. Se ve como números y letras de una longitud determinada. ¡Imagina todas las combinaciones posibles!"
       },
       "term15": {
-        "term": "Gas Fee",
+        "term": "Comisión por gas (Gas Fee)",
         "definition": "El gas fee o tarifa de gas es la comisión que se debe pagar para que suceda una transacción en Ethereum. Recordemos, para poder “mintear” un token no fungible, es necesario que los validadores confirmen las transacciones en la cadena de bloques y así poder ejecutar el contrato."
       },
       "term16": {
-        "term": "Transaction Fee",
+        "term": "Comisión por transacción (Transaction Fee)",
         "definition": "Estas se refieren a las tarifas que cobra el marketplace cuando se operan NFTs. Principalmente cuando los usuarios realizan una transacción de compra o venta."
       },
       "term17": {
-        "term": "Royalties",
+        "term": "Regalías (Royalties)",
         "definition": "Las regalías que se pagan a los creadores. Lo maravilloso es que en el mundo de los tokens no fungibles hablamos de regalías perpetuas, ya que cada vez que se venda dicho NFT, el autor se llevará el porcentaje de dicha venta que se haya establecido previamente en el contrato inteligente. Estas comisiones se establecen alrededor del 5% al 10% del valor del token."
       }
     }
@@ -470,7 +470,7 @@
     "form": {
       "title": {
         "single": "Crear Coleccionable Individual",
-        "multiple": "Crear Multiples Coleccionables"
+        "multiple": "Crear Múltiples Coleccionables"
       },
       "preview": "Previsualizar",
       "notifications": {
@@ -484,7 +484,7 @@
     },
     "typeSelector": {
       "title": "Crear Coleccionable",
-      "description": "Elige \"Individual\" si quieres que tu coleccionable sea único, ó \"Multiple\" si quieres que existan multiples copias de un mismo coleccionable.",
+      "description": "Elige \"Individual\" si quieres que tu coleccionable sea único, ó \"Múltiple\" si quieres que existan múltiples copias de un mismo coleccionable.",
       "single": {
         "title": "Individual",
         "type": "ERC721"

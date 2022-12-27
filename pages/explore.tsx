@@ -10,7 +10,11 @@ import {
   Grid,
   GridItem,
   Heading,
+  HStack,
   InputGroup,
+  Menu,
+  MenuButton,
+  MenuList,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -34,6 +38,8 @@ import Head from '../components/Head'
 import Pagination from '../components/Pagination/Pagination'
 import Select from '../components/Select/Select'
 import TokenCard from '../components/Token/Card'
+import FilterAccordion from 'components/FilterAccordion/FilterAccordion'
+import { HiChevronDown } from '@react-icons/all-files/hi/HiChevronDown'
 import {
   convertAsset,
   convertAuctionWithBestBid,
@@ -420,30 +426,31 @@ const ExplorePage: NextPage<Props> = ({
     )
 
     return (
-      <SimpleGrid columns={2} spacingX={3}>
+      <Flex flex={1} flexFlow='column' gap={3}>
         <Button
-          variant="outline"
+          w={'full'}
           colorScheme="gray"
           type="submit"
           disabled={isSubmitting}
         >
-          <Text as="span" isTruncated>
+          <Text as="span">
             {t('explore.form.submit')}
           </Text>
         </Button>
         {showResetFilter && (
           <Button
+            w={'full'}
             variant="ghost"
             colorScheme="gray"
             onClick={clearFilters}
             disabled={isSubmitting}
           >
-            <Text as="span" isTruncated>
+            <Text as="span">
               {t('explore.form.clear')}
             </Text>
           </Button>
         )}
-      </SimpleGrid>
+      </Flex>
     )
   }, [clearFilters, filter, isSubmitting, t])
 
@@ -462,308 +469,343 @@ const ExplorePage: NextPage<Props> = ({
   const ChakraPagination = chakra(Pagination)
 
   return (
-    <LargeLayout>
-      <Head title="Explore Collectibles" />
+    <div id='explore'>
+      <LargeLayout>
+        <Head title="Explore Collectibles" />
 
-      <Flex justify="space-between" mb={{ base: 4, lg: 0 }}>
-        <Heading as="h1" variant="title" color="brand.black">
-          {t('explore.title')}
-        </Heading>
+        <Flex justify="space-between" mb={{ base: 4, lg: 0 }}>
+          <Heading as="h1" variant="title" color="brand.black">
+            {t('explore.title')}
+          </Heading>
 
-        {(isSubmitting || pageLoading || loadingOrder) && (
-          <Spinner thickness="2px" speed="0.65s" />
-        )}
-      </Flex>
-
-      <Grid
-        mt={12}
-        gap={{ base: 4, lg: 3, xl: 4 }}
-        templateColumns={{ lg: 'repeat(5, 1fr)', xl: 'repeat(4, 1fr)' }}
-      >
-        <GridItem as="aside">
-          <Stack spacing={8} as="form" onSubmit={onSubmit}>
-            {filterButtons}
-
-            <hr />
-
-            <Stack spacing={3}>
-              <Select
-                label={t('explore.form.currency.label')}
-                name="currencyId"
-                control={control as any} // TODO: fix this type
-                placeholder={t('explore.form.currency.placeholder')}
-                choices={currencies.map((x) => ({
-                  value: x.id,
-                  label: x.symbol || '',
-                  image: x.image,
-                }))}
-                value={currencyId ? currencyId : undefined}
-                required
-                disabled={currencies.length <= 1 || isSubmitting}
-                error={errors.currencyId}
-                onChange={(x: any) => setValue('currencyId', x)}
-              />
-
-              {currency && (
-                <Flex gap={3}>
-                  <FormControl isInvalid={!!errors.minPrice}>
-                    <InputGroup>
-                      <NumberInput
-                        clampValueOnBlur={false}
-                        min={0}
-                        step={Math.pow(10, -currency.decimals)}
-                        allowMouseWheel
-                        w="full"
-                        isDisabled={isSubmitting}
-                        onChange={(x: any) => setValue('minPrice', x)}
-                      >
-                        <NumberInputField
-                          id="minPrice"
-                          placeholder={t('explore.form.min-price.placeholder')}
-                          {...register('minPrice', {
-                            validate: (value) => {
-                              if (!value) return
-                              const splitValue = value.toString().split('.')
-
-                              if (value < 0) {
-                                return t(
-                                  'explore.form.min-price.validation.positive',
-                                )
-                              }
-                              if (
-                                splitValue[1] &&
-                                splitValue[1].length > currency.decimals
-                              ) {
-                                return t(
-                                  'explore.form.min-price.validation.decimals',
-                                  {
-                                    nbDecimals: currency.decimals,
-                                  },
-                                )
-                              }
-                            },
-                          })}
-                        />
-                        <NumberInputStepper>
-                          <NumberIncrementStepper />
-                          <NumberDecrementStepper />
-                        </NumberInputStepper>
-                      </NumberInput>
-                    </InputGroup>
-                    {errors.minPrice && (
-                      <FormErrorMessage>
-                        {errors.minPrice.message}
-                      </FormErrorMessage>
-                    )}
-                  </FormControl>
-                  <FormControl isInvalid={!!errors.maxPrice}>
-                    <InputGroup>
-                      <NumberInput
-                        clampValueOnBlur={false}
-                        min={0}
-                        step={Math.pow(10, -currency.decimals)}
-                        allowMouseWheel
-                        w="full"
-                        isDisabled={isSubmitting}
-                        onChange={(x: any) => setValue('maxPrice', x)}
-                      >
-                        <NumberInputField
-                          id="maxPrice"
-                          placeholder={t('explore.form.max-price.placeholder')}
-                          {...register('maxPrice', {
-                            validate: (value) => {
-                              if (value === null) return
-                              const splitValue = value.toString().split('.')
-
-                              if (value < 0) {
-                                return t(
-                                  'explore.form.max-price.validation.positive',
-                                )
-                              }
-                              if (
-                                splitValue[1] &&
-                                splitValue[1].length > currency.decimals
-                              ) {
-                                return t(
-                                  'explore.form.max-price.validation.decimals',
-                                  {
-                                    nbDecimals: currency.decimals,
-                                  },
-                                )
-                              }
-                            },
-                          })}
-                        />
-                        <NumberInputStepper>
-                          <NumberIncrementStepper />
-                          <NumberDecrementStepper />
-                        </NumberInputStepper>
-                      </NumberInput>
-                    </InputGroup>
-                    {errors.maxPrice && (
-                      <FormErrorMessage>
-                        {errors.maxPrice.message}
-                      </FormErrorMessage>
-                    )}
-                  </FormControl>
-                </Flex>
-              )}
-            </Stack>
-
-            <hr />
-
-            <FormControl>
-              <FormLabel>{t('explore.form.offers.label')}</FormLabel>
-              <VStack>
-                {[
-                  {
-                    label: t('explore.form.offers.values.fixed'),
-                    value: OfferFilter.fixed,
-                  },
-                  {
-                    label: t('explore.form.offers.values.auction'),
-                    value: OfferFilter.auction,
-                  },
-                ].map((x) => (
-                  <Checkbox
-                    key={x.value}
-                    {...register('offers')}
-                    value={x.value}
-                    disabled={isSubmitting}
-                  >
-                    {x.label}
-                  </Checkbox>
-                ))}
-              </VStack>
-            </FormControl>
-
-            <hr />
-
-            <FormControl>
-              <FormLabel>{t('explore.form.collections.label')}</FormLabel>
-              <VStack>
-                {collections.map((x) => (
-                  <Checkbox
-                    key={`${x.chainId}-${x.address}`}
-                    {...register('collections')}
-                    value={`${x.chainId}-${x.address}`}
-                    disabled={isSubmitting}
-                  >
-                    {x.name}
-                  </Checkbox>
-                ))}
-              </VStack>
-            </FormControl>
-
-            <hr />
-
-            <FormControl>
-              <FormLabel>{t('explore.form.categories.label')}</FormLabel>
-              <VStack>
-                {categories.map((x) => (
-                  <Checkbox
-                    key={x}
-                    {...register('categories')}
-                    value={x}
-                    disabled={isSubmitting}
-                  >
-                    {t(`categories.${x}`, null, { fallback: x })}
-                  </Checkbox>
-                ))}
-              </VStack>
-            </FormControl>
-
-            <hr />
-
-            {filterButtons}
-          </Stack>
-        </GridItem>
-        <GridItem gap={6} pt={{ base: 8, lg: 0 }} colSpan={{ lg: 4, xl: 3 }}>
-          <Box ml="auto" w={{ base: 'full', lg: 'min-content' }}>
-            <Select<AssetsOrderBy>
-              label={t('explore.orderBy.label')}
-              name="orderBy"
-              onChange={changeOrder}
-              choices={[
-                {
-                  label: t('explore.orderBy.values.createdAtDesc'),
-                  value: 'CREATED_AT_DESC',
-                },
-                {
-                  label: t('explore.orderBy.values.createdAtAsc'),
-                  value: 'CREATED_AT_ASC',
-                },
-              ]}
-              value={orderBy}
-              inlineLabel
-            />
-          </Box>
-          {assets.length > 0 ? (
-            <SimpleGrid
-              flexWrap="wrap"
-              spacing={{ base: 4, lg: 3, xl: 4 }}
-              columns={{ base: 1, sm: 2, md: 3 }}
-              py={6}
-            >
-              {assets.map((x, i) => (
-                <Flex key={i} justify="center">
-                  <TokenCard
-                    asset={convertAsset(x)}
-                    creator={convertUser(x.creator, x.creator.address)}
-                    auction={
-                      x.auctions.nodes[0]
-                        ? convertAuctionWithBestBid(x.auctions.nodes[0])
-                        : undefined
-                    }
-                    sale={convertSale(x.firstSale.nodes[0])}
-                    numberOfSales={x.firstSale.totalCount}
-                    hasMultiCurrency={
-                      parseInt(
-                        x.currencySales.aggregates?.distinctCount?.currencyId,
-                        10,
-                      ) > 1
-                    }
-                  />
-                </Flex>
-              ))}
-            </SimpleGrid>
-          ) : (
-            <Flex align="center" justify="center" h="full" py={12}>
-              <Empty
-                title={t('explore.empty.title')}
-                description={t('explore.empty.description')}
-              />
-            </Flex>
+          {(isSubmitting || pageLoading || loadingOrder) && (
+            <Spinner thickness="2px" speed="0.65s" />
           )}
-          <ChakraPagination
-            py="6"
-            borderTop="1px"
-            borderColor="gray.200"
-            limit={limit}
-            limits={[environment.PAGINATION_LIMIT, 24, 36, 48]}
-            page={page}
-            total={data?.assets?.totalCount}
-            onPageChange={changePage}
-            onLimitChange={changeLimit}
-            result={{
-              label: t('pagination.result.label'),
-              caption: (props) => (
-                <Trans
-                  ns="templates"
-                  i18nKey="pagination.result.caption"
-                  values={props}
-                  components={[
-                    <Text as="span" color="brand.black" key="text" />,
-                  ]}
+        </Flex>
+
+        <Stack mt={12} as="form" onSubmit={onSubmit}>
+          <FilterAccordion>
+            <Grid
+              gap={{ base: 4, lg: 3, xl: 4 }}
+              templateColumns={{ lg: 'repeat(5, 1fr)', xl: 'repeat(5, 1fr)' }}
+            >
+              <GridItem gap={0} colSpan={{ sm: 5, md: 2, lg: 1, xl: 1 }}>
+                <Stack>
+                  <FormLabel fontSize='sm'>{t('explore.form.currency.label')}</FormLabel>
+                  <Select
+                    name="currencyId"
+                    control={control as any} // TODO: fix this type
+                    placeholder={t('explore.form.currency.placeholder')}
+                    choices={currencies.map((x) => ({
+                      value: x.id,
+                      label: x.symbol || '',
+                      image: x.image,
+                    }))}
+                    value={currencyId ? currencyId : undefined}
+                    required
+                    disabled={currencies.length <= 1 || isSubmitting}
+                    error={errors.currencyId}
+                    onChange={(x: any) => setValue('currencyId', x)}
+                  />
+
+                  {currency && (
+                    <Flex gap={3}>
+                      <FormControl isInvalid={!!errors.minPrice}>
+                        <InputGroup>
+                          <NumberInput
+                            clampValueOnBlur={false}
+                            min={0}
+                            step={Math.pow(10, -currency.decimals)}
+                            allowMouseWheel
+                            w="full"
+                            isDisabled={isSubmitting}
+                            onChange={(x: any) => setValue('minPrice', x)}
+                          >
+                            <NumberInputField
+                              id="minPrice"
+                              fontSize={'sm'}
+                              placeholder={t('explore.form.min-price.placeholder')}
+                              {...register('minPrice', {
+                                validate: (value) => {
+                                  if (!value) return
+                                  const splitValue = value.toString().split('.')
+
+                                  if (value < 0) {
+                                    return t(
+                                      'explore.form.min-price.validation.positive',
+                                    )
+                                  }
+                                  if (
+                                    splitValue[1] &&
+                                    splitValue[1].length > currency.decimals
+                                  ) {
+                                    return t(
+                                      'explore.form.min-price.validation.decimals',
+                                      {
+                                        nbDecimals: currency.decimals,
+                                      },
+                                    )
+                                  }
+                                },
+                              })}
+                            />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </InputGroup>
+                        {errors.minPrice && (
+                          <FormErrorMessage>
+                            {errors.minPrice.message}
+                          </FormErrorMessage>
+                        )}
+                      </FormControl>
+                      <FormControl isInvalid={!!errors.maxPrice}>
+                        <InputGroup>
+                          <NumberInput
+                            clampValueOnBlur={false}
+                            min={0}
+                            step={Math.pow(10, -currency.decimals)}
+                            allowMouseWheel
+                            w="full"
+                            isDisabled={isSubmitting}
+                            onChange={(x: any) => setValue('maxPrice', x)}
+                          >
+                            <NumberInputField
+                              id="maxPrice"
+                              fontSize={'sm'}
+                              placeholder={t('explore.form.max-price.placeholder')}
+                              {...register('maxPrice', {
+                                validate: (value) => {
+                                  if (value === null) return
+                                  const splitValue = value.toString().split('.')
+
+                                  if (value < 0) {
+                                    return t(
+                                      'explore.form.max-price.validation.positive',
+                                    )
+                                  }
+                                  if (
+                                    splitValue[1] &&
+                                    splitValue[1].length > currency.decimals
+                                  ) {
+                                    return t(
+                                      'explore.form.max-price.validation.decimals',
+                                      {
+                                        nbDecimals: currency.decimals,
+                                      },
+                                    )
+                                  }
+                                },
+                              })}
+                            />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </InputGroup>
+                        {errors.maxPrice && (
+                          <FormErrorMessage>
+                            {errors.maxPrice.message}
+                          </FormErrorMessage>
+                        )}
+                      </FormControl>
+                    </Flex>
+                  )}
+                </Stack>
+              </GridItem>
+
+              <GridItem
+                colSpan={{ sm: 5, md: 2, lg: 1, xl: 1 }}
+                border='1px solid'
+                borderColor={'gray.200'}
+                borderRadius={'sm'}
+                p={2}
+              >
+                <FormControl>
+                  <FormLabel fontSize='sm'>{t('explore.form.offers.label')}</FormLabel>
+                    <VStack
+                      maxH={'140px'}
+                      overflowY='scroll'
+                    >
+                    {[
+                      {
+                        label: t('explore.form.offers.values.fixed'),
+                        value: OfferFilter.fixed,
+                      },
+                      {
+                        label: t('explore.form.offers.values.auction'),
+                        value: OfferFilter.auction,
+                      },
+                    ].map((x) => (
+                      <Checkbox
+                        key={x.value}
+                        {...register('offers')}
+                        value={x.value}
+                        disabled={isSubmitting}
+                      >
+                        {x.label}
+                      </Checkbox>
+                    ))}
+                  </VStack>
+                </FormControl>
+              </GridItem>
+
+              <GridItem
+                colSpan={{ sm: 5, md: 2, lg: 1, xl: 1 }}
+                border='1px solid'
+                borderColor={'gray.200'}
+                borderRadius={'sm'}
+                p={2}
+              >
+                <FormControl>
+                  <FormLabel fontSize='sm'>{t('explore.form.collections.label')}</FormLabel>
+                    <VStack
+                      maxH={'140px'}
+                      overflowY='scroll'
+                    >
+                      {collections.map((x) => (
+                        <Checkbox
+                          key={`${x.chainId}-${x.address}`}
+                          {...register('collections')}
+                          value={`${x.chainId}-${x.address}`}
+                          disabled={isSubmitting}
+                        >
+                          {x.name}
+                        </Checkbox>
+                      ))}
+                    </VStack>
+                  </FormControl>
+              </GridItem>
+              
+              <GridItem
+                colSpan={{ sm: 5, md: 2, lg: 1, xl: 1 }}
+                border='1px solid'
+                borderColor={'gray.200'}
+                borderRadius={'sm'}
+                p={2}
+              >
+                <FormControl>
+                  <FormLabel fontSize='sm'>{t('explore.form.categories.label')}</FormLabel>
+                  <VStack
+                    maxH={'140px'}
+                    overflowY='scroll'
+                  >
+                    {categories.map((x) => (
+                      <Checkbox
+                        key={x}
+                        {...register('categories')}
+                        value={x}
+                        disabled={isSubmitting}
+                        fontSize='sm'
+                      >
+                        {t(`categories.${x}`, null, { fallback: x })}
+                      </Checkbox>
+                    ))}
+                  </VStack>
+                </FormControl>
+              </GridItem>
+
+              <GridItem colSpan={{ sm: 5, md: 5, lg: 1, xl: 1 }}>
+                {filterButtons}
+              </GridItem>
+            </Grid>
+          </FilterAccordion>
+        </Stack>
+        <Grid
+          mt={4}
+          gap={{ base: 4, lg: 3, xl: 4 }}
+          templateColumns={{ lg: 'repeat(5, 1fr)', xl: 'repeat(4, 1fr)' }}
+        >
+          <GridItem gap={6} pt={{ base: 8, lg: 0 }} colSpan={{ lg: 4, xl: 4 }}>
+            <Box ml="auto" w={{ base: 'full', lg: 'min-content' }}>
+              <Select<AssetsOrderBy>
+                label={t('explore.orderBy.label')}
+                name="orderBy"
+                onChange={changeOrder}
+                choices={[
+                  {
+                    label: t('explore.orderBy.values.createdAtDesc'),
+                    value: 'CREATED_AT_DESC',
+                  },
+                  {
+                    label: t('explore.orderBy.values.createdAtAsc'),
+                    value: 'CREATED_AT_ASC',
+                  },
+                ]}
+                value={orderBy}
+                inlineLabel
+              />
+            </Box>
+            {assets.length > 0 ? (
+              <SimpleGrid
+                flexWrap="wrap"
+                spacing={{ base: 4, lg: 3, xl: 4 }}
+                columns={{ base: 1, sm: 2, md: 4 }}
+                py={6}
+              >
+                {assets.map((x, i) => (
+                  <Flex key={i} justify="center">
+                    <TokenCard
+                      asset={convertAsset(x)}
+                      creator={convertUser(x.creator, x.creator.address)}
+                      auction={
+                        x.auctions.nodes[0]
+                          ? convertAuctionWithBestBid(x.auctions.nodes[0])
+                          : undefined
+                      }
+                      sale={convertSale(x.firstSale.nodes[0])}
+                      numberOfSales={x.firstSale.totalCount}
+                      hasMultiCurrency={
+                        parseInt(
+                          x.currencySales.aggregates?.distinctCount?.currencyId,
+                          10,
+                        ) > 1
+                      }
+                    />
+                  </Flex>
+                ))}
+              </SimpleGrid>
+            ) : (
+              <Flex align="center" justify="center" h="full" py={12}>
+                <Empty
+                  title={t('explore.empty.title')}
+                  description={t('explore.empty.description')}
                 />
-              ),
-              pages: (props) =>
-                t('pagination.result.pages', { count: props.total }),
-            }}
-          />
-        </GridItem>
-      </Grid>
-    </LargeLayout>
+              </Flex>
+            )}
+            <ChakraPagination
+              py="6"
+              borderTop="1px"
+              borderColor="gray.200"
+              limit={limit}
+              limits={[environment.PAGINATION_LIMIT, 24, 36, 48]}
+              page={page}
+              total={data?.assets?.totalCount}
+              onPageChange={changePage}
+              onLimitChange={changeLimit}
+              result={{
+                label: t('pagination.result.label'),
+                caption: (props) => (
+                  <Trans
+                    ns="templates"
+                    i18nKey="pagination.result.caption"
+                    values={props}
+                    components={[
+                      <Text as="span" color="brand.black" key="text" />,
+                    ]}
+                  />
+                ),
+                pages: (props) =>
+                  t('pagination.result.pages', { count: props.total }),
+              }}
+            />
+          </GridItem>
+        </Grid>
+      </LargeLayout>
+    </div>
   )
 }
 

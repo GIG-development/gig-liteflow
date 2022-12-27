@@ -839,5 +839,8 @@
     "balances": {
       "none": "No hay balances disponibles."
     }
+  },
+  "filterAccordion": {
+    "title": "Filtros"
   }
 }
