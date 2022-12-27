@@ -27,7 +27,6 @@ const Creadores: NextPage = () => {
     <button data-tf-popup="eyQRCt11" data-tf-hide-headers data-tf-iframe-props="title=Registration Form" data-tf-medium="snippet" className="btn">
       {t('creadores.hero.button')}
     </button>
-    <script src="//embed.typeform.com/next/embed.js"></script>
   </>
 
   return (
@@ -35,7 +34,9 @@ const Creadores: NextPage = () => {
       <Head
           title="Creadores"
           description="Gana más por tu talento y pertenece a una gran comunidad de líderes, coleccionistas, inversionistas y creadores de la web3."
-      />
+      >
+          <script src="//embed.typeform.com/next/embed.js"></script>
+      </Head>
       <AnimatedHero 
         bg={'/img/home/main_hero_bg.jpg'}
         ctaLine_1={t('creadores.hero.ctaLine1')}

@@ -16,7 +16,9 @@ const Contacto: NextPage = () => {
           <Head
               title="Contacto"
               description="Experto, amateur o entusiasta de la industria NFT y la web 3.0, queremos escucharte. Encuéntranos aquí: soporte@gig.io"
-          />
+          >
+              <script src="//embed.typeform.com/next/embed.js"></script>
+          </Head>
           <Stack spacing={6} mb={20} align={'center'}>
               <Heading as={'h1'} variant="title">
                 {t('contact.title')}
@@ -31,7 +33,6 @@ const Contacto: NextPage = () => {
               <button data-tf-slider="VNmlDfKG" data-tf-hide-headers data-tf-position="right" data-tf-button-color="#BE94FF" data-tf-iframe-props="title=Contact Form" data-tf-chat className='btn'>
                 {t('contact.button')}
               </button>
-              <script src="//embed.typeform.com/next/embed.js"></script>
           </Stack>
       </LargeLayout>
     </div>

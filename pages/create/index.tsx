@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
+import { BsFillPersonCheckFill } from '@react-icons/all-files/bs/BsFillPersonCheckFill'
 import { HiExclamationCircle } from '@react-icons/all-files/hi/HiExclamationCircle'
 import { IoImageOutline } from '@react-icons/all-files/io5/IoImageOutline'
 import { IoImagesOutline } from '@react-icons/all-files/io5/IoImagesOutline'
@@ -102,7 +102,7 @@ const CreatePage: NextPage = () => {
         </Heading>
         <Stack align="center" spacing={6} mb={40}>
           <Center bgColor="brand.50" w={12} h={12} rounded="full">
-            <Icon as={HiBadgeCheck} color="brand.500" w={6} h={6} />
+            <Icon as={BsFillPersonCheckFill} color="brand.500" w={6} h={6} />
           </Center>
           <Stack textAlign="center">
             <Heading variant="heading1">{t('asset.restricted.title')}</Heading>
