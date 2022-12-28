@@ -12,7 +12,7 @@
     "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "graphql-codegen": "graphql-codegen --overwrite",
-    "deploy": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_99icmEjMNgefsLPKMpGQrxUKaind/Hr0XP8RZ3r",
+    "deploy": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_99icmEjMNgefsLPKMpGQrxUKaind/i1Kac3XWYU",
     "deployTestnet": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_U4rUq93h2ds6Tkt5HX6pF9mZUsqi/iTlopNfEl3"
   },
   "dependencies": {

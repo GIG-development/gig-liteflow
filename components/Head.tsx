@@ -18,7 +18,7 @@ const Head: FC<PropsWithChildren<Props>> = ({
 }) => {
   return (
     <NextHead>
-            <title>{title} | GIG - Más que un marketplace, la mejor comunidad NFT de creativos en Latinoamérica</title>
+      <title>{title} | GIG - Más que un marketplace, la mejor comunidad NFT de creativos en Latinoamérica</title>
       <meta property="og:title" content={title} />
       <meta name="twitter:title" content={title} />
       {description && (
@@ -40,6 +40,7 @@ const Head: FC<PropsWithChildren<Props>> = ({
         name="twitter:image"
         content={image || `${environment.BASE_URL}/social_twitter-card.jpg`}
       />
+      <link rel='icon' href={`${environment.BASE_URL}/favicon.png`} />
       <link
         rel="apple-touch-icon"
         href={`${environment.BASE_URL}/apple-touch-icon.png`}
