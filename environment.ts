@@ -111,7 +111,7 @@ const MINTABLE_COLLECTIONS = (
   .map((address) => ({ address: address.toLowerCase(), chainId: CHAIN_ID }))
 
 const environment: Environment = {
-  MAGIC_API_KEY: process.env.NEXT_PUBLIC_MAGIC_API_KEY,
+  MAGIC_API_KEY: process.env.MAGIC_API_KEY,
   PUBLIC_ETHEREUM_PROVIDER: process.env.NEXT_PUBLIC_ETHEREUM_PROVIDER,
   BLOCKCHAIN_EXPLORER_URL: process.env.NEXT_PUBLIC_BLOCKCHAIN_EXPLORER_URL,
   BLOCKCHAIN_EXPLORER_NAME: process.env.NEXT_PUBLIC_BLOCKCHAIN_EXPLORER_NAME,
