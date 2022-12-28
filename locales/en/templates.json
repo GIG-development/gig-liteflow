@@ -486,8 +486,14 @@
     },
     "restricted": {
       "title": "Creation Restricted to Verified Users",
-      "description": "To request an account verification, please reach out to the support team at <0/> that will guide you every step of the process.",
-      "info": "Once your account is verified you will be notified and will be able to access the creation features."
+      "description": "To request an account verification, please click the following button",
+      "requestButton": "Request Verification",
+      "info": "Once your account is verified you will be notified and will be able to access the creation features. Remember thar in order to get your account verified, you have to complete your profile first.",
+      "requested": {
+        "title": "Verification requested",
+        "first" : "We've received your request to verify your account. We'll review it and get back to you shortly.",
+        "again": "Your account is being validated. We'll get back to you shortly."
+      }
     }
   },
   "login": {

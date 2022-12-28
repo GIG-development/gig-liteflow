@@ -500,8 +500,14 @@
     },
     "restricted": {
       "title": "Creación Restringida para Usuarios Verificados",
-      "description": "Para solicitar la verificación de tu cuenta, por favor contacta a nuestro equipo de soporte en <0/> y te ayudaremos en cada paso del proceso.",
-      "info": "Una vez tu cuenta haya sido verificada, recibirás una notificación y podrás acceder a las funciones de creación en nuestra plataforma."
+      "description": "Para solicitar la verificación de tu cuenta, por favor haz click en el siguiente botón",
+      "requestButton": "Solicitar verificación",
+      "info": "Una vez tu cuenta haya sido verificada, recibirás una notificación y podrás acceder a las funciones de creación en nuestra plataforma. Recuerda que para que tu cuenta pueda ser verificada, deberás haber llenado todos los datos en tu perfil.",
+      "requested": {
+        "title": "Verificación solicitada",
+        "first" : "Hemos recibido tu solicitud de verificación. La revisaremos y te responderemos a la brevedad.",
+        "again": "Tu cuenta esta siendo validada. Te responderemos a la brevedad."
+      }
     }
   },
   "login": {

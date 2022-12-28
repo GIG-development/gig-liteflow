@@ -10,11 +10,7 @@ import {
   Grid,
   GridItem,
   Heading,
-  HStack,
   InputGroup,
-  Menu,
-  MenuButton,
-  MenuList,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -39,7 +35,6 @@ import Pagination from '../components/Pagination/Pagination'
 import Select from '../components/Select/Select'
 import TokenCard from '../components/Token/Card'
 import FilterAccordion from 'components/FilterAccordion/FilterAccordion'
-import { HiChevronDown } from '@react-icons/all-files/hi/HiChevronDown'
 import {
   convertAsset,
   convertAuctionWithBestBid,
