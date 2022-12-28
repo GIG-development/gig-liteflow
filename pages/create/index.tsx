@@ -1,24 +1,26 @@
+
 import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   Center,
   Flex,
   Heading,
   Icon,
   Stack,
   Text,
+  useToast
 } from '@chakra-ui/react'
-import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
+import { BsFillPersonCheckFill } from '@react-icons/all-files/bs/BsFillPersonCheckFill'
 import { HiExclamationCircle } from '@react-icons/all-files/hi/HiExclamationCircle'
 import { IoImageOutline } from '@react-icons/all-files/io5/IoImageOutline'
 import { IoImagesOutline } from '@react-icons/all-files/io5/IoImagesOutline'
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
-import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 import Empty from '../../components/Empty/Empty'
 import Head from '../../components/Head'
 import Link from '../../components/Link/Link'
@@ -31,6 +33,8 @@ import {
   FetchCollectionsAndAccountVerificationStatusQueryVariables,
   useFetchCollectionsAndAccountVerificationStatusQuery,
 } from '../../graphql'
+import useSigner from '../../hooks/useSigner'
+import { useVerifyAccount } from '@nft/hooks'
 import useEagerConnect from '../../hooks/useEagerConnect'
 import SmallLayout from '../../layouts/small'
 import { wrapServerSideProps } from '../../props'
@@ -79,6 +83,9 @@ const CreatePage: NextPage = () => {
   const { t } = useTranslation('templates')
   const { back } = useRouter()
   const { account } = useWeb3React()
+  const signer = useSigner()
+  const [verifyAccount, { loading }] = useVerifyAccount(signer)
+  const toast = useToast()
   const { data, called } = useFetchCollectionsAndAccountVerificationStatusQuery(
     {
       variables: {
@@ -89,6 +96,39 @@ const CreatePage: NextPage = () => {
       skip: !ready,
     },
   )
+  const [requested, setRequested] = useState(false)
+
+  const handleVerificationRequest = async () => {
+    //If user has requested verification already
+    if(data?.account?.verification?.status === 'PENDING' || requested){
+      toast({
+        title: t('asset.restricted.requested.title'),
+        description: t('asset.restricted.requested.again'),
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+      return
+    }
+
+    if(signer){
+      await verifyAccount() // Request to verify the current signer's wallet address
+      .then(data=>{
+        if(data==='PENDING'){
+          setRequested(true)
+          toast({
+            title: t('asset.restricted.requested.title'),
+            description: t('asset.restricted.requested.first'),
+            status: 'success',
+            duration: 5000,
+            isClosable: true
+          })
+        }
+      })
+    }else{
+      document.location = '/login'
+    }
+  }
 
   if (
     environment.RESTRICT_TO_VERIFIED_ACCOUNT &&
@@ -102,25 +142,19 @@ const CreatePage: NextPage = () => {
         </Heading>
         <Stack align="center" spacing={6} mb={40}>
           <Center bgColor="brand.50" w={12} h={12} rounded="full">
-            <Icon as={HiBadgeCheck} color="brand.500" w={6} h={6} />
+            <Icon as={BsFillPersonCheckFill} color="brand.500" w={6} h={6} />
           </Center>
           <Stack textAlign="center">
             <Heading variant="heading1">{t('asset.restricted.title')}</Heading>
             <Text pb={2} color="gray.500">
-              <Trans
-                ns="templates"
-                i18nKey="asset.restricted.description"
-                components={[
-                  <Link
-                    fontWeight="bold"
-                    href={`mailto:${environment.REPORT_EMAIL}`}
-                    key="report"
-                  >
-                    {environment.REPORT_EMAIL}
-                  </Link>,
-                ]}
-              />
+              {t('asset.restricted.description')}
             </Text>
+            <Button
+              onClick={handleVerificationRequest}
+              disabled={loading}
+            >
+              {t('asset.restricted.requestButton')}
+            </Button>
           </Stack>
           <Alert
             status="info"
