@@ -52,8 +52,7 @@ const Slider: FC<HTMLAttributes<any>> = ({ children }) => {
         transform="auto"
       >
         <IconButton
-          variant="outline"
-          colorScheme="gray"
+          colorScheme="brand"
           rounded="full"
           aria-label="previous"
           icon={<Icon as={BiChevronLeft} h={6} w={6} />}
@@ -71,8 +70,7 @@ const Slider: FC<HTMLAttributes<any>> = ({ children }) => {
         transform="auto"
       >
         <IconButton
-          variant="outline"
-          colorScheme="gray"
+          colorScheme="brand"
           rounded="full"
           aria-label="next"
           icon={<Icon as={BiChevronRight} h={6} w={6} />}

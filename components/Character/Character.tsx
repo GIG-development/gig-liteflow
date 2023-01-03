@@ -3,6 +3,7 @@ import {
     Flex,
     Grid,
     Heading,
+    Image,
     Stack,
     Text
 } from '@chakra-ui/react'
@@ -15,8 +16,14 @@ type Props = {
     animation: any
     description: string
     description2?: string
-    powers: string[]
-    weaknesses: string[]
+    powers: {
+        icon: string,
+        power: string
+    }[]
+    weaknesses: {
+        icon: string,
+        weakness: string
+    }[]
 }
   
 const Character: FC<PropsWithChildren<Props>> = ({
@@ -67,7 +74,9 @@ const Character: FC<PropsWithChildren<Props>> = ({
                             <Heading as={'h5'} variant={'heading4'}>{t('family.characters.powers')}</Heading>
                             {powers.map(p=>{
                                 return (
-                                    <Text key={p} fontSize='xs'>{p}</Text>
+                                    <Flex>
+                                        <Image src={p.icon} w='30px' h='30px'/><Text pt='5px' key={p.power} fontSize='xs'>{p.power}</Text>
+                                    </Flex>
                                 )
                             })}
                         </Box>
@@ -75,7 +84,9 @@ const Character: FC<PropsWithChildren<Props>> = ({
                             <Heading as={'h5'} variant={'heading4'}>{t('family.characters.weaknesses')}</Heading>
                             {weaknesses.map(w=>{
                                 return (
-                                    <Text key={w} fontSize='xs'>{w}</Text>
+                                    <Flex>
+                                        <Image src={w.icon} w='30px' h='30px'/><Text pt='5px' key={w.weakness} fontSize='xs'>{w.weakness}</Text>
+                                    </Flex>
                                 )
                             })}
                         </Box>

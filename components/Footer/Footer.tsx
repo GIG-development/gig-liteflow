@@ -15,6 +15,7 @@ import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import { dateFromNow } from '@nft/hooks';
   
 const SocialButton = ({
     children,
@@ -131,7 +132,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
           </SimpleGrid>
           
           <Text pt={20} fontSize={'sm'} textAlign={'center'}>
-            {t('footer.copyright')}
+            {t('footer.copyright', {year: new Date().getFullYear()})}
           </Text>
         </Container>
       </Box>

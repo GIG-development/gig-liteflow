@@ -51,7 +51,7 @@
     "privacy": "Privacy Policy",
     "contact": "Contact Us",
     "listTitle3": "Follow Us",
-    "copyright": "© 2022 GIG. All Rights Reserved."
+    "copyright": "© {{year}} GIG. All Rights Reserved."
   },
   "history": {
     "none": "No history",

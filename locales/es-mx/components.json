@@ -64,7 +64,7 @@
     "privacy": "Política de Privacidad",
     "contact": "Contáctanos",
     "listTitle3": "Síguenos",
-    "copyright": "© 2022 GIG. Todos los derechos reservados"
+    "copyright": "© {{year}} GIG. Todos los derechos reservados"
   },
   "history": {
     "none": "Sin historial",
