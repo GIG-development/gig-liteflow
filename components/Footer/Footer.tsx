@@ -15,7 +15,6 @@ import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { dateFromNow } from '@nft/hooks';
   
 const SocialButton = ({
     children,
