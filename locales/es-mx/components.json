@@ -340,7 +340,7 @@
         "no-bids": "Tu subasta de <0>{{name}}</0> ha terminado pero no recibiste ninguna oferta. ¡Crea una nueva venta!",
         "reserve-price-buyer": "La subasta de <0>{{name}}</0> ha terminado pero el precio de reserva no ha sido alcanzado.",
         "reserve-price-seller": "Tu subasta de <0>{{name}}</0> ha terminado pero tu precio de reserva no ha sido alcanzado. ¡Crea una nueva venta!",
-        "won-buyer": "Felicitaciones 🎉 Ganaste la subaste de <0>{{name}}</0>! Espera la confirmación del propietario para recibir la propiedad",
+        "won-buyer": "Felicitaciones 🎉 Ganaste la subasta de <0>{{name}}</0>! Espera la confirmación del propietario para recibir la propiedad",
         "won-seller": "Felicitaciones 🎉 Tu subasta de <0>{{name}}</0> ha sido ganada por <1/>! Confirma la venta para recibir el pago."
       },
       "expired": "La subasta de <0>{{name}}</0> ha llegado a su fecha de expiración. La subasta y sus ofertas han sido canceladas. ¡Crea una nueva venta!",
@@ -752,9 +752,9 @@
       "on-sale": "En Venta",
       "owned": "Colección",
       "created": "Creados",
-      "bids": "Ofertas hechas",
+      "bids": "Ofertas",
       "trades": "Transacciones",
-      "offers": "Ofertas recibidas"
+      "offers": "Mis Ventas"
     },
     "form": {
       "edit": {

@@ -30,7 +30,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
 }) => {
     const { t } = useTranslation('templates')
     return (
-        <Flex justify={'center'}>
+        <Flex flexBasis={{base: '100%', md: '25%'}} minW={{base: '100%', md: '25%'}} justify={'center'}>
             <Box
                 maxW={72}
                 rounded={'base'}

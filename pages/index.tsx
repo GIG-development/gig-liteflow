@@ -193,15 +193,7 @@ const HomePage: NextPage<Props> = ({
             <Heading as="h2" variant="subtitle" color="brand.black">
               {t('home.featuredArtists.title')}
             </Heading>
-            <SimpleGrid spacing={6} columns={{sm: 2, md: 3, lg: 4}}>
-              <Artist 
-                name='Ocote'
-                handle='@el_ocote'
-                description='🌵🗿📡Artesanía digital👇🏼'
-                tags={['arte digital','gráfica','street art']}
-                image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
-                link={'https://testnet.gig.io/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
-              />
+            <Slider>
               <Artist 
                 name='ilithya'
                 handle='@ilithya_rocks'
@@ -210,25 +202,42 @@ const HomePage: NextPage<Props> = ({
                 🖤 Mexican based in Hamburg'
                 tags={['música','multimedia','creative coding']}
                 image='https://gig-io.vercel.app/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
-                link={'https://testnet.gig.io/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+                link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
               />
               <Artist 
                 name='p1xelfool'
                 handle='@p1xelfool'
                 description='Internet artist since 3001 */ father of multidimentional entities'
-                tags={['arte digital','animation']}
+                tags={['arte digital','animación']}
                 image='https://p1xelfool.com/images/soul.gif'
-                link={'https://testnet.gig.io/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+                link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
               />
               <Artist 
-                name='Maw'
-                handle='@mawmawmaw'
-                description='Desarrollador web y creative coder'
-                tags={['desarrollo web','diseño']}
-                image='https://maw.dev/images/fbtw.jpg'
-                link={'https://testnet.gig.io/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+                name='Camote Toys'
+                handle='@camote.toys'
+                description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
+                tags={['art toys','diseño', 'cerámica']}
+                image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
+                link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
               />
-            </SimpleGrid>
+              <Artist 
+                name='Cotama'
+                handle='@pablocotama'
+                description='A monkey that paints with his hands'
+                tags={['diseño', 'arte digital']}
+                image='https://pbs.twimg.com/media/FliQUNKXwAA4Hli?format=jpg&name=medium'
+                link={'/users/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
+              />
+              <Artist 
+                name='Ocote'
+                handle='@el_ocote'
+                description='🌵🗿📡Artesanía digital👇🏼'
+                tags={['arte digital','gráfica','street art']}
+                image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
+                link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+              />
+
+            </Slider>
         </Stack>
 
         {featuredAssets && featuredAssets.length > 0 && (
