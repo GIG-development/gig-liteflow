@@ -2,9 +2,7 @@ import {
   Button,
   Flex,
   Icon,
-  Stack,
   Text,
-  VStack,
 } from '@chakra-ui/react'
 import { useIsLoggedIn } from '@nft/hooks'
 import { BsArrowRight } from '@react-icons/all-files/bs/BsArrowRight'
@@ -15,10 +13,8 @@ import Link from '../../Link/Link'
 const UserProfileInfo: VFC<{
   address: string
   name: string | null | undefined
-  description: string | null | undefined
 }> = ({
   address,
-  description,
   name,
 }) => {
   const { t } = useTranslation('components')
@@ -36,15 +32,6 @@ const UserProfileInfo: VFC<{
         mb={6}
         alignItems='center'
       >
-        <VStack alignItems={'flex-end'}> 
-          {description && (
-            <Stack w={'full'} spacing={3}>
-              <Text as="p" textAlign={'justify'} variant="text-sm" color="gray.500">
-                {description}
-              </Text>
-            </Stack>
-          )}
-        </VStack>
         {name && (
           <Flex
             flexDirection={{base: 'column', row: 'row'}}

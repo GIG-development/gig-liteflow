@@ -38,6 +38,7 @@ const UserProfileTemplate: FC<{
         cover={account.cover}
         image={account.image}
         name={account.name}
+        description={account.description}
         instagram={account.instagram}
         twitter={account.twitter}
         website={account.website}
@@ -45,7 +46,6 @@ const UserProfileTemplate: FC<{
       />
       <UserProfileInfo
         address={account.address}
-        description={account.description}
         name={account.name}
       />
       <SimpleGrid

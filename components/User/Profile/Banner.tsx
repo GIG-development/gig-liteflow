@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
 import { VFC } from 'react'
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
@@ -14,13 +14,14 @@ type Props = {
   cover: string | null | undefined
   image: string | null | undefined
   name: string | null | undefined
+  description: string | null | undefined
   verified: boolean
   twitter: string | null | undefined
   instagram: string | null | undefined
   website: string | null | undefined
 }
 
-const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, verified, twitter, instagram, website }) => {
+const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website }) => {
   if (!address) throw new Error('account is falsy')
   const { t } = useTranslation('components')
 
@@ -72,35 +73,46 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, verified, 
           pt={{base: 0, md: 24}}
         >
           <Box>
-            <Heading
-              as="h1"
-              variant="title"
-              color="brand.black"
-              overflowWrap="break-word"
-              textAlign={{base: 'center', md: 'left'}}
+            <Flex
+              gap={2}
+              alignItems={'center'}
+              flexDirection={{base: 'column', md: 'row'}}
+              justifyContent={{base: 'center', md: 'flex-start'}}
             >
-              {name}
-            </Heading>
-            {verified && (
-              <Flex
-                color="brand.500"
-                mt={2}
-                gap={1}
-                justifyContent={{base: 'center', md: 'flex-start'}}
+              <Heading
+                as="h1"
+                variant="title"
+                color="brand.black"
+                overflowWrap="break-word"
+                textAlign={{base: 'center', md: 'left'}}
               >
-                <Icon as={HiBadgeCheck} />
-                <span style={{fontSize: '12px'}}>{t('user.info.verified')}</span>
-              </Flex>
-            )}
+                {name}
+              </Heading>
+              {verified && (
+                <Flex
+                  color="brand.500"
+                  mt={2}
+                  gap={1}
+                  justifyContent={{base: 'center', md: 'flex-start'}}
+                >
+                  <Icon as={HiBadgeCheck} />
+                  <span style={{fontSize: '12px'}}>{t('user.info.verified')}</span>
+                </Flex>
+              )}
+            </Flex>
           </Box>
-          <Box
+          <Flex
             my={{base: 6, md: 2}}
             textAlign={'center'}
+            flexDirection={{base: 'column', md: 'row'}}
+            gap={2}
           >
             <Flex
               gap={6}
               flexDirection={'row'}
               justifyContent="center"
+              pt={2}
+              pr={2}
             >
               {twitter && (
                 <Link
@@ -132,14 +144,21 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, verified, 
               )}
             </Flex>
             <Button 
-              variant="outline"
               colorScheme="gray"
+              fontSize={'sm'}
             >
               <WalletAddress address={address} isCopyable isShort />
             </Button>
-          </Box>
+          </Flex>
         </Flex>
       </Flex>
+        {description && (
+          <Box px={12}>
+            <Text as="p" textAlign={'justify'} variant="text-sm" color="gray.500" pt={4}>
+              {description}
+            </Text>
+          </Box>
+        )}
     </Flex>
   )
 }
