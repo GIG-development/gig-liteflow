@@ -189,56 +189,6 @@ const HomePage: NextPage<Props> = ({
         image={'/img/home/main_hero_img.png'}
       />
       <LargeLayout>
-        <Stack spacing={6} mt={20} mb={40}>
-            <Heading as="h2" variant="subtitle" color="brand.black">
-              {t('home.featuredArtists.title')}
-            </Heading>
-            <Slider>
-              <Artist 
-                name='ilithya'
-                handle='@ilithya_rocks'
-                description='Music inspired art + tech 🤘🏽
-                💫 Creations with programming + algorithms
-                🖤 Mexican based in Hamburg'
-                tags={['música','multimedia','creative coding']}
-                image='https://gig-io.vercel.app/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
-                link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
-              />
-              <Artist 
-                name='p1xelfool'
-                handle='@p1xelfool'
-                description='Internet artist since 3001 */ father of multidimentional entities'
-                tags={['arte digital','animación']}
-                image='https://p1xelfool.com/images/soul.gif'
-                link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
-              />
-              <Artist 
-                name='Camote Toys'
-                handle='@camote.toys'
-                description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
-                tags={['art toys','diseño', 'cerámica']}
-                image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
-                link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
-              />
-              <Artist 
-                name='Cotama'
-                handle='@pablocotama'
-                description='A monkey that paints with his hands'
-                tags={['diseño', 'arte digital']}
-                image='https://pbs.twimg.com/media/FliQUNKXwAA4Hli?format=jpg&name=medium'
-                link={'/users/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
-              />
-              <Artist 
-                name='Ocote'
-                handle='@el_ocote'
-                description='🌵🗿📡Artesanía digital👇🏼'
-                tags={['arte digital','gráfica','street art']}
-                image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
-                link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
-              />
-
-            </Slider>
-        </Stack>
 
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
@@ -249,6 +199,56 @@ const HomePage: NextPage<Props> = ({
             )}
           </header>
         )}
+
+        <Stack spacing={6} mt={20} mb={40}>
+          <Heading as="h2" variant="subtitle" color="brand.black">
+            {t('home.featuredArtists.title')}
+          </Heading>
+          <Slider>
+            <Artist 
+              name='ilithya'
+              handle='@ilithya_rocks'
+              description='Music inspired art + tech 🤘🏽
+              💫 Creations with programming + algorithms
+              🖤 Mexican based in Hamburg'
+              tags={['música','multimedia','creative coding']}
+              image='https://gig-io.vercel.app/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
+              link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
+            />
+            <Artist 
+              name='p1xelfool'
+              handle='@p1xelfool'
+              description='Internet artist since 3001 */ father of multidimentional entities'
+              tags={['arte digital','animación']}
+              image='https://p1xelfool.com/images/soul.gif'
+              link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+            />
+            <Artist 
+              name='Camote Toys'
+              handle='@camote.toys'
+              description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
+              tags={['art toys','diseño', 'cerámica']}
+              image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
+              link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
+            />
+            <Artist 
+              name='Cotama'
+              handle='@pablocotama'
+              description='A monkey that paints with his hands'
+              tags={['diseño', 'arte digital']}
+              image='https://pbs.twimg.com/media/FliQUNKXwAA4Hli?format=jpg&name=medium'
+              link={'/users/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
+            />
+            <Artist 
+              name='Ocote'
+              handle='@el_ocote'
+              description='🌵🗿📡Artesanía digital👇🏼'
+              tags={['arte digital','gráfica','street art']}
+              image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
+              link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+            />
+          </Slider>
+        </Stack>
 
         {auctions.length > 0 && (
           <Stack spacing={6} mt={12}>
@@ -333,48 +333,49 @@ const HomePage: NextPage<Props> = ({
 
 
         <Stack spacing={12} mb={40}>
-            <Heading as="h2" variant="subtitle" color="brand.black" mt={40} mb={10}>
-              {t('home.gigDrops.title')}
-            </Heading>
-            <Drop
-              title='GIG Series - Génesis'
-              date='1 de Enero 2023'
-              description='GIG Génesis es la primera colección de la familia GIG que trae una misión: Empoderar almas creativas empezando por LATAM a través de la conexión con líderes de la industria creativa y Web3.'
-              image='/img/drops/drop-gig-genesis.jpg'
-              link='https://gig.io'
-            />
-            <Drop
-              title='Maxas Génesis'
-              date='10 de Febrero 2023'
-              description=''
-              image='/img/drops/drop-maxas-genesis.jpg'
-              link='https://maxas.xyz'
-            />
+          <Heading as="h2" variant="subtitle" color="brand.black" mt={40} mb={10}>
+            {t('home.gigDrops.title')}
+          </Heading>
+          <Drop
+            title='GIG Series - Génesis'
+            date='9 de Enero 2023'
+            description='GIG Génesis es la primera colección de la familia GIG que trae una misión: Empoderar almas creativas empezando por LATAM a través de la conexión con líderes de la industria creativa y Web3.'
+            image='/img/drops/drop-gig-genesis.jpg'
+            link='https://gig.io'
+          />
+          <Drop
+            title='Maxas Génesis'
+            date={t('home.gigDrops.comingSoon')}
+            description=''
+            image='/img/drops/drop-maxas-genesis.jpg'
+            link='https://maxas.xyz'
+          />
         </Stack>
       </LargeLayout>
+
       <Stack spacing={12} mb={10} backgroundColor={'gray.100'} w={'full'} id='home__section-video'>
-      <LargeLayout>
-        <Heading as="h2" variant="subtitle" color="black">
-            {t('home.secondaryHero.title')}
-        </Heading>
-        <SecondaryHero 
-          ctaLine_1={t('home.secondaryHero.ctaLine1')}
-          ctaLine_2={t('home.secondaryHero.ctaLine2')}
-          description={t('home.secondaryHero.description')}
-          button_1={t('home.secondaryHero.button')}
-          button_1_link='/nosotros'
-          image='./img/home/video.jpg'
-        />
-      </LargeLayout>
-    </Stack>
+        <LargeLayout>
+          <Heading as="h2" variant="subtitle" color="black">
+              {t('home.secondaryHero.title')}
+          </Heading>
+          <SecondaryHero 
+            ctaLine_1={t('home.secondaryHero.ctaLine1')}
+            ctaLine_2={t('home.secondaryHero.ctaLine2')}
+            description={t('home.secondaryHero.description')}
+            button_1={t('home.secondaryHero.button')}
+            button_1_link='/nosotros'
+            image='./img/home/video.jpg'
+          />
+        </LargeLayout>
+      </Stack>
     
-    <Banner
-      cta={t('home.banner.title')}
-      description={t('home.banner.text')}
-      button1={t('home.banner.button1')}
-      button2={t('home.banner.button2')}
-    />
-  </div>
+      <Banner
+        cta={t('home.banner.title')}
+        description={t('home.banner.text')}
+        button1={t('home.banner.button1')}
+        button2={t('home.banner.button2')}
+      />
+    </div>
   )
 }
 

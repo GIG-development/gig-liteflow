@@ -1,53 +1,145 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
 import { VFC } from 'react'
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
+import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
+import { HiOutlineGlobeAlt } from '@react-icons/all-files/hi/HiOutlineGlobeAlt'
+import { SiInstagram } from '@react-icons/all-files/si/SiInstagram'
+import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
+import useTranslation from 'next-translate/useTranslation'
+import WalletAddress from '../../Wallet/Address'
 
 type Props = {
   address: string
   cover: string | null | undefined
   image: string | null | undefined
   name: string | null | undefined
+  verified: boolean
+  twitter: string | null | undefined
+  instagram: string | null | undefined
+  website: string | null | undefined
 }
 
-const UserProfileBanner: VFC<Props> = ({ cover, image, address, name }) => {
+const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, verified, twitter, instagram, website }) => {
   if (!address) throw new Error('account is falsy')
+  const { t } = useTranslation('components')
 
   return (
     <Flex
-      as="header"
-      position="relative"
-      zIndex={-1}
-      mb={20}
-      h="200px"
-      w="full"
-      rounded="xl"
-      bgColor="gray.100"
+      flexDirection={'column'}
     >
-      {cover && (
-        <Image
-          src={cover}
-          alt={name || address}
-          height={200}
-          width={1440}
-          objectFit="cover"
-          rounded="xl"
-        />
-      )}
-      <Box
-        position="absolute"
-        bottom={-12}
-        left={6}
-        h={24}
-        w={24}
-        overflow="hidden"
-        rounded="full"
-        borderWidth="4px"
-        borderColor="white"
-        bgColor="white"
+      <Flex
+        as="header"
+        position="relative"
+        zIndex={-1}
+        h="200px"
+        w="full"
+        rounded="xl"
+        bgColor="gray.100"
       >
-        <AccountImage address={address} image={image} size={96} />
-      </Box>
+        {cover && (
+          <Image
+            src={cover}
+            alt={name || address}
+            height={200}
+            width={1440}
+            objectFit="cover"
+            rounded="xl"
+          />
+        )}
+      </Flex>
+      <Flex
+        as="nav"
+        flexDirection={{base: 'column', md: 'row'}}
+        alignItems="center"
+        gap={6}
+        mx={10}
+        mt={-20}
+      >
+        <Box
+          minW={32}
+          h={32}
+          overflow="hidden"
+          rounded={'full'}
+          bgColor="white"
+        >
+          <AccountImage address={address} image={image} size={128} />
+        </Box>
+        <Flex
+          w={'full'}
+          flexDirection={{base: 'column', md: 'row'}}
+          justifyContent='space-between'
+          pt={{base: 0, md: 24}}
+        >
+          <Box>
+            <Heading
+              as="h1"
+              variant="title"
+              color="brand.black"
+              overflowWrap="break-word"
+              textAlign={{base: 'center', md: 'left'}}
+            >
+              {name}
+            </Heading>
+            {verified && (
+              <Flex
+                color="brand.500"
+                mt={2}
+                gap={1}
+                justifyContent={{base: 'center', md: 'flex-start'}}
+              >
+                <Icon as={HiBadgeCheck} />
+                <span style={{fontSize: '12px'}}>{t('user.info.verified')}</span>
+              </Flex>
+            )}
+          </Box>
+          <Box
+            my={{base: 6, md: 2}}
+            textAlign={'center'}
+          >
+            <Flex
+              gap={6}
+              flexDirection={'row'}
+              justifyContent="center"
+            >
+              {twitter && (
+                <Link
+                  href={`https://twitter.com/${twitter}`}
+                  isExternal
+                  justifyContent="center"
+                >
+                  <Icon as={SiTwitter} />
+                </Link>
+                  
+              )}
+              {instagram && (
+                <Link
+                  href={`https://instagram.com/${instagram}`}
+                  isExternal
+                  justifyContent="center"
+                >
+                  <Icon as={SiInstagram} />
+                </Link>
+              )}
+              {website && (
+                <Link
+                  href={website.includes('http') ? website : `https://${website}`}
+                  isExternal
+                  justifyContent="center"
+                >
+                  <Icon as={HiOutlineGlobeAlt} />
+                </Link>
+              )}
+            </Flex>
+            <Button 
+              variant="outline"
+              colorScheme="gray"
+            >
+              <WalletAddress address={address} isCopyable isShort />
+            </Button>
+          </Box>
+        </Flex>
+      </Flex>
     </Flex>
   )
 }

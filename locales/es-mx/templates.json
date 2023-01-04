@@ -43,6 +43,7 @@
     "gigDrops": {
       "title": "GIG Drops",
       "launchDate": "Lanzamiento",
+      "comingSoon": "Próximamente",
       "dropButton": "Ver Colección"
     },
     "secondaryHero": {
@@ -639,8 +640,8 @@
     },
     "bid-placed": {
       "nav": {
-        "received": "Recibida",
-        "placed": "Colocada"
+        "received": "Recibidas",
+        "placed": "Hechas"
       },
       "notifications": {
         "canceled": "Oferta cancelada"
@@ -673,8 +674,8 @@
     },
     "bid-received": {
       "nav": {
-        "received": "Recibida",
-        "placed": "Colocada"
+        "received": "Recibidas",
+        "placed": "Hechas"
       },
       "notifications": {
         "accepted": "Oferta Aceptada"

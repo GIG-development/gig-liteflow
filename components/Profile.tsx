@@ -23,14 +23,11 @@ const UserProfileTemplate: FC<{
   }
   currentTab: TabsEnum
   totals: Map<TabsEnum, number>
-  loginUrlForReferral?: string
 }> = ({
-  signer,
   currentAccount,
   account,
   currentTab,
   totals,
-  loginUrlForReferral,
   children,
 }) => {
   if (!account) throw new Error('account is falsy')
@@ -41,6 +38,15 @@ const UserProfileTemplate: FC<{
         cover={account.cover}
         image={account.image}
         name={account.name}
+        instagram={account.instagram}
+        twitter={account.twitter}
+        website={account.website}
+        verified={account.verified}
+      />
+      <UserProfileInfo
+        address={account.address}
+        description={account.description}
+        name={account.name}
       />
       <SimpleGrid
         mb={6}
@@ -48,18 +54,7 @@ const UserProfileTemplate: FC<{
         spacingY={{ base: 12, lg: 0 }}
         columns={{ base: 1, lg: 4 }}
       >
-        <UserProfileInfo
-          signer={signer}
-          address={account.address}
-          description={account.description}
-          instagram={account.instagram}
-          name={account.name}
-          twitter={account.twitter}
-          website={account.website}
-          verified={account.verified}
-          loginUrlForReferral={loginUrlForReferral}
-        />
-        <GridItem colSpan={{ lg: 3 }}>
+        <GridItem colSpan={{ lg: 4 }}>
           <Stack spacing={6}>
             <UserProfileNavigation
               baseUrl={`/users/${account.address}`}
