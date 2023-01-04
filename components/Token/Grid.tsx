@@ -60,7 +60,7 @@ const TokenGrid = <Order extends string>({
       <SimpleGrid
         flexWrap="wrap"
         spacing={{ base: 4, lg: 3, xl: 4 }}
-        columns={{ base: 1, sm: 2, md: 3 }}
+        columns={{ base: 1, sm: 2, md: 4 }}
         py={6}
       >
         {assets.map(
