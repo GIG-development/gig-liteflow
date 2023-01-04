@@ -209,7 +209,6 @@ const BidPlacedPage: NextPage<Props> = ({
             ['owned', data?.owned?.totalCount || 0],
           ])
         }
-        loginUrlForReferral={environment.BASE_URL + '/login'}
       >
         <Stack spacing={6}>
           <Flex

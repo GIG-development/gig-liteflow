@@ -177,7 +177,6 @@ const OwnedPage: NextPage<Props> = ({
             ['owned', data.owned?.totalCount || 0],
           ])
         }
-        loginUrlForReferral={environment.BASE_URL + '/login'}
       >
         <TokenGrid<OwnershipsOrderBy>
           assets={assets}
