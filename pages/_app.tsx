@@ -218,7 +218,7 @@ function MyApp({
         <meta property="og:url" content="https://gig.io" />
         <meta name="twitter:card" content="summary" />
       </Head>
-      <GoogleAnalytics strategy="lazyOnload" />
+      <GoogleAnalytics strategy="lazyOnload" gaMeasurementId="G-NEH9GJ43B0"/>
       <Web3ReactProvider getLibrary={web3Provider}>
         <CookiesProvider>
           <ChakraProvider theme={theme}>
