@@ -176,9 +176,50 @@ const Creadores: NextPage = () => {
             <Heading color={'gray.500'} fontSize={{base: 'xl', md: 'xl'}} textAlign='center' mb={6}>
                 Somos una plataforma digital que reúne a las grandes mentes de la industria creativa en la Web 3.0.
             </Heading>
+
+            <Grid templateColumns={{base: 'repeat(3, 1fr)', md: 'repeat(9, 1fr)'}} gap={4} my={10}>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/collectibles.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Coleccionables</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/digital_art.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Arte digital</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/entertainment.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Entretenimiento</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/events.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Eventos</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/gaming.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Gaming</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/generative.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Arte generativo</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/metaverse.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Metaverso</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/photography.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Fotografía</Text>
+              </Flex>
+              <Flex alignItems='center' flexDirection='column'>
+                <Image src='/img/creadores/icons/social.png' w={20}/>
+                <Text fontSize={{base: 'xs', md: 'sm'}}>Comunidad</Text>
+              </Flex>
+            </Grid>
+
             <Heading color={'gray.800'} fontWeight={700} fontSize={{base: 'xl', md: 'xl'}} textAlign='center' mb={6}>
                 Codéate con artistas prestigiosos, coleccionistas, curadores reconocidos y otras mentes creativas como tú
             </Heading>
+
             <Flex justifyContent={'center'}>
               {typeFormButton}
             </Flex>
