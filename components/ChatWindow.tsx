@@ -35,7 +35,7 @@ const Chat = () => {
       overflow="hidden"
       boxShadow="2xl"
       border="1px"
-      borderColor="grayAlpha.700"
+      borderColor="gray.200"
       borderBottom="none"
     >
       <ChatComponent>
