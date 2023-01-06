@@ -364,7 +364,7 @@ const HomePage: NextPage<Props> = ({
             description={t('home.secondaryHero.description')}
             button_1={t('home.secondaryHero.button')}
             button_1_link='/nosotros'
-            image='./img/home/video.jpg'
+            image='/img/home/video.jpg'
           />
         </LargeLayout>
       </Stack>

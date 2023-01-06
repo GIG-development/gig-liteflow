@@ -32,7 +32,7 @@ const Banner: FC<PropsWithChildren<Props>> = ({
             align={'center'}
             justify={'center'}
             backgroundImage={
-                `url(${image})`
+                image ? `url(${image})` : ''
             }
             backgroundSize={useBreakpointValue({ base: '100%', md: '70%' })}
             backgroundPosition={'center center'}

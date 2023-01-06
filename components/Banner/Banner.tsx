@@ -3,7 +3,6 @@ import { FC } from 'react'
 import Link from '../../components/Link/Link'
 
 const Banner: FC = () => {
-  const isDemo = process.env.NEXT_PUBLIC_ENVIRONMENT === 'demo'
   return (
     <Flex
       position="fixed"
@@ -17,7 +16,7 @@ const Banner: FC = () => {
     >
       <Flex
         as={Link}
-        href="https://liteflow.com"
+        href="https://blog.gig.io"
         h="full"
         w={12}
         align="center"
@@ -54,13 +53,13 @@ const Banner: FC = () => {
         lineHeight={5}
         color="white"
       >
-        The Web3 as a Service Company
+        The #1 NFT Marketplace in LATAM
       </Flex>
       <Flex
         display={{ base: 'none', md: 'flex' }}
         align="center"
         rounded="full"
-        bgColor={isDemo ? 'secondary.100' : 'red.100'}
+        bgColor={'secondary.100'}
         mx={3}
       >
         <Text
@@ -70,14 +69,14 @@ const Banner: FC = () => {
           fontSize="xs"
           fontWeight="medium"
           lineHeight={4}
-          color={isDemo ? 'secondary.500' : 'red.500'}
+          color={'secondary.500'}
         >
-          {isDemo ? 'Demo Preview' : 'Test Preview'}
+          {'Visit our Blog'}
         </Text>
       </Flex>
       <Flex
         as={Link}
-        href="https://meetings.hubspot.com/alan364/liteflow-discovery-call"
+        href="/contacto"
         isExternal
         mr={{ base: 5, lg: 8 }}
         ml="auto"
@@ -98,7 +97,7 @@ const Banner: FC = () => {
           lineHeight={4}
           color="white"
         >
-          Talk to an Expert
+          Talk to Us
         </Text>
       </Flex>
     </Flex>
