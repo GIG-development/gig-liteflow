@@ -208,7 +208,7 @@ const DrawerMenu: VFC<{
                   <Link href={`/tutoriales`} w="full">
                     <NavItemMobile>{t('navbar.sections.tutorials')}</NavItemMobile>
                   </Link>
-                  <Link href={`/Preguntas Frecuentes`} w="full">
+                  <Link href={`/faq`} w="full">
                     <NavItemMobile>{t('navbar.sections.faqs')}</NavItemMobile>
                   </Link>
                   <Link href={`/contacto`} w="full">
