@@ -1,6 +1,6 @@
 module.exports = {
   locales: ['en', 'ja', 'zh-cn', 'es-mx'],
-  defaultLocale: 'en',
+  defaultLocale: 'es-mx',
   pages: {
     '*': ['templates', 'components'],
   },
