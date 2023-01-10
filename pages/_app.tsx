@@ -206,7 +206,7 @@ function MyApp({
   return (
     <ErrorBoundary>
       <Head
-        title="Home"
+        title=""
         description="Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."
       >
         <meta name="author" content="GIG Development" />
