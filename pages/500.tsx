@@ -28,9 +28,9 @@ const Custom500: NextPage = () => {
                     </Heading>
                     <Text>
                         {t('error.500.text1')}{' '}
-                        <Link href='mailto:soporte@gig.io'>{environment.REPORT_EMAIL}</Link>{' '}
+                        <strong><Link href='mailto:soporte@gig.io'>{environment.REPORT_EMAIL}</Link></strong>{' '}
                         {t('error.500.text2')}{' '}
-                        <Link href='/contacto'>{' '}{t('error.500.text3')}</Link>
+                        <strong><Link href='/contacto'>{' '}{t('error.500.text3')}</Link></strong>
                     </Text>
                     <Link href='/'>
                         <Button>{t('error.500.button')}</Button>

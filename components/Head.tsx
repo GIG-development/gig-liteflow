@@ -45,6 +45,7 @@ const Head: FC<PropsWithChildren<Props>> = ({
         rel="apple-touch-icon"
         href={`${environment.BASE_URL}/apple-touch-icon.png`}
       />
+      <meta name="facebook-domain-verification" content="9uxfyoohs9a0jzcc8azppw7cm7ha5w" />
       {children}
     </NextHead>
   )

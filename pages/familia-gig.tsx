@@ -70,7 +70,7 @@ const FamiliaGIG: NextPage = () => {
                             ]}
                         />
                         <Character
-                            name='Creadori Jiménez'
+                            name='Creadori Maximus'
                             animation={CREADORI}
                             description={t('family.characters.creadori.description')}
                             powers={[

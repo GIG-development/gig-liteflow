@@ -9,7 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  */
 const nextConfig = {
   images: {
-    domains: [process.env.PINATA_GATEWAY || '', 'gateway.pinata.cloud', 'ipfs.pixura.io', "arweave.net"],
+    domains: [process.env.PINATA_GATEWAY || '', 'gateway.pinata.cloud', 'ipfs.pixura.io', "arweave.net", "amazonaws.com"],
   },
   webpack: (config, options) => {
     if (!options.isServer) {
