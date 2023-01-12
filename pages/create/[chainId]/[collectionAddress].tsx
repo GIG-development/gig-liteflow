@@ -177,7 +177,7 @@ const CreatePage: NextPage<Props> = ({
       })
       await push(`/tokens/${assetId}`)
     },
-    [push, t, toast],
+    [push, t, toast, data],
   )
 
   if (environment.RESTRICT_TO_VERIFIED_ACCOUNT && !creator.verified) {
