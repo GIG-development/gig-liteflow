@@ -72,7 +72,7 @@ const LoginModal: FC<Props> = ({
         label: String(error)
       })
     }
-  }, [account, onClose])
+  }, [account, onClose, error])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
