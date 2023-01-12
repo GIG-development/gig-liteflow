@@ -23,6 +23,7 @@ import WalletCoinbase from '../Wallet/Connectors/Coinbase'
 import WalletEmail from '../Wallet/Connectors/Email'
 import WalletMetamask from '../Wallet/Connectors/Metamask'
 import WalletWalletConnect from '../Wallet/Connectors/WalletConnect'
+import {event} from 'nextjs-google-analytics'
 
 type Props = {
   isOpen: boolean
@@ -58,7 +59,19 @@ const LoginModal: FC<Props> = ({
   )
 
   useEffect(() => {
-    if (account) onClose()
+    if (account) {
+      event("LoginSuccess", {
+        category: "Login",
+        label: account
+      })
+      onClose()
+    }
+    if (error) {
+      event("LoginError", {
+        category: "Login",
+        label: String(error)
+      })
+    }
   }, [account, onClose])
 
   return (

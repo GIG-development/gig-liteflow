@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react'
 import Link from '../Link/Link'
 import { FC, PropsWithChildren } from 'react'
+import {event} from 'nextjs-google-analytics'
 
 type Props = {
     ctaLine_1: string
@@ -134,7 +135,13 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                         top={'50%'}
                         transform={'translateX(-50%) translateY(-50%)'}
                         style={{borderRadius: '50%'}}
-                        onClick={onOpen}
+                        onClick={()=>{
+                            onOpen()
+                            event("PlayHomeVideo", {
+                                category: "Interaction",
+                                label: "Se reprodujo el video del Home"
+                            })
+                        }}
                         cursor={'pointer'}
                     />
                     <Image

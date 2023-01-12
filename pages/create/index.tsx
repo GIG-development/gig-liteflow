@@ -38,6 +38,7 @@ import { useVerifyAccount } from '@nft/hooks'
 import useEagerConnect from '../../hooks/useEagerConnect'
 import SmallLayout from '../../layouts/small'
 import { wrapServerSideProps } from '../../props'
+import {event} from 'nextjs-google-analytics'
 
 const collectionsFilter = {
   or: environment.MINTABLE_COLLECTIONS.map(({ chainId, address }) => ({
@@ -71,8 +72,8 @@ export const getServerSideProps = wrapServerSideProps(
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <SmallLayout>
     <Head
-      title="Create an NFT"
-      description="Create your NFT securely stored on blockchain"
+      title="Crear un NFT"
+      description="Convierte tu talento en NFTs almacenados en la blockchain"
     />
     {children}
   </SmallLayout>
@@ -113,8 +114,8 @@ const CreatePage: NextPage = () => {
 
     if(signer){
       await verifyAccount() // Request to verify the current signer's wallet address
-      .then(data=>{
-        if(data==='PENDING'){
+      .then(status=>{
+        if(status==='PENDING'){
           setRequested(true)
           toast({
             title: t('asset.restricted.requested.title'),
@@ -122,6 +123,10 @@ const CreatePage: NextPage = () => {
             status: 'success',
             duration: 5000,
             isClosable: true
+          })
+          event("UserVerificationRequest", {
+            category: "Contact",
+            label: data?.account?.address || '0x'
           })
         }
       })

@@ -50,6 +50,7 @@ import Link from '../Link/Link'
 import LoginModal from '../Modal/Login'
 import Select from '../Select/Select'
 import AccountImage from '../Wallet/Image'
+import {event} from 'nextjs-google-analytics'
 
 type MultiLang = {
   pathname: string
@@ -531,6 +532,10 @@ const Navbar: VFC<{
     if (data.search) query.search = data.search
     else delete query.search
     delete query.skip // reset pagination
+    event("Search", {
+      category: "Search",
+      label: data.search
+    })
     return push({ pathname: '/explore', query })
   })
 

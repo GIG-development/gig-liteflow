@@ -8,6 +8,7 @@ import Head from '../components/Head'
 import LargeLayout from '../layouts/large'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
+import {event} from 'nextjs-google-analytics'
   
 const Contacto: NextPage = () => {
   const { t } = useTranslation('templates')
@@ -32,7 +33,19 @@ const Contacto: NextPage = () => {
                 {t('contact.line1')}<br/>
                 {t('contact.line2')}{' '}<b>@holagig</b>
               </Text>
-              <button data-tf-slider="VNmlDfKG" data-tf-hide-headers data-tf-position="right" data-tf-button-color="#BE94FF" data-tf-iframe-props="title=Contact Form" data-tf-chat className='btn'>
+              <button
+                data-tf-slider="VNmlDfKG"
+                data-tf-hide-headers data-tf-position="right"
+                data-tf-button-color="#BE94FF"
+                data-tf-iframe-props="title=Contact Form"
+                data-tf-chat className='btn'
+                onClick={()=>{
+                  event("InitContactForm", {
+                    category: "Contact",
+                    label: "Se inicio el formulario de contacto"
+                  })
+                }}
+              >
                 {t('contact.button')}
               </button>
           </Stack>

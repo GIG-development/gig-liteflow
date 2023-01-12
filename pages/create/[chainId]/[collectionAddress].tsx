@@ -42,6 +42,7 @@ import useSigner from '../../../hooks/useSigner'
 import SmallLayout from '../../../layouts/small'
 import { wrapServerSideProps } from '../../../props'
 import { values as traits } from '../../../traits'
+import {event} from 'nextjs-google-analytics'
 
 type Props = {
   chainId: number
@@ -169,6 +170,10 @@ const CreatePage: NextPage<Props> = ({
       toast({
         title: t('asset.form.notifications.created'),
         status: 'success',
+      })
+      event("NewNFTcreated", {
+        category: "Interaction",
+        label: data?.account?.address || '0x'
       })
       await push(`/tokens/${assetId}`)
     },
