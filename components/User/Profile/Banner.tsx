@@ -75,29 +75,39 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           <Box>
             <Flex
               gap={2}
-              alignItems={'center'}
-              flexDirection={{base: 'column', md: 'row'}}
-              justifyContent={{base: 'center', md: 'flex-start'}}
+              flexDirection='column'
             >
-              <Heading
-                as="h1"
-                variant="title"
-                color="brand.black"
-                overflowWrap="break-word"
-                textAlign={{base: 'center', md: 'left'}}
+              <Flex
+                gap={{base: 0, md: 2}}
+                alignItems={'center'}
+                flexDirection={{base: 'column', md: 'row'}}
+                justifyContent={{base: 'center', md: 'flex-start'}}
               >
-                {name}
-              </Heading>
-              {verified && (
-                <Flex
-                  color="brand.500"
-                  mt={2}
-                  gap={1}
-                  justifyContent={{base: 'center', md: 'flex-start'}}
+                <Heading
+                  as="h1"
+                  variant="title"
+                  color="brand.black"
+                  overflowWrap="break-word"
+                  textAlign={{base: 'center', md: 'left'}}
                 >
-                  <Icon as={HiBadgeCheck} />
-                  <span style={{fontSize: '12px'}}>{t('user.info.verified')}</span>
-                </Flex>
+                  {name}
+                </Heading>
+                {verified && (
+                  <Flex
+                    color="brand.500"
+                    mt={2}
+                    gap={1}
+                    justifyContent={{base: 'center', md: 'flex-start'}}
+                  >
+                    <Icon as={HiBadgeCheck} />
+                    <span style={{fontSize: '12px'}}>{t('user.info.verified')}</span>
+                  </Flex>
+                )}
+              </Flex>
+              {description && (
+                  <Box textAlign={{base: 'center', md: 'justify'}} color="gray.500" fontSize={'xs'}
+                      dangerouslySetInnerHTML={{__html: description}}>
+                  </Box>
               )}
             </Flex>
           </Box>
@@ -152,13 +162,6 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           </Flex>
         </Flex>
       </Flex>
-        {description && (
-          <Box padding={{base: '0 48px', md: '0 216px 0 192px'}}>
-            <Box textAlign={{base: 'center', md: 'justify'}} color="gray.500" fontSize={'xs'}
-              dangerouslySetInnerHTML={{__html: description}}>
-            </Box>
-          </Box>
-        )}
     </Flex>
   )
 }
