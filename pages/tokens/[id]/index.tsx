@@ -370,9 +370,11 @@ const DetailPage: NextPage<Props> = ({
                 />
                 <MenuList>
                   { isOwner && (<>
-                    <MenuItem>Transfer</MenuItem>
-                    <MenuItem>Burn</MenuItem>
-                  </>)}
+                   {
+                   // TO DO : Opciones para Transfer y Burn
+                   }
+                  </>)
+                  }
                   <ChakraLink
                     href={`mailto:${
                       environment.REPORT_EMAIL
