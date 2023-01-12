@@ -278,8 +278,7 @@ const DetailPage: NextPage<Props> = ({
           <Center
             flexDirection="column"
             rounded={{ md: 'xl' }}
-            p={12}
-            bg="brand.50"
+            pr={{base: 0, md: 12}}
           >
             <Box position="relative" h="full" w="full" zIndex={1}>
               <Box
@@ -421,22 +420,21 @@ const DetailPage: NextPage<Props> = ({
           <Heading as="h4" variant="heading2" color="brand.black">
             {t('asset.detail.description')}
           </Heading>
-          <Box textAlign={{base: 'center', md: 'justify'}} color="gray.500" fontSize={'xs'} mt={3}
+          <Box textAlign='justify' color="gray.500" fontSize={'xs'} mt={3}
               dangerouslySetInnerHTML={{__html: asset.description}}>
           </Box>
 
-          <Stack as="nav" mt={8} align="flex-start" spacing={3}>
+          <Flex as="nav" mt={8} flexDirection={{base: 'column', md: 'row'}} justify="center" align="center" gap={3}>
             <Button
               as={Link}
               href={assetExternalURL}
               isExternal
-              variant="outline"
               colorScheme="gray"
               width={48}
               justifyContent="space-between"
               rightIcon={<HiOutlineExternalLink />}
             >
-              <Text as="span" isTruncated>
+              <Text as="span">
                 {t('asset.detail.explorerLink', blockExplorer)}
               </Text>
             </Button>
@@ -445,17 +443,16 @@ const DetailPage: NextPage<Props> = ({
               as={Link}
               href={asset.image}
               isExternal
-              variant="outline"
               colorScheme="gray"
               width={48}
               justifyContent="space-between"
               rightIcon={<HiOutlineExternalLink />}
             >
-              <Text as="span" isTruncated>
+              <Text as="span">
                 {t('asset.detail.ipfsLink')}
               </Text>
             </Button>
-          </Stack>
+          </Flex>
 
           {traits && (
             <Box pt={8}>

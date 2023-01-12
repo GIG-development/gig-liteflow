@@ -63,13 +63,13 @@ const TokenMedia: VFC<
       )
     const customTag = { Image: Image as any }
     return (
-        <customTag.Image
-          src={image}
-          alt={defaultText}
-          onError={() => setImageError(true)}
-          layout={layout}
-          {...rest}
-        />
+      <customTag.Image
+        src={image}
+        alt={defaultText}
+        onError={() => setImageError(true)}
+        layout={layout}
+        {...rest}
+      />
     )
   }
   return <Box bgColor="brand.50" h="full" w="full" />
