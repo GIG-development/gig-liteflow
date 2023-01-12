@@ -95,7 +95,7 @@ const OfferFormCheckout: FC<Props> = ({
     watch,
   } = useForm<FormData>({
     defaultValues: {
-      quantity: offer.availableQuantity,
+      quantity: "1",
     },
   })
   const quantity = watch('quantity')
@@ -143,7 +143,7 @@ const OfferFormCheckout: FC<Props> = ({
               clampValueOnBlur={false}
               min={1}
               max={parseInt(offer.availableQuantity, 10)}
-              value={1}
+              value={quantity}
               allowMouseWheel
               w="full"
               onChange={(x) => setValue('quantity', x)}
