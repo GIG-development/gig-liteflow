@@ -85,6 +85,7 @@ const TokenCard: VFC<Props> = ({
     <Flex
       direction="column"
       h="min-content"
+      w={72}
       maxW={72}
       align="stretch"
       overflow="hidden"
@@ -92,8 +93,16 @@ const TokenCard: VFC<Props> = ({
       borderWidth="1px"
       borderColor="gray.200"
       bgColor="white"
+      position='relative'
     >
-      <Flex as={Link} href={href} h={72} w={72}>
+      <Flex
+        as={Link}
+        href={href}
+        h={72}
+        minW={72}
+        overflow='hidden'
+        style={{position: 'absolute', left: '50%', transform: 'translateX(-50%)'}}
+      >
         <TokenMedia
           image={asset.image}
           animationUrl={asset.animationUrl}
@@ -105,7 +114,7 @@ const TokenCard: VFC<Props> = ({
           layout="fixed"
         />
       </Flex>
-      <Stack spacing={3} p={6}>
+      <Stack spacing={3} p={6} mt={72}>
         <Link href={href}>
           <Heading
             as="h4"

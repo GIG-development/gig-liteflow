@@ -712,7 +712,7 @@ const ExplorePage: NextPage<Props> = ({
         <Grid
           mt={4}
           gap={{ base: 4, lg: 3, xl: 4 }}
-          templateColumns={{ lg: 'repeat(5, 1fr)', xl: 'repeat(4, 1fr)' }}
+          templateColumns={{ md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(4, 1fr)' }}
         >
           <GridItem gap={6} pt={{ base: 8, lg: 0 }} colSpan={{ lg: 4, xl: 4 }}>
             <Box ml="auto" w={{ base: 'full', lg: 'min-content' }}>

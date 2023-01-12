@@ -204,7 +204,7 @@ const HomePage: NextPage<Props> = ({
           <Heading as="h2" variant="subtitle" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
-          <Slider>
+          <Slider items={6}>
             <Artist 
               name='ilithya'
               handle='@ilithya_rocks'
@@ -212,24 +212,8 @@ const HomePage: NextPage<Props> = ({
               💫 Creations with programming + algorithms
               🖤 Mexican based in Hamburg'
               tags={['música','multimedia','creative coding']}
-              image='https://gig-io.vercel.app/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
+              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
               link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
-            />
-            <Artist 
-              name='p1xelfool'
-              handle='@p1xelfool'
-              description='Internet artist since 3001 */ father of multidimentional entities'
-              tags={['arte digital','animación']}
-              image='https://p1xelfool.com/images/soul.gif'
-              link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
-            />
-            <Artist 
-              name='Camote Toys'
-              handle='@camote.toys'
-              description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
-              tags={['art toys','diseño', 'cerámica']}
-              image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
-              link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
             />
             <Artist 
               name='Cotama'
@@ -245,7 +229,31 @@ const HomePage: NextPage<Props> = ({
               description='🌵🗿📡Artesanía digital👇🏼'
               tags={['arte digital','gráfica','street art']}
               image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
-              link={'/users/0x6458a79eb4ef3f6982ff4fe270f43fd6ec9f30c1'}
+              link={'/users/0xed9dae268cbedacf5ade8db9b64482639f6f9f73'}
+            />
+            <Artist 
+              name='Camote Toys'
+              handle='@camote.toys'
+              description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
+              tags={['art toys','diseño', 'cerámica']}
+              image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
+              link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
+            />
+            <Artist 
+              name='p1xelfool'
+              handle='@p1xelfool'
+              description='Internet artist since 3001 */ father of multidimentional entities'
+              tags={['arte digital','animación']}
+              image='https://p1xelfool.com/images/soul.gif'
+              link={'/explore'}
+            />
+            <Artist 
+              name='GIG Oficial'
+              handle='@holagig'
+              description='Perfil oficial de GIG.io.'
+              tags={['arte digital','animación', 'accesos']}
+              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmVNNdzdZpPA8fxhMao9E2FqLwg3pgQXK1YyKvbr3jC9rY&w=256&q=75'
+              link={'/users/0x750519ace128bf440a31046c39a45394b344dc21'}
             />
           </Slider>
         </Stack>

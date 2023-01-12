@@ -1,17 +1,22 @@
-import { Box, Flex, Icon, IconButton } from '@chakra-ui/react'
+import { Box, Flex, Icon, IconButton, useBreakpointValue } from '@chakra-ui/react'
 import { BiChevronLeft } from '@react-icons/all-files/bi/BiChevronLeft'
 import { BiChevronRight } from '@react-icons/all-files/bi/BiChevronRight'
 import useEmblaCarousel from 'embla-carousel-react'
-import { FC, HTMLAttributes, useCallback, useEffect, useState } from 'react'
+import { PropsWithChildren, FC, useCallback, useEffect, useState } from 'react'
 
-const Slider: FC<HTMLAttributes<any>> = ({ children }) => {
+type Props = {
+  items?: number
+}
+
+const Slider: FC<PropsWithChildren<Props>> = ({ items, children }) => {
   const [viewportRef, embla] = useEmblaCarousel({
     align: 'start',
-    speed: 5,
-    loop: true,
-    slidesToScroll: 1,
+    speed: 10,
+    loop: items ? false : true,
+    slidesToScroll: items ? 2 : 1,
     inViewThreshold: 1,
     containScroll: 'trimSnaps',
+    
   })
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
@@ -53,7 +58,7 @@ const Slider: FC<HTMLAttributes<any>> = ({ children }) => {
         transform="auto"
       >
         <IconButton
-          colorScheme="brand"
+          colorScheme={useBreakpointValue({base: 'gray', lg: 'brand'})}
           rounded="full"
           aria-label="previous"
           icon={<Icon as={BiChevronLeft} h={6} w={6} />}
@@ -71,7 +76,7 @@ const Slider: FC<HTMLAttributes<any>> = ({ children }) => {
         transform="auto"
       >
         <IconButton
-          colorScheme="brand"
+          colorScheme={useBreakpointValue({base: 'gray', lg: 'brand'})}
           rounded="full"
           aria-label="next"
           icon={<Icon as={BiChevronRight} h={6} w={6} />}

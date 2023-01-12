@@ -1,5 +1,6 @@
 import {
-  Heading, 
+  Heading,
+  Image,
   Stack,
   Text
 } from '@chakra-ui/react'
@@ -23,6 +24,7 @@ const Contacto: NextPage = () => {
               <Heading as={'h1'} variant="title">
                 {t('contact.title')}
               </Heading>
+              <Image src='/img/contacto.png' w={'320px'}/>
               <Heading variant={'heading3'}>
                 {t('contact.subtitle')}
               </Heading>

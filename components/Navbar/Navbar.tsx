@@ -371,7 +371,7 @@ const SectionsMenu: VFC = () => {
         <Link href={`/tutoriales`} w="full">
           <MenuItem>{t('navbar.sections.tutorials')}</MenuItem>
         </Link>
-        <Link href={`/Preguntas Frecuentes`} w="full">
+        <Link href={`/faq`} w="full">
           <MenuItem>{t('navbar.sections.faqs')}</MenuItem>
         </Link>
         <Link href={`/contacto`} w="full">
