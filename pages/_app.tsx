@@ -74,7 +74,7 @@ function Layout({
       <Box>
         <Navbar
           logo={{ path: '/logo_beta_bn.png', width: 100, height: 53 }}
-          allowTopUp={false}
+          allowTopUp={environment.ALLOW_TOP_UP}
           router={{
             asPath: router.asPath,
             isReady: router.isReady,
