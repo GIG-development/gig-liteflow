@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
 import { VFC } from 'react'
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
@@ -153,10 +153,10 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
         </Flex>
       </Flex>
         {description && (
-          <Box px={12}>
-            <Text as="p" textAlign={'justify'} variant="text-sm" color="gray.500" pt={4}>
-              {description}
-            </Text>
+          <Box padding={{base: '0 48px', md: '0 216px 0 192px'}}>
+            <Box textAlign={{base: 'center', md: 'justify'}} color="gray.500" fontSize={'xs'}
+              dangerouslySetInnerHTML={{__html: description}}>
+            </Box>
           </Box>
         )}
     </Flex>

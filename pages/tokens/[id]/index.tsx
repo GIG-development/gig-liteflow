@@ -421,9 +421,9 @@ const DetailPage: NextPage<Props> = ({
           <Heading as="h4" variant="heading2" color="brand.black">
             {t('asset.detail.description')}
           </Heading>
-          <Text as="p" variant="text-sm" color="gray.500" mt={3}>
-            {asset.description}
-          </Text>
+          <Box textAlign={{base: 'center', md: 'justify'}} color="gray.500" fontSize={'xs'} mt={3}
+              dangerouslySetInnerHTML={{__html: asset.description}}>
+          </Box>
 
           <Stack as="nav" mt={8} align="flex-start" spacing={3}>
             <Button
