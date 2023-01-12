@@ -23,7 +23,9 @@ const Empty: FC<EmptyTypes> = ({ icon, title, description, button, href }) => {
         justify="center"
         rounded="full"
       >
-        {icon ? icon : <Icon as={HiOutlinePlus} w={8} h={8} color="gray.400" />}
+        <Link href='/create'>
+        {icon ? icon : <Icon as={HiOutlinePlus} w={8} h={8} color="gray.400" pt={2}/>}
+        </Link>
       </Flex>
       <Stack spacing={1} textAlign="center">
         <Heading as="h3" variant="heading1" color="brand.black">
