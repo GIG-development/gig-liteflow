@@ -709,12 +709,7 @@ const ExplorePage: NextPage<Props> = ({
             </Grid>
           </FilterAccordion>
         </Stack>
-        <Grid
-          mt={4}
-          gap={{ base: 4, lg: 3, xl: 4 }}
-          templateColumns={{ md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(4, 1fr)' }}
-        >
-          <GridItem gap={6} pt={{ base: 8, lg: 0 }} colSpan={{ lg: 4, xl: 4 }}>
+          <Box mt={4} pt={{ base: 8, lg: 0 }}>
             <Box ml="auto" w={{ base: 'full', lg: 'min-content' }}>
               <Select<AssetsOrderBy>
                 label={t('explore.orderBy.label')}
@@ -797,8 +792,7 @@ const ExplorePage: NextPage<Props> = ({
                   t('pagination.result.pages', { count: props.total }),
               }}
             />
-          </GridItem>
-        </Grid>
+          </Box>
       </LargeLayout>
     </div>
   )
