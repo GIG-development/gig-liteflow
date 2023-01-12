@@ -15,7 +15,6 @@ import {
   MenuItem,
   MenuList,
   SimpleGrid,
-  Stack,
   Switch,
   Tab,
   TabList,
@@ -370,6 +369,10 @@ const DetailPage: NextPage<Props> = ({
                   icon={<Icon as={HiOutlineDotsHorizontal} w={5} h={5} />}
                 />
                 <MenuList>
+                  { isOwner && (<>
+                    <MenuItem>Transfer</MenuItem>
+                    <MenuItem>Burn</MenuItem>
+                  </>)}
                   <ChakraLink
                     href={`mailto:${
                       environment.REPORT_EMAIL
