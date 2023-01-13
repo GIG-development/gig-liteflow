@@ -21,7 +21,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import useTranslation from 'next-translate/useTranslation'
-import { VFC } from 'react'
+import { VFC, useState } from 'react'
 import Image from '../../Image/Image'
 import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
@@ -44,31 +44,12 @@ type IProps = {
   account: string
 }
 
-type FormData = {
-  amount: string
-}
-
 const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const { t } = useTranslation('components')
   const toast = useToast()
   const {isOpen, onOpen, onClose} = useDisclosure()
   const [balance] = useBalance(account, '1')
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-    setValue
-  } = useForm<FormData>({
-    defaultValues: {
-      amount: "0",
-    },
-  })
-  const amount = watch('amount')
-
-  const onSubmit = handleSubmit(async ({ amount }) => {
-    if(!errors) void wrapEth(amount)
-  })
+  const [amount, setAmount] = useState(0)
 
   //ETH Wrap-Unwrap
   const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
@@ -76,11 +57,11 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const signer = useSigner()
 
   const wrapEth = async (amount: string) => {
-    console.log("trying to wrap")
+    console.log("trying to wrap: ", WETH_ADDRESS)
     try{
       await signer?.sendTransaction({
         to: WETH_ADDRESS,
-        value: ethers.utils.parseEther(amount)
+        value: amount
       })
       toast({
         title: "Success!",
@@ -90,10 +71,10 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
       onClose()
     } catch(error) {
       toast({
-        title: "Error!",
+        title: "Error",
         status: "error"
       })
-      console.log("error")
+      console.log(error)
     }
   }
   /*
@@ -161,37 +142,18 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <form onSubmit={onSubmit}>
-            <span>Balance: {Number(balance)}</span>
-            <FormControl isInvalid={!!errors.amount}>
                 <InputGroup>
                   <NumberInput
                     clampValueOnBlur={false}
                     min={Math.pow(10, -18)}
-                    value={amount}
                     allowMouseWheel
                     w="full"
-                    onChange={(x) => setValue('amount', x)}
                   >
                     <NumberInputField
                       id="amount"
                       placeholder={'Amount to Wrap'}
-                      {...register('amount', {
-                        required: t('offer.form.checkout.validation.required'),
-                        validate: (value) => {
-                          if (
-                            parseInt(value, 10) < 0 ||
-                            parseInt(value, 10) > 1000
-                          ) {
-                            return t('offer.form.checkout.validation.in-range', {
-                              max: 1000,
-                            })
-                          }
-                          if (!/^\d+$/.test(value)) {
-                            return t('offer.form.checkout.validation.integer')
-                          }
-                        },
-                      })}
+                      value={amount}
+                      onChange={(e) => setAmount(Number(e.target.value))}
                     />
                     <NumberInputStepper>
                       <NumberIncrementStepper />
@@ -200,18 +162,15 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   </NumberInput>
                 </InputGroup>
                 <Button
-                  disabled={ (Number(amount) > Number(balance) || Number(amount) === 0) ? true : false}
-                  isLoading={isSubmitting}
+                  //disabled={ (Number(amount) > Number(balance) || Number(amount) === 0) ? true : false}
                   width="full"
-                  type="submit"
                   my={6}
+                  onClick={()=>wrapEth(amount)}
                 >
                   <Text as="span" isTruncated>
                     Wrap
                   </Text>
                 </Button>
-            </FormControl>
-          </form>
         </ModalBody>
       </ModalContent>
     </Modal>
