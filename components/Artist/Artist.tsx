@@ -41,18 +41,22 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                 borderColor='gray.200'
                 >
                 <Box h={useBreakpointValue({base: '280px', md: '280px'})} borderBottom={'1px'} borderColor="black">
-                    <Img
-                        src={image}
-                        roundedTop={'sm'}
-                        objectFit="cover"
-                        h="full"
-                        w="full"
-                        alt={'Artist Image'}
-                    />
+                    <Link href={link}>
+                        <Img
+                            src={image}
+                            roundedTop={'sm'}
+                            objectFit="cover"
+                            h="full"
+                            w="full"
+                            alt={'Artist Image'}
+                        />
+                    </Link>
                 </Box>
                 <Box p={6}>
                     <Heading color={'black'} fontSize={'lg'} noOfLines={1}>
-                        {name}
+                        <Link href={link}>
+                            {name}
+                        </Link>
                     </Heading>
                     <Heading color={'black'} fontSize={'xs'} noOfLines={1}>
                         {handle}

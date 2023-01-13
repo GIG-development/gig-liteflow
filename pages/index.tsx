@@ -232,6 +232,14 @@ const HomePage: NextPage<Props> = ({
               link={'/users/0xed9dae268cbedacf5ade8db9b64482639f6f9f73'}
             />
             <Artist 
+              name='Red Sannto'
+              handle='@red_sannto'
+              description='Es un artista visual influenciado por el misticismo presente en el arte urbano contemporáneo y en un fanatismo por los elementos gráficos del movimiento skateboarding de los 90s.'
+              tags={['arte urbano','skateboard','animación']}
+              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmfH5MAwpB9Ut8NxLdvq2L77RGBwTMp1v7Bb96KtQqGTaR&w=256&q=75'
+              link={'/users/0xd0494070339e9f26860698b373e5aa639ff3e3e9'}
+            />
+            <Artist 
               name='Camote Toys'
               handle='@camote.toys'
               description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
