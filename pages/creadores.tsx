@@ -179,39 +179,39 @@ const Creadores: NextPage = () => {
 
             <Grid templateColumns={{base: 'repeat(3, 1fr)', md: 'repeat(9, 1fr)'}} gap={4} my={10}>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/collectibles.png' w={20}/>
+                <Image alt="Coleccionables" src='/img/creadores/icons/collectibles.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Coleccionables</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/digital_art.png' w={20}/>
+                <Image alt="Arte digital" src='/img/creadores/icons/digital_art.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Arte digital</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/entertainment.png' w={20}/>
+                <Image alt="Entretenimiento" src='/img/creadores/icons/entertainment.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Entretenimiento</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/events.png' w={20}/>
+                <Image alt="Eventos" src='/img/creadores/icons/events.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Eventos</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/gaming.png' w={20}/>
+                <Image alt="Gaming" src='/img/creadores/icons/gaming.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Gaming</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/generative.png' w={20}/>
+                <Image alt="Arte generativo" src='/img/creadores/icons/generative.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Arte generativo</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/metaverse.png' w={20}/>
+                <Image alt="Metaverso" src='/img/creadores/icons/metaverse.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Metaverso</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/photography.png' w={20}/>
+                <Image alt="Fotografía" src='/img/creadores/icons/photography.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Fotografía</Text>
               </Flex>
               <Flex alignItems='center' flexDirection='column'>
-                <Image src='/img/creadores/icons/social.png' w={20}/>
+                <Image alt="Comunidad" src='/img/creadores/icons/social.png' w={20}/>
                 <Text fontSize={{base: 'xs', md: 'sm'}}>Comunidad</Text>
               </Flex>
             </Grid>

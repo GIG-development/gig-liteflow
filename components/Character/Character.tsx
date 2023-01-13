@@ -75,7 +75,7 @@ const Character: FC<PropsWithChildren<Props>> = ({
                             {powers.map(p=>{
                                 return (
                                     <Flex key={p.power}>
-                                        <Image src={p.icon} w='30px' h='30px'/><Text pt='5px' fontSize='xs'>{p.power}</Text>
+                                        <Image alt={p.power} src={p.icon} w='30px' h='30px'/><Text pt='5px' fontSize='xs'>{p.power}</Text>
                                     </Flex>
                                 )
                             })}
@@ -85,7 +85,7 @@ const Character: FC<PropsWithChildren<Props>> = ({
                             {weaknesses.map(w=>{
                                 return (
                                     <Flex key={w.weakness}>
-                                        <Image src={w.icon} w='30px' h='30px'/><Text pt='5px' fontSize='xs'>{w.weakness}</Text>
+                                        <Image alt={w.weakness} src={w.icon} w='30px' h='30px'/><Text pt='5px' fontSize='xs'>{w.weakness}</Text>
                                     </Flex>
                                 )
                             })}

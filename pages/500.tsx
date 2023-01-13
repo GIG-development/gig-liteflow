@@ -22,7 +22,7 @@ const Custom500: NextPage = () => {
                     description=""
                 />
                 <Stack spacing={6} mb={20} align={'center'}>
-                    <Image src='/img/familia/eskeri.png' w={'120px'}/>
+                    <Image src='/img/familia/eskeri.png' w={'120px'} alt="Error 500"/>
                     <Heading variant={'subtitle'} textAlign={'center'}>
                         {t('error.500.message')}
                     </Heading>
