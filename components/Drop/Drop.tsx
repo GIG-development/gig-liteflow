@@ -34,16 +34,23 @@ const Drop: FC<PropsWithChildren<Props>> = ({
         />
         <Flex p={8} flex={{base: '0 0 100%', md: '0 0 60%'}} align={'center'} justify={'center'}>
             <Stack spacing={6} w={'full'}>
-            <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+            <Heading
+                fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
+                textAlign={{base: 'center', md: 'left'}}
+            >
                 <Text
-                as={'span'}
-                position={'relative'}
+                    as={'span'}
+                    position={'relative'}
                 >
-                {title}
+                    {title}
                 </Text>
                 <br />{' '}
             </Heading>
-            <Text fontSize={{ base: 'sm', lg: 'md' }} color={'gray.500'}>
+            <Text
+                fontSize={{ base: 'sm', lg: 'md' }}
+                textAlign={{base: 'center', md: 'left'}}
+                color={'gray.500'}
+            >
                 {description}
             </Text>
             <Box
@@ -51,18 +58,17 @@ const Drop: FC<PropsWithChildren<Props>> = ({
                 rounded={'full'}
                 border='1px solid'
                 borderColor={'gray.200'}
-                display={'inline-block'}
                 w={'fit-content'}
                 px={2}
                 py={1}
                 color="brand.black"
-                mr={2}
-                mb={2}>
+                margin={{base: '10px auto !important', md: '10px 8px 8px 0 !important'}}
+            >
                 <Text fontSize={'sm'} fontWeight="700">
                     {t('home.gigDrops.launchDate')}: {date}
                 </Text>
             </Box>
-            <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align={{base: 'center', md: 'flex-start'}}>
                 <Link href={link}>
                     <Button
                     rounded={'full'}

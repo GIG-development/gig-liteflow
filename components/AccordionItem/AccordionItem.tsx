@@ -20,11 +20,11 @@ const AccordionItem: FC<PropsWithChildren<Props>> = ({
     children
 }) => {
     return (
-        <AI>
+        <AI w={{base: 'calc(100% - 40px)', sm: 'full'}}>
             <h2>
-                <AccordionButton _expanded={{ bg: 'gray.200' }}>
+                <AccordionButton p={{base: '6px 0', md: 4}} _expanded={{ bg: 'gray.200' }}>
                     <Box flex='1' textAlign='left'>
-                        <Heading variant={'heading3'}>
+                        <Heading variant={'heading3'} fontSize={{base: 'sm', lg: 'md'}}>
                         {title}
                         </Heading>
                     </Box>

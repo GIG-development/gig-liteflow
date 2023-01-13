@@ -49,7 +49,7 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
     <>
         <Stack
         align={'center'}
-        maxW={{base: 72, md: '7xl'}}
+        maxW={{base: 'full', md: '7xl'}}
         spacing={{ base: 4, md: 6 }}
         py={{ base: 4, md: 20 }}
         direction={{ base: 'column', md: 'row' }}>

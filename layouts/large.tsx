@@ -7,7 +7,7 @@ const LargeLayout: FC = (props) => (
     mx="auto"
     maxW="7xl"
     py={{ base: 8, lg: 12 }}
-    px={{ base: 6, lg: 8 }}
+    px={{ base: 8, lg: 8 }}
     pb={10}
     {...props}
   />

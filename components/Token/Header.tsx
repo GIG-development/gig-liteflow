@@ -66,7 +66,7 @@ const TokenHeader: VFC<Props> = ({
   )
 
   return (
-    <SimpleGrid spacing={4} flex="0 0 100%" columns={{ base: 0, md: 2 }}>
+    <SimpleGrid spacing={4} flex="0 0 100%" columns={{ base: 0, md: 2 }} alignItems={'center'} pr={{base: 0, lg: 6}}>
       <Box my="auto" p={{ base: 6, md: 12 }} textAlign="center">
         <Flex
           as={Link}

@@ -40,7 +40,7 @@ const FamiliaGIG: NextPage = () => {
                         {t('family.line2')}
                     </Text>
                 </Stack>
-                <Box margin={'0 auto 40px'}>
+                <Box margin={'0 auto 34px'}>
                     <Slider>
                         <Character
                             name='NFTLali'
