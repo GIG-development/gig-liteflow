@@ -163,10 +163,10 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                 <InputGroup>
                   <NumberInput
                     clampValueOnBlur={false}
-                    min={1}
+                    min={Math.pow(10, -18)}
                     max={Number(balance)}
                     value={amount}
-                    //step={Math.pow(1, -18)}
+                    step={Math.pow(10, -18)}
                     allowMouseWheel
                     w="full"
                     onChange={(x) => setValue('amount', x)}
@@ -198,7 +198,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   </NumberInput>
                 </InputGroup>
                 <Button
-                  disabled={!!account}
+                  disabled={ Number(amount) > Number(balance) ? true : false}
                   isLoading={isSubmitting}
                   width="full"
                   type="submit"
