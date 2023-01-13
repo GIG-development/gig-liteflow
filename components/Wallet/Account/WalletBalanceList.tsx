@@ -76,6 +76,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const signer = useSigner()
 
   const wrapEth = async (amount: string) => {
+    console.log("trying to wrap")
     try{
       await signer?.sendTransaction({
         to: WETH_ADDRESS,
@@ -85,12 +86,14 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
         title: "Success!",
         status: 'success'
       })
+      console.log("success")
       onClose()
     } catch(error) {
       toast({
         title: "Error!",
         status: "error"
       })
+      console.log("error")
     }
   }
   /*
