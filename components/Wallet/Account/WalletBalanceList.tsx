@@ -65,7 +65,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   })
 
   const onSubmit = handleSubmit(async ({ amount }) => {
-    if(!errors) wrapEth(amount).catch()
+    if(!errors) void wrapEth(amount)
   })
 
   //ETH Wrap-Unwrap
