@@ -56,6 +56,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
     setValue
   } = useForm<FormData>({
@@ -63,6 +64,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
       amount: "0",
     },
   })
+  const amount = watch('amount')
 
   const onSubmit = handleSubmit(async ({ amount }) => {
     if(!errors) void wrapEth(amount)
@@ -83,6 +85,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
         title: "Success!",
         status: 'success'
       })
+      onClose()
     } catch(error) {
       toast({
         title: "Error!",
@@ -162,7 +165,8 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                     clampValueOnBlur={false}
                     min={1}
                     max={Number(balance)}
-                    value={0}
+                    value={amount}
+                    //step={Math.pow(1, -18)}
                     allowMouseWheel
                     w="full"
                     onChange={(x) => setValue('amount', x)}
