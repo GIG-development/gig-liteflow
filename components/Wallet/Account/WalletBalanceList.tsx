@@ -159,14 +159,13 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
         <ModalCloseButton />
         <ModalBody>
           <form onSubmit={onSubmit}>
+            <span>Balance: {Number(balance)}</span>
             <FormControl isInvalid={!!errors.amount}>
                 <InputGroup>
                   <NumberInput
                     clampValueOnBlur={false}
                     min={Math.pow(10, -18)}
-                    max={Number(balance)}
                     value={amount}
-                    step={Math.pow(10, -18)}
                     allowMouseWheel
                     w="full"
                     onChange={(x) => setValue('amount', x)}
@@ -198,7 +197,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   </NumberInput>
                 </InputGroup>
                 <Button
-                  disabled={ Number(amount) > Number(balance) ? true : false}
+                  disabled={ (Number(amount) > Number(balance) || Number(amount) === 0) ? true : false}
                   isLoading={isSubmitting}
                   width="full"
                   type="submit"
