@@ -24,7 +24,7 @@ import { VFC, useState } from 'react'
 import Image from '../../Image/Image'
 import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
-//import { ethers } from 'ethers'
+import { ethers } from 'ethers'
 //import { Signer } from '@ethersproject/abstract-signer'
 import { useBalance } from '@nft/hooks'
 import useSigner from 'hooks/useSigner'
@@ -59,7 +59,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
     try{
       await signer?.sendTransaction({
         to: WETH_ADDRESS,
-        value: amount
+        value: ethers.utils.parseEther(amount) // FIX THIS AMOUNT
       })
       toast({
         title: "Success!",
