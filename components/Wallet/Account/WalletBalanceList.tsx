@@ -1,7 +1,6 @@
 import { 
   Button,
   Flex,
-  FormControl,
   Heading,
   InputGroup,
   NumberInput,
@@ -25,11 +24,11 @@ import { VFC, useState } from 'react'
 import Image from '../../Image/Image'
 import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
-import { useForm } from 'react-hook-form'
-import { ethers } from 'ethers'
+//import { ethers } from 'ethers'
 //import { Signer } from '@ethersproject/abstract-signer'
-import { useBalance } from '@nft/hooks'
+//import { useBalance } from '@nft/hooks'
 import useSigner from 'hooks/useSigner'
+import useParseBigNumber from 'hooks/useParseBigNumber'
 //import WETH9 from './WETH9.json'
 import environment from 'environment'
 
@@ -48,7 +47,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const { t } = useTranslation('components')
   const toast = useToast()
   const {isOpen, onOpen, onClose} = useDisclosure()
-  const [balance] = useBalance(account, '1')
+  //const [balance] = useBalance(account, '1')
   const [amount, setAmount] = useState(0)
 
   //ETH Wrap-Unwrap
@@ -61,13 +60,12 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
     try{
       await signer?.sendTransaction({
         to: WETH_ADDRESS,
-        value: amount
+        value: useParseBigNumber(amount)
       })
       toast({
         title: "Success!",
         status: 'success'
       })
-      console.log("success")
       onClose()
     } catch(error) {
       toast({
@@ -165,7 +163,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   //disabled={ (Number(amount) > Number(balance) || Number(amount) === 0) ? true : false}
                   width="full"
                   my={6}
-                  onClick={()=>wrapEth(amount)}
+                  onClick={()=>wrapEth(amount.toString())}
                 >
                   <Text as="span" isTruncated>
                     Wrap
