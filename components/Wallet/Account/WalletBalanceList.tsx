@@ -56,11 +56,8 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
   const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
   const signer = useSigner()
-
   const [EthBalance] = useBalance(account, "1")
-  console.log("ETH: ",EthBalance)
   const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS.toLowerCase()}`)
-  console.log("WETH: ",WethBalance)
   const [amountToWrap, setAmountToWrap] = useState('0')
   const [amountToUnwrap, setAmountToUnwrap] = useState('0')
 
