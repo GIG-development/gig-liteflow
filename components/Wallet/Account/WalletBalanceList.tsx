@@ -169,9 +169,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <Text variant='text-sm'>
-                    Balance: {ethers.utils.parseEther(EthBalance?.toString() || "")} ETH
-                  </Text>
                   <InputGroup>
                     <NumberInput
                       placeholder={'Amount to Wrap'}
@@ -205,9 +202,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   </Button>
                 </TabPanel>
                 <TabPanel>
-                  <Text variant='text-sm'>
-                    Balance: {ethers.utils.parseEther(WethBalance?.toString() || "")} WETH
-                  </Text>
                   <InputGroup>
                     <NumberInput
                       placeholder={'Amount to Unwrap'}
