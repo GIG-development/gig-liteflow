@@ -58,7 +58,9 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const signer = useSigner()
 
   const [EthBalance] = useBalance(account, "1")
+  console.log("ETH: ",EthBalance)
   const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS}`)
+  console.log("WETH: ",WethBalance)
   const [amountToWrap, setAmountToWrap] = useState('0')
   const [amountToUnwrap, setAmountToUnwrap] = useState('0')
 
@@ -127,7 +129,10 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                     disabled={Number(EthBalance)===0}
                     fontSize={'sm'}
                     w={'120px'}
-                    onClick={onOpen}>
+                    onClick={()=> {
+                      onOpen()
+                      setOpenTab(0)
+                    }}>
                       Wrap ETH
                   </Button> : <></> 
               }
@@ -165,7 +170,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
               <TabPanels>
                 <TabPanel>
                   <Text variant='text-sm'>
-                    Balance: {EthBalance} ETH
+                    Balance: {EthBalance?.toString()} ETH
                   </Text>
                   <InputGroup>
                     <NumberInput
@@ -201,7 +206,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                 </TabPanel>
                 <TabPanel>
                   <Text variant='text-sm'>
-                    Balance: {WethBalance} WETH
+                    Balance: {WethBalance?.toString()} WETH
                   </Text>
                   <InputGroup>
                     <NumberInput
