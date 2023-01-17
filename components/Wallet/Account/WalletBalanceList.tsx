@@ -58,7 +58,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const signer = useSigner()
 
   const [EthBalance] = useBalance(account, "1")
-  const [WethBalance] = useBalance(account, "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+  const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS}`)
   const [amountToWrap, setAmountToWrap] = useState('0')
   const [amountToUnwrap, setAmountToUnwrap] = useState('0')
 
