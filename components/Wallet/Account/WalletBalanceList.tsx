@@ -70,30 +70,29 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
           value: ethers.utils.parseEther(amount)
         })
         toast({
-          title: "Success!",
+          title: "Transaction sent",
           status: 'success'
         })
-        console.log("success")
         onClose()
       } catch(error) {
         toast({
           title: "Error",
           status: "error"
         })
-        console.log(error)
       }
     }
   }
   
   const unwrapEth = async (amount: string, signer: any) => {
-    if(amount !== '0' && Number(amount) > 0){
+    if(amount !== '0' && Number(amount) > 0 && signer){
       try{
         await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
         await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
         toast({
-          title: "Success!",
+          title: "Transaction sent",
           status: 'success'
         })
+        onClose()
       } catch(error) {
         toast({
           title: "Error!",
@@ -226,7 +225,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                     </NumberInput>
                   </InputGroup>
                   <Button
-                    disabled={ (amountToUnwrap === '0' || Number(amountToUnwrap) === 0) ? true : false}
+                    disabled={ (amountToUnwrap === '0' || Number(amountToUnwrap) === 0 || !signer) ? true : false}
                     width="full"
                     my={6}
                     onClick={()=>unwrapEth(amountToUnwrap, signer)}
