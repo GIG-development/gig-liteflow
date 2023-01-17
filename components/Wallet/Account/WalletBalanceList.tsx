@@ -170,7 +170,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
               <TabPanels>
                 <TabPanel>
                   <Text variant='text-sm'>
-                    Balance: {EthBalance?.toString()} ETH
+                    Balance: {ethers.utils.parseEther(EthBalance?.toString() || "")} ETH
                   </Text>
                   <InputGroup>
                     <NumberInput
@@ -206,7 +206,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                 </TabPanel>
                 <TabPanel>
                   <Text variant='text-sm'>
-                    Balance: {WethBalance?.toString()} WETH
+                    Balance: {ethers.utils.parseEther(WethBalance?.toString() || "")} WETH
                   </Text>
                   <InputGroup>
                     <NumberInput
