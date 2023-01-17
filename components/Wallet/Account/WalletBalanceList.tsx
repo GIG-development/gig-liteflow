@@ -15,6 +15,11 @@ import {
   ModalContent,
   ModalHeader,
   Stack,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanel,
+  TabPanels,
   Text,
   useToast,
   useDisclosure
@@ -25,10 +30,9 @@ import Image from '../../Image/Image'
 import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
 import { ethers } from 'ethers'
-//import { Signer } from '@ethersproject/abstract-signer'
 import { useBalance } from '@nft/hooks'
 import useSigner from 'hooks/useSigner'
-//import WETH9 from './WETH9.json'
+import WETH9 from './WETH9.json'
 import environment from 'environment'
 
 type IProps = {
@@ -46,52 +50,63 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const { t } = useTranslation('components')
   const toast = useToast()
   const {isOpen, onOpen, onClose} = useDisclosure()
-  const [balance] = useBalance(account, '1')
-  const [amount, setAmount] = useState(0)
+  const [openTab, setOpenTab] = useState(0)
 
   //ETH Wrap-Unwrap
   const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
-  //const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
+  const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
   const signer = useSigner()
 
+  const getBalance = (account: string | undefined | null, currency: string) => {
+    const [balance] = useBalance(account, currency)
+    return balance
+  }
+
+  const EthBalance = getBalance(account, "1")
+  const WethBalance = getBalance(account, "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+  const [amountToWrap, setAmountToWrap] = useState('0')
+  const [amountToUnwrap, setAmountToUnwrap] = useState('0')
+
   const wrapEth = async (amount: string) => {
-    console.log("trying to wrap: ", WETH_ADDRESS)
-    try{
-      await signer?.sendTransaction({
-        to: WETH_ADDRESS,
-        value: ethers.utils.parseEther(amount) // FIX THIS AMOUNT
-      })
-      toast({
-        title: "Success!",
-        status: 'success'
-      })
-      console.log("success")
-      onClose()
-    } catch(error) {
-      toast({
-        title: "Error",
-        status: "error"
-      })
-      console.log(error)
+    if(amount !== '0' && Number(amount) > 0){
+      try{
+        await signer?.sendTransaction({
+          to: WETH_ADDRESS,
+          value: ethers.utils.parseEther(amount)
+        })
+        toast({
+          title: "Success!",
+          status: 'success'
+        })
+        console.log("success")
+        onClose()
+      } catch(error) {
+        toast({
+          title: "Error",
+          status: "error"
+        })
+        console.log(error)
+      }
     }
   }
-  /*
-  const unwrapEth = async (amount: string, signer: Signer) => {
-    try{
-      await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
-      await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
-      toast({
-        title: "Success!",
-        status: 'success'
-      })
-    } catch(error) {
-      toast({
-        title: "Error!",
-        status: "error"
-      })
+  
+  const unwrapEth = async (amount: string, signer: any) => {
+    if(amount !== '0' && Number(amount) > 0){
+      try{
+        await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
+        await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
+        toast({
+          title: "Success!",
+          status: 'success'
+        })
+      } catch(error) {
+        toast({
+          title: "Error!",
+          status: "error"
+        })
+      }
     }
   }
-  */
 
   if (currencies.length === 0)
     return (
@@ -112,21 +127,29 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
           action={
             <Flex as="span" alignItems={'center'} gap={6} color="brand.black" fontWeight="medium">
               <WalletBalance account={account} currency={x} />
-              { (x.symbol === 'ETH') ? 
-                <Button
-                  fontSize={'sm'}
-                  w={'120px'}
-                  onClick={onOpen}>
-                    Wrap ETH
-                </Button> : <></> 
+              {
+                (x.symbol === 'ETH') ? 
+                  <Button
+                    disabled={Number(EthBalance)===0}
+                    fontSize={'sm'}
+                    w={'120px'}
+                    onClick={onOpen}>
+                      Wrap ETH
+                  </Button> : <></> 
               }
-              {/* (x.symbol === 'WETH') ? 
-                <Button
-                  fontSize={'sm'}
-                  w={'120px'}
-                  onClick={onOpen}>
-                    Unwrap wETH
-                </Button> : <></> */}
+              {
+                (x.symbol === 'WETH') ? 
+                  <Button
+                  disabled={Number(WethBalance)===0}
+                    fontSize={'sm'}
+                    w={'120px'}
+                    onClick={()=> {
+                      onOpen()
+                      setOpenTab(1)
+                    }}>
+                      Unwrap wETH
+                  </Button> : <></> 
+              }
             </Flex>
           }
         />
@@ -136,40 +159,90 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Heading>Wrap ETH</Heading>
+          <Heading>Swap ETH</Heading>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-                <InputGroup>
-                  <NumberInput
-                    clampValueOnBlur={false}
-                    min={Math.pow(10, -18)}
-                    max={Number(balance)}
-                    allowMouseWheel
-                    w="full"
-                  >
-                    <NumberInputField
-                      id="amount"
-                      placeholder={'Amount to Wrap'}
-                      value={amount}
-                      onChange={(e) => setAmount(Number(e.target.value))}
-                    />
-                    <NumberInputStepper>
-                      <NumberIncrementStepper />
-                      <NumberDecrementStepper />
-                    </NumberInputStepper>
-                  </NumberInput>
-                </InputGroup>
-                <Button
-                  disabled={ (Number(amount) > Number(balance) || Number(amount) === 0) ? true : false}
-                  width="full"
-                  my={6}
-                  onClick={()=>wrapEth(amount.toString())}
-                >
-                  <Text as="span" isTruncated>
-                    Wrap
+            <Tabs defaultIndex={openTab}>
+              <TabList>
+                <Tab>Wrap</Tab>
+                <Tab>Unwrap</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Text variant='text-sm'>
+                    Balance: {EthBalance} ETH
                   </Text>
-                </Button>
+                  <InputGroup>
+                    <NumberInput
+                      placeholder={'Amount to Wrap'}
+                      size='lg'
+                      w="full"
+                      clampValueOnBlur={true}
+                      defaultValue={0}
+                      value={amountToWrap}
+                      precision={18}
+                      step={Math.pow(10, -18)}
+                      min={0}
+                      max={Number(EthBalance)}
+                      onChange={(e) => setAmountToWrap(e)}
+                    >
+                      <NumberInputField/>
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                  </InputGroup>
+                  <Button
+                    disabled={ (amountToWrap === '0' || Number(amountToWrap) === 0) ? true : false}
+                    width="full"
+                    my={6}
+                    onClick={()=>wrapEth(amountToWrap)}
+                  >
+                    <Text as="span" isTruncated>
+                      Wrap
+                    </Text>
+                  </Button>
+                </TabPanel>
+                <TabPanel>
+                  <Text variant='text-sm'>
+                    Balance: {WethBalance} WETH
+                  </Text>
+                  <InputGroup>
+                    <NumberInput
+                      placeholder={'Amount to Unwrap'}
+                      size='lg'
+                      w="full"
+                      clampValueOnBlur={true}
+                      defaultValue={0}
+                      value={amountToUnwrap}
+                      precision={18}
+                      step={Math.pow(10, -18)}
+                      min={0}
+                      max={Number(WethBalance)}
+                      onChange={(e) => setAmountToUnwrap(e)}
+                    >
+                      <NumberInputField/>
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                  </InputGroup>
+                  <Button
+                    disabled={ (amountToUnwrap === '0' || Number(amountToUnwrap) === 0) ? true : false}
+                    width="full"
+                    my={6}
+                    onClick={()=>unwrapEth(amountToUnwrap, signer)}
+                  >
+                    <Text as="span" isTruncated>
+                      Unwrap
+                    </Text>
+                  </Button>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
         </ModalBody>
       </ModalContent>
     </Modal>
