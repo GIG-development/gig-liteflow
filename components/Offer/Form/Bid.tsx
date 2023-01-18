@@ -410,7 +410,7 @@ const OfferFormBid: FC<Props> = (props) => {
             allowTopUp={allowTopUp && ((price && !canBid) || balanceZero)}
           />
           {
-          balanceZero 
+          ((price && !canBid) || balanceZero) 
           ? <WrapToken account={account} currencyId="1" />
           : <></>
           }
