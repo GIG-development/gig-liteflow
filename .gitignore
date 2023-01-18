@@ -28,6 +28,7 @@ yarn-error.log*
 # local env files
 .env
 .env.mainnet
+.env.testnet
 .env.local
 .env.*.local
 

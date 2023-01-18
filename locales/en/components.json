@@ -825,6 +825,14 @@
     },
     "balances": {
       "none": "There are no available balances."
+    },
+    "swap": {
+      "wrap": "Wrap ETH",
+      "wrapBtn": "Wrap",
+      "wrapInputPlaceholder": "Amount to Wrap",
+      "unwrap": "Unwrap ETH",
+      "unwrapBtn": "Unwrap",
+      "unwrapInputPlaceholder": "Amount to Unwrap"
     }
   },
   "filterAccordion": {

@@ -838,6 +838,14 @@
     },
     "balances": {
       "none": "No hay balances disponibles."
+    },
+    "swap": {
+      "wrap": "Envolver ETH",
+      "wrapBtn": "Envolver",
+      "wrapInputPlaceholder": "Monto a envolver",
+      "unwrap": "Desenvolver ETH",
+      "unwrapBtn": "Desenvolver",
+      "unwrapInputPlaceholder": "Monto a desenvolver"
     }
   },
   "filterAccordion": {
