@@ -101,7 +101,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
               <Link href={'/tutoriales'}>{t('footer.tutorials')}</Link>
               <Link href={'/faq'}>{t('footer.faqs')}</Link>
               <Link href={'/GIG_terminos-y-condiciones.pdf'}>{t('footer.terms')}</Link>
-              <Link href={'/GIG_terminos-y-condiciones.pdf'}>{t('footer.privacy')}</Link>
+              <Link href={'/aviso-de-privacidad.docx'}>{t('footer.privacy')}</Link>
               <Link href={'/contacto'}>{t('footer.contact')}</Link>
             </Stack>
             <Stack align={'flex-start'}>

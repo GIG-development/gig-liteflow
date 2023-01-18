@@ -832,7 +832,8 @@
       "wrapInputPlaceholder": "Amount to Wrap",
       "unwrap": "Unwrap ETH",
       "unwrapBtn": "Unwrap",
-      "unwrapInputPlaceholder": "Amount to Unwrap"
+      "unwrapInputPlaceholder": "Amount to Unwrap",
+      "transaction": "Transaction sent, wait for confirmation"
     }
   },
   "filterAccordion": {

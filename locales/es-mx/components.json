@@ -845,7 +845,8 @@
       "wrapInputPlaceholder": "Monto a envolver",
       "unwrap": "Desenvolver ETH",
       "unwrapBtn": "Desenvolver",
-      "unwrapInputPlaceholder": "Monto a desenvolver"
+      "unwrapInputPlaceholder": "Monto a desenvolver",
+      "transaction": "Transacción enviada, espera la confirmación"
     }
   },
   "filterAccordion": {

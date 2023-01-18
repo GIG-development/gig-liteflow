@@ -46,9 +46,10 @@ import {
         if(amount !== '0' && Number(amount) > 0 && signer){
           try{
             await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
-            await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
+            const tx = await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
             toast({
-              title: "Transaction sent",
+              title: t('wallet.swap.transaction'),
+              description: "ID: "+tx?.hash,
               status: 'success'
             })
             onClose()

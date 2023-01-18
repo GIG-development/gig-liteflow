@@ -43,18 +43,20 @@ import {
     const wrapEth = async (amount: string) => {
       if(amount !== '0' && Number(amount) > 0){
         try{
-          await signer?.sendTransaction({
+          const tx = await signer?.sendTransaction({
             to: WETH_ADDRESS,
             value: ethers.utils.parseEther(amount)
           })
           toast({
-            title: "Transaction sent",
+            title: t('wallet.swap.transaction'),
+            description: "ID: "+tx?.hash,
             status: 'success'
           })
           onClose()
         } catch(error) {
           toast({
             title: "Error",
+            description: "",
             status: "error"
           })
         }

@@ -42,7 +42,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
           image={<Image src={x.image} width={40} height={40} alt={x.symbol} />}
           label={x.name}
           action={
-            <Flex as="span" alignItems={'center'} gap={6} color="brand.black" fontWeight="medium">
+            <Flex as="span" alignItems={'center'} gap={6} color="brand.black" fontWeight="medium" flexDirection={{base: 'column', md: 'row'}}>
               <WalletBalance account={account} currency={x} />
               {
                 (x.symbol === 'ETH') 
