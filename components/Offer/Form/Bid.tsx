@@ -411,12 +411,14 @@ const OfferFormBid: FC<Props> = (props) => {
           />
           {
           ((price && !canBid) || balanceZero) 
-          ? <WrapToken
+          ?
+            <WrapToken
               account={account}
-              currencyId={currency.id}
+              currencyId={'1'}
               reloadUrl={location.pathname}
             />
-          : <></>
+          : 
+            <></>
           }
           <Button
             disabled={!canBid}
