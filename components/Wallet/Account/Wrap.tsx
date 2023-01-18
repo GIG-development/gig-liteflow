@@ -38,7 +38,7 @@ import {
     const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
     const signer = useSigner()
     const [EthBalance, {loading}] = useBalance(account, currencyId)
-    let displayEthBalance = EthBalance ? EthBalance.toString() : '0'
+    const displayEthBalance = EthBalance ? EthBalance.toString() : '0'
     const [amountToWrap, setAmountToWrap] = useState('0')
   
     const wrapEth = async (amount: string) => {
