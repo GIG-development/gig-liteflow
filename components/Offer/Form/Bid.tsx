@@ -46,6 +46,7 @@ import Select from '../../Select/Select'
 import Balance from '../../User/Balance'
 import Summary from '../Summary'
 import WrapToken from 'components/Wallet/Account/Wrap'
+import environment from 'environment'
 
 type FormData = {
   bid: string
@@ -414,7 +415,7 @@ const OfferFormBid: FC<Props> = (props) => {
           ?
             <WrapToken
               account={account}
-              currencyId={'1'}
+              currencyId={environment.CHAIN_ID === 1 ? '1' : '5'}
               reloadUrl={location.pathname}
             />
           : 

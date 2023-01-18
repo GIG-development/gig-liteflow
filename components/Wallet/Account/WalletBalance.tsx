@@ -12,7 +12,6 @@ const WalletBalance: FC<{
   }
 }> = ({ account, currency }) => {
   const [balance, { loading }] = useBalance(account, currency.id)
-  console.log(currency.id)
   if (loading)
     return (
       <Spinner
