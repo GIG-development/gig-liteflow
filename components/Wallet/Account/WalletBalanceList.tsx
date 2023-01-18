@@ -25,7 +25,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import useTranslation from 'next-translate/useTranslation'
-import { VFC, useState, useEffect } from 'react'
+import { VFC, useState } from 'react'
 import Image from '../../Image/Image'
 import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
@@ -57,14 +57,11 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
   const signer = useSigner()
   const [EthBalance] = useBalance(account, "1")
-  const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS.toLowerCase()}`) || "0"
+  const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS.toLowerCase()}`)
+  console.log("ETH: ", EthBalance)
+  console.log("WETH: ", WethBalance)
   const [amountToWrap, setAmountToWrap] = useState('0')
   const [amountToUnwrap, setAmountToUnwrap] = useState('0')
-
-  useEffect(()=>{
-    const displayEthBalance = EthBalance ? EthBalance.toString() : "0"
-    console.log("ETH: ", ethers.utils.formatEther(displayEthBalance))
-  },[EthBalance])
 
   const wrapEth = async (amount: string) => {
     if(amount !== '0' && Number(amount) > 0){
