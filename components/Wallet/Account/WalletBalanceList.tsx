@@ -58,8 +58,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
   const signer = useSigner()
   const [EthBalance] = useBalance(account, "1")
   const [WethBalance] = useBalance(account, `1-${WETH_ADDRESS.toLowerCase()}`)
-  console.log("ETH: ", EthBalance)
-  console.log("WETH: ", WethBalance)
   const [amountToWrap, setAmountToWrap] = useState('0')
   const [amountToUnwrap, setAmountToUnwrap] = useState('0')
 
@@ -127,25 +125,25 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                   <Button
                     disabled={Number(EthBalance)===0}
                     fontSize={'sm'}
-                    w={'120px'}
+                    w={'90px'}
                     onClick={()=> {
                       onOpen()
                       setOpenTab(0)
                     }}>
-                      Wrap ETH
+                      Wrap
                   </Button> : <></> 
               }
               {
                 (x.symbol === 'WETH') ? 
                   <Button
-                  disabled={Number(WethBalance)===0}
+                    disabled={Number(WethBalance)===0}
                     fontSize={'sm'}
-                    w={'120px'}
+                    w={'90px'}
                     onClick={()=> {
                       onOpen()
                       setOpenTab(1)
                     }}>
-                      Unwrap wETH
+                      Unwrap
                   </Button> : <></> 
               }
             </Flex>
@@ -179,7 +177,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                       precision={18}
                       step={Math.pow(10, -18)}
                       min={0}
-                      max={Number(EthBalance)}
+                      //max={Number(EthBalance)}
                       onChange={(e) => setAmountToWrap(e)}
                     >
                       <NumberInputField/>
@@ -212,7 +210,7 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                       precision={18}
                       step={Math.pow(10, -18)}
                       min={0}
-                      max={Number(WethBalance)}
+                      //max={Number(WethBalance)}
                       onChange={(e) => setAmountToUnwrap(e)}
                     >
                       <NumberInputField/>
