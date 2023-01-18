@@ -19,6 +19,7 @@ import {
   } from '@chakra-ui/react'
   import useTranslation from 'next-translate/useTranslation'
   import { VFC, useState } from 'react'
+  import { useRouter } from 'next/router'
   import { ethers } from 'ethers'
   import { useBalance } from '@nft/hooks'
   import useSigner from 'hooks/useSigner'
@@ -33,10 +34,14 @@ import {
     const { t } = useTranslation('components')
     const toast = useToast()
     const {isOpen, onOpen, onClose} = useDisclosure()
+    const { replace, asPath } = useRouter()
   
     //ETH Wrap-Unwrap
     const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
     const signer = useSigner()
+
+    //const provider = new ethers.providers.Web3Provider(window.ethereum)
+
     const [EthBalance, {loading}] = useBalance(account, currencyId)
     const displayEthBalance = EthBalance ? EthBalance.toString() : '0'
     const [amountToWrap, setAmountToWrap] = useState('0')
@@ -54,6 +59,24 @@ import {
             status: 'success'
           })
           onClose()
+          if(tx){
+            setTimeout(()=>{
+              void replace({
+                ...({ pathname: '/account/wallet' }),
+                query: { redirectTo: asPath },
+              })
+            },10000)
+          /*
+            const receipt = await provider.getTransactionReceipt(tx.hash)
+            if(receipt && receipt?.blockNumber){
+              toast({
+                title: t('wallet.swap.confirmedTitle'),
+                description: t('wallet.swap.confirmedMessage'),
+                status: 'success'
+              })
+            }
+          */
+          }
         } catch(error) {
           toast({
             title: "Error",
@@ -81,7 +104,7 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayEthBalance)}</strong></Text>
+            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayEthBalance)} ETH</strong></Text>
             <InputGroup>
                 <NumberInput
                 placeholder={t('wallet.swap.wrapInputPlaceholder')}

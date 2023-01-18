@@ -80,7 +80,7 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayWethBalance)}</strong></Text>
+            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayWethBalance)} WETH</strong></Text>
             <InputGroup>
                 <NumberInput
                 placeholder={t('wallet.swap.unwrapInputPlaceholder')}
