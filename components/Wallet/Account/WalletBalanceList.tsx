@@ -47,14 +47,22 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
               {
                 (x.symbol === 'ETH') 
                 ? 
-                <WrapToken account={account} currencyId={x.id}/>
+                <WrapToken
+                  account={account}
+                  currencyId={x.id}
+                  reloadUrl={location.pathname}
+                />
                 : 
                 <></> 
               }
               {
                 (x.symbol === 'WETH')
                 ? 
-                <UnwrapToken account={account} currencyId={x.id}/>
+                <UnwrapToken
+                  account={account}
+                  currencyId={x.id}
+                  reloadUrl={location.pathname}
+                />
                 : 
                 <></> 
               }

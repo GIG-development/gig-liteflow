@@ -28,9 +28,10 @@ import {
   type IProps = {
     currencyId: string
     account: string
+    reloadUrl: string
   }
   
-  const WrapToken: VFC<IProps> = ({ account, currencyId }) => {
+  const WrapToken: VFC<IProps> = ({ account, currencyId, reloadUrl }) => {
     const { t } = useTranslation('components')
     const toast = useToast()
     const {isOpen, onOpen, onClose} = useDisclosure()
@@ -62,10 +63,10 @@ import {
           if(tx){
             setTimeout(()=>{
               void replace({
-                ...({ pathname: '/account/wallet' }),
+                ...({ pathname: reloadUrl }),
                 query: { redirectTo: asPath },
               })
-            },20000)
+            },30000)
           /*
             const receipt = await provider.getTransactionReceipt(tx.hash)
             if(receipt && receipt?.blockNumber){
