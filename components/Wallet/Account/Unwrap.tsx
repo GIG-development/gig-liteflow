@@ -40,6 +40,7 @@ import {
     const signer = useSigner()
     const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
     const [WethBalance, {loading}] = useBalance(account, currencyId)
+    let displayWethBalance = WethBalance ? WethBalance.toString() : '0'
     const [amountToUnwrap, setAmountToUnwrap] = useState('0')
   
     const unwrapEth = async (amount: string, signer: any) => {
@@ -79,7 +80,7 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>Balance: <strong>{WethBalance?.toString()}</strong></Text>
+            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayWethBalance)}</strong></Text>
             <InputGroup>
                 <NumberInput
                 placeholder={t('wallet.swap.unwrapInputPlaceholder')}
