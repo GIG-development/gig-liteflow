@@ -45,6 +45,7 @@ import LoginModal from '../../Modal/Login'
 import Select from '../../Select/Select'
 import Balance from '../../User/Balance'
 import Summary from '../Summary'
+import WrapToken from 'components/Wallet/Account/Wrap'
 
 type FormData = {
   bid: string
@@ -408,6 +409,11 @@ const OfferFormBid: FC<Props> = (props) => {
             currency={currency}
             allowTopUp={allowTopUp && ((price && !canBid) || balanceZero)}
           />
+          {
+          balanceZero 
+          ? <WrapToken account={account} currencyId="1" />
+          : <></>
+          }
           <Button
             disabled={!canBid}
             isLoading={isSubmitting}

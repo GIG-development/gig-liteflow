@@ -65,7 +65,7 @@ import {
                 ...({ pathname: '/account/wallet' }),
                 query: { redirectTo: asPath },
               })
-            },10000)
+            },20000)
           /*
             const receipt = await provider.getTransactionReceipt(tx.hash)
             if(receipt && receipt?.blockNumber){
