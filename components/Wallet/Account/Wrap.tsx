@@ -60,14 +60,13 @@ import {
               status: 'success'
             })
             const receipt = contract.filters.Transfer?.(null,account)
-            console.log(account, receipt)
             if(receipt){
                 toast({
                   title: t('wallet.swap.confirmedTitle'),
                   description: t('wallet.swap.confirmedMessage'),
                   status: 'success'
                 })
-                setTimeout(reload, 30000);
+                //setTimeout(reload, 60000);
             }
           }
         } catch(error) {
