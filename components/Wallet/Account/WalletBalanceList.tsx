@@ -50,7 +50,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                 <WrapToken
                   account={account}
                   currencyId={x.id}
-                  reloadUrl={location.pathname}
                 />
                 : 
                 <></> 
@@ -61,7 +60,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                 <UnwrapToken
                   account={account}
                   currencyId={x.id}
-                  reloadUrl={location.pathname}
                 />
                 : 
                 <></> 

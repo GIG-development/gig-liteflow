@@ -28,19 +28,20 @@ import {
   type IProps = {
     currencyId: string
     account: string
-    reloadUrl: string
   }
   
-  const WrapToken: VFC<IProps> = ({ account, currencyId, reloadUrl }) => {
+  const WrapToken: VFC<IProps> = ({ account, currencyId }) => {
     const { t } = useTranslation('components')
     const toast = useToast()
     const {isOpen, onOpen, onClose} = useDisclosure()
-    const { replace, asPath } = useRouter()
+    const { reload } = useRouter()
     const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
     const signer = useSigner()
 
-    //const provider = new ethers.providers.Web3Provider(window.ethereum)
-
+    if(!window.ethereum){
+      window.ethereum = new ethers.providers.AlchemyProvider
+    }
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
     const [EthBalance, {loading}] = useBalance(account, currencyId)
     const displayEthBalance = EthBalance ? EthBalance.toString() : '0'
     const [amountToWrap, setAmountToWrap] = useState('0')
@@ -59,13 +60,6 @@ import {
           })
           onClose()
           if(tx){
-            setTimeout(()=>{
-              void replace({
-                ...({ pathname: reloadUrl }),
-                query: { redirectTo: asPath },
-              })
-            },30000)
-          /*
             const receipt = await provider.getTransactionReceipt(tx.hash)
             if(receipt && receipt?.blockNumber){
               toast({
@@ -73,8 +67,10 @@ import {
                 description: t('wallet.swap.confirmedMessage'),
                 status: 'success'
               })
+              setTimeout(()=>{
+                void reload()
+              },10000)
             }
-          */
           }
         } catch(error) {
           toast({

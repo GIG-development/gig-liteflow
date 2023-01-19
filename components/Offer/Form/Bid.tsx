@@ -416,7 +416,6 @@ const OfferFormBid: FC<Props> = (props) => {
             <WrapToken
               account={account}
               currencyId={environment.CHAIN_ID === 1 ? '1' : '5'}
-              reloadUrl={location.pathname}
             />
           : 
             <></>
