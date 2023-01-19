@@ -59,7 +59,7 @@ import {
               description: "ID: "+tx.hash,
               status: 'success'
             })
-            const receipt = contract.filters.Transfer?.(null,account)
+            const receipt = await contract.filters.Transfer?.(null,account)
             if(receipt){
                 toast({
                   title: t('wallet.swap.confirmedTitle'),

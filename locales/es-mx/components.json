@@ -846,7 +846,9 @@
       "unwrap": "Desenvolver ETH",
       "unwrapBtn": "Desenvolver",
       "unwrapInputPlaceholder": "Monto a desenvolver",
-      "transaction": "Transacción enviada, espera la confirmación"
+      "transaction": "Transacción enviada, espera la confirmación",
+      "confirmedTitle": "Transacción confirmada",
+      "confirmedMessage": ""
     }
   },
   "filterAccordion": {
