@@ -39,7 +39,7 @@ import {
     const signer = useSigner()
 
     if(!window.ethereum){
-      window.ethereum = new ethers.providers.AlchemyProvider
+      window.ethereum = new ethers.providers.AlchemyProvider(environment.CHAIN_ID === 1 ? 'ethereum' : 'goerli', 'NVXR_2S_pt777IzVv6NUnZp5Q7n_eK3O')
     }
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const [EthBalance, {loading}] = useBalance(account, currencyId)
@@ -53,7 +53,7 @@ import {
             to: WETH_ADDRESS,
             value: ethers.utils.parseEther(amount)
           })
-          console.log(tx)
+          console.log('Transaction: '+tx)
           if(tx){
             onClose()
             toast({
@@ -61,18 +61,20 @@ import {
               description: "ID: "+tx.hash,
               status: 'success'
             })
-            const receipt = await provider.getTransactionReceipt(tx.hash)
-            console.log(receipt)
-            if(receipt && receipt?.blockNumber){
-              toast({
-                title: t('wallet.swap.confirmedTitle'),
-                description: t('wallet.swap.confirmedMessage'),
-                status: 'success'
-              })
-              setTimeout(()=>{
-                void reload()
-              },10000)
-            }
+            setTimeout(async()=>{
+              const receipt = await provider.getTransactionReceipt(tx.hash)
+              console.log('Receipt: '+receipt)
+              if(receipt && receipt?.blockNumber){
+                toast({
+                  title: t('wallet.swap.confirmedTitle'),
+                  description: t('wallet.swap.confirmedMessage'),
+                  status: 'success'
+                })
+                setTimeout(()=>{
+                  void reload()
+                },5000)
+              }
+            },10000)
           }
         } catch(error) {
           toast({
