@@ -88,17 +88,16 @@ import {
             <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayWethBalance)} WETH</strong></Text>
             <InputGroup>
                 <NumberInput
-                placeholder={t('wallet.swap.unwrapInputPlaceholder')}
-                size='lg'
-                w="full"
-                clampValueOnBlur={true}
-                defaultValue={0}
-                value={amountToUnwrap}
-                precision={18}
-                step={Math.pow(10, -18)}
-                min={0}
-                max={Number(WethBalance)}
-                onChange={(e) => setAmountToUnwrap(e)}
+                  placeholder={t('wallet.swap.unwrapInputPlaceholder')}
+                  size='lg'
+                  w="full"
+                  defaultValue={0}
+                  value={amountToUnwrap}
+                  precision={18}
+                  step={Math.pow(10, -18)}
+                  min={0}
+                  max={Number(WethBalance)}
+                  onChange={(e) => setAmountToUnwrap(e)}
                 >
                 <NumberInputField/>
                 <NumberInputStepper>

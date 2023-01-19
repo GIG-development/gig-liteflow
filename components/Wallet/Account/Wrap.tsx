@@ -23,6 +23,7 @@ import {
   import { ethers } from 'ethers'
   import { useBalance } from '@nft/hooks'
   import useSigner from 'hooks/useSigner'
+  import WETH9 from './WETH9.json'
   import environment from 'environment'
   
   type IProps = {
@@ -37,11 +38,7 @@ import {
     const { reload } = useRouter()
     const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
     const signer = useSigner()
-
-    if(!window.ethereum){
-      window.ethereum = new ethers.providers.AlchemyProvider(environment.CHAIN_ID === 1 ? 'ethereum' : 'goerli', 'NVXR_2S_pt777IzVv6NUnZp5Q7n_eK3O')
-    }
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
     const [EthBalance, {loading}] = useBalance(account, currencyId)
     const displayEthBalance = EthBalance ? EthBalance.toString() : '0'
     const [amountToWrap, setAmountToWrap] = useState('0')
@@ -53,7 +50,8 @@ import {
             to: WETH_ADDRESS,
             value: ethers.utils.parseEther(amount)
           })
-          console.log('Transaction: '+tx)
+          console.log('Transaction:')
+          console.log(tx)
           if(tx){
             onClose()
             toast({
@@ -61,20 +59,16 @@ import {
               description: "ID: "+tx.hash,
               status: 'success'
             })
-            setTimeout(async()=>{
-              const receipt = await provider.getTransactionReceipt(tx.hash)
-              console.log('Receipt: '+receipt)
-              if(receipt && receipt?.blockNumber){
+            const receipt = contract.filters.Transfer?.(null,account)
+            console.log(account, receipt)
+            if(receipt){
                 toast({
                   title: t('wallet.swap.confirmedTitle'),
                   description: t('wallet.swap.confirmedMessage'),
                   status: 'success'
                 })
-                setTimeout(()=>{
-                  void reload()
-                },5000)
-              }
-            },10000)
+                setTimeout(reload, 30000);
+            }
           }
         } catch(error) {
           toast({
@@ -109,7 +103,6 @@ import {
                   placeholder={t('wallet.swap.wrapInputPlaceholder')}
                   size='lg'
                   w="full"
-                  clampValueOnBlur={true}
                   defaultValue={0}
                   value={amountToWrap}
                   precision={18}
