@@ -66,7 +66,7 @@ import {
                   description: t('wallet.swap.confirmedMessage'),
                   status: 'success'
                 })
-                //setTimeout(reload, 60000);
+                setTimeout(reload, 6000000);
             }
           }
         } catch(error) {
