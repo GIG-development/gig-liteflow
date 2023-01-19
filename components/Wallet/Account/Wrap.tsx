@@ -53,14 +53,16 @@ import {
             to: WETH_ADDRESS,
             value: ethers.utils.parseEther(amount)
           })
-          toast({
-            title: t('wallet.swap.transaction'),
-            description: "ID: "+tx?.hash,
-            status: 'success'
-          })
-          onClose()
+          console.log(tx)
           if(tx){
+            onClose()
+            toast({
+              title: t('wallet.swap.transaction'),
+              description: "ID: "+tx.hash,
+              status: 'success'
+            })
             const receipt = await provider.getTransactionReceipt(tx.hash)
+            console.log(receipt)
             if(receipt && receipt?.blockNumber){
               toast({
                 title: t('wallet.swap.confirmedTitle'),
