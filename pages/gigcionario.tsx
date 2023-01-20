@@ -1,6 +1,6 @@
 import {
   Accordion,
-  Grid,
+  Flex,
   Heading, 
   Stack
 } from '@chakra-ui/react'
@@ -25,14 +25,14 @@ const Gigcionario: NextPage = () => {
               <Heading as={'h1'} variant="title">
                 {t('glosary.title')}
               </Heading>
-              <Grid py={12} gridTemplateColumns={{base: '1fr', md: 'auto 2fr'}} alignItems='baseline' gap={6}>
+              <Flex flexDirection={{base: 'column', md: 'row'}} gap={6} pt={12}>
                 <Lottie
                     loop={true}
                     animationData={giccAnim}
                     play
                     style={{ width: '320px', height: 'auto' }}
                 />
-                <Accordion allowMultiple>
+                <Accordion w={{base: '100%', md: '80%'}} allowMultiple>
                   <AccordionItem
                     title={t('glosary.terms.term1.term')}
                     content={t('glosary.terms.term1.definition')}
@@ -102,7 +102,7 @@ const Gigcionario: NextPage = () => {
                     content={t('glosary.terms.term17.definition')}
                   />
                 </Accordion>
-              </Grid>
+              </Flex>
           </Stack>
       </LargeLayout>
     </div>

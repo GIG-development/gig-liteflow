@@ -48,16 +48,14 @@ import {
           try{
             await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
             const tx = await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
-            toast({
-              title: t('wallet.swap.transaction'),
-              description: "ID: "+tx?.hash,
-              status: 'success'
-            })
-            onClose()
             if(tx){
-              setTimeout(()=>{
-                void reload()
-              },30000)
+              onClose()
+              toast({
+                title: t('wallet.swap.transaction'),
+                description: tx.hash,
+                status: 'success'
+              })
+              setTimeout(reload,60000)
             }
           } catch(error) {
             toast({

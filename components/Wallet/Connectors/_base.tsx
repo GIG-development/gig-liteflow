@@ -45,7 +45,7 @@ const WalletBase: VFC<Props> = ({
   }
 
   return (
-    <Box as="a" p={6} onClick={handle}>
+    <Box as="a" p={6} onClick={handle} display='flex' flexDirection='column' alignItems='center' gap={2}>
       {loading ? (
         <Spinner
           display="block"

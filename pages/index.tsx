@@ -41,6 +41,7 @@ import useEagerConnect from '../hooks/useEagerConnect'
 import useOrderById from '../hooks/useOrderById'
 import useSigner from '../hooks/useSigner'
 import LargeLayout from '../layouts/large'
+import FullLayout from '../layouts/full'
 import Artist from 'components/Artist/Artist';
 import Drop from '../components/Drop/Drop'
 import Hero from '../components/Hero/Hero'
@@ -178,7 +179,7 @@ const HomePage: NextPage<Props> = ({
     [featured, blockExplorer, account, signer, reloadInfo, currencies],
   )
   return (
-    <div id="home">
+    <main id="home">
       <Hero 
         bg={'/img/home/main_hero_bg.jpg'}
         ctaLine_1={t('home.mainHero.ctaLine1')}
@@ -369,7 +370,7 @@ const HomePage: NextPage<Props> = ({
         </Stack>
       </LargeLayout>
 
-      <Stack spacing={12} mb={10} backgroundColor={'gray.100'} w={'full'} id='home__section-video'>
+      <FullLayout backgroundColor={'gray.100'} hasBottomCaret={true}>
         <LargeLayout>
           <Heading as="h2" variant="subtitle" color="black">
               {t('home.secondaryHero.title')}
@@ -383,15 +384,17 @@ const HomePage: NextPage<Props> = ({
             image='/img/home/video.jpg'
           />
         </LargeLayout>
-      </Stack>
-    
-      <Banner
-        cta={t('home.banner.title')}
-        description={t('home.banner.text')}
-        button1={t('home.banner.button1')}
-        button2={t('home.banner.button2')}
-      />
-    </div>
+      </FullLayout>
+  
+      <LargeLayout>
+        <Banner
+          cta={t('home.banner.title')}
+          description={t('home.banner.text')}
+          button1={t('home.banner.button1')}
+          button2={t('home.banner.button2')}
+        />
+      </LargeLayout>
+    </main>
   )
 }
 

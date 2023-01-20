@@ -1,6 +1,6 @@
 import {
   Accordion,
-  Grid,
+  Flex,
   Heading, 
   Stack
 } from '@chakra-ui/react'
@@ -27,8 +27,8 @@ const FAQ: NextPage = () => {
               <Heading as={'h1'} variant="title">
                   {t('faqs.title')}
               </Heading>
-              <Grid py={12} gridTemplateColumns={{base: '1fr', md: '2fr auto'}} alignItems='baseline' gap={6}>
-                <Accordion allowMultiple>
+              <Flex flexDirection={{base: 'column', md: 'row'}} gap={6} pt={12}>
+                <Accordion w={{base: '100%', md: '80%'}} allowMultiple>
                   <AccordionItem
                     title={t('faqs.question1.question')}
                     content={t('faqs.question1.answer')}
@@ -72,8 +72,8 @@ const FAQ: NextPage = () => {
                     play
                     style={{ width: '320px', height: 'auto', marginTop: '-40px', marginLeft: '40px' }}
                 />
-              </Grid>
-              <Heading as={'h4'} variant={'heading4'} textAlign={'center'}>
+              </Flex>
+              <Heading as={'h4'} variant={'heading4'} textAlign={'center'} pt={20}>
                 {t('faqs.footerLine1')}{' '}
                 <Link href={'/tutoriales'}>{t('faqs.footerLine2')}</Link>{' '}
                 {t('faqs.footerLine3')}{' '}

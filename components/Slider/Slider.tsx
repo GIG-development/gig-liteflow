@@ -42,9 +42,9 @@ const Slider: FC<PropsWithChildren<Props>> = ({ items, children }) => {
   }, [embla, onSelect])
 
   return (
-    <Box position="relative" mx="auto" w="full">
-      <Box w="full" overflow="hidden" ref={viewportRef}>
-        <Flex mx="-10px" w="calc(100%+20px)" userSelect="none">
+    <Box position="relative" mx="auto" w="full" className="slider">
+      <Box w="full" overflow="hidden" ref={viewportRef} className="slider__viewport">
+        <Flex mx="-10px" w="calc(100%+20px)" userSelect="none" className="slider__container">
           {children}
         </Flex>
       </Box>

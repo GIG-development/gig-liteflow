@@ -3,7 +3,6 @@ import { FC } from 'react'
 
 const LargeLayout: FC = (props) => (
   <Box
-    as="main"
     mx="auto"
     maxW="7xl"
     py={{ base: 8, lg: 12 }}

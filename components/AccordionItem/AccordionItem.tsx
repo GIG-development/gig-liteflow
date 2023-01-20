@@ -20,7 +20,7 @@ const AccordionItem: FC<PropsWithChildren<Props>> = ({
     children
 }) => {
     return (
-        <AI w={{base: 'calc(100% - 40px)', sm: 'full'}}>
+        <AI>
             <h2>
                 <AccordionButton p={{base: '6px 0', md: 4}} _expanded={{ bg: 'gray.200' }}>
                     <Box flex='1' textAlign='left'>
@@ -34,8 +34,8 @@ const AccordionItem: FC<PropsWithChildren<Props>> = ({
             <AccordionPanel pb={4}>
                 <Text color={'gray.500'} fontSize={{base: 'sm', md: 'md'}}>
                     {content}
-                    {children}
                 </Text>
+                {children}
             </AccordionPanel>
         </AI>
     )
