@@ -4,7 +4,6 @@ import {
     Heading, 
     Stack,
     Grid,
-    SimpleGrid,
     Image,
     Flex,
     Text
