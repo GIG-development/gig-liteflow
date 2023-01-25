@@ -59,6 +59,79 @@
       "ctaLine2": "For YOU",
       "description": "Your moment to shine has arrived. Uncover your talent, kickstart your career and live off what you're most passionate about.",
       "button": "Start Journey Here"
+    },
+    "content": {
+      "line1": "We're a <0>digital platform</0> that unites the big minds in the <0>Web 3.0</0> creative industry",
+      "line2": "Being part of the community <0/>will give you <1>benefits</1>.",
+      "line3": "Hang out with prestigious artist, curators and renown collectors.",
+      "cta": "What are you waiting for to join our <0>community of creators</0>?",
+      "categories": {
+        "icon1": "Collectables",
+        "icon2": "Digital Art",
+        "icon3": "Entertainment",
+        "icon4": "Events",
+        "icon5": "Gaming",
+        "icon6": "Generative Art",
+        "icon7": "Metaverse",
+        "icon8": "Photography",
+        "icon9": "Community"
+      },
+      "benefits": {
+        "title": "Benefits",
+        "benefit1": "Immersive Experiences",
+        "benefit2": "Preferential Access",
+        "benefit3": "Exposition Discounts",
+        "benefit4": "Mass Media Promos and more"
+      },
+      "how": {
+        "title": "How does it work?",
+        "text": "If you want to sell any of your artistic works physically or digitally, we help you create your NFT, publish it and promote it. Remember that you can also buy as many works as you want from your favorite artists.",
+        "steps": {
+          "step1": {
+            "title": "The first step is to <0>get to know you</0>",
+            "text": "The first step is to verify your profile as a creative, this way we guarantee the quality of the material that lives on the platform and the security of transactions, as well as the development of a community of high-level creatives. To verify yourself, you only need to fill out the form on this page to verify your identity."
+          },
+          "step2": {
+            "title": "We decode <0>your brilliant ideas</0> together",
+            "text": "You do not need to be an expert, we are with you from the conceptualization to the promotion of your NFTs. Just bring your desire to enter the crypto space in a community of great creatives."
+          },
+          "step3": {
+            "title": "We <0>Simplify</0> the complex",
+            "text": "We use the benefits of technology in favor of the community by tokenizing your creations or projects, whether they are physical or digital works, we convert them into tokens with which it is possible to obtain benefits and lifetime royalties for the auction and sale of your NFTs."
+          },
+          "step4": {
+            "title": "Promote your creations <0>physically and digitally</0>",
+            "text": "Your creativity will reach the right eyes through our strategic alliances with national and international media. Put your masterpieces to travel the world and be part of this technological evolution."
+          },
+          "step5": {
+            "title": "Live off of what <0>makes you passionate</0>",
+            "text": "Sell your projects in minutes and live your best creative life from anywhere in the world."
+          }
+        }
+      },
+      "faqs": {
+        "title": "FAQs",
+        "faq1": {
+          "q": "Do I need to know about crypto before I start?",
+          "a": "Not at all. We help you conceptualize your ideas."
+        },
+        "faq2": {
+          "q": "For whom it is?",
+          "a": "For new talents, artists, collectors, investors in Latin America and all creative souls looking for a better future."
+        },
+        "faq3": {
+          "q": "Do I have to be Latin@ to join?",
+          "a": "We know that in Latin America there is a world of undiscovered creativity, that's why we started in Mexico and Latam, but we are not exclusive. If you have a great project and want to be part of this evolution, more than welcome."
+        },
+        "faq4": {
+          "q": "Will my project only live in GIG?",
+          "a": "If you uploaded your project via GIG, it will appear under a GIG contract, however any Marketplace that supports Ethereum can list your NFTs."
+        },
+        "faq5": {
+          "q": "What kind of projects can I upload?",
+          "a": "Virtually all formats are welcome: Digital art, music, sculptures, videos, books, videos. Digital collectibles such as objects, cards, skins, avatars. Video games and everything related to them. Certificates and titles. physical objects. Tickets or tickets to events. (We reserve the right to accept projects that could be detrimental to any person or institution.)"
+        }
+      }
     }
   },
   "family": {
@@ -487,13 +560,17 @@
     },
     "restricted": {
       "title": "Creation Restricted to Verified Users",
-      "description": "To request an account verification, please click the following button. Remember thar in order to get your account verified, you have to complete your profile first.",
+      "description": "To request an account verification, please complete the following form. Remember that in order to get your account verified, you have to complete your profile first.",
+      "request": "If you have already completed the previous form and filled up your profile, you can request the verification of your account using the following button.",
       "requestButton": "Request Verification",
       "info": "Once your account is verified you will be notified and will be able to access the creation features. ",
       "requested": {
         "title": "Verification requested",
-        "first" : "We've received your request to verify your account. We'll review it and get back to you shortly.",
-        "again": "Your account is being validated. We'll get back to you shortly."
+        "first" : "We have received your request to verify your account. We will review it and contact you soon.",
+        "again": "Your account is being verified. We'll get back to you shortly.",
+        "reminder": "Remember thar in order to get your account verified, you have to complete your profile first. Please, make sure you completed your profile properly.",
+        "loading": "Requesting verification...",
+        "error": "Error trying to verify account"
       }
     }
   },

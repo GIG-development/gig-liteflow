@@ -1,4 +1,3 @@
-
 import {
   Alert,
   AlertIcon,
@@ -8,6 +7,7 @@ import {
   Flex,
   Heading,
   Icon,
+  Spinner,
   Stack,
   Text,
   useToast
@@ -20,7 +20,7 @@ import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useState, FC, PropsWithChildren, useEffect } from 'react'
 import Empty from '../../components/Empty/Empty'
 import Head from '../../components/Head'
 import Link from '../../components/Link/Link'
@@ -74,7 +74,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <Head
       title="Crear un NFT"
       description="Convierte tu talento en NFTs almacenados en la blockchain"
-    />
+    >
+      <script src="//embed.typeform.com/next/embed.js"></script>
+    </Head>
     {children}
   </SmallLayout>
 )
@@ -97,7 +99,13 @@ const CreatePage: NextPage = () => {
       skip: !ready,
     },
   )
+
   const [requested, setRequested] = useState(false)
+  const [loadedUser, setLoadedUser] = useState(false)
+
+  useEffect(()=>{
+    if(signer) setLoadedUser(true)
+  },[signer])
 
   const handleVerificationRequest = async () => {
     //If user has requested verification already
@@ -113,7 +121,15 @@ const CreatePage: NextPage = () => {
     }
 
     if(signer){
-      await verifyAccount() // Request to verify the current signer's wallet address
+      requestVerification()
+    }else{
+      document.location = '/login'
+    }
+  }
+
+  const requestVerification = async () => {
+    try{
+      await verifyAccount() 
       .then(status=>{
         if(status==='PENDING'){
           setRequested(true)
@@ -126,13 +142,78 @@ const CreatePage: NextPage = () => {
           })
           event("UserVerificationRequest", {
             category: "Contact",
-            label: data?.account?.address || '0x'
+            label: data?.account?.address.toString().toLowerCase() || '0x'
           })
         }
       })
-    }else{
-      document.location = '/login'
+    } catch (e) {
+      toast({
+        title: "Error",
+        description: t('asset.restricted.requested.error'),
+        status: 'error',
+        duration: 5000,
+        isClosable: true
+      })
+      console.error(e)
     }
+  }
+
+  if(!loadedUser){
+    return (
+      <Stack align="center" spacing={6} mb={40}>
+        <Spinner
+          color="brand.500"
+          h={6}
+          w={6}
+          thickness="2px"
+          speed="0.65s"
+        />
+      </Stack>
+    )
+  }
+
+  if(loading){
+    return (
+      <Stack align="center" spacing={6} mb={40}>
+        <Heading variant="heading1">{t('asset.restricted.requested.loading')}</Heading>
+        <Spinner
+          color="brand.500"
+          h={6}
+          w={6}
+          thickness="2px"
+          speed="0.65s"
+        />
+      </Stack>
+    )
+  }
+  
+  if (
+    ( environment.RESTRICT_TO_VERIFIED_ACCOUNT &&
+    data?.account?.verification?.status === 'PENDING' ) ||
+    requested
+  ){
+    return (
+      <Layout>
+        <BackButton onClick={back} />
+        <Heading as="h1" variant="title" color="brand.black" mt={6} mb={12}>
+          {t('asset.typeSelector.title')}
+        </Heading>
+        <Stack align="center" spacing={6} mb={40}>
+
+          <Heading variant="heading1">{t('asset.restricted.requested.title')}</Heading>
+          <Text pb={2} color="gray.500">{t('asset.restricted.requested.again')}</Text>
+          <Alert
+            status="info"
+            rounded="xl"
+            borderWidth="1px"
+            borderColor="blue.300"
+          >
+            <AlertIcon />
+            <Text variant="subtitle2">{t('asset.restricted.requested.reminder')}</Text>
+          </Alert>
+        </Stack>
+      </Layout>
+    )
   }
 
   if (
@@ -151,25 +232,70 @@ const CreatePage: NextPage = () => {
           </Center>
           <Stack textAlign="center">
             <Heading variant="heading1">{t('asset.restricted.title')}</Heading>
-            <Text pb={2} color="gray.500">
-              {t('asset.restricted.description')}
-            </Text>
-            <Button
-              onClick={handleVerificationRequest}
-              disabled={loading}
+            <Flex
+              flexDirection={{base: 'column', md: 'row'}}
+              gap={2}
+              pb={6}
             >
-              {t('asset.restricted.requestButton')}
-            </Button>
+              <Box
+                as={Flex}
+                flexDirection={{base: "column"}}
+                alignItems='center'
+                p={6}
+                rounded="xl"
+                border="1px"
+                borderColor="gray.200"
+                borderStyle="solid"
+                _hover={{
+                  boxShadow: '0 3px 4px 6px #fcfcfc',
+                  borderColor: 'gray.300'
+                }}
+              >
+                <NumberedCircle number='1'/>
+                <Text py={6} fontSize='xs'>
+                  {t('asset.restricted.description')}
+                </Text>
+                <button data-tf-popup="eyQRCt11" data-tf-hide-headers data-tf-iframe-props="title=Registration Form" data-tf-medium="snippet" className="btn">
+                  {t('creadores.hero.button')}
+                </button>
+              </Box>
+              <Box
+                as={Flex}
+                flexDirection={{base: "column"}}
+                alignItems='center'
+                p={6}
+                rounded="xl"
+                border="1px"
+                borderColor="gray.200"
+                borderStyle="solid"
+                _hover={{
+                  boxShadow: '0 3px 4px 6px #fcfcfc',
+                  borderColor: 'gray.300'
+                }}
+              >
+                <NumberedCircle number='2'/>
+                <Text py={6} fontSize='xs'>
+                  {t('asset.restricted.request')}
+                </Text>
+                <Button
+                  fontWeight='bold'
+                  onClick={handleVerificationRequest}
+                  disabled={loading}
+                >
+                  {t('asset.restricted.requestButton')}
+                </Button>
+              </Box>
+            </Flex>
+            <Alert
+              status="info"
+              rounded="xl"
+              borderWidth="1px"
+              borderColor="blue.200"
+            >
+              <AlertIcon />
+              <Text variant="subtitle2" color="gray.500">{t('asset.restricted.info')}</Text>
+            </Alert>
           </Stack>
-          <Alert
-            status="info"
-            rounded="xl"
-            borderWidth="1px"
-            borderColor="blue.300"
-          >
-            <AlertIcon />
-            <Text variant="subtitle2">{t('asset.restricted.info')}</Text>
-          </Alert>
         </Stack>
       </Layout>
     )
@@ -257,3 +383,16 @@ const CreatePage: NextPage = () => {
 }
 
 export default CreatePage
+
+type NumberedCircleProps = {
+  number: string
+}
+const NumberedCircle : FC<PropsWithChildren<NumberedCircleProps>> = ({
+  number
+}) => {
+  return (
+    <Flex w={20} h={20} border='2px solid' rounded='full' align='center' justify='center' p={4} color='gray.800'>
+      <Heading variant='title' color='gray.800'>{number}</Heading>
+    </Flex>
+  )
+}

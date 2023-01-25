@@ -62,7 +62,7 @@ const LoginModal: FC<Props> = ({
     if (account) {
       event("LoginSuccess", {
         category: "Login",
-        label: account
+        label: account.toString().toLowerCase()
       })
       onClose()
     }

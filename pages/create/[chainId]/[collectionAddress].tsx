@@ -173,7 +173,7 @@ const CreatePage: NextPage<Props> = ({
       })
       event("NewNFTcreated", {
         category: "Interaction",
-        label: data?.account?.address || '0x'
+        label: data?.account?.address.toString().toLowerCase() || '0x'
       })
       await push(`/tokens/${assetId}`)
     },

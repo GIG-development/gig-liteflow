@@ -73,6 +73,79 @@
       "ctaLine2": "buscando",
       "description": "Tu momento de brillar ha llegado. Destapa tu talento, catapulta tu carrera y vive de lo que más te apasiona.",
       "button": "Inicia el viaje aquí"
+    },
+    "content": {
+      "line1": "Somos una <0>plataforma digital</0> que reúne a las grandes mentes de la industria creativa en la <0>Web 3.0</0>",
+      "line2": "Ser parte de la comunidad <0/>te da <1>beneficios</1>.",
+      "line3": "Codéate con artistas prestigiosos, curadores y coleccionistas reconocidos.",
+      "cta": "¿Qué esperas para formar parte de nuestra <0>comunidad de creativos</0>?",
+      "categories": {
+        "icon1": "Coleccionables",
+        "icon2": "Arte Digital",
+        "icon3": "Entretenimiento",
+        "icon4": "Eventos",
+        "icon5": "Gaming",
+        "icon6": "Arte generativo",
+        "icon7": "Metaverso",
+        "icon8": "Fotografía",
+        "icon9": "Comunidad"
+      },
+      "benefits": {
+        "title": "Beneficios",
+        "benefit1": "Experiencias inmersivas",
+        "benefit2": "Accesos preferenciales",
+        "benefit3": "Descuentos a exposiciones",
+        "benefit4": "Promo en medios masivos y más"
+      },
+      "how": {
+        "title": "¿Cómo funciona?",
+        "text": "Si quieres vender física o digitalmente alguna de tus obras artísticas, te ayudamos a crear su NFT, publicarlo y promocionarlo. Recuerda que también puedes comprar cuantas obras quieras de tus artistas favoritos.",
+        "steps": {
+          "step1": {
+            "title": "Primero vamos a <0>conocernos</0>",
+            "text": "El primer paso es verificar tu perfil como creativo, de esta manera garantizamos la calidad del material que habita en la plataforma y la seguridad en las transacciones, así como el desarrollo de una comunidad de creativos de alto nivel. Para verificarte, solo requieres llenar el formulario en esta página para corroborar tu identidad."
+          },
+          "step2": {
+            "title": "Decodificamos juntos <0>tus brillantes ideas</0>",
+            "text": "No necesitas ser experto, estamos contigo desde la conceptualización hasta la promoción de tus NFTs. Solo trae tus ganas de entrar al espacio cripto en una comunidad de creativos geniales."
+          },
+          "step3": {
+            "title": "<0>Simplificamos</0> lo complejo",
+            "text": "Usamos las bondades de la tecnología a favor de la comunidad mediante la tokenización de tus creaciones o proyectos, ya sean obras físicas o digitales, las convertimos en tokens con los que es posible obtener beneficios y regalías de por vida por la subasta y venta de tus NFTs."
+          },
+          "step4": {
+            "title": "Promocionamos tus creaciones <0>física y digitalmente</0>",
+            "text": "Tu creatividad llegará a los ojos adecuados a través de nuestras alianzas estratégicas con medios nacionales e internacionales. Pon a tus obras maestras a recorrer el mundo y sé parte de esta evolución tecnológica."
+          },
+          "step5": {
+            "title": "Vive de lo que te <0>apasiona</0>",
+            "text": "Vende tus proyectos en minutos y vive tu mejor vida creativa desde cualquier lugar del mundo."
+          }
+        }
+      },
+      "faqs": {
+        "title": "Preguntas frecuentes",
+        "faq1": {
+          "q": "¿Necesito saber de cripto antes de empezar?",
+          "a": "Para nada en lo absoluto. Nosotros te ayudamos a conceptualizar tus ideas."
+        },
+        "faq2": {
+          "q": "¿Para quién es?",
+          "a": "Para nuevos talentos, artistas, coleccionistas, inversores en Latinoamérica y todas las almas creativas que buscan un futuro mejor."
+        },
+        "faq3": {
+          "q": "¿Tengo que ser Latin@ para unirme?",
+          "a": "Sabemos que en Latinoamérica hay un mundo de creatividad sin descubrir, por eso iniciamos en México y Latam, pero no somos excluyentes. Si tienes un gran proyecto y quieres ser parte de esta evolución, más que bienvenidx."
+        },
+        "faq4": {
+          "q": "¿Mi proyecto vivirá solamente en GIG?",
+          "a": "Si subiste tu proyecto a través de GIG, éste aparecerá bajo contrato de GIG, sin embargo cualquier Marketplace que soporte Ethereum puede listar tus NFTs."
+        },
+        "faq5": {
+          "q": "¿Qué tipo de proyectos puedo subir?",
+          "a": "Prácticamente todos los formatos son bienvenidos: Arte digital, música, esculturas, videos, libros, videos. Coleccionables digitales como objetos, tarjetas, skins, avatares. Videojuegos y lo relativo a ellos. Certificados y títulos. Objetos físicos. Tickets o entradas a eventos. (Nos reservamos el derecho de admitir proyectos que pudieran ir en perjuicio de alguna persona o institución.)"
+        }
+      }
     }
   },
   "family": {
@@ -501,13 +574,17 @@
     },
     "restricted": {
       "title": "Creación Restringida para Usuarios Verificados",
-      "description": "Para solicitar la verificación de tu cuenta, por favor haz click en el siguiente botón. Recuerda que para que tu cuenta sea verificada, deberás haber llenado todos los datos en tu perfil.",
+      "description": "Para solicitar la verificación de tu cuenta, por favor haz completa el siguiente formulario. Recuerda que para que tu cuenta sea verificada, primero deberás haber llenado todos los datos en tu perfil.",
+      "request": "Si ya llenaste el formulario anterior y completaste los datos de tu perfil, puedes solicitar la verificación de tu perfil en el siguiente botón.",
       "requestButton": "Solicitar verificación",
       "info": "Una vez tu cuenta haya sido verificada, recibirás una notificación y podrás acceder a las funciones de creación en nuestra plataforma.",
       "requested": {
         "title": "Verificación solicitada",
         "first" : "Hemos recibido tu solicitud de verificación. La revisaremos y te responderemos a la brevedad.",
-        "again": "Tu cuenta esta siendo validada. Te responderemos a la brevedad."
+        "again": "Tu cuenta esta siendo verificada. Te responderemos a la brevedad.",
+        "reminder": "Recuerda que para que tu cuenta sea verificada, deberás haber llenado todos los datos en tu perfil. Por favor, asegúrate de haber completado tu perfil correctamente.",
+        "loading": "Solicitando verificación...",
+        "error": "Error al solicitar verificación de cuenta."
       }
     }
   },

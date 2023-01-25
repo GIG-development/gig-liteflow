@@ -19,6 +19,7 @@ import FullWidthSlider from 'components/Slider/FullWidthSlider'
 import { NextPage } from 'next'
 import { FC, PropsWithChildren } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import Trans from 'next-translate/Trans'
 import Lottie from 'react-lottie-player';
 import NFTLaliAnimation from '../public/img/animaciones/creadores_hero.json'
 import CreadoriComoFunciona from '../public/img/animaciones/creadori_como-funciona.json'
@@ -61,19 +62,25 @@ const Creadores: NextPage = () => {
       <FullLayout backgroundColor={'gray.100'} hasBottomCaret={true}>
         <LargeLayout>
             <Heading fontSize={{base: 'xl', md: '3xl'}} fontWeight='normal' textAlign='center' mb={6}>
-                Somos una <strong>plataforma digital</strong> que reúne a las grandes mentes de la industria creativa en la <strong>Web 3.0</strong>
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.line1'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line1" />
+                  ]}
+                />
             </Heading>
 
             <Flex wrap='wrap' gap={6} my={12} align='center' justify='center'>
-              <CategoryIcon icon='/img/creadores/icons/collectibles.png' text='Coleccionables'/>
-              <CategoryIcon icon='/img/creadores/icons/digital_art.png' text='Arte digital'/>
-              <CategoryIcon icon='/img/creadores/icons/entertainment.png' text='Entretenimiento'/>
-              <CategoryIcon icon='/img/creadores/icons/events.png' text='Eventos'/>
-              <CategoryIcon icon='/img/creadores/icons/gaming.png' text='Gaming'/>
-              <CategoryIcon icon='/img/creadores/icons/generative.png' text='Arte generativo'/>
-              <CategoryIcon icon='/img/creadores/icons/metaverse.png' text='Metaverso'/>
-              <CategoryIcon icon='/img/creadores/icons/photography.png' text='Fotografía'/>
-              <CategoryIcon icon='/img/creadores/icons/social.png' text='Comunidad'/>
+              <CategoryIcon icon='/img/creadores/icons/collectibles.png' text={t('creadores.content.categories.icon1')}/>
+              <CategoryIcon icon='/img/creadores/icons/digital_art.png' text={t('creadores.content.categories.icon2')}/>
+              <CategoryIcon icon='/img/creadores/icons/entertainment.png' text={t('creadores.content.categories.icon3')}/>
+              <CategoryIcon icon='/img/creadores/icons/events.png' text={t('creadores.content.categories.icon4')}/>
+              <CategoryIcon icon='/img/creadores/icons/gaming.png' text={t('creadores.content.categories.icon5')}/>
+              <CategoryIcon icon='/img/creadores/icons/generative.png' text={t('creadores.content.categories.icon6')}/>
+              <CategoryIcon icon='/img/creadores/icons/metaverse.png' text={t('creadores.content.categories.icon7')}/>
+              <CategoryIcon icon='/img/creadores/icons/photography.png' text={t('creadores.content.categories.icon8')}/>
+              <CategoryIcon icon='/img/creadores/icons/social.png' text={t('creadores.content.categories.icon9')}/>
             </Flex>
         </LargeLayout>
       </FullLayout>
@@ -81,21 +88,30 @@ const Creadores: NextPage = () => {
       <LargeLayout>
         <Stack spacing={20} mt={20}>
 
-          <Heading as='h2' fontSize={{base: 'xl', md: '3xl'}} lineHeight='1.2' fontWeight='normal' textAlign='center'>Ser parte de la comunidad<br/>te da <strong>beneficios</strong>.</Heading>
+          <Heading as='h2' fontSize={{base: 'xl', md: '3xl'}} lineHeight='1.2' fontWeight='normal' textAlign='center'>
+            <Trans
+              ns="templates"
+              i18nKey={'creadores.content.line2'}
+              components={[
+                <br/>,
+                <Text as="span" fontWeight="bold" key="line2" />
+              ]}
+            />
+          </Heading>
 
           <Grid templateColumns={{base: '1fr', md: 'repeat(4, 1fr)'}} gap={4}>
 
             <Box textAlign={'center'}>
               <Flex textAlign={'center'} justifyContent={'center'}>
                 <Image
-                  alt={'Beneficios'}
+                  alt={t('creadores.content.benefits.title')}
                   src={'/img/creadores/experiencias.png'}
                   objectFit={'cover'}
                   maxW={"180px"}
                 />
               </Flex>
               <Text as={'h2'} variant="heading2">
-              Experiencias inmersivas
+              {t('creadores.content.benefits.benefit1')}
               </Text>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
@@ -104,14 +120,14 @@ const Creadores: NextPage = () => {
             <Box textAlign={'center'}>
               <Flex textAlign={'center'} justifyContent={'center'}>
                 <Image
-                  alt={'Beneficios'}
+                  alt={t('creadores.content.benefits.title')}
                   src={'/img/creadores/accesos.png'}
                   objectFit={'cover'}
                   maxW={"180px"}
                 />
               </Flex>
               <Text as={'h2'} variant="heading2">
-              Accesos preferenciales 
+              {t('creadores.content.benefits.benefit2')}
               </Text>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
@@ -120,14 +136,14 @@ const Creadores: NextPage = () => {
             <Box textAlign={'center'}>
               <Flex textAlign={'center'} justifyContent={'center'}>
                 <Image
-                  alt={'Beneficios'}
+                  alt={t('creadores.content.benefits.title')}
                   src={'/img/creadores/descuentos.png'}
                   objectFit={'cover'}
                   maxW={"180px"}
                 />
               </Flex>
               <Text as={'h2'} variant="heading2">
-              Descuentos a exposiciones
+              {t('creadores.content.benefits.benefit3')}
               </Text>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
@@ -136,14 +152,14 @@ const Creadores: NextPage = () => {
             <Box textAlign={'center'}>
               <Flex textAlign={'center'} justifyContent={'center'}>
                 <Image
-                  alt={'Beneficios'}
+                  alt={t('creadores.content.benefits.title')}
                   src={'/img/creadores/difusion.png'}
                   objectFit={'cover'}
                   maxW={"180px"}
                 />
               </Flex>
               <Text as={'h2'} variant="heading2">
-              Promo en medios masivos y más
+              {t('creadores.content.benefits.benefit4')}
               </Text>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
@@ -156,7 +172,7 @@ const Creadores: NextPage = () => {
       <FullLayout>
         
         <Heading as='h2' fontSize={{base: 'xl', md: '3xl'}} lineHeight='1.2' fontWeight='normal' textAlign='center' py={12}>
-            Codéate con artistas prestigiosos, curadores y coleccionistas reconocidos.
+              {t('creadores.content.line3')}
         </Heading>
 
         <FullWidthSlider options={OPTIONS}>
@@ -174,10 +190,10 @@ const Creadores: NextPage = () => {
 
       <SmallLayout>
         <Heading as='h2' fontSize={{base: 'xl', md: '4xl'}} lineHeight='1.2' fontWeight={{base: 'bold', md: 'normal'}} textAlign='center' mb='6'>
-          ¿Cómo funciona?
+              {t('creadores.content.how.title')}
         </Heading>
         <Text textAlign='center' fontSize={{base: 'sm', md: 'md'}}>
-          Si quieres vender física o digitalmente alguna de tus obras artísticas, te ayudamos a crear su NFT, publicarlo y promocionarlo. Recuerda que también puedes comprar cuantas obras quieras de tus artistas favoritos.
+          {t('creadores.content.how.text')}
         </Text>
 
         {/* Paso 1 */}
@@ -194,11 +210,16 @@ const Creadores: NextPage = () => {
             </Flex>
             <Stack spacing={4}>
               <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
-                Primero vamos a <strong>conocernos</strong>
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.how.steps.step1.title'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line2" />
+                  ]}
+                />
               </Heading>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
-                El primer paso es verificar tu perfil como creativo, de esta manera garantizamos la calidad del material que habita en la plataforma y la seguridad en las transacciones, así como el desarrollo de una comunidad de creativos de alto nivel. Para verificarte, solo requieres llenar el formulario en esta página para corroborar tu identidad.
-                {/* Si no tienes experiencia en este campo igual eres bienvenido, te apoyamos en cada fase y con lo que necesites para empezar tu camino digital. */}
+                {t('creadores.content.how.steps.step1.text')}
               </Text>
             </Stack>
           </Flex>
@@ -210,10 +231,16 @@ const Creadores: NextPage = () => {
           <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
             <Stack spacing={4}>
               <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
-                Decodificamos juntos <strong>tus brillantes ideas</strong>
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.how.steps.step2.title'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line2" />
+                  ]}
+                />
               </Heading>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
-                No necesitas ser experto, estamos contigo desde la conceptualización hasta la promoción de tus NFTs. Solo trae tus ganas de entrar al espacio cripto en una comunidad de creativos geniales.
+                {t('creadores.content.how.steps.step2.text')}
               </Text>
             </Stack>
             <Flex textAlign={'center'} justifyContent={'center'}>
@@ -241,10 +268,16 @@ const Creadores: NextPage = () => {
             </Flex>
             <Stack spacing={4}>
               <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
-                <strong>Simplificamos</strong> lo complejo
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.how.steps.step3.title'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line2" />
+                  ]}
+                />
               </Heading>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
-                Usamos las bondades de la tecnología a favor de la comunidad mediante la tokenización de tus creaciones o proyectos, ya sean obras físicas o digitales, las convertimos en tokens con los que es posible obtener beneficios y regalías de por vida por la subasta y venta de tus NFTs.
+                {t('creadores.content.how.steps.step3.text')}
               </Text>
             </Stack>
           </Flex>
@@ -256,12 +289,17 @@ const Creadores: NextPage = () => {
           <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
             <Stack spacing={4}>
               <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
-                Promocionamos tus creaciones <strong>física y digitalmente</strong>
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.how.steps.step4.title'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line2" />
+                  ]}
+                />
               </Heading>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
-                Tu creatividad llegará a los ojos adecuados a través de nuestras alianzas estratégicas con medios nacionales e internacionales. Pon a tus obras maestras a recorrer el mundo y sé parte de esta (r)evolución tecnológica.
+                {t('creadores.content.how.steps.step4.text')}
               </Text>
-          
             </Stack>
             <Flex textAlign={'center'} justifyContent={'center'}>
               <Lottie
@@ -288,17 +326,29 @@ const Creadores: NextPage = () => {
             </Flex>
             <Stack spacing={4}>
               <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
-                Vive de lo que te <strong>apasiona</strong>
+                <Trans
+                  ns="templates"
+                  i18nKey={'creadores.content.how.steps.step5.title'}
+                  components={[
+                    <Text as="span" fontWeight="bold" key="line2" />
+                  ]}
+                />
               </Heading>
               <Text fontSize={{base: 'xs', md: 'sm'}}>
-                Vende tus proyectos en minutos y vive tu mejor vida creativa desde cualquier lugar del mundo.
+                {t('creadores.content.how.steps.step5.text')}
               </Text>
             </Stack>
           </Flex>
         </Stack>
 
         <Heading mt={40} as={'h3'} fontSize={{base: 'lg', md: '4xl'}} fontWeight='normal' textAlign='center'>
-          ¿Qué esperas para formar parte de nuestra <strong>comunidad de creativos</strong>?
+          <Trans
+            ns="templates"
+            i18nKey={'creadores.content.cta'}
+            components={[
+              <Text as="span" fontWeight="bold" key="line2" />
+            ]}
+          />
         </Heading>
         <Flex mt={6} justifyContent={'center'}>
             {typeFormButton}
@@ -309,28 +359,28 @@ const Creadores: NextPage = () => {
       <SmallLayout>
         <Stack spacing={6} mb={20}>
           <Heading as={'h2'} variant="heading1" pt={20}>
-          Preguntas frecuentes
+          {t('creadores.content.faqs.title')}
           </Heading>
           <Accordion allowMultiple>
             <AccordionItem
-              title={'¿Necesito saber de cripto antes de empezar?'}
-              content={'Para nada en lo absoluto. Nosotros te ayudamos a conceptualizar tus ideas.'}
+              title={t('creadores.content.faqs.faq1.q')}
+              content={t('creadores.content.faqs.faq1.a')}
             />
             <AccordionItem
-              title={'¿Para quién es?'}
-              content={'Para nuevos talentos, artistas, coleccionistas, inversores en Latinoamérica y todas las almas creativas que buscan un futuro mejor.'}
+              title={t('creadores.content.faqs.faq2.q')}
+              content={t('creadores.content.faqs.faq2.a')}
             />
             <AccordionItem
-              title={'¿Tengo que ser Latin@ para unirme?'}
-              content={'Sabemos que en Latinoamérica hay un mundo de creatividad sin descubrir, por eso iniciamos en México y Latam, pero no somos excluyentes. Si tienes un gran proyecto y quieres ser parte de esta evolución, más que bienvenidx.'}
+              title={t('creadores.content.faqs.faq3.q')}
+              content={t('creadores.content.faqs.faq3.a')}
             />
             <AccordionItem
-              title={'¿Mi proyecto vivirá solamente en GIG?'}
-              content={'Si subiste tu proyecto a través de GIG, éste aparecerá bajo contrato de GIG, sin embargo cualquier Marketplace que soporte Ethereum puede listar tus NFTs.'}
+              title={t('creadores.content.faqs.faq4.q')}
+              content={t('creadores.content.faqs.faq4.a')}
             />
             <AccordionItem
-              title={'¿Qué tipo de proyectos puedo subir?'}
-              content={'Prácticamente todos los formatos son bienvenidos: Arte digital, música, esculturas, videos, libros, videos. Coleccionables digitales como objetos, tarjetas, skins, avatares. Videojuegos y lo relativo a ellos. Certificados y títulos. Objetos físicos. Tickets o entradas a eventos. (Nos reservamos el derecho de admitir proyectos que pudieran ir en perjuicio de alguna persona o institución.)'}
+              title={t('creadores.content.faqs.faq5.q')}
+              content={t('creadores.content.faqs.faq5.a')}
             />
           </Accordion>
         </Stack>
