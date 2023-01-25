@@ -113,7 +113,7 @@ const CreatePage: NextPage = () => {
         }
       }
     },500)
-  },[signer, data])
+  },[signer, account])
 
   const handleVerificationRequest = async () => {
     //If user has requested verification already
