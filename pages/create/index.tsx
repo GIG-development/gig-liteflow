@@ -252,10 +252,8 @@ const CreatePage: NextPage = () => {
                 border="1px"
                 borderColor="gray.200"
                 borderStyle="solid"
-                _hover={{
-                  boxShadow: '0 3px 4px 6px #fcfcfc',
-                  borderColor: 'gray.300'
-                }}
+                shadow="sm"
+                _hover={{ shadow: 'md' }}
               >
                 <NumberedCircle number='1'/>
                 <Text py={6} fontSize='xs'>
@@ -274,10 +272,8 @@ const CreatePage: NextPage = () => {
                 border="1px"
                 borderColor="gray.200"
                 borderStyle="solid"
-                _hover={{
-                  boxShadow: '0 3px 4px 6px #fcfcfc',
-                  borderColor: 'gray.300'
-                }}
+                shadow="sm"
+                _hover={{ shadow: 'md' }}
               >
                 <NumberedCircle number='2'/>
                 <Text py={6} fontSize='xs'>

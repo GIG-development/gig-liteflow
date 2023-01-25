@@ -199,7 +199,7 @@ const Creadores: NextPage = () => {
         {/* Paso 1 */}
         <Stack gap={6} my={20} align='center' justify='center'>
           <NumberedCircle number='1'/>
-          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column-reverse', md: 'row'}}>
+          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
             <Flex textAlign={'center'} justifyContent={'center'}>
               <Lottie
                 loop={true}
@@ -209,7 +209,7 @@ const Creadores: NextPage = () => {
               />
             </Flex>
             <Stack spacing={4}>
-              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
+              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal' textAlign={{base: 'center', md: 'left'}}>
                 <Trans
                   ns="templates"
                   i18nKey={'creadores.content.how.steps.step1.title'}
@@ -218,7 +218,7 @@ const Creadores: NextPage = () => {
                   ]}
                 />
               </Heading>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
+              <Text fontSize={{base: 'xs', md: 'sm'}} textAlign={{base: 'center', md: 'left'}}>
                 {t('creadores.content.how.steps.step1.text')}
               </Text>
             </Stack>
@@ -228,9 +228,9 @@ const Creadores: NextPage = () => {
         {/* Paso 2 */}
         <Stack gap={6} my={20} align='center' justify='center'>
           <NumberedCircle number='2'/>
-          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
+          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column-reverse', md: 'row'}}>
             <Stack spacing={4}>
-              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
+              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal' textAlign={{base: 'center', md: 'right'}}>
                 <Trans
                   ns="templates"
                   i18nKey={'creadores.content.how.steps.step2.title'}
@@ -239,7 +239,7 @@ const Creadores: NextPage = () => {
                   ]}
                 />
               </Heading>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
+              <Text fontSize={{base: 'xs', md: 'sm'}} textAlign={{base: 'center', md: 'right'}}>
                 {t('creadores.content.how.steps.step2.text')}
               </Text>
             </Stack>
@@ -257,7 +257,7 @@ const Creadores: NextPage = () => {
         {/* Paso 3 */}
         <Stack gap={6} my={20} align='center' justify='center'>
           <NumberedCircle number='3'/>
-          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column-reverse', md: 'row'}}>
+          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
             <Flex textAlign={'center'} justifyContent={'center'}>
               <Lottie
                 loop={true}
@@ -267,7 +267,7 @@ const Creadores: NextPage = () => {
               />
             </Flex>
             <Stack spacing={4}>
-              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
+              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal' textAlign={{base: 'center', md: 'left'}}>
                 <Trans
                   ns="templates"
                   i18nKey={'creadores.content.how.steps.step3.title'}
@@ -276,7 +276,7 @@ const Creadores: NextPage = () => {
                   ]}
                 />
               </Heading>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
+              <Text fontSize={{base: 'xs', md: 'sm'}} textAlign={{base: 'center', md: 'left'}}>
                 {t('creadores.content.how.steps.step3.text')}
               </Text>
             </Stack>
@@ -286,9 +286,9 @@ const Creadores: NextPage = () => {
         {/* Paso 4 */}
         <Stack gap={6} my={20} align='center' justify='center'>
           <NumberedCircle number='4'/>
-          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
+          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column-reverse', md: 'row'}}>
             <Stack spacing={4}>
-              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
+              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal' textAlign={{base: 'center', md: 'right'}}>
                 <Trans
                   ns="templates"
                   i18nKey={'creadores.content.how.steps.step4.title'}
@@ -297,7 +297,7 @@ const Creadores: NextPage = () => {
                   ]}
                 />
               </Heading>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
+              <Text fontSize={{base: 'xs', md: 'sm'}} textAlign={{base: 'center', md: 'right'}}>
                 {t('creadores.content.how.steps.step4.text')}
               </Text>
             </Stack>
@@ -315,7 +315,7 @@ const Creadores: NextPage = () => {
         {/* Paso 5 */}
         <Stack gap={6} my={20} align='center' justify='center'>
           <NumberedCircle number='5'/>
-          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column-reverse', md: 'row'}}>
+          <Flex gap={10} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
             <Flex textAlign={'center'} justifyContent={'center'}>
               <Lottie
                 loop={true}
@@ -325,7 +325,7 @@ const Creadores: NextPage = () => {
               />
             </Flex>
             <Stack spacing={4}>
-              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal'>
+              <Heading as={'h3'} fontSize={{base: 'lg', md: '2xl'}} fontWeight='normal' textAlign={{base: 'center', md: 'left'}}>
                 <Trans
                   ns="templates"
                   i18nKey={'creadores.content.how.steps.step5.title'}
@@ -334,7 +334,7 @@ const Creadores: NextPage = () => {
                   ]}
                 />
               </Heading>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
+              <Text fontSize={{base: 'xs', md: 'sm'}} textAlign={{base: 'center', md: 'left'}}>
                 {t('creadores.content.how.steps.step5.text')}
               </Text>
             </Stack>

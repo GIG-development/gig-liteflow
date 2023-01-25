@@ -115,7 +115,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                   <Link ml={2} href={'https://twitter.com/holagig'}>Twitter</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'YouTube'} href={'https://youtube.com/holagig'}>
+                  <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'}>
                     <FaYoutube /> 
                   </SocialButton>
                   <Link ml={2} href={'https://youtube.com/holagig'}>Youtube</Link>
