@@ -34,11 +34,12 @@ const Contacto: NextPage = () => {
                 {t('contact.line2')}{' '}<b>@holagig</b>
               </Text>
               <button
-                data-tf-slider="VNmlDfKG"
+                data-tf-slider={t('contact.formId')}
                 data-tf-hide-headers data-tf-position="right"
                 data-tf-button-color="#BE94FF"
                 data-tf-iframe-props="title=Contact Form"
-                data-tf-chat className='btn'
+                data-tf-chat
+                className='btn'
                 onClick={()=>{
                   event("InitContactForm", {
                     category: "Contact",

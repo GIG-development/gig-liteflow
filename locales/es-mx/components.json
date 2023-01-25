@@ -667,7 +667,7 @@
         "preview": {
           "label": "Previsualizar carga",
           "heading": "Arrastra y suelta un archivo o",
-          "hint": "JPG, PNG, GIF o WEBP. Máximo 100 MB.",
+          "hint": "JPG, PNG, GIF o WEBP. Máximo 100 MB. <0/> Tamaño recomendado: 1200x1200 px",
           "file": {
             "chose": "Elegir Archivo",
             "replace": "Reemplazar Archivo"

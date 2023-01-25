@@ -61,6 +61,7 @@
     }
   },
   "contact": {
+    "formId": "VNmlDfKG",
     "title": "Contacto",
     "subtitle": "¿Quieres establecer contacto cercano del tercer tipo con el equipo GIG?",
     "line1": "Cuéntanos lo que quieras. Estamos aquí para escucharte (ó leerte).",
@@ -68,6 +69,7 @@
     "button": "Escríbenos aquí"
   },
   "creadores": {
+    "formId": "eyQRCt11",
     "hero": {
       "ctaLine1": "Te estamos",
       "ctaLine2": "buscando",

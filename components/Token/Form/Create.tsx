@@ -27,6 +27,7 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import useTranslation from 'next-translate/useTranslation'
+import Trans from 'next-translate/Trans'
 import { FC, useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Standard } from '../../../graphql'
@@ -216,7 +217,15 @@ const TokenFormCreate: FC<Props> = ({
         <Dropzone
           label={t('token.form.create.preview.label')}
           heading={t('token.form.create.preview.heading')}
-          hint={t('token.form.create.preview.hint')}
+          hint={
+            <Trans
+              ns="components"
+              i18nKey={'token.form.create.preview.hint'}
+              components={[
+                <br key='lineBreak'/>
+              ]}
+            />
+          }
           name="preview"
           acceptTypes="image/jpeg,image/png,image/gif,image/webp"
           maxSize={100000000} // 100 MB

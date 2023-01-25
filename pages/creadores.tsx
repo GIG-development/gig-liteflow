@@ -20,6 +20,7 @@ import { NextPage } from 'next'
 import { FC, PropsWithChildren } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
+import {event} from 'nextjs-google-analytics'
 import Lottie from 'react-lottie-player';
 import NFTLaliAnimation from '../public/img/animaciones/creadores_hero.json'
 import CreadoriComoFunciona from '../public/img/animaciones/creadori_como-funciona.json'
@@ -31,7 +32,19 @@ import { EmblaOptionsType } from 'embla-carousel-react'
 const Creadores: NextPage = () => {
   const { t } = useTranslation('templates')
   const typeFormButton = <>
-    <button data-tf-popup="eyQRCt11" data-tf-hide-headers data-tf-iframe-props="title=Registration Form" data-tf-medium="snippet" className="btn">
+    <button
+      data-tf-popup={t('creadores.formId')}
+      data-tf-iframe-props="title=Registration Form"
+      data-tf-medium="snippet"
+      data-tf-hide-headers
+      className="btn"
+      onClick={()=>{
+        event("InitCreatorsForm", {
+          category: "Contact",
+          label: "Se inicio el formulario de creadores"
+        })
+      }}
+    >
       {t('creadores.hero.button')}
     </button>
   </>

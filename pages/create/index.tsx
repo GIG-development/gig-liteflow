@@ -259,7 +259,19 @@ const CreatePage: NextPage = () => {
                 <Text py={6} fontSize='xs'>
                   {t('asset.restricted.description')}
                 </Text>
-                <button data-tf-popup="eyQRCt11" data-tf-hide-headers data-tf-iframe-props="title=Registration Form" data-tf-medium="snippet" className="btn">
+                <button
+                  data-tf-popup={t('creadores.formId')}
+                  data-tf-iframe-props="title=Registration Form"
+                  data-tf-medium="snippet"
+                  data-tf-hide-headers
+                  className="btn"
+                  onClick={()=>{
+                    event("InitCreatorsForm", {
+                      category: "Contact",
+                      label: "Se inicio el formulario de creadores"
+                    })
+                  }}
+                >
                   {t('creadores.hero.button')}
                 </button>
               </Box>

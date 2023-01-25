@@ -654,7 +654,7 @@
         "preview": {
           "label": "Upload preview",
           "heading": "Drag & drop file or",
-          "hint": "JPG, PNG, GIF or WEBP. Max 100 MB.",
+          "hint": "JPG, PNG, GIF or WEBP. Max 100 MB. <0/> Recommended size: 1200x1200 px",
           "file": {
             "chose": "Choose File",
             "replace": "Replace File"

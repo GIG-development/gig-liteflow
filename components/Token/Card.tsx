@@ -47,6 +47,7 @@ export type Props = {
     | undefined
   numberOfSales: number
   hasMultiCurrency: boolean
+  isPreview?: boolean
 }
 
 const TokenCard: VFC<Props> = ({
@@ -56,9 +57,11 @@ const TokenCard: VFC<Props> = ({
   sale,
   numberOfSales,
   hasMultiCurrency,
+  isPreview
 }) => {
   const href = asset.id ? `/tokens/${asset.id}` : '#'
   const footer = useMemo(() => {
+    if (isPreview) return
     if (auction)
       return (
         <SaleAuctionCardFooter

@@ -29,7 +29,7 @@ type IProps = InputHTMLAttributes<any> & {
   name: string
   label: string
   heading: string
-  hint: string
+  hint: string | JSX.Element
   rounded?: boolean
   maxSize: number
   acceptTypes?: string
@@ -219,7 +219,7 @@ const Dropzone: FC<IProps> = ({
             {children({ hasPreview: !!preview })}
           </Text>
         </Button>
-        <Text as="p" variant="text-sm" color="gray.500">
+        <Text as="p" variant="text-sm" color="gray.500" textAlign='center'>
           {hint}
         </Text>
       </Stack>

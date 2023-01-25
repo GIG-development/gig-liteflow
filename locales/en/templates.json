@@ -46,7 +46,9 @@
       "button1": "Visit Our Tutorials",
       "button2": "Frequently Asked Questions"
     }
-  },"contact":{
+  },
+  "contact":{
+    "formId": "GA8gRpKZ",
     "title": "Contact",
     "subtitle": "Do you want have a close encounter of the third kind with the GIG team?",
     "line1": "Tell us whatever you want,  we're all ears (or eyes?).",
@@ -54,6 +56,7 @@
     "button": "Send a Message"
   },
   "creadores": {
+    "formId": "EK6ZlQsM",
     "hero": {
       "ctaLine1": "We're looking",
       "ctaLine2": "For YOU",
