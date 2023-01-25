@@ -580,6 +580,8 @@
       "request": "Si ya llenaste el formulario anterior y completaste los datos de tu perfil, puedes solicitar la verificación de tu perfil en el siguiente botón.",
       "requestButton": "Solicitar verificación",
       "info": "Una vez tu cuenta haya sido verificada, recibirás una notificación y podrás acceder a las funciones de creación en nuestra plataforma.",
+      "notLoggedIn": "Por favor, inicia sesión primero",
+      "loginBtn": "Iniciar sesión",
       "requested": {
         "title": "Verificación solicitada",
         "first" : "Hemos recibido tu solicitud de verificación. La revisaremos y te responderemos a la brevedad.",

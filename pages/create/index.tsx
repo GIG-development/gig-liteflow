@@ -104,16 +104,10 @@ const CreatePage: NextPage = () => {
   const [loadedUser, setLoadedUser] = useState(false)
 
   useEffect(()=>{
-    setTimeout(()=>{
-      if(signer){
-        setLoadedUser(true)
-      }else{
-        if(!account){
-          location.href = "/login"
-        }
-      }
-    },500)
-  },[signer, account])
+    if(signer){
+      setLoadedUser(true)
+    }
+  },[signer])
 
   const handleVerificationRequest = async () => {
     //If user has requested verification already
@@ -169,13 +163,15 @@ const CreatePage: NextPage = () => {
   if(!loadedUser){
     return (
       <Stack align="center" spacing={6} my={40}>
-        <Spinner
-          color="brand.500"
-          h={6}
-          w={6}
-          thickness="2px"
-          speed="0.65s"
-        />
+        <Heading variant="heading1">
+          {t('asset.restricted.notLoggedIn')}
+        </Heading>
+        <Button
+          as={Link}
+          href='/login'
+        >
+          {t('asset.restricted.loginBtn')}
+        </Button>
       </Stack>
     )
   }

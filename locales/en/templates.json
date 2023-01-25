@@ -566,7 +566,9 @@
       "description": "To request an account verification, please complete the following form. Remember that in order to get your account verified, you have to complete your profile first.",
       "request": "If you have already completed the previous form and filled up your profile, you can request the verification of your account using the following button.",
       "requestButton": "Request Verification",
-      "info": "Once your account is verified you will be notified and will be able to access the creation features. ",
+      "info": "Once your account is verified you will be notified and will be able to access the creation features.",
+      "notLoggedIn": "Please log in first",
+      "loginBtn": "Login",
       "requested": {
         "title": "Verification requested",
         "first" : "We have received your request to verify your account. We will review it and contact you soon.",
