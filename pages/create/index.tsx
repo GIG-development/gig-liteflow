@@ -111,7 +111,7 @@ const CreatePage: NextPage = () => {
         location.href = "/login"
       }
     }
-  },[signer])
+  },[signer, data])
 
   const handleVerificationRequest = async () => {
     //If user has requested verification already
