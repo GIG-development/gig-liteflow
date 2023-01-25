@@ -104,13 +104,15 @@ const CreatePage: NextPage = () => {
   const [loadedUser, setLoadedUser] = useState(false)
 
   useEffect(()=>{
-    if(signer){
-      setLoadedUser(true)
-    }else{
-      if(!data?.account){
-        location.href = "/login"
+    setTimeout(()=>{
+      if(signer){
+        setLoadedUser(true)
+      }else{
+        if(!account){
+          location.href = "/login"
+        }
       }
-    }
+    },500)
   },[signer, data])
 
   const handleVerificationRequest = async () => {
