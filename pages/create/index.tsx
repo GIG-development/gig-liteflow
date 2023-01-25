@@ -106,6 +106,10 @@ const CreatePage: NextPage = () => {
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
+    }else{
+      if(!data?.account){
+        location.href = "/login"
+      }
     }
   },[signer])
 
