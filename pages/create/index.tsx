@@ -18,8 +18,8 @@ import { IoImageOutline } from '@react-icons/all-files/io5/IoImageOutline'
 import { IoImagesOutline } from '@react-icons/all-files/io5/IoImagesOutline'
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
-import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 import React, { useState, FC, PropsWithChildren, useEffect } from 'react'
 import Empty from '../../components/Empty/Empty'
 import Head from '../../components/Head'
@@ -106,10 +106,6 @@ const CreatePage: NextPage = () => {
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
-    }else{
-      setTimeout(()=>{
-        location.href = "/login"
-      },4000)
     }
   },[signer])
 
