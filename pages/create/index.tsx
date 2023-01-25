@@ -104,7 +104,13 @@ const CreatePage: NextPage = () => {
   const [loadedUser, setLoadedUser] = useState(false)
 
   useEffect(()=>{
-    if(signer) setLoadedUser(true)
+    if(signer){
+      setLoadedUser(true)
+    }else{
+      setTimeout(()=>{
+        location.href = "/login"
+      },4000)
+    }
   },[signer])
 
   const handleVerificationRequest = async () => {
@@ -160,7 +166,7 @@ const CreatePage: NextPage = () => {
 
   if(!loadedUser){
     return (
-      <Stack align="center" spacing={6} mb={40}>
+      <Stack align="center" spacing={6} my={40}>
         <Spinner
           color="brand.500"
           h={6}
@@ -174,7 +180,7 @@ const CreatePage: NextPage = () => {
 
   if(loading){
     return (
-      <Stack align="center" spacing={6} mb={40}>
+      <Stack align="center" spacing={6} my={40}>
         <Heading variant="heading1">{t('asset.restricted.requested.loading')}</Heading>
         <Spinner
           color="brand.500"
