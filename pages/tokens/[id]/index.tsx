@@ -266,7 +266,7 @@ const DetailPage: NextPage<Props> = ({
   }, [refetch])
 
   const qrcode = (
-    <QRCode value={environment.BASE_URL+location.pathname}/>
+    <QRCode value={environment.BASE_URL+location?.pathname}/>
   );
 
   if (!asset) return <></>
