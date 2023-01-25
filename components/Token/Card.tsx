@@ -81,7 +81,7 @@ const TokenCard: VFC<Props> = ({
         />
       )
     return <SaleOpenCardFooter href={href} />
-  }, [auction, sale, numberOfSales, hasMultiCurrency, href])
+  }, [auction, sale, numberOfSales, hasMultiCurrency, isPreview, href])
 
   // TODO: is the width correct?
   return (
