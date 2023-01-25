@@ -32,6 +32,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
 import invariant from 'ts-invariant'
+import QRCode from "qrcode.react";
 import BidList from '../../../components/Bid/BidList'
 import Head from '../../../components/Head'
 import HistoryList from '../../../components/History/HistoryList'
@@ -264,6 +265,10 @@ const DetailPage: NextPage<Props> = ({
     await refetch()
   }, [refetch])
 
+  const qrcode = (
+    <QRCode value={environment.BASE_URL+location.pathname}/>
+  );
+
   if (!asset) return <></>
   return (
     <LargeLayout>
@@ -467,6 +472,11 @@ const DetailPage: NextPage<Props> = ({
               <TraitList traits={traits} />
             </Box>
           )}
+          
+          <Box pt={8}>
+            {qrcode}
+          </Box>
+
         </Box>
 
         <div>
