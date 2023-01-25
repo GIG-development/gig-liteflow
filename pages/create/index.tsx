@@ -121,7 +121,7 @@ const CreatePage: NextPage = () => {
     }
 
     if(signer){
-      requestVerification()
+      void requestVerification()
     }else{
       document.location = '/login'
     }
@@ -186,7 +186,7 @@ const CreatePage: NextPage = () => {
       </Stack>
     )
   }
-  
+
   if (
     ( environment.RESTRICT_TO_VERIFIED_ACCOUNT &&
     data?.account?.verification?.status === 'PENDING' ) ||

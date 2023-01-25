@@ -93,7 +93,7 @@ const Creadores: NextPage = () => {
               ns="templates"
               i18nKey={'creadores.content.line2'}
               components={[
-                <br/>,
+                <br key='lineBreak'/>,
                 <Text as="span" fontWeight="bold" key="line2" />
               ]}
             />
