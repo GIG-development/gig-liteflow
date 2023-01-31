@@ -187,7 +187,7 @@ const HomePage: NextPage<Props> = ({
         description={t('home.mainHero.description')}
         button_1={t('home.mainHero.button')}
         button_1_link={'/explore'}
-        image={'/img/home/main_hero_img.png'}
+        image={'/img/home/main_hero_img_600px.png'}
       />
       <LargeLayout>
 
@@ -213,7 +213,7 @@ const HomePage: NextPage<Props> = ({
               💫 Creations with programming + algorithms
               🖤 Mexican based in Hamburg'
               tags={['música','multimedia','creative coding']}
-              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmQCSR8mayBTYsR4aWQV8pExSWQVGiqFXGWr63kyepR9GH%2Fnft.png&w=640&q=75'
+              image='/img/artistas/ilithya2.jpg'
               link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
             />
             <Artist 
@@ -221,7 +221,7 @@ const HomePage: NextPage<Props> = ({
               handle='@pablocotama'
               description='A monkey that paints with his hands'
               tags={['diseño', 'arte digital']}
-              image='https://pbs.twimg.com/media/FliQUNKXwAA4Hli?format=jpg&name=medium'
+              image='/img/artistas/cotama.jpg'
               link={'/users/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
             />
             <Artist 
@@ -229,7 +229,7 @@ const HomePage: NextPage<Props> = ({
               handle='@el_ocote'
               description='🌵🗿📡Artesanía digital👇🏼'
               tags={['arte digital','gráfica','street art']}
-              image='https://static.wixstatic.com/media/c3f0a4_a145f2389cc94bb6abe7606468d67129~mv2.jpg/v1/crop/x_74,y_67,w_2213,h_2203/fill/w_565,h_565,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/19_Territorio.jpg'
+              image='/img/artistas/ocote.jpg'
               link={'/users/0xed9dae268cbedacf5ade8db9b64482639f6f9f73'}
             />
             <Artist 
@@ -237,7 +237,7 @@ const HomePage: NextPage<Props> = ({
               handle='@red_sannto'
               description='Es un artista visual influenciado por el misticismo presente en el arte urbano contemporáneo y en un fanatismo por los elementos gráficos del movimiento skateboarding de los 90s.'
               tags={['arte urbano','skateboard','animación']}
-              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmfH5MAwpB9Ut8NxLdvq2L77RGBwTMp1v7Bb96KtQqGTaR&w=256&q=75'
+              image='/img/artistas/redsannto.jpg'
               link={'/users/0xd0494070339e9f26860698b373e5aa639ff3e3e9'}
             />
             <Artist 
@@ -253,7 +253,7 @@ const HomePage: NextPage<Props> = ({
               handle='@p1xelfool'
               description='Internet artist since 3001 */ father of multidimentional entities'
               tags={['arte digital','animación']}
-              image='https://p1xelfool.com/images/soul.gif'
+              image='/img/artistas/pixelfool.jpg'
               link={'/explore'}
             />
             <Artist 

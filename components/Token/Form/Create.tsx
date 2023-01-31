@@ -228,7 +228,7 @@ const TokenFormCreate: FC<Props> = ({
           }
           name="preview"
           acceptTypes="image/jpeg,image/png,image/gif,image/webp"
-          maxSize={100000000} // 100 MB
+          maxSize={5000000} // 5 MB
           required
           control={control}
           error={errors.preview}
