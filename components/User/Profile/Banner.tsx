@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
 import { VFC } from 'react'
 import { QRCodeCanvas } from "qrcode.react";
 import Image from '../../Image/Image'
