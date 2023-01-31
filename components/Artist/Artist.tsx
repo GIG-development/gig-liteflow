@@ -34,14 +34,15 @@ const Artist: FC<PropsWithChildren<Props>> = ({
             grow={0}
             shrink={0}
             basis={{
-            base: '100%',
-            sm: '50%',
-            md: '33.33%',
-            lg: '25%',
+                base: '100%',
+                sm: '50%',
+                md: '33.33%',
+                lg: '25%',
             }}
             p="10px"
         >
             <Box
+                minW='280px'
                 maxW={72}
                 rounded={'base'}
                 my={2}
