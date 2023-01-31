@@ -282,7 +282,7 @@ const DetailPage: NextPage<Props> = ({
       id='gig-qr-code'
       value={environment.BASE_URL+'/tokens/'+data?.asset?.id}
       fgColor='#212121'
-      imageSettings={{src:'/favicon.png', width: 32, height: 32, excavate:true}}
+      imageSettings={{src:'/favicon.png', width: 20, height: 20, excavate:true}}
       onClick={downloadQR}
     />
   )
