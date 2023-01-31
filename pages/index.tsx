@@ -205,64 +205,82 @@ const HomePage: NextPage<Props> = ({
           <Heading as="h2" variant="subtitle" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
-          <Slider items={6}>
+          <Slider items={10}>
             <Artist 
               name='ilithya'
               handle='@ilithya_rocks'
               description='Music inspired art + tech 🤘🏽
               💫 Creations with programming + algorithms
               🖤 Mexican based in Hamburg'
-              tags={['música','multimedia','creative coding']}
+              tags={['arte generativo','música','arte digital']}
               image='/img/artistas/ilithya2.jpg'
-              link={'/users/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
+              link={'/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
             />
             <Artist 
               name='Cotama'
               handle='@pablocotama'
               description='A monkey that paints with his hands'
-              tags={['diseño', 'arte digital']}
+              tags={['diseño', 'arte digital', 'animación']}
               image='/img/artistas/cotama.jpg'
-              link={'/users/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
+              link={'/0xa4b7f2a571281a8d57be04623695fa6967103d60'}
             />
             <Artist 
               name='Ocote'
               handle='@el_ocote'
               description='🌵🗿📡Artesanía digital👇🏼'
-              tags={['arte digital','gráfica','street art']}
+              tags={['arte digital','animación','street art']}
               image='/img/artistas/ocote.jpg'
-              link={'/users/0xed9dae268cbedacf5ade8db9b64482639f6f9f73'}
+              link={'/0xed9dae268cbedacf5ade8db9b64482639f6f9f73'}
             />
             <Artist 
               name='Red Sannto'
               handle='@red_sannto'
               description='Es un artista visual influenciado por el misticismo presente en el arte urbano contemporáneo y en un fanatismo por los elementos gráficos del movimiento skateboarding de los 90s.'
-              tags={['arte urbano','skateboard','animación']}
+              tags={['arte digital','ilustración','animación']}
               image='/img/artistas/redsannto.jpg'
-              link={'/users/0xd0494070339e9f26860698b373e5aa639ff3e3e9'}
+              link={'/0xd0494070339e9f26860698b373e5aa639ff3e3e9'}
             />
             <Artist 
               name='Camote Toys'
               handle='@camote.toys'
               description='Artista argentino enfocado en art toys y cerámica ritual con impronta latinoamericana'
-              tags={['art toys','diseño', 'cerámica']}
-              image='https://prod-cdn-05.storenvy.com/stores/avatars/1235223/medium/Camote_Logo.png?1637193683'
-              link={'/users/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
+              tags={['art toys','ilustración', 'arte digital']}
+              image='/img/artistas/camotetoys.png'
+              link={'/0x6793ff7cd05b8f3e88ed6440188daacd421db9c7'}
             />
             <Artist 
-              name='p1xelfool'
-              handle='@p1xelfool'
-              description='Internet artist since 3001 */ father of multidimentional entities'
-              tags={['arte digital','animación']}
-              image='/img/artistas/pixelfool.jpg'
-              link={'/explore'}
+              name='Y Griega'
+              handle='@@ygriega.eth'
+              description='Originario de Tenochtitlan, artista digital nativo //
+              Glitch, Pixel art, Coding, AI //
+              Active member of the Cryptoart Cvlt'
+              tags={['arte digital', 'animación', 'pixel art']}
+              image='/img/artistas/y-griega.jpg'
+              link={'/0xc80d9fa67e2ea464b0a58a7095a37c08afb339e5'}
+            />
+            <Artist 
+              name='Youkonejo'
+              handle='@youkonejo'
+              description='Mitad japonesa, mitad mexicana, mitad hombreosocerdo. ** Half Japanese, half Mexican, half manbearpig.'
+              tags={['arte digital', 'ilustración', 'muralista']}
+              image='/img/artistas/youko.jpg'
+              link={'/0x4bb585d350452384b092c90552034ed6a5fd76ee'}
+            />
+            <Artist 
+              name='chacalall'
+              handle='@chacalall'
+              description='Artist gif based on Mexico city since 2009, glitch and nature using the same language.'
+              tags={['arte digital', 'animación', 'glitch art']}
+              image='/img/artistas/chacalall.jpg'
+              link={'/0x7ecf613b0350b0f47cadf85396a98ccd1b0e8d55'}
             />
             <Artist 
               name='GIG Oficial'
               handle='@holagig'
               description='Perfil oficial de GIG.io.'
               tags={['arte digital','animación', 'accesos']}
-              image='https://gig.io/_next/image?url=https%3A%2F%2Fgig.mypinata.cloud%2Fipfs%2FQmVNNdzdZpPA8fxhMao9E2FqLwg3pgQXK1YyKvbr3jC9rY&w=256&q=75'
-              link={'/users/0x750519ace128bf440a31046c39a45394b344dc21'}
+              image='/img/artistas/gig.jpg'
+              link={'/0x750519ace128bf440a31046c39a45394b344dc21'}
             />
           </Slider>
         </Stack>

@@ -19,7 +19,7 @@ const nextConfig = {
     }
   },
   images: {
-    domains: [process.env.PINATA_GATEWAY || '', 'gateway.pinata.cloud', 'ipfs.pixura.io', "arweave.net", "amazonaws.com"],
+    domains: [process.env.PINATA_GATEWAY || '', 'gig.io', 'gateway.pinata.cloud', 'ipfs.pixura.io', "arweave.net", "amazonaws.com"],
   },
   webpack: (config, options) => {
     if (!options.isServer) {

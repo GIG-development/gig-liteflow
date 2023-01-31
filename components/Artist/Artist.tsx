@@ -3,10 +3,10 @@ import {
     Button,
     Heading,
     Text,
-    Img,
     Flex,
     useBreakpointValue
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import Link from '../Link/Link'
 import { FC, PropsWithChildren } from 'react'
 import useTranslation from 'next-translate/useTranslation'
@@ -16,7 +16,7 @@ type Props = {
     handle: string
     description: string
     tags: string[]
-    image?: string
+    image: string
     link: string
 }
   
@@ -30,7 +30,17 @@ const Artist: FC<PropsWithChildren<Props>> = ({
 }) => {
     const { t } = useTranslation('templates')
     return (
-        <Flex flexBasis={{base: '100%', md: '25%'}} minW={{base: '100%', md: '25%'}} justify={'center'}>
+        <Flex
+            grow={0}
+            shrink={0}
+            basis={{
+            base: '100%',
+            sm: '50%',
+            md: '33.33%',
+            lg: '25%',
+            }}
+            p="10px"
+        >
             <Box
                 maxW={72}
                 rounded={'base'}
@@ -40,15 +50,15 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                 border='1px solid'
                 borderColor='gray.200'
                 >
-                <Box h={useBreakpointValue({base: '280px', md: '280px'})} borderBottom={'1px'} borderColor="black">
+                <Box h={useBreakpointValue({base: '280px', md: '280px'})} overflow='hidden'>
                     <Link href={link}>
-                        <Img
+                        <Image 
                             src={image}
-                            roundedTop={'sm'}
-                            objectFit="cover"
-                            h="full"
-                            w="full"
-                            alt={'Artist Image'}
+                            width='280px'
+                            height='280px'
+                            layout='responsive'
+                            objectFit='cover'
+                            alt='Artist Image'
                         />
                     </Link>
                 </Box>
@@ -80,7 +90,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                                         color="brand.black"
                                         mr={2}
                                         mb={2}>
-                                        <Text fontSize={'xs'} fontWeight="medium">
+                                        <Text fontSize={'10'} fontWeight="medium">
                                             {tag}
                                         </Text>
                                     </Box>
