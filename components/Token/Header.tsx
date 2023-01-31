@@ -7,7 +7,7 @@ import { BlockExplorer } from '../../hooks/useBlockExplorer'
 import Link from '../Link/Link'
 import type { Props as SaleDetailProps } from '../Sales/Detail'
 import SaleDetail from '../Sales/Detail'
-import TokenMedia from '../Token/Media'
+import TokenMedia from '../Token/StaticMedia'
 import type { Props as TokenAssetProps } from '../Token/Metadata'
 import TokenAsset from '../Token/Metadata'
 

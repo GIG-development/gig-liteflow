@@ -3,7 +3,7 @@ import { FaImage } from '@react-icons/all-files/fa/FaImage'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useState, VFC, VideoHTMLAttributes } from 'react'
 
-const TokenMedia: VFC<
+const TokenStaticMedia: VFC<
   (Omit<VideoHTMLAttributes<any>, 'src'> | Omit<ImageProps, 'src'>) & {
     image: string | null | undefined
     animationUrl: string | null | undefined
@@ -21,12 +21,6 @@ const TokenMedia: VFC<
   controls,
   ...props
 }) => {
-  // prioritize unlockedContent
-  if (unlockedContent) {
-    if (unlockedContent.mimetype?.startsWith('video/'))
-      animationUrl = unlockedContent.url
-    else image = unlockedContent.url
-  }
 
   const [imageError, setImageError] = useState(false)
   // reset when image change. Needed when component is recycled
@@ -34,21 +28,7 @@ const TokenMedia: VFC<
     setImageError(false)
   }, [image])
 
-  if (0 && animationUrl) {
-    const { objectFit, src, ...videoProps } = props as ImageProps
-    return (
-      <video
-        src={animationUrl}
-        autoPlay
-        playsInline
-        muted
-        loop
-        controls={controls}
-        {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
-      />
-    )
-  }
-  if (1 && image) {
+  if (image) {
     const rest = props as Omit<ImageProps, 'src'>
     if (imageError)
       return (
@@ -75,4 +55,4 @@ const TokenMedia: VFC<
   return <Box bgColor="brand.50" h="full" w="full" />
 }
 
-export default TokenMedia
+export default TokenStaticMedia
