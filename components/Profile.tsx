@@ -46,7 +46,6 @@ const UserProfileTemplate: FC<{
       />
       <UserProfileInfo
         address={account.address}
-        name={account.name}
       />
       <SimpleGrid
         mb={6}

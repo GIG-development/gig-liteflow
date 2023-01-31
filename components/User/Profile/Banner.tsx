@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
 import { VFC } from 'react'
+import { QRCodeCanvas } from "qrcode.react";
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
 import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
@@ -8,6 +9,7 @@ import { SiInstagram } from '@react-icons/all-files/si/SiInstagram'
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
 import useTranslation from 'next-translate/useTranslation'
 import WalletAddress from '../../Wallet/Address'
+import environment from 'environment';
 
 type Props = {
   address: string
@@ -24,6 +26,28 @@ type Props = {
 const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website }) => {
   if (!address) throw new Error('account is falsy')
   const { t } = useTranslation('components')
+
+  const downloadQR = () => {
+    const link = document.createElement('a')
+    link.download = 'GIG-QR-Code.png'
+    link.href = document.querySelector('canvas')?.toDataURL("image/png").replace("image/png", "image/octet-stream") || ''
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const qrcode = (
+    <QRCodeCanvas
+      includeMargin={false}
+      className='qr-codes'
+      id='gig-qr-code'
+      value={environment.BASE_URL+'/'+address}
+      fgColor='#212121'
+      style={{width: '72px', height: '72px'}}
+      imageSettings={{src:'/favicon.png', width: 20, height: 20, excavate:true}}
+      onClick={downloadQR}
+    />
+  )
 
   return (
     <Flex
@@ -111,54 +135,59 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
               )}
             </Flex>
           </Box>
-          <Flex
-            my={{base: 6, md: 2}}
-            textAlign={'center'}
-            flexDirection={{base: 'column', md: 'row'}}
-            gap={2}
-          >
+          <Flex flexDirection={'column'}>
             <Flex
-              gap={6}
-              flexDirection={'row'}
-              justifyContent="center"
-              pt={2}
-              pr={2}
+              my={{base: 6, md: 2}}
+              textAlign={'center'}
+              flexDirection={{base: 'column', md: 'row'}}
+              gap={2}
             >
-              {twitter && (
-                <Link
-                  href={`https://twitter.com/${twitter}`}
-                  isExternal
-                  justifyContent="center"
-                >
-                  <Icon as={SiTwitter} />
-                </Link>
-                  
-              )}
-              {instagram && (
-                <Link
-                  href={`https://instagram.com/${instagram}`}
-                  isExternal
-                  justifyContent="center"
-                >
-                  <Icon as={SiInstagram} />
-                </Link>
-              )}
-              {website && (
-                <Link
-                  href={website.includes('http') ? website : `https://${website}`}
-                  isExternal
-                  justifyContent="center"
-                >
-                  <Icon as={HiOutlineGlobeAlt} />
-                </Link>
-              )}
+              <Flex
+                gap={6}
+                flexDirection={'row'}
+                justifyContent="center"
+                pt={2}
+                pr={2}
+              >
+                {twitter && (
+                  <Link
+                    href={`https://twitter.com/${twitter}`}
+                    isExternal
+                    justifyContent="center"
+                  >
+                    <Icon as={SiTwitter} />
+                  </Link>
+                    
+                )}
+                {instagram && (
+                  <Link
+                    href={`https://instagram.com/${instagram}`}
+                    isExternal
+                    justifyContent="center"
+                  >
+                    <Icon as={SiInstagram} />
+                  </Link>
+                )}
+                {website && (
+                  <Link
+                    href={website.includes('http') ? website : `https://${website}`}
+                    isExternal
+                    justifyContent="center"
+                  >
+                    <Icon as={HiOutlineGlobeAlt} />
+                  </Link>
+                )}
+              </Flex>
+              <Button 
+                colorScheme="gray"
+                fontSize={'sm'}
+              >
+                <WalletAddress address={address} isCopyable isShort />
+              </Button>
             </Flex>
-            <Button 
-              colorScheme="gray"
-              fontSize={'sm'}
-            >
-              <WalletAddress address={address} isCopyable isShort />
-            </Button>
+            <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
+              {qrcode}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>

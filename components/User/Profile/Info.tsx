@@ -12,10 +12,8 @@ import Link from '../../Link/Link'
 
 const UserProfileInfo: VFC<{
   address: string
-  name: string | null | undefined
 }> = ({
-  address,
-  name,
+  address
 }) => {
   const { t } = useTranslation('components')
 
@@ -32,12 +30,11 @@ const UserProfileInfo: VFC<{
         mb={6}
         alignItems='center'
       >
-        {name && (
+        {ownerLoggedIn && (
           <Flex
             flexDirection={{base: 'column', row: 'row'}}
             alignItems='center'
           >
-            {ownerLoggedIn && (
               <Button
                 as={Link}
                 href={`/account/edit`}
@@ -47,8 +44,6 @@ const UserProfileInfo: VFC<{
                   {t('user.info.edit')}
                 </Text>
               </Button>
-            )}
-            {ownerLoggedIn && (
               <Button
                 variant={'outline'}
                 as={Link}
@@ -59,7 +54,6 @@ const UserProfileInfo: VFC<{
                   {t('user.referral.title')} <Icon as={BsArrowRight} ml={2} />
                 </Text>
               </Button>
-            )}
           </Flex>
         )}
       </Flex>
