@@ -39,7 +39,12 @@
     font-size: 12px;
 }
 
-
+/* QR Codes */
+.qr-codes{
+    width: 160px !important;
+    height: 160px !important;
+    cursor: pointer;
+}
 
 /* EMBLA */
 .slider {

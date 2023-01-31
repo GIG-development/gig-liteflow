@@ -32,7 +32,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
 import invariant from 'ts-invariant'
-import QRCode from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import BidList from '../../../components/Bid/BidList'
 import Head from '../../../components/Head'
 import HistoryList from '../../../components/History/HistoryList'
@@ -265,9 +265,27 @@ const DetailPage: NextPage<Props> = ({
     await refetch()
   }, [refetch])
 
+  const downloadQR = () => {
+    const link = document.createElement('a')
+    link.download = 'GIG-QR-Code.png'
+    link.href = document.querySelector('canvas')?.toDataURL("image/png").replace("image/png", "image/octet-stream") || ''
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   const qrcode = (
-    <QRCode value={environment.BASE_URL+'/tokens/'+data?.asset?.id}/>
-  );
+    <QRCodeCanvas
+      title={t('asset.detail.qrCode.download')}
+      includeMargin={false}
+      className='qr-codes'
+      id='gig-qr-code'
+      value={environment.BASE_URL+'/tokens/'+data?.asset?.id}
+      fgColor='#212121'
+      imageSettings={{src:'/favicon.png', width: 32, height: 32, excavate:true}}
+      onClick={downloadQR}
+    />
+  )
 
   if (!asset) return <></>
   return (
@@ -473,9 +491,10 @@ const DetailPage: NextPage<Props> = ({
             </Box>
           )}
           
-          <Box pt={8}>
+          <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={8}>
             {qrcode}
-          </Box>
+            <Text fontSize='8'>{t('asset.detail.qrCode.download')}</Text>
+          </Flex>
 
         </Box>
 

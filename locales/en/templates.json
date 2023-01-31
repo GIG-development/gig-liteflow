@@ -517,6 +517,9 @@
         "bids": "Bids",
         "history": "History"
       },
+      "qrCode": {
+        "download": "Click to download QR code"
+      },
       "menu": {
         "report": {
           "label": "Report",

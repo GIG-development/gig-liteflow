@@ -20,6 +20,12 @@ export const theme = extendTheme({
         },
         'icon': {
           borderRadius: 'full'
+        },
+        'transparent': {
+          background: 'none',
+          border: 'none',
+          boxShadow: 'none'
+
         }
       },
       defaultProps: {

@@ -530,6 +530,9 @@
         "bids": "Ofertas",
         "history": "Historia"
       },
+      "qrCode": {
+        "download": "Click para descargar código QR"
+      },
       "menu": {
         "report": {
           "label": "Reportar",

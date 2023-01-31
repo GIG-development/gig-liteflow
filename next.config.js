@@ -8,6 +8,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  async rewrites() {
+    return {
+      fallback: [
+        {
+          source: '/:id',
+          destination: '/users/:id',
+        },
+      ] 
+    }
+  },
   images: {
     domains: [process.env.PINATA_GATEWAY || '', 'gateway.pinata.cloud', 'ipfs.pixura.io', "arweave.net", "amazonaws.com"],
   },
