@@ -34,7 +34,7 @@ const TokenMedia: VFC<
     setImageError(false)
   }, [image])
 
-  if (0 && animationUrl) {
+  if (animationUrl) {
     const { objectFit, src, ...videoProps } = props as ImageProps
     return (
       <video
@@ -48,7 +48,7 @@ const TokenMedia: VFC<
       />
     )
   }
-  if (1 && image) {
+  if (image) {
     const rest = props as Omit<ImageProps, 'src'>
     if (imageError)
       return (
