@@ -11,6 +11,7 @@ import {
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
+import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import { useCallback, useEffect, useMemo } from 'react'
 import Link from '../components/Link/Link'
@@ -43,7 +44,7 @@ import useSigner from '../hooks/useSigner'
 import LargeLayout from '../layouts/large'
 import FullLayout from '../layouts/full'
 import Artist from 'components/Artist/Artist';
-import Drop from '../components/Drop/Drop'
+//import Drop from '../components/Drop/Drop'
 import Hero from '../components/Hero/Hero'
 import SecondaryHero from '../components/Hero/SecondaryHero'
 import Banner from '../components/Banner/Block'
@@ -191,6 +192,8 @@ const HomePage: NextPage<Props> = ({
       />
       <LargeLayout>
 
+        <Image src='/img/evento.jpg' width='1280' height='160' alt='Evento'/>
+
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
             {featuredAssets.length === 1 ? (
@@ -201,7 +204,7 @@ const HomePage: NextPage<Props> = ({
           </header>
         )}
 
-        <Stack spacing={6} mt={20} mb={40}>
+        <Stack spacing={6} mt={20}>
           <Heading as="h2" variant="subtitle" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
@@ -322,7 +325,7 @@ const HomePage: NextPage<Props> = ({
         )}
 
         {assets.length > 0 && (
-          <Stack spacing={6} mt={12}>
+          <Stack spacing={6} my={12}>
             <Flex flexWrap="wrap" justify="space-between" gap={4}>
               <Heading as="h2" variant="subtitle" color="brand.black">
                 {t('home.featured')}
@@ -367,7 +370,7 @@ const HomePage: NextPage<Props> = ({
         )}
 
 
-        <Stack spacing={12} mb={40}>
+        {/* <Stack spacing={12} mb={40}>
           <Heading as="h2" variant="subtitle" color="brand.black" mt={40} mb={10}>
             {t('home.gigDrops.title')}
           </Heading>
@@ -385,7 +388,8 @@ const HomePage: NextPage<Props> = ({
             image='/img/drops/drop-maxas-genesis.jpg'
             link='https://maxas.xyz'
           />
-        </Stack>
+        </Stack> */}
+
       </LargeLayout>
 
       <FullLayout backgroundColor={'gray.100'} hasBottomCaret={true}>

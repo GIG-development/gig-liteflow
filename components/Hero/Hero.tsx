@@ -2,11 +2,11 @@ import {
     Button,
     Flex,
     Heading,
-    Image,
     Stack,
     Text,
     useBreakpointValue
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from '../Link/Link'
 import { FC, PropsWithChildren, ReactElement } from 'react'
 
@@ -108,15 +108,13 @@ const Hero: FC<PropsWithChildren<Props>> = ({
                         </Stack>
                     </Stack>
                 </Flex>
-                <Flex flex={1} minW={'fit-content'} alignItems={'center'}>
+                <Flex flex={1} minW={{base: '320px', md: '600px'}} minH={{base: '360px'}} position='relative' alignItems={'center'}>
                     {image!=='' &&
                         <Image
                             alt={'Main Hero Animation'}
                             src={image}
-                            w={{base: '100%', md: 'fit-content'}}
-                            maxW={'600px'}
-                            maxH={'600px'}
-                            style={{aspectRatio: 'auto !important'}}
+                            layout='fill'
+                            objectFit='contain'
                         />       
                     }
                 </Flex>

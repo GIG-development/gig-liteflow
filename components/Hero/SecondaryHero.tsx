@@ -5,7 +5,6 @@ import {
     Heading,
     Text,
     Button,
-    Image,
     IconButton,
     createIcon,
     Modal,
@@ -19,6 +18,7 @@ import {
     AspectRatio,
     useBreakpointValue
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from '../Link/Link'
 import { FC, PropsWithChildren } from 'react'
 import {event} from 'nextjs-google-analytics'
@@ -131,6 +131,7 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                         backgroundColor={'white'}
                         borderRadius={'full'}
                         position={'absolute'}
+                        zIndex='1'
                         left={'50%'}
                         top={'50%'}
                         transform={'translateX(-50%) translateY(-50%)'}
@@ -145,14 +146,12 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                         cursor={'pointer'}
                     />
                     <Image
-                        alt={'Hero Image'}
-                        fit={'cover'}
-                        align={'center'}
-                        w={'100%'}
-                        h={'100%'}
+                        alt={'Play Button'}
+                        object-fit={'cover'}
+                        layout='fill'
+                        objectFit='contain'
                         src={image}
                         onClick={onOpen}
-                        cursor={'pointer'}
                     />
                 </Box>
             </Flex>

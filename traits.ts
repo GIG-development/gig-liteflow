@@ -16,6 +16,7 @@ export const values = {
     'Multimedia',
     'Access',
     'Gaming',
-    'Fashion'
+    'Fashion',
+    'Art Toys'
   ].sort(),
 }
