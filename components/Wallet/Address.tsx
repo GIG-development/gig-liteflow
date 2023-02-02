@@ -62,8 +62,8 @@ const WalletAddress: VFC<{
         ml={2}
         h={4}
         w={4}
+        minW={4}
         color="gray.400"
-        minW="max-content"
       />
     </Flex>
   ) : (

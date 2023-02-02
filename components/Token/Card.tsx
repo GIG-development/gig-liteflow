@@ -6,7 +6,7 @@ import SaleAuctionCardFooter from '../Sales/Auction/CardFooter'
 import SaleDirectCardFooter from '../Sales/Direct/CardFooter'
 import SaleOpenCardFooter from '../Sales/Open/CardFooter'
 import Avatar from '../User/Avatar'
-import TokenMedia from './Media'
+import TokenMedia from './StaticMedia'
 
 export type Props = {
   asset: {

@@ -29,6 +29,20 @@ const TokenStaticMedia: VFC<
   }, [image])
 
   if (image) {
+    if (image.search('.mp4') > -1){
+      const { objectFit, src, ...videoProps } = props as ImageProps
+      return (
+        <video
+          src={image}
+          autoPlay
+          playsInline
+          muted
+          loop
+          controls={controls}
+          {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
+        />
+      )
+    }
     const rest = props as Omit<ImageProps, 'src'>
     if (imageError)
       return (

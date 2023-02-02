@@ -61,6 +61,20 @@ const TokenMedia: VFC<
           </Stack>
         </Center>
       )
+    if (image.search('.mp4') > -1){
+      const { objectFit, src, ...videoProps } = props as ImageProps
+      return (
+        <video
+          src={image}
+          autoPlay
+          playsInline
+          muted
+          loop
+          controls={controls}
+          {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
+        />
+      )
+    }
     const customTag = { Image: Image as any }
     return (
       <customTag.Image

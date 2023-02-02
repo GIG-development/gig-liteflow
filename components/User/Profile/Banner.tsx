@@ -94,6 +94,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           w={'full'}
           flexDirection={{base: 'column', md: 'row'}}
           justifyContent='space-between'
+          alignItems={{base: 'center', md: 'baseline'}}
           pt={{base: 0, md: 24}}
         >
           <Box>
@@ -135,7 +136,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
               )}
             </Flex>
           </Box>
-          <Flex flexDirection={'column'}>
+          <Flex maxW={'260px'} flexDirection={'column'}>
             <Flex
               my={{base: 6, md: 2}}
               textAlign={'center'}
