@@ -190,6 +190,7 @@ const HomePage: NextPage<Props> = ({
         button_1_link={'/explore'}
         image={'/img/home/main_hero_img_600px.png'}
       />
+      
       <LargeLayout>
 
         <Image src='/img/evento.jpg' width='1280' height='160' alt='Evento'/>

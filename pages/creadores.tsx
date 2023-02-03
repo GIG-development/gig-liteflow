@@ -1,6 +1,7 @@
 import {
     Accordion,
     Box,
+    Button,
     Heading, 
     Stack,
     Grid,
@@ -9,6 +10,7 @@ import {
     Text
 } from '@chakra-ui/react'
 import Head from '../components/Head'
+import Link from 'components/Link/Link'
 import AnimatedHero from '../components/Hero/AnimatedHero'
 import AccordionItem from '../components/AccordionItem/AccordionItem'
 import SmallLayout from '../layouts/small'
@@ -20,7 +22,6 @@ import { NextPage } from 'next'
 import { FC, PropsWithChildren } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
-import {event} from 'nextjs-google-analytics'
 import Lottie from 'react-lottie-player';
 import NFTLaliAnimation from '../public/img/animaciones/creadores_hero.json'
 import CreadoriComoFunciona from '../public/img/animaciones/creadori_como-funciona.json'
@@ -31,25 +32,6 @@ import { EmblaOptionsType } from 'embla-carousel-react'
 
 const Creadores: NextPage = () => {
   const { t } = useTranslation('templates')
-  const typeFormButton = <>
-    <button
-      data-tf-popup={t('creadores.formId')}
-      data-tf-iframe-props="title=Registration Form"
-      data-tf-medium="snippet"
-      data-tf-hide-headers
-      className="btn"
-      onClick={()=>{
-        event("InitCreatorsForm", {
-          category: "Contact",
-          label: "Se inicio el formulario de creadores"
-        })
-      }}
-    >
-      {t('creadores.hero.button')}
-    </button>
-  </>
-
-
   const OPTIONS: EmblaOptionsType = { loop: true }
 
   return (
@@ -67,8 +49,8 @@ const Creadores: NextPage = () => {
         ctaLine_1={t('creadores.hero.ctaLine1')}
         ctaLine_2={t('creadores.hero.ctaLine2')}
         description={t('creadores.hero.description')}
-        isSpecialButton={true}
-        specialButton={typeFormButton}
+        button_1={t('creadores.hero.button')}
+        button_1_link='/create'
         animation={NFTLaliAnimation}
       />
 
@@ -196,7 +178,9 @@ const Creadores: NextPage = () => {
         </FullWidthSlider>
 
         <Flex mt={12} justifyContent={'center'}>
-          {typeFormButton}
+          <Button as={Link} href='/create'>
+            {t('creadores.hero.button')}
+          </Button>
         </Flex>
 
       </FullLayout>
@@ -364,7 +348,9 @@ const Creadores: NextPage = () => {
           />
         </Heading>
         <Flex mt={6} justifyContent={'center'}>
-            {typeFormButton}
+          <Button as={Link} href='/create'>
+            {t('creadores.hero.button')}
+          </Button>
         </Flex>
 
       </SmallLayout>

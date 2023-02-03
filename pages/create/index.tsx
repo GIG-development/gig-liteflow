@@ -20,7 +20,7 @@ import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import React, { useState, FC, PropsWithChildren, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Empty from '../../components/Empty/Empty'
 import Head from '../../components/Head'
 import Link from '../../components/Link/Link'
@@ -84,7 +84,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 const CreatePage: NextPage = () => {
   const ready = useEagerConnect()
   const { t } = useTranslation('templates')
-  const { back } = useRouter()
+  const router = useRouter()
   const { account } = useWeb3React()
   const signer = useSigner()
   const [verifyAccount, { loading }] = useVerifyAccount(signer)
@@ -106,6 +106,9 @@ const CreatePage: NextPage = () => {
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
+      if(router.query.tf==="1"){
+        handleVerificationRequest()
+      }
     }
   },[signer])
 
@@ -121,12 +124,7 @@ const CreatePage: NextPage = () => {
       })
       return
     }
-
-    if(signer){
-      void requestVerification()
-    }else{
-      document.location = '/login'
-    }
+    void requestVerification()
   }
 
   const requestVerification = async () => {
@@ -198,7 +196,7 @@ const CreatePage: NextPage = () => {
   ){
     return (
       <Layout>
-        <BackButton onClick={back} />
+        <BackButton onClick={router.back} />
         <Heading as="h1" variant="title" color="brand.black" mt={6} mb={12}>
           {t('asset.typeSelector.title')}
         </Heading>
@@ -226,7 +224,7 @@ const CreatePage: NextPage = () => {
   )
     return (
       <Layout>
-        <BackButton onClick={back} />
+        <BackButton onClick={router.back} />
         <Heading as="h1" variant="title" color="brand.black" mt={6} mb={12}>
           {t('asset.typeSelector.title')}
         </Heading>
@@ -236,68 +234,31 @@ const CreatePage: NextPage = () => {
           </Center>
           <Stack textAlign="center">
             <Heading variant="heading1">{t('asset.restricted.title')}</Heading>
-            <Flex
-              flexDirection={{base: 'column', md: 'row'}}
-              gap={2}
-              pb={6}
+            <Box
+              as={Flex}
+              flexDirection={{base: "column"}}
+              alignItems='center'
+              p={6}
             >
-              <Box
-                as={Flex}
-                flexDirection={{base: "column"}}
-                alignItems='center'
-                p={6}
-                rounded="xl"
-                border="1px"
-                borderColor="gray.200"
-                borderStyle="solid"
-                shadow="sm"
-                _hover={{ shadow: 'md' }}
+              <Text py={6} fontSize='sm'>
+                {t('asset.restricted.description')}
+              </Text>
+              <button
+                data-tf-popup={t('creadores.formId')}
+                data-tf-iframe-props="title=Registration Form"
+                data-tf-medium="snippet"
+                data-tf-hide-headers
+                className="btn"
+                onClick={()=>{
+                  event("InitCreatorsForm", {
+                    category: "Contact",
+                    label: "Se inicio el formulario de creadores"
+                  })
+                }}
               >
-                <NumberedCircle number='1'/>
-                <Text py={6} fontSize='xs'>
-                  {t('asset.restricted.description')}
-                </Text>
-                <button
-                  data-tf-popup={t('creadores.formId')}
-                  data-tf-iframe-props="title=Registration Form"
-                  data-tf-medium="snippet"
-                  data-tf-hide-headers
-                  className="btn"
-                  onClick={()=>{
-                    event("InitCreatorsForm", {
-                      category: "Contact",
-                      label: "Se inicio el formulario de creadores"
-                    })
-                  }}
-                >
-                  {t('creadores.hero.button')}
-                </button>
-              </Box>
-              <Box
-                as={Flex}
-                flexDirection={{base: "column"}}
-                alignItems='center'
-                p={6}
-                rounded="xl"
-                border="1px"
-                borderColor="gray.200"
-                borderStyle="solid"
-                shadow="sm"
-                _hover={{ shadow: 'md' }}
-              >
-                <NumberedCircle number='2'/>
-                <Text py={6} fontSize='xs'>
-                  {t('asset.restricted.request')}
-                </Text>
-                <Button
-                  fontWeight='bold'
-                  onClick={handleVerificationRequest}
-                  disabled={loading}
-                >
-                  {t('asset.restricted.requestButton')}
-                </Button>
-              </Box>
-            </Flex>
+                {t('creadores.hero.button')}
+              </button>
+            </Box>
             <Alert
               status="info"
               rounded="xl"
@@ -314,7 +275,7 @@ const CreatePage: NextPage = () => {
 
   return (
     <Layout>
-      <BackButton onClick={back} />
+      <BackButton onClick={router.back} />
       <Heading as="h1" variant="title" color="brand.black" mt={6}>
         {t('asset.typeSelector.title')}
       </Heading>
@@ -395,16 +356,3 @@ const CreatePage: NextPage = () => {
 }
 
 export default CreatePage
-
-type NumberedCircleProps = {
-  number: string
-}
-const NumberedCircle : FC<PropsWithChildren<NumberedCircleProps>> = ({
-  number
-}) => {
-  return (
-    <Flex w={20} h={20} border='2px solid' rounded='full' align='center' justify='center' p={4} color='gray.800'>
-      <Heading variant='title' color='gray.800'>{number}</Heading>
-    </Flex>
-  )
-}

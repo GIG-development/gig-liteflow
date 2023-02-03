@@ -2,13 +2,13 @@ import {
     Box,
     chakra,
     Container,
-    Image,
     SimpleGrid,
     Stack,
     Text,
     VisuallyHidden,
     useColorModeValue,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import Link from '../Link/Link'
 import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
@@ -78,8 +78,8 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                 <Link href='/' title="GIG Marketplace | Inicio">
                   <Image
                       alt={'GIG Logo'}
-                      w={'150px'}
-                      h={'80px'}
+                      width={'150'}
+                      height={'80'}
                       src={'/logo_beta_bn.png'}
                   />
                 </Link>
