@@ -132,7 +132,7 @@ const CreatePage: NextPage = () => {
             label: data?.account?.address.toString().toLowerCase() || '0x'
           })
           setTimeout(()=>{
-            router.push('/create')
+            void router.push('/create')
           },5000)
         }
       })
