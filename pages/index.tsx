@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Heading,
@@ -193,7 +194,9 @@ const HomePage: NextPage<Props> = ({
       
       <LargeLayout>
 
-        <Image src='/img/evento.jpg' width='1280' height='160' alt='Evento'/>
+        <Box my={6}>
+          <Image src='/img/evento.jpg' width='1280' height='160' alt='Evento'/>
+        </Box>
 
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
