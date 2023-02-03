@@ -49,6 +49,7 @@ const Character: FC<PropsWithChildren<Props>> = ({
                     sm: 'repeat(2, 1fr)',
                     md: '1fr 3fr',
                 }}
+                textAlign={{base:'center', md:'left'}}
             >
                 <Lottie
                     loop={true}
