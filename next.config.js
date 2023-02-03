@@ -19,19 +19,14 @@ const nextConfig = {
     }
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**.amazonaws.com'
-      }
-    ],
     domains: [
               process.env.PINATA_GATEWAY || '',
               'gig.io',
               'gateway.pinata.cloud',
               'ipfs.pixura.io',
               "arweave.net",
-              "amazonaws.com"
+              "amazonaws.com",
+              "dhc-nft-images.s3.us-east-2.amazonaws.com"
             ],
   },
   webpack: (config, options) => {
