@@ -148,7 +148,7 @@ const CreatePage: NextPage = () => {
       console.error(e)
     }
   }
-  
+
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
@@ -156,7 +156,7 @@ const CreatePage: NextPage = () => {
         void handleVerificationRequest()
       }
     }
-  },[signer, router, handleVerificationRequest])
+  },[signer, router])/* eslint-disable-line react-hooks/exhaustive-deps */
 
   if(!loadedUser){
     return (
