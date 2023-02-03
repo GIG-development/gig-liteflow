@@ -103,15 +103,6 @@ const CreatePage: NextPage = () => {
   const [requested, setRequested] = useState(false)
   const [loadedUser, setLoadedUser] = useState(false)
 
-  useEffect(()=>{
-    if(signer){
-      setLoadedUser(true)
-      if(router.query.tf==="1"){
-        void handleVerificationRequest()
-      }
-    }
-  },[signer])
-
   const handleVerificationRequest = async () => {
     //If user has requested verification already
     if(data?.account?.verification?.status === 'PENDING' || requested){
@@ -157,6 +148,15 @@ const CreatePage: NextPage = () => {
       console.error(e)
     }
   }
+  
+  useEffect(()=>{
+    if(signer){
+      setLoadedUser(true)
+      if(router.query.tf==="1"){
+        void handleVerificationRequest()
+      }
+    }
+  },[signer, router, handleVerificationRequest])
 
   if(!loadedUser){
     return (
