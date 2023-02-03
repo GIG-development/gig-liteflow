@@ -98,50 +98,11 @@ const LoginPage: NextPage = () => {
         mb={{ base: 12, lg: 24 }}
         justify="center"
       >
-        {connectors.email && (
-          <WalletEmail
-            connector={connectors.email}
-            activate={handleAuthenticated}
-          />
-        )}
-
-        {connectors.email && hasStandardWallet && (
-          <Flex mt={12} position="relative">
-            <Flex
-              position="absolute"
-              align="center"
-              top={0}
-              left={0}
-              bottom={0}
-              right={0}
-            >
-              <Box w="full" borderTop="1px" borderColor="gray.200" />
-            </Flex>
-            <Box as="span" position="relative" bgColor="white" pr={2}>
-              <Text as="p" variant="text-sm" fontWeight={500} color="gray.500">
-                {t('login.alternative')}
-              </Text>
-            </Box>
-          </Flex>
-        )}
-
-        {error && (
-          <Text as="span" role="alert" variant="error" mt={3}>
-            {error.message ? error.message : error.toString()}
-          </Text>
-        )}
-        {invalidNetwork && (
-          <Text as="span" role="alert" variant="error" mt={3}>
-            {t('login.errors.wrong-network', {
-              networkName: environment.NETWORK_NAME,
-            })}
-          </Text>
-        )}
         {hasStandardWallet && (
           <Flex
             as="nav"
             direction={{ base: 'column', md: 'row' }}
-            mt={6}
+            mt={2}
             gap={6}
           >
             {connectors.injected && (
@@ -209,6 +170,48 @@ const LoginPage: NextPage = () => {
             )}
           </Flex>
         )}
+
+        {connectors.email && hasStandardWallet && (
+          <Flex mt={12} mb={6} position="relative">
+            <Flex
+              position="absolute"
+              align="center"
+              top={0}
+              left={0}
+              bottom={0}
+              right={0}
+            >
+              <Box w="full" borderTop="1px" borderColor="gray.200" />
+            </Flex>
+            <Box as="span" position="relative" bgColor="white" pr={2}>
+              <Text as="p" variant="text-sm" fontWeight={500} color="gray.500">
+                {t('login.alternative')}
+              </Text>
+            </Box>
+          </Flex>
+        )}
+
+        {error && (
+          <Text as="span" role="alert" variant="error" mt={3}>
+            {error.message ? error.message : error.toString()}
+          </Text>
+        )}
+        
+        {invalidNetwork && (
+          <Text as="span" role="alert" variant="error" mt={3}>
+            {t('login.errors.wrong-network', {
+              networkName: environment.NETWORK_NAME,
+            })}
+          </Text>
+        )}
+
+        {connectors.email && (
+          <WalletEmail
+            connector={connectors.email}
+            activate={handleAuthenticated}
+          />
+        )}
+
       </Flex>
     </SmallLayout>
   )

@@ -89,42 +89,6 @@ const LoginModal: FC<Props> = ({
             {t('modal.login.description')}
           </Text>
 
-          {email && <WalletEmail connector={email} activate={activate} />}
-          {email && hasStandardWallet && (
-            <Box position="relative" mt={6} mb={2}>
-              <Flex
-                position="absolute"
-                align="center"
-                top={0}
-                right={0}
-                bottom={0}
-                left={0}
-              >
-                <Box w="full" borderTop="1px" borderColor="gray.200" />
-              </Flex>
-              <Flex position="relative" bgColor="white" pr={2}>
-                <Text
-                  as="p"
-                  variant="text-sm"
-                  fontWeight={500}
-                  color="gray.500"
-                >
-                  {t('modal.login.alternative')}
-                </Text>
-              </Flex>
-            </Box>
-          )}
-
-          {error && (
-            <Text as="span" role="alert" variant="error" mt={3}>
-              {error.message ? error.message : error.toString()}
-            </Text>
-          )}
-          {invalidNetwork && (
-            <Text as="span" role="alert" variant="error" mt={3}>
-              {t('modal.login.errors.wrong-network', { networkName })}
-            </Text>
-          )}
           {hasStandardWallet && (
             <Flex direction={{ base: 'column', md: 'row' }} gap={3}>
               {injected && (
@@ -192,6 +156,46 @@ const LoginModal: FC<Props> = ({
               )}
             </Flex>
           )}
+
+          {email && hasStandardWallet && (
+            <Box position="relative" mt={6} mb={2}>
+              <Flex
+                position="absolute"
+                align="center"
+                top={0}
+                right={0}
+                bottom={0}
+                left={0}
+              >
+                <Box w="full" borderTop="1px" borderColor="gray.200" />
+              </Flex>
+              <Flex position="relative" bgColor="white" pr={2}>
+                <Text
+                  as="p"
+                  variant="text-sm"
+                  fontWeight={500}
+                  color="gray.500"
+                >
+                  {t('modal.login.alternative')}
+                </Text>
+              </Flex>
+            </Box>
+          )}
+
+          {error && (
+            <Text as="span" role="alert" variant="error" mt={3}>
+              {error.message ? error.message : error.toString()}
+            </Text>
+          )}
+
+          {invalidNetwork && (
+            <Text as="span" role="alert" variant="error" mt={3}>
+              {t('modal.login.errors.wrong-network', { networkName })}
+            </Text>
+          )}
+          
+          {email && <WalletEmail connector={email} activate={activate} />}
+
         </ModalBody>
         <ModalFooter as="div" />
       </ModalContent>
