@@ -37,6 +37,7 @@ const Character: FC<PropsWithChildren<Props>> = ({
     const { t } = useTranslation('templates')
     return (
         <Flex
+            className="slider__slide-lg"
             grow={0}
             shrink={0}
             basis={'100%'}

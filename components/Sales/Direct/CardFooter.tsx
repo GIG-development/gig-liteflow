@@ -42,7 +42,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
             borderColor="gray.200"
           >
             <TagLabel as={HStack} spacing={1}>
-              <Text as="span" variant="text-sm" color="brand.black">
+              <Text as="span" variant="text-sm" color="brand.black" textAlign={{base: 'center', md: 'left'}}>
                 {t('sales.direct.card-footer.price')}
               </Text>
               <Text as="span" variant="button2" color="brand.black">
@@ -68,7 +68,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
             borderColor="gray.200"
           >
             <TagLabel>
-              <Text as="span" variant="text-sm" color="brand.black">
+              <Text as="span" variant="text-sm" color="brand.black" textAlign={{base: 'center', md: 'left'}}>
                 {t('sales.direct.card-footer.offers', {
                   count: numberOfSales,
                 })}
@@ -88,7 +88,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
             borderColor="gray.200"
           >
             <TagLabel as={HStack} spacing={1}>
-              <Text as="span" variant="text-sm" color="brand.black">
+              <Text as="span" variant="text-sm" color="brand.black" textAlign={{base: 'center', md: 'left'}}>
                 {t('sales.direct.card-footer.from')}
               </Text>
               <Text as="span" variant="button2" color="brand.black">

@@ -84,7 +84,7 @@ const SaleDetail: VFC<Props> = ({
   } = useAuctionStatus(auction, bestBid)
 
   return (
-    <Stack spacing={8}>
+    <Stack spacing={8} alignItems={{base: 'center', md: 'baseline'}}>
       {directSales && directSales.length > 0 ? (
         <>
           <SaleDirectSummary sales={directSales} isSingle={isSingle} />

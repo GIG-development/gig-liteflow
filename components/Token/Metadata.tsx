@@ -38,10 +38,15 @@ const TokenMetadata: VFC<Props> = ({
 }) => {
   const { t } = useTranslation('components')
   return (
-    <Flex wrap="wrap" rowGap={6} columnGap={8}>
+    <Flex
+      wrap="wrap"
+      flexDirection={{base: 'column', md: 'row'}}
+      alignItems='center'
+      gap={6}
+    >
       {creator && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.creator')}
           </Heading>
           <Avatar
@@ -54,7 +59,7 @@ const TokenMetadata: VFC<Props> = ({
       )}
       {owners.length === 1 && owners[0] && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owner')}
           </Heading>
           <Avatar
@@ -67,7 +72,7 @@ const TokenMetadata: VFC<Props> = ({
       )}
       {owners.length > 1 && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owners')}
           </Heading>
           <OwnersModal owners={owners} />
@@ -75,7 +80,7 @@ const TokenMetadata: VFC<Props> = ({
       )}
       {standard === 'ERC721' && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.edition')}
           </Heading>
           <Flex align="center" display="inline-flex" h="full">
@@ -88,7 +93,7 @@ const TokenMetadata: VFC<Props> = ({
       )}
       {standard === 'ERC1155' && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.edition')}
           </Heading>
           <Supply

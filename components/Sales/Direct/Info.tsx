@@ -128,6 +128,7 @@ const SaleDirectInfo: VFC<Props> = ({
                 color="brand.black"
                 ml={2}
                 fontWeight="semibold"
+                textAlign={{base: 'center', md: 'left'}}
                 amount={currentAccountFirstSale.unitPrice}
                 currency={currentAccountFirstSale.currency}
               />

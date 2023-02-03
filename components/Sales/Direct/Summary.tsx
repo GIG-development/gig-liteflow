@@ -128,9 +128,9 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle }) => {
   )
 
   return (
-    <Flex wrap="wrap" gap={8}>
+    <Flex wrap="wrap" gap={8} justifyContent={{base: 'center', md: 'baseline'}}>
       <Flex direction="column" gap={3}>
-        <Heading as="h5" variant="heading3" color="gray.500">
+        <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}}>
           {title}
         </Heading>
         <Flex gap={2}>
@@ -147,7 +147,7 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle }) => {
       </Flex>
       {sales.length === 1 && sales[0]?.expiredAt && (
         <Flex direction="column" gap={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}}>
             {t('sales.direct.summary.expires')}
           </Heading>
           <Flex h="full" align="center" gap={1}>

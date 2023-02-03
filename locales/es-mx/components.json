@@ -815,7 +815,7 @@
     "connectors": {
       "email": {
         "form": {
-          "submit": "Inicia Sesión",
+          "submit": "Iniciar sesión",
           "validation": {
             "required": "Este campo es obligatorio.",
             "invalid": "Ingresa un correo electrónico válido"

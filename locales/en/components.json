@@ -256,7 +256,7 @@
     },
     "login": {
       "title": "Sign in with your wallet",
-      "description": "Connect with one of the following options.",
+      "description": "Connect with one of the following options:",
       "alternative": "Or sign in with",
       "errors": {
         "wrong-network": "You are connected to the wrong network. Please switch to the {{networkName}} network."
@@ -270,7 +270,7 @@
     "explore": "Explore",
     "create": "Create",
     "search": "Search",
-    "sign-in": "Sign in",
+    "sign-in": "Sign In",
     "notifications": "Notifications",
     "sections": {
       "title": "GIG",
@@ -801,7 +801,7 @@
     "connectors": {
       "email": {
         "form": {
-          "submit": "Sign in",
+          "submit": "Sign In",
           "validation": {
             "required": "This field is required",
             "invalid": "Email is not valid"

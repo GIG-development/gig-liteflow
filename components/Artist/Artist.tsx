@@ -31,19 +31,20 @@ const Artist: FC<PropsWithChildren<Props>> = ({
     const { t } = useTranslation('templates')
     return (
         <Flex
+            className="slider__slide"
             grow={0}
             shrink={0}
             basis={{
                 base: '100%',
                 sm: '50%',
-                md: '33.33%',
+                md: '300px',
                 lg: '25%',
             }}
             p="10px"
         >
             <Box
-                minW='280px'
-                maxW={72}
+                minW={{base: '100%', md: '280px'}}
+                maxW={{base: '100%', md: '280px'}}
                 rounded={'base'}
                 my={2}
                 overflow={'hidden'}

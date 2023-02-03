@@ -8,12 +8,12 @@ type Props = {
   items?: number
 }
 
-const Slider: FC<PropsWithChildren<Props>> = ({ items, children }) => {
+const Slider: FC<PropsWithChildren<Props>> = ({ children }) => {
   const [viewportRef, embla] = useEmblaCarousel({
     align: 'start',
     speed: 10,
-    loop: items ? false : true,
-    slidesToScroll: items ? 2 : 1,
+    loop: true,
+    slidesToScroll: 1,
     inViewThreshold: 1,
     containScroll: 'trimSnaps',
     
