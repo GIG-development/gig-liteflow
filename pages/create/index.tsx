@@ -107,7 +107,7 @@ const CreatePage: NextPage = () => {
     if(signer){
       setLoadedUser(true)
       if(router.query.tf==="1"){
-        handleVerificationRequest()
+        void handleVerificationRequest()
       }
     }
   },[signer])

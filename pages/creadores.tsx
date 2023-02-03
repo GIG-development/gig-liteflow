@@ -40,9 +40,7 @@ const Creadores: NextPage = () => {
       <Head
           title="Creadores"
           description="Gana más por tu talento y pertenece a una gran comunidad de líderes, coleccionistas, inversionistas y creadores de la web3."
-      >
-          <script src="//embed.typeform.com/next/embed.js"></script>
-      </Head>
+      />
 
       <AnimatedHero 
         bg={'/img/home/main_hero_bg.jpg'}
