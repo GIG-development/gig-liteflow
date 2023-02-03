@@ -150,6 +150,9 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                         object-fit={'cover'}
                         layout='fill'
                         objectFit='contain'
+                        sizes='(max-width: 768px) 100vw,
+                                (max-width: 1200px) 40vw,
+                                33vw'
                         src={image}
                         onClick={onOpen}
                     />
