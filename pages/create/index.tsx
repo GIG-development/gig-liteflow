@@ -115,10 +115,6 @@ const CreatePage: NextPage = () => {
       })
       return
     }
-    void requestVerification()
-  }
-
-  const requestVerification = async () => {
     try{
       await verifyAccount() 
       .then(status=>{
@@ -135,6 +131,9 @@ const CreatePage: NextPage = () => {
             category: "Contact",
             label: data?.account?.address.toString().toLowerCase() || '0x'
           })
+          setTimeout(()=>{
+            router.push('/create')
+          },5000)
         }
       })
     } catch (e) {
@@ -152,9 +151,11 @@ const CreatePage: NextPage = () => {
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
-      if(router.query.tf==="1" && loadedUser){
+    }
+    if(router.query.tf==="1" && loadedUser){
+      setTimeout(()=>{
         void handleVerificationRequest()
-      }
+      },2000)
     }
   },[signer, router, loadedUser])/* eslint-disable-line react-hooks/exhaustive-deps */
 
@@ -174,7 +175,7 @@ const CreatePage: NextPage = () => {
     )
   }
 
-  if(loading){
+  if(loading || router.query.tf==="1" ){
     return (
       <Stack align="center" spacing={6} my={40}>
         <Heading variant="heading1">{t('asset.restricted.requested.loading')}</Heading>
