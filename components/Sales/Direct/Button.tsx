@@ -53,7 +53,7 @@ const SaleDirectButton: VFC<Props> = ({
     if (!sales[0]) return
     if (ownAllSupply) return
     return (
-      <Button as={Link} href={`/checkout/${sales[0].id}`} size="lg" isFullWidth>
+      <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn' isFullWidth>
         <Text as="span" isTruncated>
           {t('sales.direct.button.buy')}
         </Text>

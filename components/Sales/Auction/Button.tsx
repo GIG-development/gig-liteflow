@@ -22,7 +22,7 @@ const SaleAuctionButton: VFC<Props> = ({
   return (
     <>
       {!isEnded && !isOwner && (
-        <Button as={Link} href={`/tokens/${assetId}/bid`} size="lg" isFullWidth>
+        <Button as={Link} href={`/tokens/${assetId}/bid`} size="full" className='btn' isFullWidth>
           <Text as="span" isTruncated>
             {t('sales.auction.button.place-bid')}
           </Text>
@@ -35,7 +35,8 @@ const SaleAuctionButton: VFC<Props> = ({
           href={`/tokens/${assetId}`}
           variant="outline"
           colorScheme="gray"
-          size="lg"
+          size="full"
+          className='btn'
           isFullWidth
           rightIcon={<HiArrowNarrowRight />}
         >

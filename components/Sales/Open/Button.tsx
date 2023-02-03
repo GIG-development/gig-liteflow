@@ -21,7 +21,8 @@ const SaleOpenButton: VFC<Props> = ({ assetId, isHomepage, ownAllSupply }) => {
         variant="outline"
         colorScheme="gray"
         bgColor="white"
-        size="lg"
+        size="full"
+        className='btn'
         rightIcon={<Icon as={HiArrowNarrowRight} />}
         isFullWidth
       >
@@ -34,7 +35,7 @@ const SaleOpenButton: VFC<Props> = ({ assetId, isHomepage, ownAllSupply }) => {
   if (ownAllSupply) return null
 
   return (
-    <Button as={Link} href={`/tokens/${assetId}/bid`} size="lg" isFullWidth>
+    <Button as={Link} href={`/tokens/${assetId}/bid`} size="full" className='btn' isFullWidth>
       <Text as="span" isTruncated>
         {t('sales.open.button.place-bid')}
       </Text>
