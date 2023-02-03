@@ -106,8 +106,6 @@ const Creadores: NextPage = () => {
               <Text as={'h2'} variant="heading2">
               {t('creadores.content.benefits.benefit1')}
               </Text>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
-              </Text>
             </Box>
 
             <Box textAlign={'center'}>
@@ -121,8 +119,6 @@ const Creadores: NextPage = () => {
               </Flex>
               <Text as={'h2'} variant="heading2">
               {t('creadores.content.benefits.benefit2')}
-              </Text>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
             </Box>
 
@@ -138,8 +134,6 @@ const Creadores: NextPage = () => {
               <Text as={'h2'} variant="heading2">
               {t('creadores.content.benefits.benefit3')}
               </Text>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
-              </Text>
             </Box>
 
             <Box textAlign={'center'}>
@@ -153,8 +147,6 @@ const Creadores: NextPage = () => {
               </Flex>
               <Text as={'h2'} variant="heading2">
               {t('creadores.content.benefits.benefit4')}
-              </Text>
-              <Text fontSize={{base: 'xs', md: 'sm'}}>
               </Text>
             </Box>
 

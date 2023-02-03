@@ -152,11 +152,11 @@ const CreatePage: NextPage = () => {
   useEffect(()=>{
     if(signer){
       setLoadedUser(true)
-      if(router.query.tf==="1"){
+      if(router.query.tf==="1" && loadedUser){
         void handleVerificationRequest()
       }
     }
-  },[signer, router])/* eslint-disable-line react-hooks/exhaustive-deps */
+  },[signer, router, loadedUser])/* eslint-disable-line react-hooks/exhaustive-deps */
 
   if(!loadedUser){
     return (
