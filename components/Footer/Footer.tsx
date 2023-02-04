@@ -88,7 +88,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                 {t('footer.text')}
               </Text>
             </Stack>
-            <Stack align={'flex-start'}>
+            <Stack align={'flex-start'} fontSize='14px'>
               <ListHeader>{t('footer.listTitle1')}</ListHeader>
               <Link href={userProfileLink}>{t('footer.myProfile')}</Link>
               <Link href={'/nosotros'}>{t('footer.aboutUs')}</Link>
@@ -96,7 +96,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
               <Link href={'/familia-gig'}>{t('footer.family')}</Link>
               <Link href={'/gigcionario'}>{t('footer.glosary')}</Link>
             </Stack>
-            <Stack align={'flex-start'}>
+            <Stack align={'flex-start'} fontSize='14px'>
               <ListHeader>{t('footer.listTitle2')}</ListHeader>
               <Link href={'/tutoriales'}>{t('footer.tutorials')}</Link>
               <Link href={'/faq'}>{t('footer.faqs')}</Link>
@@ -104,7 +104,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
               <Link href={'/aviso-de-privacidad.docx'}>{t('footer.privacy')}</Link>
               <Link href={'/contacto'}>{t('footer.contact')}</Link>
             </Stack>
-            <Stack align={'flex-start'}>
+            <Stack align={'flex-start'} fontSize='14px'>
               <ListHeader>{t('footer.listTitle3')}</ListHeader>
             
               <Stack direction={'column'} spacing={6} align={'flex-start'}>
