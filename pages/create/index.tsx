@@ -337,14 +337,19 @@ const CreatePage: NextPage = () => {
               <Box textAlign="center">
                 <Heading as="h3" variant="heading1" color="brand.black">
                   {standard === 'ERC721'
-                    ? t('asset.typeSelector.single.title')
-                    : t('asset.typeSelector.multiple.title')}
+                    ? t('asset.typeSelector.single.name')
+                    : t('asset.typeSelector.multiple.name')}
                 </Heading>
                 <Heading as="h5" variant="heading3" color="gray.500" mt={2}>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.type')
                     : t('asset.typeSelector.multiple.type')}
                 </Heading>
+                <Text variant='text-sm'>
+                  {standard === 'ERC721'
+                    ? t('asset.typeSelector.single.title')
+                    : t('asset.typeSelector.multiple.title')}
+                </Text>
               </Box>
             </Stack>
           </Link>

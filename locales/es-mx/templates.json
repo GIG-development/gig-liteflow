@@ -567,11 +567,13 @@
       "title": "Crear Coleccionable",
       "description": "Elige \"Individual\" si quieres que tu coleccionable sea único, ó \"Múltiple\" si quieres que existan múltiples copias de un mismo coleccionable.",
       "single": {
-        "title": "Individual",
+        "name": "GIG Singles",
+        "title": "Coleccionable individual",
         "type": "ERC721"
       },
       "multiple": {
-        "title": "Multiple",
+        "name": "GIG Series",
+        "title": "Coleccionable con múltiples ediciones",
         "type": "ERC1155"
       },
       "empty": {
