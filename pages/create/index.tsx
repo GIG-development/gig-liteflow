@@ -287,7 +287,7 @@ const CreatePage: NextPage = () => {
       <Heading as="h1" variant="title" color="brand.black" mt={6}>
         {t('asset.typeSelector.title')}
       </Heading>
-      <Text as="p" variant="text" color="gray.500" mt={3}>
+      <Text as="p" variant="text" color="gray.500" mt={6}>
         {t('asset.typeSelector.description')}
       </Text>
       <Flex
@@ -313,7 +313,7 @@ const CreatePage: NextPage = () => {
               borderColor="gray.200"
               borderStyle="solid"
               bg="white"
-              p={12}
+              p={8}
               shadow="sm"
               _hover={{ shadow: 'md' }}
               cursor="pointer"
@@ -340,12 +340,12 @@ const CreatePage: NextPage = () => {
                     ? t('asset.typeSelector.single.name')
                     : t('asset.typeSelector.multiple.name')}
                 </Heading>
-                <Heading as="h5" variant="heading4" color="gray.500" mt={2}>
+                <Heading as="h5" variant="heading5" color="gray.500" mt={2}>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.type')
                     : t('asset.typeSelector.multiple.type')}
                 </Heading>
-                <Text variant='text-sm' textAlign='center'>
+                <Text variant='text-sm' textAlign='center' color="gray.500" minH='40px'>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.title')
                     : t('asset.typeSelector.multiple.title')}

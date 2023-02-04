@@ -555,7 +555,7 @@
       "description": "Choose \"ERC721\" if you want your collectible to be one of a kind or \"ERC1155\" if you want to sell one collectible multiple times",
       "single": {
         "name": "GIG Singles",
-        "title": "Single collectible",
+        "title": "Single edition collectible",
         "type": "ERC721"
       },
       "multiple": {
