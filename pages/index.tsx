@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
   useToast,
+  useBreakpointValue
 } from '@chakra-ui/react'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import { useWeb3React } from '@web3-react/core'
@@ -194,8 +195,13 @@ const HomePage: NextPage<Props> = ({
       
       <LargeLayout>
 
-        <Box my={6}>
-          <Image src='/img/evento.jpg' width='1280' height='160' alt='Evento'/>
+        <Box my={6} textAlign='center'>
+          <Image
+            src={useBreakpointValue({base: '/img/evento_mobile.jpg', md:'/img/evento.jpg'}) || '/img/evento.jpg'}
+            width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
+            height={useBreakpointValue({base: '240', md:'160'}) || '160'}
+            alt='Evento'
+          />
         </Box>
 
         {featuredAssets && featuredAssets.length > 0 && (
@@ -209,7 +215,7 @@ const HomePage: NextPage<Props> = ({
         )}
 
         <Stack spacing={6} mt={20}>
-          <Heading as="h2" variant="subtitle" color="brand.black">
+          <Heading as="h2" variant="title" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
           <Slider items={10}>
@@ -294,7 +300,7 @@ const HomePage: NextPage<Props> = ({
 
         {auctions.length > 0 && (
           <Stack spacing={6} mt={12}>
-            <Heading as="h2" variant="subtitle" color="brand.black">
+            <Heading as="h2" variant="title" color="brand.black">
               {t('home.auctions')}
             </Heading>
             <Slider>
@@ -331,8 +337,8 @@ const HomePage: NextPage<Props> = ({
         {assets.length > 0 && (
           <Stack spacing={6} my={12}>
             <Flex flexWrap="wrap" justify="space-between" gap={4}>
-              <Heading as="h2" variant="subtitle" color="brand.black">
-                {t('home.featured')}
+              <Heading as="h2" variant="title" color="brand.black">
+                {t('home.latest')}
               </Heading>
               <Link href="/explore">
                 <Button
@@ -370,6 +376,19 @@ const HomePage: NextPage<Props> = ({
                 </Flex>
               ))}
             </SimpleGrid>
+            <Box w={'full'} textAlign='center' pt={12}>
+              <Heading as="h2" variant="title" color="brand.black">
+                {t('home.keepExploring')}
+              </Heading>
+              <Button
+                as={Link}
+                href='/explore'
+                size='lg'
+                mt={6}
+              >
+                {t('home.mainHero.button')}
+              </Button>
+            </Box>
           </Stack>
         )}
 

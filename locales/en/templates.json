@@ -17,6 +17,8 @@
     "explore": "Explore All Collectibles",
     "auctions": "Auctions",
     "featured": "Featured Collectibles",
+    "latest": "Latest Collectibles",
+    "keepExploring": "Do you like what you see? Keep exploring!",
     "mainHero": {
       "ctaLine1": "Empower your",
       "ctaLine2": "CREATIVITY",
@@ -69,7 +71,7 @@
       "line3": "Hang out with prestigious artist, curators and renown collectors.",
       "cta": "What are you waiting for to join our <0>community of creators</0>?",
       "categories": {
-        "icon1": "Collectables",
+        "icon1": "Collectibles",
         "icon2": "Digital Art",
         "icon3": "Entertainment",
         "icon4": "Events",
