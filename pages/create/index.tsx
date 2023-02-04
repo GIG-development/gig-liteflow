@@ -70,15 +70,17 @@ export const getServerSideProps = wrapServerSideProps(
 )
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
-  <SmallLayout>
-    <Head
-      title="Crear un NFT"
-      description="Convierte tu talento en NFTs almacenados en la blockchain"
-    >
-      <script src="//embed.typeform.com/next/embed.js"></script>
-    </Head>
-    {children}
-  </SmallLayout>
+  <main id="create-options">
+    <SmallLayout>
+      <Head
+        title="Crear un NFT"
+        description="Convierte tu talento en NFTs almacenados en la blockchain"
+      >
+        <script src="//embed.typeform.com/next/embed.js"></script>
+      </Head>
+      {children}
+    </SmallLayout>
+  </main>
 )
 
 const CreatePage: NextPage = () => {
@@ -161,32 +163,37 @@ const CreatePage: NextPage = () => {
 
   if(!loadedUser){
     return (
-      <Stack align="center" spacing={6} my={40}>
-        <Heading variant="heading1">
-          {t('asset.restricted.notLoggedIn')}
-        </Heading>
-        <Button
-          as={Link}
-          href='/login'
-        >
-          {t('asset.restricted.loginBtn')}
-        </Button>
-      </Stack>
+      <Layout>
+        <BackButton onClick={router.back} />
+        <Stack align="center" spacing={6} my={40}>
+          <Heading variant="heading1">
+            {t('asset.restricted.notLoggedIn')}
+          </Heading>
+          <Button
+            as={Link}
+            href='/login'
+          >
+            {t('asset.restricted.loginBtn')}
+          </Button>
+        </Stack>
+      </Layout>
     )
   }
 
   if(loading || router.query.tf==="1" ){
     return (
-      <Stack align="center" spacing={6} my={40}>
-        <Heading variant="heading1">{t('asset.restricted.requested.loading')}</Heading>
-        <Spinner
-          color="brand.500"
-          h={6}
-          w={6}
-          thickness="2px"
-          speed="0.65s"
-        />
-      </Stack>
+      <Layout>
+        <Stack align="center" spacing={6} my={40}>
+          <Heading variant="heading1">{t('asset.restricted.requested.loading')}</Heading>
+          <Spinner
+            color="brand.500"
+            h={6}
+            w={6}
+            thickness="2px"
+            speed="0.65s"
+          />
+        </Stack>
+      </Layout>
     )
   }
 

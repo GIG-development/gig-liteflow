@@ -234,61 +234,63 @@ const OfferPage: NextPage<Props> = ({ currentAccount, now, assetId, meta }) => {
 
   if (!asset) return <></>
   return (
-    <SmallLayout>
-      <Head
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-      />
-
-      <BackButton onClick={back} />
-      <Heading as="h1" variant="title" color="brand.black" my={12}>
-        {t('offers.form.title')}
-      </Heading>
-
-      <Flex
-        mt={12}
-        direction={{ base: 'column', md: 'row' }}
-        align={{ base: 'center', md: 'flex-start' }}
-        gap={{ base: 12, md: 6 }}
-      >
-        <TokenCard
-          asset={convertAsset(asset)}
-          creator={convertUser(asset.creator, asset.creator.address)}
-          sale={convertSale(asset.firstSale.nodes[0])}
-          auction={
-            asset.auctions.nodes[0]
-              ? convertAuctionWithBestBid(asset.auctions.nodes[0])
-              : undefined
-          }
-          numberOfSales={asset.firstSale.totalCount}
-          hasMultiCurrency={
-            parseInt(
-              asset.currencySales.aggregates?.distinctCount?.currencyId,
-              10,
-            ) > 1
-          }
+    <main id="token-offer">
+      <SmallLayout>
+        <Head
+          title={meta.title}
+          description={meta.description}
+          image={meta.image}
         />
-        <Flex direction="column" gap={8} grow={1} shrink={1} basis="0%">
-          <FormControl>
-            <FormLabel>{t('offers.form.options.label')}</FormLabel>
-            <FormHelperText mb={2}>
-              {sale === SaleType.FIXED_PRICE
-                ? t('offers.form.options.hints.fixed')
-                : t('offers.form.options.hints.auction')}
-            </FormHelperText>
-            <Flex mt={3} flexWrap="wrap" gap={4} {...getRootProps()}>
-              {saleOptions.map((choice, i) => {
-                const radio = getRadioProps({ value: choice.value })
-                return <Radio key={i} choice={choice} {...radio} />
-              })}
-            </Flex>
-          </FormControl>
 
-          {saleForm && saleForm}
+        <BackButton onClick={back} />
+        <Heading as="h1" variant="title" color="brand.black" my={12}>
+          {t('offers.form.title')}
+        </Heading>
+
+        <Flex
+          mt={12}
+          direction={{ base: 'column', md: 'row' }}
+          align={{ base: 'center', md: 'flex-start' }}
+          gap={{ base: 12, md: 6 }}
+        >
+          <TokenCard
+            asset={convertAsset(asset)}
+            creator={convertUser(asset.creator, asset.creator.address)}
+            sale={convertSale(asset.firstSale.nodes[0])}
+            auction={
+              asset.auctions.nodes[0]
+                ? convertAuctionWithBestBid(asset.auctions.nodes[0])
+                : undefined
+            }
+            numberOfSales={asset.firstSale.totalCount}
+            hasMultiCurrency={
+              parseInt(
+                asset.currencySales.aggregates?.distinctCount?.currencyId,
+                10,
+              ) > 1
+            }
+          />
+          <Flex direction="column" gap={8} grow={1} shrink={1} basis="0%">
+            <FormControl>
+              <FormLabel>{t('offers.form.options.label')}</FormLabel>
+              <FormHelperText mb={2}>
+                {sale === SaleType.FIXED_PRICE
+                  ? t('offers.form.options.hints.fixed')
+                  : t('offers.form.options.hints.auction')}
+              </FormHelperText>
+              <Flex mt={3} flexWrap="wrap" gap={4} {...getRootProps()}>
+                {saleOptions.map((choice, i) => {
+                  const radio = getRadioProps({ value: choice.value })
+                  return <Radio key={i} choice={choice} {...radio} />
+                })}
+              </Flex>
+            </FormControl>
+
+            {saleForm && saleForm}
+          </Flex>
         </Flex>
-      </Flex>
-    </SmallLayout>
+      </SmallLayout>
+    </main>
   )
 }
 

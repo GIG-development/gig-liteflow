@@ -17,7 +17,7 @@ import environment from 'environment'
 const FAQ: NextPage = () => {
   const { t } = useTranslation('templates')
   return(
-    <div id="faqs">
+    <main id="faqs">
       <LargeLayout>
           <Head
               title="Preguntas Frecuentes"
@@ -81,7 +81,7 @@ const FAQ: NextPage = () => {
               </Heading>
           </Stack>
       </LargeLayout>
-    </div>
+    </main>
   )
 }
 

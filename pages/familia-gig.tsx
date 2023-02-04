@@ -23,7 +23,7 @@ import ESKERI from '../public/img/animaciones/ESKERI.json'
 const FamiliaGIG: NextPage = () => {
     const { t } = useTranslation('templates')
     return (
-        <div id="familia">
+        <main id="familia">
             <LargeLayout>
                 <Head
                     title="Familia GIG"
@@ -159,7 +159,7 @@ const FamiliaGIG: NextPage = () => {
                     </Slider>
                 </Box>
             </LargeLayout>
-        </div>
+        </main>
     )
 }
 

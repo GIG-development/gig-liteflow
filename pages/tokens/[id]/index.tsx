@@ -289,258 +289,260 @@ const DetailPage: NextPage<Props> = ({
 
   if (!asset) return <></>
   return (
-    <LargeLayout>
-      <Head
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-      />
-      <SimpleGrid spacing={6} columns={{ md: 2 }}>
-        <AspectRatio ratio={1}>
-          <Center
-            flexDirection="column"
-            rounded={{ md: 'xl' }}
-            pr={{base: 0, md: 12}}
-          >
-            <Box position="relative" h="full" w="full" zIndex={1}>
-              <Box
-                as={TokenMedia}
-                image={asset.image}
-                animationUrl={asset.animationUrl}
-                unlockedContent={
-                  showPreview ? undefined : asset.unlockedContent
-                }
-                defaultText={asset.name}
-                mx="auto"
-                maxH="full"
-                maxW="full"
-                objectFit="contain"
-                layout="fill"
-                controls
-              />
-            </Box>
-            {asset.hasUnlockableContent && (
-              <Flex
-                w="full"
-                mt={3}
-                direction={{ base: 'column', lg: 'row' }}
-                justify={{
-                  base: 'center',
-                  lg: isOwner ? 'space-between' : 'center',
-                }}
-                align="center"
-                gap={4}
-              >
-                <Flex align="center" gap={1.5}>
-                  <Heading as="h3" variant="heading3" color="brand.black">
-                    {t('asset.detail.unlockable.title')}
-                  </Heading>
-                  <Tooltip
-                    label={
-                      <Text as="span" variant="caption" color="brand.black">
-                        {t('asset.detail.unlockable.tooltip')}
-                      </Text>
-                    }
-                    placement="top"
-                    rounded="xl"
-                    shadow="lg"
-                    p={3}
-                    bg="white"
-                  >
-                    <span>
-                      <Icon
-                        as={FaInfoCircle}
-                        color="gray.400"
-                        h={4}
-                        w={4}
-                        cursor="pointer"
-                      />
-                    </span>
-                  </Tooltip>
-                </Flex>
-                {isOwner && (
-                  <Flex as={FormControl} w="auto" align="center">
-                    <FormLabel mb={0} htmlFor="show-preview">
-                      <Heading as="h3" variant="heading3" color="brand.black">
-                        {t('asset.detail.show-preview')}
-                      </Heading>
-                    </FormLabel>
-                    <Switch
-                      id="show-preview"
-                      isChecked={showPreview}
-                      onChange={(event) => setShowPreview(event.target.checked)}
-                    />
-                  </Flex>
-                )}
-              </Flex>
-            )}
-          </Center>
-        </AspectRatio>
-        <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
-          <Flex justify="space-between">
-            <Heading as="h1" variant="title" color="brand.black">
-              {asset.name}
-            </Heading>
-            <Flex direction="row" align="flex-start" gap={3}>
-              <Menu>
-                <MenuButton
-                  as={IconButton}
-                  variant="outline"
-                  colorScheme="gray"
-                  rounded="full"
-                  aria-label="activator"
-                  icon={<Icon as={HiOutlineDotsHorizontal} w={5} h={5} />}
-                />
-                <MenuList>
-                  { isOwner && (<>
-                   {
-                   // TO DO : Opciones para Transfer y Burn
-                   }
-                  </>)
+    <main id="token-info">
+      <LargeLayout>
+        <Head
+          title={meta.title}
+          description={meta.description}
+          image={meta.image}
+        />
+        <SimpleGrid spacing={6} columns={{ md: 2 }}>
+          <AspectRatio ratio={1}>
+            <Center
+              flexDirection="column"
+              rounded={{ md: 'xl' }}
+              pr={{base: 0, md: 12}}
+            >
+              <Box position="relative" h="full" w="full" zIndex={1}>
+                <Box
+                  as={TokenMedia}
+                  image={asset.image}
+                  animationUrl={asset.animationUrl}
+                  unlockedContent={
+                    showPreview ? undefined : asset.unlockedContent
                   }
-                  <ChakraLink
-                    href={`mailto:${
-                      environment.REPORT_EMAIL
-                    }?subject=${encodeURI(
-                      t('asset.detail.menu.report.subject'),
-                    )}&body=${encodeURI(
-                      t('asset.detail.menu.report.body', asset),
-                    )}`}
-                    isExternal
-                  >
-                    <MenuItem>{t('asset.detail.menu.report.label')}</MenuItem>
-                  </ChakraLink>
-                </MenuList>
-              </Menu>
-            </Flex>
-          </Flex>
-
-          <TokenMetadata
-            creator={creator}
-            owners={owners}
-            saleSupply={BigNumber.from(
-              asset.sales.aggregates?.sum?.availableQuantity || 0,
-            )}
-            standard={asset.collection.standard}
-            totalSupply={BigNumber.from(
-              asset.ownerships.aggregates?.sum?.quantity || '0',
-            )}
-          />
-          <SaleDetail
-            assetId={asset.id}
-            blockExplorer={blockExplorer}
-            currencies={currencies}
-            signer={signer}
-            currentAccount={account?.toLowerCase()}
-            isSingle={isSingle}
-            isHomepage={false}
-            isOwner={isOwner}
-            auction={auction}
-            bestBid={bestBid}
-            directSales={directSales}
-            ownAllSupply={ownAllSupply}
-            onOfferCanceled={refresh}
-            onAuctionAccepted={refresh}
-          />
-        </Flex>
-
-        <Box p={6}>
-          <Heading as="h4" variant="heading2" color="brand.black">
-            {t('asset.detail.description')}
-          </Heading>
-          <Box textAlign='justify' color="gray.500" fontSize={'xs'} mt={3}
-              dangerouslySetInnerHTML={{__html: asset.description}}>
-          </Box>
-
-          <Flex as="nav" mt={8} flexDirection={{base: 'column', md: 'row'}} justify="center" align="center" gap={3}>
-            <Button
-              as={Link}
-              href={assetExternalURL}
-              isExternal
-              colorScheme="gray"
-              width={48}
-              justifyContent="space-between"
-              rightIcon={<HiOutlineExternalLink />}
-            >
-              <Text as="span">
-                {t('asset.detail.explorerLink', blockExplorer)}
-              </Text>
-            </Button>
-
-            <Button
-              as={Link}
-              href={asset.image}
-              isExternal
-              colorScheme="gray"
-              width={48}
-              justifyContent="space-between"
-              rightIcon={<HiOutlineExternalLink />}
-            >
-              <Text as="span">
-                {t('asset.detail.ipfsLink')}
-              </Text>
-            </Button>
-          </Flex>
-
-          {traits && (
-            <Box pt={8}>
-              <Heading as="h4" variant="heading2" color="brand.black" pb={3}>
-                {t('asset.detail.traits')}
+                  defaultText={asset.name}
+                  mx="auto"
+                  maxH="full"
+                  maxW="full"
+                  objectFit="contain"
+                  layout="fill"
+                  controls
+                />
+              </Box>
+              {asset.hasUnlockableContent && (
+                <Flex
+                  w="full"
+                  mt={3}
+                  direction={{ base: 'column', lg: 'row' }}
+                  justify={{
+                    base: 'center',
+                    lg: isOwner ? 'space-between' : 'center',
+                  }}
+                  align="center"
+                  gap={4}
+                >
+                  <Flex align="center" gap={1.5}>
+                    <Heading as="h3" variant="heading3" color="brand.black">
+                      {t('asset.detail.unlockable.title')}
+                    </Heading>
+                    <Tooltip
+                      label={
+                        <Text as="span" variant="caption" color="brand.black">
+                          {t('asset.detail.unlockable.tooltip')}
+                        </Text>
+                      }
+                      placement="top"
+                      rounded="xl"
+                      shadow="lg"
+                      p={3}
+                      bg="white"
+                    >
+                      <span>
+                        <Icon
+                          as={FaInfoCircle}
+                          color="gray.400"
+                          h={4}
+                          w={4}
+                          cursor="pointer"
+                        />
+                      </span>
+                    </Tooltip>
+                  </Flex>
+                  {isOwner && (
+                    <Flex as={FormControl} w="auto" align="center">
+                      <FormLabel mb={0} htmlFor="show-preview">
+                        <Heading as="h3" variant="heading3" color="brand.black">
+                          {t('asset.detail.show-preview')}
+                        </Heading>
+                      </FormLabel>
+                      <Switch
+                        id="show-preview"
+                        isChecked={showPreview}
+                        onChange={(event) => setShowPreview(event.target.checked)}
+                      />
+                    </Flex>
+                  )}
+                </Flex>
+              )}
+            </Center>
+          </AspectRatio>
+          <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
+            <Flex justify="space-between">
+              <Heading as="h1" variant="title" color="brand.black">
+                {asset.name}
               </Heading>
-              <TraitList traits={traits} />
-            </Box>
-          )}
-          
-          <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={8}>
-            {qrcode}
-            <Text fontSize='8'>{t('asset.detail.qrCode.download')}</Text>
+              <Flex direction="row" align="flex-start" gap={3}>
+                <Menu>
+                  <MenuButton
+                    as={IconButton}
+                    variant="outline"
+                    colorScheme="gray"
+                    rounded="full"
+                    aria-label="activator"
+                    icon={<Icon as={HiOutlineDotsHorizontal} w={5} h={5} />}
+                  />
+                  <MenuList>
+                    { isOwner && (<>
+                    {
+                    // TO DO : Opciones para Transfer y Burn
+                    }
+                    </>)
+                    }
+                    <ChakraLink
+                      href={`mailto:${
+                        environment.REPORT_EMAIL
+                      }?subject=${encodeURI(
+                        t('asset.detail.menu.report.subject'),
+                      )}&body=${encodeURI(
+                        t('asset.detail.menu.report.body', asset),
+                      )}`}
+                      isExternal
+                    >
+                      <MenuItem>{t('asset.detail.menu.report.label')}</MenuItem>
+                    </ChakraLink>
+                  </MenuList>
+                </Menu>
+              </Flex>
+            </Flex>
+
+            <TokenMetadata
+              creator={creator}
+              owners={owners}
+              saleSupply={BigNumber.from(
+                asset.sales.aggregates?.sum?.availableQuantity || 0,
+              )}
+              standard={asset.collection.standard}
+              totalSupply={BigNumber.from(
+                asset.ownerships.aggregates?.sum?.quantity || '0',
+              )}
+            />
+            <SaleDetail
+              assetId={asset.id}
+              blockExplorer={blockExplorer}
+              currencies={currencies}
+              signer={signer}
+              currentAccount={account?.toLowerCase()}
+              isSingle={isSingle}
+              isHomepage={false}
+              isOwner={isOwner}
+              auction={auction}
+              bestBid={bestBid}
+              directSales={directSales}
+              ownAllSupply={ownAllSupply}
+              onOfferCanceled={refresh}
+              onAuctionAccepted={refresh}
+            />
           </Flex>
 
-        </Box>
+          <Box p={6}>
+            <Heading as="h4" variant="heading2" color="brand.black">
+              {t('asset.detail.description')}
+            </Heading>
+            <Box textAlign='justify' color="gray.500" fontSize={'xs'} mt={3}
+                dangerouslySetInnerHTML={{__html: asset.description}}>
+            </Box>
 
-        <div>
-          <Tabs
-            isManual
-            defaultIndex={defaultIndex}
-            colorScheme="brand"
-            overflowX="auto"
-            overflowY="hidden"
-          >
-            <TabList>
-              {tabs.map((tab, index) => (
-                <ChakraLink key={index} href={tab.href} whiteSpace="nowrap">
-                  <Tab as="div">
-                    <Text as="span" variant="subtitle1">
-                      {tab.title}
-                    </Text>
-                  </Tab>
-                </ChakraLink>
-              ))}
-            </TabList>
-          </Tabs>
-          <Box h={96} overflowY="auto" py={6}>
-            {(!query.filter || query.filter === AssetTabs.bids) && (
-              <BidList
-                bids={bids}
-                signer={signer}
-                account={account?.toLowerCase()}
-                isSingle={isSingle}
-                blockExplorer={blockExplorer}
-                preventAcceptation={!isOwner || !!activeAuction}
-                onAccepted={refresh}
-                onCanceled={refresh}
-              />
+            <Flex as="nav" mt={8} flexDirection={{base: 'column', md: 'row'}} justify="center" align="center" gap={3}>
+              <Button
+                as={Link}
+                href={assetExternalURL}
+                isExternal
+                colorScheme="gray"
+                width={48}
+                justifyContent="space-between"
+                rightIcon={<HiOutlineExternalLink />}
+              >
+                <Text as="span">
+                  {t('asset.detail.explorerLink', blockExplorer)}
+                </Text>
+              </Button>
+
+              <Button
+                as={Link}
+                href={asset.image}
+                isExternal
+                colorScheme="gray"
+                width={48}
+                justifyContent="space-between"
+                rightIcon={<HiOutlineExternalLink />}
+              >
+                <Text as="span">
+                  {t('asset.detail.ipfsLink')}
+                </Text>
+              </Button>
+            </Flex>
+
+            {traits && (
+              <Box pt={8}>
+                <Heading as="h4" variant="heading2" color="brand.black" pb={3}>
+                  {t('asset.detail.traits')}
+                </Heading>
+                <TraitList traits={traits} />
+              </Box>
             )}
-            {query.filter === AssetTabs.history && (
-              <HistoryList
-                histories={histories}
-                blockExplorer={blockExplorer}
-              />
-            )}
+            
+            <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={8}>
+              {qrcode}
+              <Text fontSize='8'>{t('asset.detail.qrCode.download')}</Text>
+            </Flex>
+
           </Box>
-        </div>
-      </SimpleGrid>
-    </LargeLayout>
+
+          <div>
+            <Tabs
+              isManual
+              defaultIndex={defaultIndex}
+              colorScheme="brand"
+              overflowX="auto"
+              overflowY="hidden"
+            >
+              <TabList>
+                {tabs.map((tab, index) => (
+                  <ChakraLink key={index} href={tab.href} whiteSpace="nowrap">
+                    <Tab as="div">
+                      <Text as="span" variant="subtitle1">
+                        {tab.title}
+                      </Text>
+                    </Tab>
+                  </ChakraLink>
+                ))}
+              </TabList>
+            </Tabs>
+            <Box h={96} overflowY="auto" py={6}>
+              {(!query.filter || query.filter === AssetTabs.bids) && (
+                <BidList
+                  bids={bids}
+                  signer={signer}
+                  account={account?.toLowerCase()}
+                  isSingle={isSingle}
+                  blockExplorer={blockExplorer}
+                  preventAcceptation={!isOwner || !!activeAuction}
+                  onAccepted={refresh}
+                  onCanceled={refresh}
+                />
+              )}
+              {query.filter === AssetTabs.history && (
+                <HistoryList
+                  histories={histories}
+                  blockExplorer={blockExplorer}
+                />
+              )}
+            </Box>
+          </div>
+        </SimpleGrid>
+      </LargeLayout>
+    </main>
   )
 }
 

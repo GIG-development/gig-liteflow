@@ -32,95 +32,97 @@ const LoginPage: NextPage = () => {
   const loginUrl = environment.BASE_URL + '/login'
   const platformName = 'Demo'
   return (
-    <SmallLayout>
-      <Head title="Referral" />
-      <Stack spacing={8}>
-        <Heading variant="title">{t('referral.title')}</Heading>
-        <Text>{t('referral.description', { platformName })}</Text>
+    <main id="referral">
+      <SmallLayout>
+        <Head title="Referral" />
+        <Stack spacing={8}>
+          <Heading variant="title">{t('referral.title')}</Heading>
+          <Text>{t('referral.description', { platformName })}</Text>
 
-        <div>
-          <Heading variant="subtitle" pb={4}>
-            {t('referral.link')}
-          </Heading>
-          <ReferralForm
-            login={{
-              ...connectors,
-              networkName: environment.NETWORK_NAME,
-            }}
-            loginUrl={loginUrl}
-            signer={signer}
-          />
-        </div>
+          <div>
+            <Heading variant="subtitle" pb={4}>
+              {t('referral.link')}
+            </Heading>
+            <ReferralForm
+              login={{
+                ...connectors,
+                networkName: environment.NETWORK_NAME,
+              }}
+              loginUrl={loginUrl}
+              signer={signer}
+            />
+          </div>
 
-        <div>
-          <Heading variant="subtitle" pb={4}>
-            {t('referral.how.title')}
-          </Heading>
-          <OrderedList>
-            <ListItem>
-              <Text>{t('referral.how.steps.0')}</Text>
-            </ListItem>
-            <ListItem>
-              <Text>{t('referral.how.steps.1')}</Text>
-            </ListItem>
-            <ListItem>
-              <Text>{t('referral.how.steps.2')}</Text>
-            </ListItem>
-            <ListItem>
-              <Text>{t('referral.how.steps.3')}</Text>
-            </ListItem>
-          </OrderedList>
-        </div>
+          <div>
+            <Heading variant="subtitle" pb={4}>
+              {t('referral.how.title')}
+            </Heading>
+            <OrderedList>
+              <ListItem>
+                <Text>{t('referral.how.steps.0')}</Text>
+              </ListItem>
+              <ListItem>
+                <Text>{t('referral.how.steps.1')}</Text>
+              </ListItem>
+              <ListItem>
+                <Text>{t('referral.how.steps.2')}</Text>
+              </ListItem>
+              <ListItem>
+                <Text>{t('referral.how.steps.3')}</Text>
+              </ListItem>
+            </OrderedList>
+          </div>
 
-        <div>
-          <Heading variant="subtitle" pb={4}>
-            {t('referral.rewards.title')}
-          </Heading>
-          <SimpleGrid columns={{ sm: percentage.secondary ? 2 : 1 }}>
-            <Box pb={4}>
-              {!!percentage.secondary && (
-                <Flex as={Text} pb={4} fontWeight="bold" align="center" gap={2}>
-                  {t('referral.rewards.primary.title')}
-                  <Tooltip
-                    cursor="pointer"
-                    label={t('referral.rewards.primary.tooltip')}
-                  >
-                    <span>
-                      <Icon as={AiFillInfoCircle} color="gray.500" />
-                    </span>
-                  </Tooltip>
-                </Flex>
-              )}
-              <Text>
-                {t('referral.rewards.primary.description', {
-                  percentage: percentage.base,
-                })}
-              </Text>
-            </Box>
-            {percentage.secondary && (
+          <div>
+            <Heading variant="subtitle" pb={4}>
+              {t('referral.rewards.title')}
+            </Heading>
+            <SimpleGrid columns={{ sm: percentage.secondary ? 2 : 1 }}>
               <Box pb={4}>
-                <Flex as={Text} pb={4} fontWeight="bold" align="center" gap={2}>
-                  {t('referral.rewards.secondary.title')}
-                  <Tooltip
-                    cursor="pointer"
-                    label={t('referral.rewards.secondary.tooltip')}
-                  >
-                    <span>
-                      <Icon as={AiFillInfoCircle} color="gray.500" />
-                    </span>
-                  </Tooltip>
-                </Flex>
+                {!!percentage.secondary && (
+                  <Flex as={Text} pb={4} fontWeight="bold" align="center" gap={2}>
+                    {t('referral.rewards.primary.title')}
+                    <Tooltip
+                      cursor="pointer"
+                      label={t('referral.rewards.primary.tooltip')}
+                    >
+                      <span>
+                        <Icon as={AiFillInfoCircle} color="gray.500" />
+                      </span>
+                    </Tooltip>
+                  </Flex>
+                )}
                 <Text>
-                  {t('referral.rewards.secondary.description', {
-                    percentage: percentage.secondary,
+                  {t('referral.rewards.primary.description', {
+                    percentage: percentage.base,
                   })}
                 </Text>
               </Box>
-            )}
-          </SimpleGrid>
-        </div>
-      </Stack>
-    </SmallLayout>
+              {percentage.secondary && (
+                <Box pb={4}>
+                  <Flex as={Text} pb={4} fontWeight="bold" align="center" gap={2}>
+                    {t('referral.rewards.secondary.title')}
+                    <Tooltip
+                      cursor="pointer"
+                      label={t('referral.rewards.secondary.tooltip')}
+                    >
+                      <span>
+                        <Icon as={AiFillInfoCircle} color="gray.500" />
+                      </span>
+                    </Tooltip>
+                  </Flex>
+                  <Text>
+                    {t('referral.rewards.secondary.description', {
+                      percentage: percentage.secondary,
+                    })}
+                  </Text>
+                </Box>
+              )}
+            </SimpleGrid>
+          </div>
+        </Stack>
+      </SmallLayout>
+    </main>
   )
 }
 

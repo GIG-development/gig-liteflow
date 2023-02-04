@@ -83,12 +83,14 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                     { (button_1!=='' && button_1_link!=='')  && 
                     <Link href={button_1_link}>
                         <Button
+                            mt={2}
                             rounded={'full'}
                             size={'lg'}
                             px={6}
                             colorScheme={'brand'}
                             bg={'brand.500'}
-                            _hover={{ bg: 'brand.600' }}>
+                            _hover={{ bg: 'brand.600' }}
+                        >
                             {button_1}
                         </Button>
                     </Link>
@@ -101,7 +103,8 @@ const SecondaryHero: FC<PropsWithChildren<Props>> = ({
                         px={6}
                         colorScheme={'gray'}
                         bg={'gray.400'}
-                        _hover={{ bg: 'gray.600' }}>
+                        _hover={{ bg: 'gray.600' }}
+                    >
                         {button_2}
                         </Button>
                     </Link>

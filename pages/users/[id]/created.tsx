@@ -158,68 +158,70 @@ const CreatedPage: NextPage<Props> = ({
   if (!assets) return <></>
   if (!data) return <></>
   return (
-    <LargeLayout>
-      <Head
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-      />
-
-      <UserProfileTemplate
-        signer={signer}
-        currentAccount={account}
-        account={userAccount}
-        currentTab="created"
-        totals={
-          new Map([
-            ['created', data.created?.totalCount || 0],
-            ['on-sale', data.onSale?.totalCount || 0],
-            ['owned', data.owned?.totalCount || 0],
-          ])
-        }
-      >
-        <TokenGrid<AssetsOrderBy>
-          assets={assets}
-          orderBy={{
-            value: orderBy,
-            choices: [
-              {
-                label: t('user.created-assets.orderBy.values.createdAtDesc'),
-                value: 'CREATED_AT_DESC',
-              },
-              {
-                label: t('user.created-assets.orderBy.values.createdAtAsc'),
-                value: 'CREATED_AT_ASC',
-              },
-            ],
-            onSort: changeOrder,
-          }}
-          pagination={{
-            limit,
-            limits: [environment.PAGINATION_LIMIT, 24, 36, 48],
-            page,
-            total: data.created?.totalCount || 0,
-            onPageChange: changePage,
-            onLimitChange: changeLimit,
-            result: {
-              label: t('pagination.result.label'),
-              caption: (props) => (
-                <Trans
-                  ns="templates"
-                  i18nKey="pagination.result.caption"
-                  values={props}
-                  components={[
-                    <Text as="span" color="brand.black" key="text" />,
-                  ]}
-                />
-              ),
-              pages: (props) =>
-                t('pagination.result.pages', { count: props.total }),
-            },
-          }}
+    <main id="user-created">
+      <LargeLayout>
+        <Head
+          title={meta.title}
+          description={meta.description}
+          image={meta.image}
         />
-      </UserProfileTemplate>
-    </LargeLayout>
+
+        <UserProfileTemplate
+          signer={signer}
+          currentAccount={account}
+          account={userAccount}
+          currentTab="created"
+          totals={
+            new Map([
+              ['created', data.created?.totalCount || 0],
+              ['on-sale', data.onSale?.totalCount || 0],
+              ['owned', data.owned?.totalCount || 0],
+            ])
+          }
+        >
+          <TokenGrid<AssetsOrderBy>
+            assets={assets}
+            orderBy={{
+              value: orderBy,
+              choices: [
+                {
+                  label: t('user.created-assets.orderBy.values.createdAtDesc'),
+                  value: 'CREATED_AT_DESC',
+                },
+                {
+                  label: t('user.created-assets.orderBy.values.createdAtAsc'),
+                  value: 'CREATED_AT_ASC',
+                },
+              ],
+              onSort: changeOrder,
+            }}
+            pagination={{
+              limit,
+              limits: [environment.PAGINATION_LIMIT, 24, 36, 48],
+              page,
+              total: data.created?.totalCount || 0,
+              onPageChange: changePage,
+              onLimitChange: changeLimit,
+              result: {
+                label: t('pagination.result.label'),
+                caption: (props) => (
+                  <Trans
+                    ns="templates"
+                    i18nKey="pagination.result.caption"
+                    values={props}
+                    components={[
+                      <Text as="span" color="brand.black" key="text" />,
+                    ]}
+                  />
+                ),
+                pages: (props) =>
+                  t('pagination.result.pages', { count: props.total }),
+              },
+            }}
+          />
+        </UserProfileTemplate>
+      </LargeLayout>
+    </main>
   )
 }
 

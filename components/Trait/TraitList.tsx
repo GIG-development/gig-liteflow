@@ -9,7 +9,7 @@ type TraitListProps = {
 const TraitList: FC<TraitListProps> = ({ traits }) => {
   const { t } = useTranslation('components')
   return (
-    <SimpleGrid columns={{ base: 2, sm: 3 }} gap={3}>
+    <SimpleGrid columns={{ base: 1, sm: 3 }} gap={3} textAlign='center'>
       {traits.map((trait, i) => (
         <Flex
           key={i}

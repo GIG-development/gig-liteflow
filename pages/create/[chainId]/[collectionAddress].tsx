@@ -91,13 +91,15 @@ export const getServerSideProps = wrapServerSideProps<Props>(
 )
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
-  <SmallLayout>
-    <Head
-      title="Create Collectible"
-      description="Create Collectible securely stored on blockchain"
-    />
-    {children}
-  </SmallLayout>
+  <main id="create-form">
+    <SmallLayout>
+      <Head
+        title="Create Collectible"
+        description="Create Collectible securely stored on blockchain"
+      />
+      {children}
+    </SmallLayout>
+  </main>
 )
 
 const CreatePage: NextPage<Props> = ({

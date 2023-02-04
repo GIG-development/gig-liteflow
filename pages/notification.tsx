@@ -96,34 +96,36 @@ const NotificationPage: NextPage<Props> = ({ currentAccount }) => {
   }, [account, setCookies])
 
   return (
-    <SmallLayout>
-      <Head title="Notifications" />
-      <Heading as="h1" variant="title" color="brand.black">
-        {t('notifications.title')}
-      </Heading>
-      <Stack spacing={6} mt={12}>
-        {(notifications || []).length > 0 ? (
-          <>
-            {notifications.map((notification) => (
-              <NotificationDetail key={notification.id} {...notification} />
-            ))}
-            {hasNextPage && (
-              <Button isLoading={loading} onClick={loadMore}>
-                <Text as="span" isTruncated>
-                  {t('notifications.loadMore')}
-                </Text>
-              </Button>
-            )}
-          </>
-        ) : (
-          <Empty
-            icon={<Icon as={FaBell} color="brand.500" h={9} w={9} />}
-            title={t('notifications.empty.title')}
-            description={t('notifications.empty.description')}
-          />
-        )}
-      </Stack>
-    </SmallLayout>
+    <main id="notifications">
+      <SmallLayout>
+        <Head title="Notifications" />
+        <Heading as="h1" variant="title" color="brand.black">
+          {t('notifications.title')}
+        </Heading>
+        <Stack spacing={6} mt={12}>
+          {(notifications || []).length > 0 ? (
+            <>
+              {notifications.map((notification) => (
+                <NotificationDetail key={notification.id} {...notification} />
+              ))}
+              {hasNextPage && (
+                <Button isLoading={loading} onClick={loadMore}>
+                  <Text as="span" isTruncated>
+                    {t('notifications.loadMore')}
+                  </Text>
+                </Button>
+              )}
+            </>
+          ) : (
+            <Empty
+              icon={<Icon as={FaBell} color="brand.500" h={9} w={9} />}
+              title={t('notifications.empty.title')}
+              description={t('notifications.empty.description')}
+            />
+          )}
+        </Stack>
+      </SmallLayout>
+    </main>
   )
 }
 

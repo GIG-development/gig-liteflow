@@ -15,7 +15,7 @@ import useTranslation from 'next-translate/useTranslation'
 const Custom500: NextPage = () => {
     const { t } = useTranslation('templates')
     return (
-        <div id="server-error">
+        <main id="server-error">
             <LargeLayout>
                 <Head
                     title="Error 500"
@@ -37,7 +37,7 @@ const Custom500: NextPage = () => {
                     </Link>
                 </Stack>
             </LargeLayout>
-        </div>
+        </main>
     )
 }
 

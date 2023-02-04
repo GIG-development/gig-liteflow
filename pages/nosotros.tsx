@@ -16,7 +16,7 @@ import LargeLayout from '../layouts/large'
 const Nosotros: NextPage = () => {
     const { t } = useTranslation('templates')
     return (
-        <div id="nosotros">
+        <main id="nosotros">
             <LargeLayout>
             <Head
                 title="Nosotros"
@@ -109,7 +109,7 @@ const Nosotros: NextPage = () => {
                     
                 </Stack>
             </LargeLayout>
-        </div>
+        </main>
     )
 }
 

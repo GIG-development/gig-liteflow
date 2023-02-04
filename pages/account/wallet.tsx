@@ -39,16 +39,18 @@ const WalletPage: NextPage = () => {
   if (!currencies) return <></>
   if (!account) return <></>
   return (
-    <SmallLayout>
-      <Head title="Account - Wallet" />
-      <AccountTemplate currentTab="wallet">
-        <WalletAccount
-          account={account.toLowerCase()}
-          currencies={currencies}
-          networkName={environment.NETWORK_NAME}
-        />
-      </AccountTemplate>
-    </SmallLayout>
+    <main id="wallet">
+      <SmallLayout>
+        <Head title="Account - Wallet" />
+        <AccountTemplate currentTab="wallet">
+          <WalletAccount
+            account={account.toLowerCase()}
+            currencies={currencies}
+            networkName={environment.NETWORK_NAME}
+          />
+        </AccountTemplate>
+      </SmallLayout>
+    </main>
   )
 }
 

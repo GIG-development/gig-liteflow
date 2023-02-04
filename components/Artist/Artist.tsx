@@ -41,10 +41,11 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                 lg: '25%',
             }}
             p="10px"
+            justify={'center'}
         >
             <Box
-                minW={{base: '100%', md: '280px'}}
-                maxW={{base: '100%', md: '280px'}}
+                minW={'280px'}
+                maxW={'280px'}
                 rounded={'base'}
                 my={2}
                 overflow={'hidden'}

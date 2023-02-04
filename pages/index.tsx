@@ -218,7 +218,7 @@ const HomePage: NextPage<Props> = ({
           <Heading as="h2" variant="title" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
-          <Slider items={10}>
+          <Slider items={9}>
             <Artist 
               name='ilithya'
               handle='@ilithya_rocks'
@@ -316,6 +316,7 @@ const HomePage: NextPage<Props> = ({
                     lg: '25%',
                   }}
                   p="10px"
+                  justify={'center'}
                 >
                   <TokenCard
                     asset={convertAsset(x.asset)}

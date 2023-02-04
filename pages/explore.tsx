@@ -464,7 +464,7 @@ const ExplorePage: NextPage<Props> = ({
   const ChakraPagination = chakra(Pagination)
 
   return (
-    <div id='explore'>
+    <main id='explore'>
       <LargeLayout>
         <Head title="Explore Collectibles" />
 
@@ -794,7 +794,7 @@ const ExplorePage: NextPage<Props> = ({
             />
           </Box>
       </LargeLayout>
-    </div>
+    </main>
   )
 }
 

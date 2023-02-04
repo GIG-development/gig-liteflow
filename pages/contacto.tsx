@@ -13,7 +13,7 @@ import {event} from 'nextjs-google-analytics'
 const Contacto: NextPage = () => {
   const { t } = useTranslation('templates')
   return (
-    <div id="contacto">
+    <main id="contacto">
       <LargeLayout>
           <Head
               title="Contacto"
@@ -51,7 +51,7 @@ const Contacto: NextPage = () => {
               </button>
           </Stack>
       </LargeLayout>
-    </div>
+    </main>
   )
 }
 

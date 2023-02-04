@@ -15,7 +15,7 @@ import useTranslation from 'next-translate/useTranslation'
 const Gigcionario: NextPage = () => {
   const { t } = useTranslation('templates')
   return(
-    <div id="giccionario">
+    <main id="giccionario">
       <LargeLayout>
           <Head
               title="GIGcionario"
@@ -105,7 +105,7 @@ const Gigcionario: NextPage = () => {
               </Flex>
           </Stack>
       </LargeLayout>
-    </div>
+    </main>
   )
 }
 

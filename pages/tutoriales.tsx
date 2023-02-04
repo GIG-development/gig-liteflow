@@ -13,7 +13,7 @@ import environment from '../environment'
 const Tutoriales: NextPage = () => {
   const { t } = useTranslation('templates')
   return(
-    <div id="tutoriales">
+    <main id="tutoriales">
       <LargeLayout>
           <Head
               title="Tutoriales"
@@ -109,7 +109,7 @@ const Tutoriales: NextPage = () => {
 
           </Stack>
       </LargeLayout>
-    </div>
+    </main>
   )
 }
 

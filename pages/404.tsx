@@ -13,7 +13,7 @@ import useTranslation from 'next-translate/useTranslation'
 const Custom404: NextPage = () => {
     const { t } = useTranslation('templates')
     return (
-    <div id="notFound">
+    <main id="notFound">
         <LargeLayout>
             <Head
                 title="Error 404"
@@ -29,7 +29,7 @@ const Custom404: NextPage = () => {
                 </Link>
             </Stack>
         </LargeLayout>
-    </div>
+    </main>
     )
 }
 

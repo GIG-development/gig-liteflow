@@ -44,18 +44,20 @@ const EditPage: NextPage = () => {
 
   if (!data?.account) return <></>
   return (
-    <SmallLayout>
-      <Head title="Account - Edit profile" />
+    <main id="edit-profile">
+      <SmallLayout>
+        <Head title="Account - Edit profile" />
 
-      <AccountTemplate currentTab="edit-profile">
-        <UserFormEdit
-          signer={signer}
-          onUpdated={onSubmit}
-          uploadUrl={environment.UPLOAD_URL}
-          account={data.account}
-        />
-      </AccountTemplate>
-    </SmallLayout>
+        <AccountTemplate currentTab="edit-profile">
+          <UserFormEdit
+            signer={signer}
+            onUpdated={onSubmit}
+            uploadUrl={environment.UPLOAD_URL}
+            account={data.account}
+          />
+        </AccountTemplate>
+      </SmallLayout>
+    </main>
   )
 }
 
