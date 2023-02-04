@@ -340,12 +340,12 @@ const CreatePage: NextPage = () => {
                     ? t('asset.typeSelector.single.name')
                     : t('asset.typeSelector.multiple.name')}
                 </Heading>
-                <Heading as="h5" variant="heading3" color="gray.500" mt={2}>
+                <Heading as="h5" variant="heading4" color="gray.500" mt={2}>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.type')
                     : t('asset.typeSelector.multiple.type')}
                 </Heading>
-                <Text variant='text-sm'>
+                <Text variant='text-sm' textAlign='center'>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.title')
                     : t('asset.typeSelector.multiple.title')}

@@ -565,7 +565,7 @@
     },
     "typeSelector": {
       "title": "Crear Coleccionable",
-      "description": "Elige \"Individual\" si quieres que tu coleccionable sea único, ó \"Múltiple\" si quieres que existan múltiples copias de un mismo coleccionable.",
+      "description": "Elige \"ERC721\" si quieres que tu coleccionable sea único, ó \"ERC1155\" si quieres que existan múltiples copias de un mismo coleccionable.",
       "single": {
         "name": "GIG Singles",
         "title": "Coleccionable individual",

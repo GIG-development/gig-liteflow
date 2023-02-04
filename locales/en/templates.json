@@ -552,7 +552,7 @@
     },
     "typeSelector": {
       "title": "Create Collectible",
-      "description": "Choose \"Single\" if you want your collectible to be one of a kind or \"Multiple\" if you want to sell one collectible multiple times",
+      "description": "Choose \"ERC721\" if you want your collectible to be one of a kind or \"ERC1155\" if you want to sell one collectible multiple times",
       "single": {
         "name": "GIG Singles",
         "title": "Single collectible",
