@@ -196,12 +196,14 @@ const HomePage: NextPage<Props> = ({
       <LargeLayout>
 
         <Box my={6} textAlign='center'>
-          <Image
-            src={useBreakpointValue({base: '/img/evento_mobile.jpg', md:'/img/evento.jpg'}) || '/img/evento.jpg'}
-            width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
-            height={useBreakpointValue({base: '240', md:'160'}) || '160'}
-            alt='Evento'
-          />
+          <Link  href='https://www.mangopase.com/event/artsynights2023?fbclid=PAAaYKXrvT5kS95jmueTGz7aDUxiwNQ87erOO-cd0GObYBRz6gqpxd1TJng60' title='Artsy Nights & GIG | 9 de Febrero' isExternal>
+            <Image
+              src={useBreakpointValue({base: '/img/evento_mobile.jpg', md:'/img/evento.jpg'}) || '/img/evento.jpg'}
+              width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
+              height={useBreakpointValue({base: '240', md:'160'}) || '160'}
+              alt='Artsy Nights & GIG | 9 de Febrero'
+            />
+          </Link>
         </Box>
 
         {featuredAssets && featuredAssets.length > 0 && (
@@ -222,10 +224,10 @@ const HomePage: NextPage<Props> = ({
             <Artist 
               name='ilithya'
               handle='@ilithya_rocks'
-              description='Music inspired art + tech 🤘🏽
-              💫 Creations with programming + algorithms
-              🖤 Mexican based in Hamburg'
-              tags={['arte generativo','música','arte digital']}
+              description='Artista multidisciplinaria de México, radicada en Alemania.
+              Experimentando con arte de los nuevos medios inspirado en la ilustración, música y el arte urbano.
+              🙂 ⚡️✌🏽'
+              tags={['arte generativo','arte digital']}
               image='/img/artistas/ilithya2.jpg'
               link={'/0x3ddf4bcb457d321786db72dc67ca0db13388b4e4'}
             />

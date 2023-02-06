@@ -74,7 +74,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                     <Heading color={'black'} fontSize={'xs'} noOfLines={1}>
                         {handle}
                     </Heading>
-                    <Text color={'gray.500'} fontSize={'xs'} noOfLines={2} mt={2} h={'60px'}>
+                    <Text color={'gray.500'} fontSize={'xs'} noOfLines={2} mt={2} h={'108px'}>
                         {description}
                     </Text>
 
