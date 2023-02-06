@@ -19,34 +19,25 @@ const Head: FC<PropsWithChildren<Props>> = ({
   console.log(image)
   return (
     <NextHead>
+      {/* BASIC META TAGS */}
       <title>
         {title} | {title !== 'GIG' ? 'GIG - ' : ''}Más que un marketplace, la mejor comunidad NFT de creativos en Latinoamérica
       </title>
       <meta
-        property="og:title"
-        content={title}
+        name="description"
+        content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."}
       />
-      <meta 
-        name="twitter:title"
-        content={title}
-      />
-
-      <meta name="description" content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."} />
-      <meta property="og:description" content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."} />
-      <meta name="twitter:description" content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."} />
-
       <meta
         name="keywords"
         content={keywords!=='' ? keywords : 'nfts, marketplace, latam, artistas digitales, ganar royalties, arte, latinoamerica, plataforma de venta de arte digital'}
       />
-
       <meta
-        property="og:image"
-        content={image || `${environment.BASE_URL}/social_og-image.jpg`}
+        name="author" 
+        content="GIG Development"
       />
       <meta
-        name="twitter:image"
-        content={image || `${environment.BASE_URL}/social_twitter-card.jpg`}
+        name="application-name"
+        content="GIG Marketplace"
       />
       <link
         rel='icon'
@@ -60,13 +51,52 @@ const Head: FC<PropsWithChildren<Props>> = ({
         rel='canonical'
         href='https://gig.io'
       />
-      <meta name="author" content="GIG Development" />
-      <meta name="application-name" content="GIG Marketplace" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://gig.io" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="facebook-domain-verification" content="9uxfyoohs9a0jzcc8azppw7cm7ha5w" />
 
+      {/* FACEBOOK META TAGS */}
+      <meta
+        name="facebook-domain-verification"
+        content="9uxfyoohs9a0jzcc8azppw7cm7ha5w"
+      />
+      <meta
+        property="og:type"
+        content="website"
+      />
+      <meta
+        property="og:title"
+        content={title}
+      />
+      <meta
+        property="og:description"
+        content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."}
+      />
+      <meta
+        property="og:image"
+        content={image || `${environment.BASE_URL}/social_og-image.jpg`}
+      />
+
+      {/* TWITTER META TAGS */}
+      <meta 
+        name="twitter:domain"
+        content="https://gig.io"
+      />
+      <meta 
+        name="twitter:title"
+        content={title}
+      />
+      <meta
+        name="twitter:description" 
+        content={description ? description : "Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."} 
+      />
+      <meta
+        name="twitter:image"
+        content={image || `${environment.BASE_URL}/social_twitter-card.jpg`}
+      />
+      <meta
+        name="twitter:card"
+        content="summary_large_image"
+      />
+
+      {/* CUSTOM IMPORTS AND TAGS */}
       {children}
 
     </NextHead>
