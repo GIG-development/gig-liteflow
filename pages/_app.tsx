@@ -205,16 +205,6 @@ function MyApp({
 
   return (
     <ErrorBoundary>
-      <Head
-        title=""
-        description="Únete al Marketplace no. 1 de latinoamérica para crear NFTs de manera fácil y segura."
-      >
-        <meta name="author" content="GIG Development" />
-        <meta name="application-name" content="GIG Marketplace" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gig.io" />
-        <meta name="twitter:card" content="summary" />
-      </Head>
       <GoogleAnalytics strategy="lazyOnload" gaMeasurementId="G-NEH9GJ43B0"/>
       <Web3ReactProvider getLibrary={web3Provider}>
         <CookiesProvider>

@@ -1,4 +1,20 @@
 {
+  "categories": {
+    "Category": "Category",
+    "Art": "Art",
+    "Arquitecture": "Arquitecture",
+    "Design": "Design",
+    "Digital Art": "Digital Art",
+    "Animation": "Animation",
+    "Illustration": "Illustration",
+    "Generative": "Generative",
+    "Photography": "Photography",
+    "Multimedia": "Multimedia",
+    "Access": "Access",
+    "Gaming": "Gaming",
+    "Fashion": "Fashion",
+    "Art Toys": "Art Toys"
+  },
   "account": {
     "title": "Account",
     "tabs": {

@@ -45,6 +45,7 @@ import useOrderById from '../hooks/useOrderById'
 import useSigner from '../hooks/useSigner'
 import LargeLayout from '../layouts/large'
 import FullLayout from '../layouts/full'
+import Head from '../components/Head'
 import Artist from 'components/Artist/Artist';
 //import Drop from '../components/Drop/Drop'
 import Hero from '../components/Hero/Hero'
@@ -183,6 +184,9 @@ const HomePage: NextPage<Props> = ({
   )
   return (
     <main id="home">
+      <Head
+          title="GIG"
+      />
       <Hero 
         bg={'/img/home/main_hero_bg.jpg'}
         ctaLine_1={t('home.mainHero.ctaLine1')}

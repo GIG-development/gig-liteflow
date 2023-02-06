@@ -294,7 +294,7 @@ const DetailPage: NextPage<Props> = ({
         <Head
           title={meta.title}
           description={meta.description}
-          image={meta.image}
+          image={`${meta.image}?filename=token-metadata.jpg`}
         />
         <SimpleGrid spacing={6} columns={{ md: 2 }}>
           <AspectRatio ratio={1}>

@@ -239,7 +239,7 @@ const OfferPage: NextPage<Props> = ({ currentAccount, now, assetId, meta }) => {
         <Head
           title={meta.title}
           description={meta.description}
-          image={meta.image}
+          image={`${meta.image}?filename=token-metadata.jpg`}
         />
 
         <BackButton onClick={back} />

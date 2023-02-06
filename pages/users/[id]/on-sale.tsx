@@ -163,7 +163,7 @@ const OnSalePage: NextPage<Props> = ({
         <Head
           title={meta.title}
           description={meta.description}
-          image={meta.image}
+          image={`${meta.image}?filename=artist-metadata.jpg`}
         />
 
         <UserProfileTemplate

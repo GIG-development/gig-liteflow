@@ -1,5 +1,7 @@
 {
   "categories": {
+    "Category": "Categoría",
+    "Art": "Arte",
     "Arquitecture": "Arquitectura",
     "Design": "Diseño",
     "Digital Art": "Arte Digital",

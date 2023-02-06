@@ -149,7 +149,7 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
         <Head
           title={meta.title}
           description={meta.description}
-          image={meta.image}
+          image={`${meta.image}?filename=token-metadata.jpg`}
         />
         <BackButton onClick={back} />
         <Heading as="h1" variant="title" color="brand.black" my={12}>
