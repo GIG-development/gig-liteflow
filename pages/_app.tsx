@@ -27,7 +27,6 @@ import React, {
 } from 'react'
 import { CookiesProvider, useCookies } from 'react-cookie'
 import Footer from '../components/Footer/Footer'
-import Head from '../components/Head'
 import Navbar from '../components/Navbar/Navbar'
 import connectors from '../connectors'
 import environment from '../environment'
