@@ -13,9 +13,9 @@ const SaleOpenSummary: VFC<Props> = ({ currencies }) => {
   const { t } = useTranslation('components')
   return (
     <Stack spacing={3}>
-      <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}}>
+      {/* <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}}>
         {t('sales.open.summary.open')}
-      </Heading>
+      </Heading> */}
       <Flex _first={{ ml: 0 }}>
         {currencies.map((currency, i) => (
           <Flex
@@ -39,8 +39,8 @@ const SaleOpenSummary: VFC<Props> = ({ currencies }) => {
             />
           </Flex>
         ))}
-        <Heading as="h2" variant="subtitle" color="brand.black" ml={2} textAlign={{base: 'center', md: 'left'}}>
-          {t('sales.open.summary.offer')}
+        <Heading as="h2" variant="subtitle" color="brand.black" ml={2} textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
+          {t('sales.open.summary.open')}
         </Heading>
       </Flex>
     </Stack>

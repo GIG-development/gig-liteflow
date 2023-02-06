@@ -85,7 +85,7 @@ const SaleAuctionInProgress: VFC<Props> = ({ auction, bestBid }) => {
       </Flex>
 
       <Flex direction="column" gap={3}>
-        <Heading as="h5" variant="heading3" color="gray.500">
+        <Heading as="h5" variant="heading3" color="gray.500" fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
           {t('sales.auction.in-progress.ending')}
         </Heading>
         <Flex align="center" gap={3}>

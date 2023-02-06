@@ -27,6 +27,7 @@ export type Props = {
   }[]
   saleSupply: BigNumber
   totalSupply: BigNumber | null | undefined
+  hideOwner?: boolean
 }
 
 const TokenMetadata: VFC<Props> = ({
@@ -35,6 +36,7 @@ const TokenMetadata: VFC<Props> = ({
   owners,
   saleSupply,
   totalSupply,
+  hideOwner
 }) => {
   const { t } = useTranslation('components')
   return (
@@ -57,7 +59,7 @@ const TokenMetadata: VFC<Props> = ({
           />
         </Stack>
       )}
-      {owners.length === 1 && owners[0] && (
+      {!hideOwner && owners.length === 1 && owners[0] && (
         <Stack spacing={3}>
           <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owner')}
@@ -70,7 +72,7 @@ const TokenMetadata: VFC<Props> = ({
           />
         </Stack>
       )}
-      {owners.length > 1 && (
+      {!hideOwner && owners.length > 1 && (
         <Stack spacing={3}>
           <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owners')}

@@ -38,7 +38,9 @@ const SaleDirectButton: VFC<Props> = ({
         href={`/tokens/${assetId}/bid`}
         variant="outline"
         colorScheme="gray"
-        size="lg"
+        size="full"
+        p={3}
+        fontSize={{base: 'xs', md: 'sm'}}
         isFullWidth
       >
         <Text as="span" isTruncated>
@@ -81,6 +83,8 @@ const SaleDirectButton: VFC<Props> = ({
         href={`/tokens/${assetId}`}
         variant="outline"
         colorScheme="gray"
+        size="full"
+        className='btn'
         bgColor="white"
         isFullWidth
         rightIcon={<HiArrowNarrowRight />}

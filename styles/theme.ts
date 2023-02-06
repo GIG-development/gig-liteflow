@@ -15,7 +15,7 @@ export const theme = extendTheme({
       },
       variants: {
         'outline': {
-          border: 'none',
+          border: '1px solid gray.200',
           boxShadow: 'none'
         },
         'icon': {

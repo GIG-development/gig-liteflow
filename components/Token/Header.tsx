@@ -66,7 +66,7 @@ const TokenHeader: VFC<Props> = ({
   )
 
   return (
-    <SimpleGrid spacing={4} flex="0 0 100%" templateColumns={{ base: '1fr', md: '2fr 3fr' }} alignItems={'center'} pr={{base: 0, lg: 6}} className="slider__slide-lg">
+    <SimpleGrid spacing={4} flex="0 0 100%" templateColumns={{ base: '1fr', md: '2fr 3fr' }} alignItems={{base: 'baseline', md: 'center'}} pr={{base: 0, lg: 6}} className="slider__slide-lg">
       <Box my="auto" p={{ base: 6, md: 12 }} textAlign="center">
         <Flex
           as={Link}
@@ -94,7 +94,11 @@ const TokenHeader: VFC<Props> = ({
       </Box>
       <Stack spacing={8} p={{ base: 6, md: 12 }}>
         <Heading as="h1" variant="title" color="brand.black" textAlign={{base: 'center', md: 'left'}} wordBreak='break-word'>
-          {asset.name}
+          <Link 
+          href={`/tokens/${asset.id}`}
+          >
+            {asset.name}
+          </Link>
         </Heading>
         <TokenAsset
           creator={creator}
@@ -102,6 +106,7 @@ const TokenHeader: VFC<Props> = ({
           saleSupply={asset.saleSupply}
           standard={asset.collection.standard}
           totalSupply={asset.totalSupply}
+          hideOwner
         />
         <SaleDetail
           blockExplorer={blockExplorer}

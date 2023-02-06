@@ -79,7 +79,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                     </Text>
 
                     <Flex alignContent='space-between' direction='column' mt={2}>
-                        <Box mt={2} h={'72px'}>
+                        <Box mt={2} h={'50px'}>
                             {tags.map((tag)=>{
                                 return (
                                     <Box
@@ -93,7 +93,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                                         color="brand.black"
                                         mr={2}
                                         mb={2}>
-                                        <Text fontSize={'10'} fontWeight="medium">
+                                        <Text fontSize={'9'} fontWeight="medium">
                                             {tag}
                                         </Text>
                                     </Box>
