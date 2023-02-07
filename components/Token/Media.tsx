@@ -28,15 +28,28 @@ const TokenMedia: VFC<
     else image = unlockedContent.url
   }
 
+  const canPlay = () => {
+    const video = document.createElement('video')
+    const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"')
+    const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"')
+
+    if(!canPlayMp4avc1 || !canPlayMp4v208){
+      return false
+    }
+    return true
+  }
+
   const [imageError, setImageError] = useState(false)
+  const [canPlayCodecs, setCanPlayCodecs] = useState(false)
   // reset when image change. Needed when component is recycled
   useEffect(() => {
+    setCanPlayCodecs(canPlay())
     setImageError(false)
-  }, [image])
+  }, [image, canPlay, setCanPlayCodecs])
 
   if (animationUrl) {
     const { objectFit, src, ...videoProps } = props as ImageProps
-    return (
+    return (<>
       <video
         autoPlay
         playsInline
@@ -51,6 +64,10 @@ const TokenMedia: VFC<
           An issue occurred
         </Text>
       </video>
+      <Text color="gray.200"  fontSize='8'>
+        (Codec is playable: {canPlayCodecs})
+      </Text>
+    </>
     )
   }
   if (image) {
@@ -80,7 +97,7 @@ const TokenMedia: VFC<
         >
           <source src={image} type="video/mp4"/>
           <Text color="gray.500" fontWeight="600">
-            An issue occurred
+          An issue occurred (Codec is playable: {canPlayCodecs})
           </Text>
         </video>
       )
