@@ -92,7 +92,10 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                                         py={1}
                                         color="brand.black"
                                         mr={2}
-                                        mb={2}>
+                                        mb={2}
+                                        _last={{
+                                            mr: 1
+                                        }}>
                                         <Text fontSize={'9'} fontWeight="medium">
                                             {tag}
                                         </Text>

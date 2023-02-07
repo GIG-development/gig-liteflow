@@ -44,6 +44,7 @@ const TokenMedia: VFC<
         muted
         loop
         controls={controls}
+        poster={image ?? ''}
         {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
       />
     )
@@ -71,6 +72,7 @@ const TokenMedia: VFC<
           muted
           loop
           controls={controls}
+          poster='/social_og-image.jpg'
           {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
         />
       )

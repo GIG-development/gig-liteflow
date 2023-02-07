@@ -66,7 +66,7 @@ const TokenHeader: VFC<Props> = ({
   )
 
   return (
-    <SimpleGrid spacing={4} flex="0 0 100%" templateColumns={{ base: '1fr', md: '2fr 3fr' }} alignItems={{base: 'baseline', md: 'center'}} pr={{base: 0, lg: 6}} className="slider__slide-lg">
+    <SimpleGrid spacing={4} flex="0 0 100%" templateColumns={{ base: '1fr', md: '1fr 1fr' }} alignItems={{base: 'baseline', md: 'center'}} pr={{base: 0, lg: 6}} className="slider__slide-lg">
       <Box my="auto" p={{ base: 6, md: 12 }} textAlign="center">
         <Flex
           as={Link}

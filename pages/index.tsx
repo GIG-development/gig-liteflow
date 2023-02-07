@@ -257,7 +257,7 @@ const HomePage: NextPage<Props> = ({
               description='Es un artista visual influenciado por el misticismo presente en el arte urbano contemporáneo y en un fanatismo por los elementos gráficos del movimiento skateboarding de los 90s.'
               tags={['arte digital','ilustración','animación']}
               image='/img/artistas/redsannto.jpg'
-              link={'/0xd0494070339e9f26860698b373e5aa639ff3e3e9'}
+              link={'/0xdefcbcb7dc1d99dc98fbe215872d86e57848fc1c'}
             />
             <Artist 
               name='Camote Toys'

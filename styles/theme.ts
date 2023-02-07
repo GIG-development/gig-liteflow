@@ -248,16 +248,16 @@ export const theme = extendTheme({
         bg: props.colorMode === 'dark' ? 'white' : 'white'
       },
       h1: {
-        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+        color: props.colorMode === 'dark' ? 'brand.400' : 'brand.black'
       },
       h2: {
-        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+        color: props.colorMode === 'dark' ? 'brand.400' : 'brand.black'
       },
       h3: {
-        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+        color: props.colorMode === 'dark' ? 'brand.400' : 'brand.black'
       },
       h4: {
-        color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black'
+        color: props.colorMode === 'dark' ? 'brand.400' : 'brand.black'
       }
     })
   }

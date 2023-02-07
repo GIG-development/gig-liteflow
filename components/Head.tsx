@@ -16,7 +16,6 @@ const Head: FC<PropsWithChildren<Props>> = ({
   image,
   children,
 }) => {
-  console.log(image)
   return (
     <NextHead>
       {/* BASIC META TAGS */}
