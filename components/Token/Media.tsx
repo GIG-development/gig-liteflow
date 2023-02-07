@@ -32,15 +32,17 @@ const TokenMedia: VFC<
   const [canPlayCodecs, setCanPlayCodecs] = useState(false)
   const canPlay = useCallback(() => {
     const video = document.createElement('video')
-    const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"')
-    const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"')
+    const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"') !== '' ? true : false
+    const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"') !== '' ? true : false
+    console.log(canPlayMp4v208, canPlayMp4avc1)
 
     if(!canPlayMp4avc1 || !canPlayMp4v208){
       setCanPlayCodecs(false)
+      return
     }
     setCanPlayCodecs(true)
   }, [])
-  useEffect(canPlay,[canPlay])
+  useEffect(canPlay,[canPlay, canPlayCodecs])
 
   const [imageError, setImageError] = useState(false)
   // reset when image change. Needed when component is recycled
@@ -66,7 +68,7 @@ const TokenMedia: VFC<
         </Text>
       </video>
       <Text color="gray.200"  fontSize='8'>
-        (Codec is playable: {canPlayCodecs})
+        (Codec is playable: {canPlayCodecs ? 'true' : 'false'})
       </Text>
     </>
     )
@@ -98,7 +100,7 @@ const TokenMedia: VFC<
         >
           <source src={image} type="video/mp4"/>
           <Text color="gray.500" fontWeight="600">
-          An issue occurred (Codec is playable: {canPlayCodecs})
+          An issue occurred (Codec is playable: {canPlayCodecs.toString()})
           </Text>
         </video>
       )
