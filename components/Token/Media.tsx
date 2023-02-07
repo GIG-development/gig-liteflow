@@ -34,18 +34,18 @@ const TokenMedia: VFC<
     const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"')
 
     if(!canPlayMp4avc1 || !canPlayMp4v208){
-      return false
+      setCanPlayCodecs(false)
     }
-    return true
+    setCanPlayCodecs(true)
   }
 
   const [imageError, setImageError] = useState(false)
   const [canPlayCodecs, setCanPlayCodecs] = useState(false)
   // reset when image change. Needed when component is recycled
   useEffect(() => {
-    setCanPlayCodecs(canPlay())
+    canPlay()
     setImageError(false)
-  }, [image, canPlay, setCanPlayCodecs])
+  }, [image, canPlay])
 
   if (animationUrl) {
     const { objectFit, src, ...videoProps } = props as ImageProps
