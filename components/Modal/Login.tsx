@@ -18,6 +18,7 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo, useState } from 'react'
 import WalletCoinbase from '../Wallet/Connectors/Coinbase'
 import WalletEmail from '../Wallet/Connectors/Email'
@@ -46,6 +47,7 @@ const LoginModal: FC<Props> = ({
 }) => {
   const { t } = useTranslation('components')
   const { account, error, activate } = useWeb3React()
+  const { replace } = useRouter()
   const [errorFromLogin, setErrorFromLogin] = useState<Error>()
 
   const invalidNetwork = useMemo(
@@ -67,10 +69,12 @@ const LoginModal: FC<Props> = ({
       onClose()
     }
     if (error) {
+      console.warn(error)
       event("LoginError", {
         category: "Login",
         label: String(error)
       })
+      return void replace('https://metamask.app.link/dapp/gig.io')
     }
   }, [account, onClose, error])
 

@@ -17,6 +17,7 @@ import environment from '../environment'
 import useEagerConnect from '../hooks/useEagerConnect'
 import useSigner from '../hooks/useSigner'
 import SmallLayout from '../layouts/small'
+import {event} from 'nextjs-google-analytics'
 
 const LoginPage: NextPage = () => {
   useEagerConnect()
@@ -42,6 +43,10 @@ const LoginPage: NextPage = () => {
     ) => {
       try {
         await activate(connector, onError, throwErrors)
+        event("LoginSuccess", {
+          category: "Login",
+          label: account ? account : ''
+        })
         if (!referral) return
         await accept(referral)
         toast({
@@ -50,6 +55,10 @@ const LoginPage: NextPage = () => {
         })
       } catch (error) {
         console.warn(error)
+        event("LoginError", {
+          category: "Login",
+          label: String(error)
+        })
         if(referral){
           toast({
             title: t('login.errors.invitation'),
