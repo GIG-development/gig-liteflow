@@ -76,7 +76,7 @@ const LoginModal: FC<Props> = ({
       })
       return void replace('https://metamask.app.link/dapp/gig.io')
     }
-  }, [account, onClose, error])
+  }, [account, onClose, error, replace])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
