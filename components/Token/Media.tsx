@@ -40,7 +40,7 @@ const TokenMedia: VFC<
     }
     setCanPlayCodecs(true)
   }, [])
-  useEffect(canPlay,[])
+  useEffect(canPlay,[canPlay])
 
   const [imageError, setImageError] = useState(false)
   // reset when image change. Needed when component is recycled
