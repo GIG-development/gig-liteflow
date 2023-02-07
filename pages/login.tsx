@@ -56,10 +56,10 @@ const LoginPage: NextPage = () => {
             status: 'warning',
           })
         }else{
-          toast({
-            title: t('login.errors.general'),
-            status: 'warning',
-          })
+          // toast({
+          //   title: t('login.errors.general'),
+          //   status: 'warning',
+          // })
           return void replace('https://metamask.app.link/dapp/gig.io')
         }
       }
