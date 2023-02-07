@@ -1,7 +1,7 @@
 import { Box, Center, Icon, Stack, Text } from '@chakra-ui/react'
 import { FaImage } from '@react-icons/all-files/fa/FaImage'
 import Image, { ImageProps } from 'next/image'
-import { useEffect, useState, VFC, VideoHTMLAttributes } from 'react'
+import { useEffect, useState, useCallback, VFC, VideoHTMLAttributes } from 'react'
 
 const TokenMedia: VFC<
   (Omit<VideoHTMLAttributes<any>, 'src'> | Omit<ImageProps, 'src'>) & {
@@ -28,7 +28,9 @@ const TokenMedia: VFC<
     else image = unlockedContent.url
   }
 
-  const canPlay = () => {
+
+  const [canPlayCodecs, setCanPlayCodecs] = useState(false)
+  const canPlay = useCallback(() => {
     const video = document.createElement('video')
     const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"')
     const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"')
@@ -37,13 +39,12 @@ const TokenMedia: VFC<
       setCanPlayCodecs(false)
     }
     setCanPlayCodecs(true)
-  }
+  }, [])
+  useEffect(canPlay,[])
 
   const [imageError, setImageError] = useState(false)
-  const [canPlayCodecs, setCanPlayCodecs] = useState(false)
   // reset when image change. Needed when component is recycled
   useEffect(() => {
-    canPlay()
     setImageError(false)
   }, [image, canPlay])
 

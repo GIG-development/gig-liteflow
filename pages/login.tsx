@@ -73,7 +73,7 @@ const LoginPage: NextPage = () => {
         }
       }
     },
-    [accept, referral, t, toast, activate, replace],
+    [accept, referral, t, toast, activate, replace, account],
   )
 
   const redirect = useCallback(() => {
