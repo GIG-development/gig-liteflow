@@ -29,18 +29,15 @@ const TokenMedia: VFC<
   }
 
 
-  const [canPlayCodecs, setCanPlayCodecs] = useState(false)
+  const [canPlayCodecs, setCanPlayCodecs] = useState('checking')
   const canPlay = useCallback(() => {
     const video = document.createElement('video')
     const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"') !== '' ? true : false
     const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"') !== '' ? true : false
     console.log(canPlayMp4v208, canPlayMp4avc1)
 
-    if(!canPlayMp4avc1 || !canPlayMp4v208){
-      setCanPlayCodecs(false)
-      return
-    }
-    setCanPlayCodecs(true)
+    setCanPlayCodecs(`Mp4v208: ${canPlayMp4v208}', Mp4avc1: '${canPlayMp4avc1}`)
+    return
   }, [])
   useEffect(canPlay,[canPlay, canPlayCodecs])
 
@@ -68,7 +65,7 @@ const TokenMedia: VFC<
         </Text>
       </video>
       <Text color="gray.200"  fontSize='8'>
-        (Codec is playable: {canPlayCodecs ? 'true' : 'false'})
+        (Codec is playable: {canPlayCodecs})
       </Text>
     </>
     )
@@ -88,7 +85,7 @@ const TokenMedia: VFC<
       )
     if (image.search('.mp4') > -1){
       const { objectFit, src, ...videoProps } = props as ImageProps
-      return (
+      return (<>
         <video
           autoPlay
           playsInline
@@ -100,9 +97,13 @@ const TokenMedia: VFC<
         >
           <source src={image} type="video/mp4"/>
           <Text color="gray.500" fontWeight="600">
-          An issue occurred (Codec is playable: {canPlayCodecs.toString()})
+          An issue occurred
           </Text>
         </video>
+        <Text color="gray.200"  fontSize='8'>
+          (Codec is playable: {canPlayCodecs})
+        </Text>
+        </>
       )
     }
     const customTag = { Image: Image as any }
