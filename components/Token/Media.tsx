@@ -38,7 +38,6 @@ const TokenMedia: VFC<
     const { objectFit, src, ...videoProps } = props as ImageProps
     return (
       <video
-        src={animationUrl}
         autoPlay
         playsInline
         muted
@@ -46,7 +45,12 @@ const TokenMedia: VFC<
         controls={controls}
         poster={image ?? ''}
         {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
-      />
+      >
+        <source src={animationUrl} type="video/mp4"/>
+        <Text color="gray.500" fontWeight="600">
+          An issue occurred
+        </Text>
+      </video>
     )
   }
   if (image) {
@@ -66,7 +70,6 @@ const TokenMedia: VFC<
       const { objectFit, src, ...videoProps } = props as ImageProps
       return (
         <video
-          src={image}
           autoPlay
           playsInline
           muted
@@ -74,7 +77,12 @@ const TokenMedia: VFC<
           controls={controls}
           poster='/social_og-image.jpg'
           {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
-        />
+        >
+          <source src={image} type="video/mp4"/>
+          <Text color="gray.500" fontWeight="600">
+            An issue occurred
+          </Text>
+        </video>
       )
     }
     const customTag = { Image: Image as any }
