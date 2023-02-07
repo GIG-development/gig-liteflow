@@ -609,6 +609,7 @@
       "invitation": "Tu invitación ha sido asociada a tu cuenta."
     },
     "errors": {
+      "general": "Ocurrió un error. Asegúrate de tener una Wallet disponible en tu dispositivo. Si el error persiste, intenta utilizar el navegador de la app de Metamask o la opción de WalletConnect .",
       "wrong-network": "Estás en la red incorrecta. Por favor, conéctate a la red {{networkName}}.",
       "invitation": "Tu invitación no pudo ser asociada a ésta cuenta. Asegúrate que la cuenta no haya sido asociada a otro código de invitación previamente."
     }

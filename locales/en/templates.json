@@ -595,6 +595,7 @@
       "invitation": "Your invitation has been linked to your account."
     },
     "errors": {
+      "general": "An error happened. Be sure you have a wallet available in your device. If the error persists, try using Metamasks' app browser or our WalletConnect option.",
       "wrong-network": "You are connected to the wrong network. Please switch to the {{networkName}} network.",
       "invitation": "Your invitation could not be linked to this account. Make sure this is an account that hasn't been linked to an other invitation code."
     }

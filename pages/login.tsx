@@ -50,10 +50,18 @@ const LoginPage: NextPage = () => {
         })
       } catch (error) {
         console.warn(error)
-        toast({
-          title: t('login.errors.invitation'),
-          status: 'warning',
-        })
+        if(referral){
+          toast({
+            title: t('login.errors.invitation'),
+            status: 'warning',
+          })
+        }else{
+          toast({
+            title: t('login.errors.general'),
+            status: 'warning',
+          })
+          return void replace('https://metamask.app.link/dapp/gig.io')
+        }
       }
     },
     [accept, referral, t, toast, activate],
