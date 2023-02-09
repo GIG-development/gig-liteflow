@@ -1,7 +1,11 @@
+import {
+  Flex
+} from '@chakra-ui/react'
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { formatUnits } from '@ethersproject/units'
 import numbro from 'numbro'
 import { FC, HTMLAttributes, useMemo } from 'react'
+import FiatPriceConversion from 'components/FiatPrice/FiatPrice'
 
 const Price: FC<
   HTMLAttributes<any> & {
@@ -11,8 +15,10 @@ const Price: FC<
       symbol: string
     }
     averageFrom?: number
+    priceConversion?: string | undefined
   }
-> = ({ amount, currency, averageFrom, ...props }) => {
+> = ({ amount, currency, averageFrom, priceConversion, ...props }) => {
+
   const amountFormatted = useMemo(() => {
     if (!currency) return ''
 
@@ -33,10 +39,17 @@ const Price: FC<
   }, [amount, currency, averageFrom])
   if (!currency) return null
 
+  
   return (
-    <span {...props}>
-      {amountFormatted} {currency.symbol}
-    </span>
+    <Flex flexDirection={{base: 'column', md: 'row'}} justify='center' align='center'>
+      <span {...props}>
+        {amountFormatted} {currency.symbol}
+      </span>
+      {priceConversion && 
+        <FiatPriceConversion amount={priceConversion} />
+      }
+      
+    </Flex>
   )
 }
 

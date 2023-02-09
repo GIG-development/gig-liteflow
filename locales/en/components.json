@@ -856,5 +856,8 @@
   },
   "filterAccordion": {
     "title": "Filters"
+  },
+  "fiatConversion": {
+    "convert": "~"
   }
 }

@@ -45,6 +45,7 @@ export type Props = {
       symbol: string
     }
   }[]
+  priceConversion: string | undefined
   onOfferCanceled: (id: string) => Promise<void>
 }
 
@@ -55,6 +56,7 @@ const SaleDirectInfo: VFC<Props> = ({
   isOwner,
   isHomepage,
   sales,
+  priceConversion,
   signer,
   currentAccount,
   onOfferCanceled,
@@ -131,6 +133,7 @@ const SaleDirectInfo: VFC<Props> = ({
                 textAlign={{base: 'center', md: 'left'}}
                 amount={currentAccountFirstSale.unitPrice}
                 currency={currentAccountFirstSale.currency}
+                priceConversion={priceConversion}
               />
             )}
           </Heading>

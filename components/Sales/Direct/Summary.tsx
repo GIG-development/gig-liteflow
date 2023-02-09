@@ -19,9 +19,10 @@ type Props = {
     }
     expiredAt: Date | null | undefined
   }[]
+  priceConversion?: string | undefined
 }
 
-const SaleDirectSummary: VFC<Props> = ({ sales, isSingle }) => {
+const SaleDirectSummary: VFC<Props> = ({ sales, isSingle, priceConversion }) => {
   const { t } = useTranslation('components')
   const salesWithUniqueCurrency = useMemo(() => {
     return sales.reduce(
@@ -92,12 +93,12 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle }) => {
       case 1:
         if (!sales[0]) return
         return (
-          <Price amount={sales[0].unitPrice} currency={sales[0].currency} />
+          <Price amount={sales[0].unitPrice} currency={sales[0].currency} priceConversion={priceConversion}/>
         )
       default:
         if (!sales[0]) return
         return salesWithUniqueCurrency.length === 1 ? (
-          <Price amount={sales[0].unitPrice} currency={sales[0].currency} />
+          <Price amount={sales[0].unitPrice} currency={sales[0].currency} priceConversion={priceConversion}/>
         ) : (
           t('sales.direct.summary.offer', { count: sales.length })
         )
@@ -138,7 +139,7 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle }) => {
           <Heading as="h2" variant="subtitle" color="brand.black">
             {subtitle}
             {caption && (
-              <Heading as="span" variant="heading3" color="gray.500" ml={3}>
+              <Heading as="span" variant="heading3" fontSize={'14px'} color="gray.500" display='block' mt={-1}>
                 {caption}
               </Heading>
             )}

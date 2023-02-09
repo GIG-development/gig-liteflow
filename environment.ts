@@ -30,7 +30,11 @@ type Environment = {
     chainId: number
     address: string
   }[]
+  COINMARKETCAP_API_KEY: string
 }
+
+// coinmarketcap api key 
+invariant(process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY, 'Missing CoinMarketCap API key')
 
 // magic api key
 invariant(process.env.NEXT_PUBLIC_MAGIC_API_KEY, 'Missing magic API key')
@@ -132,6 +136,7 @@ const environment: Environment = {
   MAX_ROYALTIES: 30,
   ALLOW_TOP_UP: false,
   MINTABLE_COLLECTIONS,
+  COINMARKETCAP_API_KEY: process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY
 }
 
 export default environment

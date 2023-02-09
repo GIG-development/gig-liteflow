@@ -13,6 +13,7 @@ type Props = {
     decimals: number
     symbol: string
   }
+  priceConversion?: string | undefined
   hasMultiCurrency: boolean
 }
 
@@ -22,6 +23,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
   unitPrice,
   currency,
   hasMultiCurrency,
+  priceConversion
 }) => {
   const { t } = useTranslation('components')
   const chip = useMemo(() => {
@@ -50,6 +52,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
                   amount={unitPrice}
                   currency={currency}
                   averageFrom={100000}
+                  priceConversion={priceConversion}
                 />
               </Text>
             </TagLabel>
@@ -96,6 +99,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
                   amount={unitPrice}
                   currency={currency}
                   averageFrom={100000}
+                  priceConversion={priceConversion}
                 />
               </Text>
             </TagLabel>

@@ -31,6 +31,7 @@ import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
+import { ethers } from 'ethers'
 import invariant from 'ts-invariant'
 import { QRCodeCanvas } from "qrcode.react";
 import BidList from '../../../components/Bid/BidList'
@@ -69,6 +70,7 @@ type Props = {
   assetId: string
   now: string
   currentAccount: string | null
+  priceConversion?: string | undefined
   meta: {
     title: string
     description: string
@@ -122,11 +124,34 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     })
     if (error) throw error
     if (!data.asset) return { notFound: true }
+
+    const salePrice = data?.asset?.sales?.nodes[0]?.unitPrice
+    const auctionPrice = data?.asset?.auctions?.nodes[0]?.reserveAmount
+    if(salePrice || auctionPrice){
+      const conversionAmount = salePrice ? ethers.utils.formatEther(salePrice) : auctionPrice ? ethers.utils.formatEther(auctionPrice) : ''
+      const apiUrl = `https://pro-api.coinmarketcap.com/v2/tools/price-conversion?CMC_PRO_API_KEY=${environment.COINMARKETCAP_API_KEY}&amount=${conversionAmount}&symbol=ETH`
+      const res = await fetch(apiUrl)
+      const convertedAmount = await res.json()
+      return {
+        props: {
+          now: now.toJSON(),
+          assetId,
+          currentAccount: ctx.user.address,
+          priceConversion: convertedAmount?.data[0]?.quote?.USD.price,
+          meta: {
+            title: data.asset.name,
+            description: data.asset.description,
+            image: data.asset.image,
+          },
+        },
+      }
+    }
     return {
       props: {
         now: now.toJSON(),
         assetId,
         currentAccount: ctx.user.address,
+        priceConversion: '',
         meta: {
           title: data.asset.name,
           description: data.asset.description,
@@ -140,6 +165,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
 const DetailPage: NextPage<Props> = ({
   currentAccount,
   assetId,
+  priceConversion,
   now: nowProp,
   meta,
 }) => {
@@ -162,7 +188,6 @@ const DetailPage: NextPage<Props> = ({
       address: (ready ? account?.toLowerCase() : currentAccount) || '',
     },
   })
-
   const asset = useMemo(() => data?.asset, [data])
   const currencies = useMemo(() => data?.currencies?.nodes || [], [data])
 
@@ -442,6 +467,7 @@ const DetailPage: NextPage<Props> = ({
               ownAllSupply={ownAllSupply}
               onOfferCanceled={refresh}
               onAuctionAccepted={refresh}
+              priceConversion={priceConversion}
             />
           </Flex>
 

@@ -44,6 +44,7 @@ export type Props = {
       })
     | undefined
 
+  priceConversion?: string | undefined
   isHomepage: boolean
 
   // Owner related props
@@ -64,6 +65,7 @@ const SaleDetail: VFC<Props> = ({
   directSales,
   auction,
   bestBid,
+  priceConversion,
   isHomepage,
   signer,
   currentAccount,
@@ -87,7 +89,11 @@ const SaleDetail: VFC<Props> = ({
     <Stack spacing={8} alignItems={{base: 'center', md: 'baseline'}}>
       {directSales && directSales.length > 0 ? (
         <>
-          <SaleDirectSummary sales={directSales} isSingle={isSingle} />
+          <SaleDirectSummary
+            sales={directSales}
+            isSingle={isSingle} 
+            priceConversion={priceConversion}
+          />
           <SaleDirectButton
             assetId={assetId}
             sales={directSales}
@@ -106,6 +112,7 @@ const SaleDetail: VFC<Props> = ({
             isHomepage={isHomepage}
             isOwner={isOwner}
             sales={directSales}
+            priceConversion={priceConversion}
             onOfferCanceled={onOfferCanceled}
           />
         </>
@@ -131,6 +138,7 @@ const SaleDetail: VFC<Props> = ({
           <SaleAuctionInfo
             assetId={assetId}
             auction={auction}
+            priceConversion={priceConversion}
             signer={signer}
             isOwner={isOwner}
             isHomepage={isHomepage}

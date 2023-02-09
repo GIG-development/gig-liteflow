@@ -30,6 +30,7 @@ export type Props = {
       symbol: string
     }
   }
+  priceConversion?: string | undefined
   signer: Signer | undefined
   isOwner: boolean
   isHomepage: boolean
@@ -45,6 +46,7 @@ const SaleAuctionInfo: VFC<Props> = ({
   signer,
   assetId,
   auction,
+  priceConversion,
   isOwner,
   isHomepage,
   inProgress,
@@ -93,6 +95,7 @@ const SaleAuctionInfo: VFC<Props> = ({
               fontWeight="semibold"
               amount={auction.reserveAmount}
               currency={auction.currency}
+              priceConversion={priceConversion}
             />
           </>
         ),
