@@ -108,12 +108,12 @@ const Footer: FC<PropsWithChildren<Props>> = ({
               <ListHeader>{t('footer.listTitle3')}</ListHeader>
             
               <Stack direction={'column'} spacing={6} align={'flex-start'}>
-                <Box>
+                {/* <Box>
                   <SocialButton label={'Twitter'} href={'https://twitter.com/holagig'}>
                     <FaTwitter /> 
                   </SocialButton>
                   <Link ml={2} href={'https://twitter.com/holagig'}>Twitter</Link>
-                </Box>
+                </Box> */}
                 <Box>
                   <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'}>
                     <FaYoutube /> 
