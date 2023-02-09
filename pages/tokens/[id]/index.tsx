@@ -70,7 +70,7 @@ type Props = {
   assetId: string
   now: string
   currentAccount: string | null
-  priceConversion?: string | undefined
+  priceConversion?: any
   meta: {
     title: string
     description: string
@@ -125,19 +125,24 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     if (error) throw error
     if (!data.asset) return { notFound: true }
 
-    const salePrice = data?.asset?.sales?.nodes[0]?.unitPrice
-    const auctionPrice = data?.asset?.auctions?.nodes[0]?.reserveAmount
-    if(salePrice || auctionPrice){
-      const conversionAmount = salePrice ? ethers.utils.formatEther(salePrice) : auctionPrice ? ethers.utils.formatEther(auctionPrice) : ''
+    const salePrice: (string|undefined) = data?.asset?.sales?.nodes[0]?.unitPrice
+    const auctionPrice: (string|undefined) = data?.asset?.auctions?.nodes[0]?.reserveAmount
+    if((salePrice && salePrice!=='') || (auctionPrice && auctionPrice!=='')){
+      const conversionAmount = (salePrice && salePrice!=='')
+                               ? ethers.utils.formatEther(salePrice)
+                               : (auctionPrice && auctionPrice!=='')
+                               ? ethers.utils.formatEther(auctionPrice)
+                               : '0'
       const apiUrl = `https://pro-api.coinmarketcap.com/v2/tools/price-conversion?CMC_PRO_API_KEY=${environment.COINMARKETCAP_API_KEY}&amount=${conversionAmount}&symbol=ETH`
       const res = await fetch(apiUrl)
-      const convertedAmount = await res.json()
+      const conversionQuote = await res.json()
+      //const convertedAmount = conversionQuote ? conversionQuote?.data[0]?.quote?.USD.price : ''
       return {
         props: {
           now: now.toJSON(),
           assetId,
           currentAccount: ctx.user.address,
-          priceConversion: convertedAmount?.data[0]?.quote?.USD.price,
+          priceConversion: conversionQuote,
           meta: {
             title: data.asset.name,
             description: data.asset.description,
@@ -311,6 +316,7 @@ const DetailPage: NextPage<Props> = ({
       onClick={downloadQR}
     />
   )
+  const convertedPrice = priceConversion.data ? priceConversion.data[0]?.quote?.USD.price : undefined
 
   if (!asset) return <></>
   return (
@@ -467,7 +473,7 @@ const DetailPage: NextPage<Props> = ({
               ownAllSupply={ownAllSupply}
               onOfferCanceled={refresh}
               onAuctionAccepted={refresh}
-              priceConversion={priceConversion}
+              priceConversion={convertedPrice}
             />
           </Flex>
 
