@@ -106,7 +106,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
           </Tag>
         )
     }
-  }, [numberOfSales, unitPrice, currency, hasMultiCurrency, t])
+  }, [numberOfSales, unitPrice, currency, hasMultiCurrency, priceConversion, t])
 
   return (
     <div>

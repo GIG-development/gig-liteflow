@@ -164,6 +164,7 @@ const SaleDirectInfo: VFC<Props> = ({
   }, [
     currentAccount,
     sales,
+    priceConversion,
     t,
     activeStep,
     isOpen,

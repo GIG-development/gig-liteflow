@@ -157,6 +157,7 @@ const SaleAuctionInfo: VFC<Props> = ({
     endedWithReserve,
     auction,
     assetId,
+    priceConversion,
     loading,
     acceptAuction,
     t,

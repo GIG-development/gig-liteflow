@@ -103,7 +103,7 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle, priceConversion }) => 
           t('sales.direct.summary.offer', { count: sales.length })
         )
     }
-  }, [sales, salesWithUniqueCurrency, t])
+  }, [sales, priceConversion, salesWithUniqueCurrency, t])
 
   const caption = useMemo(() => {
     switch (sales.length) {
