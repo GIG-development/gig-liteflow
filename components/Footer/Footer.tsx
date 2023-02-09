@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import Link from '../Link/Link'
 import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+//import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import useTranslation from 'next-translate/useTranslation'
