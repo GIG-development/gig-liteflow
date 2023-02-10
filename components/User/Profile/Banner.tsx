@@ -130,7 +130,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
                 )}
               </Flex>
               {description && (
-                  <Box textAlign="justify" color="gray.500" fontSize={'xs'}
+                  <Box textAlign="justify" color="gray.500" fontSize={'xs'} maxH={'100px'} overflow='hidden'
                       dangerouslySetInnerHTML={{__html: description}}>
                   </Box>
               )}
