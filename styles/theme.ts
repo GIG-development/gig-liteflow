@@ -138,36 +138,6 @@ export const theme = extendTheme({
         },
       },
     },
-    Accordion: {
-      baseStyle: {
-        container: {
-          py: 4,
-          _first: {
-            borderTopWidth: '0px',
-            pt: 0,
-          },
-          _last: {
-            borderBottomWidth: '0px',
-            pb: 0,
-          },
-        },
-        button: {
-          px: 0,
-          py: 0,
-          _hover: {
-            bg: 'transparent',
-          },
-          _focus: {
-            boxShadow: 'none',
-          },
-        },
-        panel: {
-          px: 0,
-          pb: 0,
-          pt: 3,
-        },
-      },
-    },
     Link: {
       baseStyle: {
         textDecoration: 'none',
