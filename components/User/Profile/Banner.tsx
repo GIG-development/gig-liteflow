@@ -78,25 +78,73 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
       <Flex
         as="nav"
         flexDirection={{base: 'column', md: 'row'}}
-        alignItems="center"
         gap={6}
         mx={10}
         mt={-20}
       >
-        <Box
-          minW={32}
-          h={32}
-          overflow="hidden"
-          rounded={'full'}
-          bgColor="white"
+        <Flex
+          my={{base: 6, md: 2}}
+          textAlign={'center'}
+          flexDirection={'column'}
+          alignItems='center'
+          gap={2}
         >
-          <AccountImage address={address} image={image} size={128} />
-        </Box>
+          <Box
+            h={32}
+            w={32}
+            overflow="hidden"
+            rounded={'full'}
+            bgColor="white"
+          >
+            <AccountImage address={address} image={image} size={128} />
+          </Box>
+          <Flex
+            gap={6}
+            flexDirection={'row'}
+            justifyContent="center"
+            pt={2}
+            pr={2}
+          >
+            {twitter && (
+              <Link
+                href={`https://twitter.com/${twitter}`}
+                isExternal
+                justifyContent="center"
+              >
+                <Icon as={SiTwitter} />
+              </Link>
+                
+            )}
+            {instagram && (
+              <Link
+                href={`https://instagram.com/${instagram}`}
+                isExternal
+                justifyContent="center"
+              >
+                <Icon as={SiInstagram} />
+              </Link>
+            )}
+            {website && (
+              <Link
+                href={website.includes('http') ? website : `https://${website}`}
+                isExternal
+                justifyContent="center"
+              >
+                <Icon as={HiOutlineGlobeAlt} />
+              </Link>
+            )}
+          </Flex>
+          <Button 
+            colorScheme="gray"
+            fontSize={'sm'}
+          >
+            <WalletAddress address={address} isCopyable isShort />
+          </Button>
+        </Flex>
         <Flex
           w={'full'}
           flexDirection={{base: 'column', md: 'row'}}
           justifyContent='space-between'
-          alignItems={{base: 'center', md: 'baseline'}}
           pt={{base: 0, md: 24}}
         >
           <Box>
@@ -132,62 +180,13 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
                 )}
               </Flex>
               {description && (
-                  <Box textAlign="justify" color="gray.500" fontSize={'xs'} maxH={'100px'} overflow='hidden'
+                  <Box textAlign="justify" color="gray.500" fontSize={'xs'} maxH={'100px'} mb={4} overflowY='auto'
                       dangerouslySetInnerHTML={{__html: description}}>
                   </Box>
               )}
             </Flex>
           </Box>
           <Flex maxW={'260px'} flexDirection={'column'}>
-            <Flex
-              my={{base: 6, md: 2}}
-              textAlign={'center'}
-              flexDirection={{base: 'column', md: 'row'}}
-              gap={2}
-            >
-              <Flex
-                gap={6}
-                flexDirection={'row'}
-                justifyContent="center"
-                pt={2}
-                pr={2}
-              >
-                {twitter && (
-                  <Link
-                    href={`https://twitter.com/${twitter}`}
-                    isExternal
-                    justifyContent="center"
-                  >
-                    <Icon as={SiTwitter} />
-                  </Link>
-                    
-                )}
-                {instagram && (
-                  <Link
-                    href={`https://instagram.com/${instagram}`}
-                    isExternal
-                    justifyContent="center"
-                  >
-                    <Icon as={SiInstagram} />
-                  </Link>
-                )}
-                {website && (
-                  <Link
-                    href={website.includes('http') ? website : `https://${website}`}
-                    isExternal
-                    justifyContent="center"
-                  >
-                    <Icon as={HiOutlineGlobeAlt} />
-                  </Link>
-                )}
-              </Flex>
-              <Button 
-                colorScheme="gray"
-                fontSize={'sm'}
-              >
-                <WalletAddress address={address} isCopyable isShort />
-              </Button>
-            </Flex>
             <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
               {qrcode}
             </Flex>
