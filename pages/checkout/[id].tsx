@@ -254,6 +254,7 @@ const CheckoutPage: NextPage<Props> = ({
         </GridItem>
       </Grid>
     </SmallLayout>
+    </main>
   )
 }
 
