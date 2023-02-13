@@ -87,7 +87,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
   environment.GRAPHQL_URL,
   async (ctx, client) => {
     const now = new Date()
-    const assetId = ctx.params?.id
+    const assetId: any  = ctx.params?.id
       ? Array.isArray(ctx.params.id)
         ? ctx.params.id[0]
         : ctx.params.id
@@ -104,7 +104,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
         variables: { tokenId: assetId },
       })
       if (error) throw error
-      const fullAssetId = data.assets?.nodes.at(0)
+      const fullAssetId: any = data.assets?.nodes.at(0)
       if (!fullAssetId) return { notFound: true }
       return {
         redirect: {
@@ -133,9 +133,14 @@ export const getServerSideProps = wrapServerSideProps<Props>(
                                : (auctionPrice && auctionPrice!=='')
                                ? ethers.utils.formatEther(auctionPrice)
                                : '0'
-      const apiUrl = `https://pro-api.coinmarketcap.com/v2/tools/price-conversion?CMC_PRO_API_KEY=${environment.COINMARKETCAP_API_KEY}&amount=${conversionAmount}&symbol=ETH`
-      const res = await fetch(apiUrl)
-      const conversionQuote = await res.json()
+      let conversionQuote
+      if (conversionAmount !== '0'){
+        const apiUrl = `https://pro-api.coinmarketcap.com/v2/tools/price-conversion?CMC_PRO_API_KEY=${environment.COINMARKETCAP_API_KEY}&amount=${conversionAmount}&symbol=ETH`
+        const res = await fetch(apiUrl)
+        conversionQuote = await res.json()
+      }else{
+        conversionQuote = undefined
+      }
       //const convertedAmount = conversionQuote ? conversionQuote?.data[0]?.quote?.USD.price : ''
       return {
         props: {
@@ -316,7 +321,15 @@ const DetailPage: NextPage<Props> = ({
       onClick={downloadQR}
     />
   )
-  const convertedPrice = priceConversion.data ? priceConversion.data[0]?.quote?.USD.price : undefined
+
+  // const convertedPrice = (priceConversion && priceConversion.data && priceConversion.data[0].quote)
+  //                          ? priceConversion.data[0]?.quote?.USD.price
+  //                          : undefined
+
+  const convertedPrice = useMemo(
+    () => priceConversion && priceConversion.data && priceConversion.data[0].quote && priceConversion.data[0].quote.USD.price,
+    [priceConversion],
+  )
 
   if (!asset) return <></>
   return (
