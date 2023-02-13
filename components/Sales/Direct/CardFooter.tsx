@@ -45,6 +45,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
                 amount={unitPrice}
                 currency={currency}
                 averageFrom={100000}
+                priceConversion={priceConversion}
               />
             </Text>
           </HStack>
