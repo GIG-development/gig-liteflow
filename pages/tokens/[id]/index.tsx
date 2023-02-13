@@ -21,12 +21,15 @@ import {
   Tabs,
   Text,
   Tooltip,
+  useToast,
 } from '@chakra-ui/react'
 import { BigNumber } from '@ethersproject/bignumber'
+import { formatError } from '@nft/hooks'
 import { FaInfoCircle } from '@react-icons/all-files/fa/FaInfoCircle'
 import { HiOutlineDotsHorizontal } from '@react-icons/all-files/hi/HiOutlineDotsHorizontal'
 import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink'
 import { useWeb3React } from '@web3-react/core'
+import useRefreshAsset from 'hooks/useRefreshAsset'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
@@ -48,6 +51,7 @@ import {
   convertHistories,
   convertOwnership,
   convertSaleFull,
+  convertTraits,
   convertUser,
 } from '../../../convert'
 import environment from '../../../environment'
@@ -182,6 +186,7 @@ const DetailPage: NextPage<Props> = ({
   const ready = useEagerConnect()
   const signer = useSigner()
   const { t } = useTranslation('templates')
+  const toast = useToast()
   const { account } = useWeb3React()
   const { query } = useRouter()
   const blockExplorer = useBlockExplorer(
@@ -201,16 +206,17 @@ const DetailPage: NextPage<Props> = ({
   const asset = useMemo(() => data?.asset, [data])
   const currencies = useMemo(() => data?.currencies?.nodes || [], [data])
 
-  const isOwner = useMemo(
-    () => BigNumber.from(asset?.owned.aggregates?.sum?.quantity || '0').gt('0'),
+  const totalOwned = useMemo(
+    () => BigNumber.from(asset?.owned.aggregates?.sum?.quantity || '0'),
     [asset],
   )
+  const isOwner = useMemo(() => totalOwned.gt('0'), [totalOwned])
   const ownAllSupply = useMemo(
     () =>
-      BigNumber.from(asset?.owned.aggregates?.sum?.quantity || '0').gte(
+      totalOwned.gte(
         BigNumber.from(asset?.ownerships.aggregates?.sum?.quantity || '0'),
       ),
-    [asset],
+    [asset, totalOwned],
   )
   const isSingle = useMemo(
     () => asset?.collection.standard === 'ERC721',
@@ -231,7 +237,11 @@ const DetailPage: NextPage<Props> = ({
   ]
 
   const traits = useMemo(
-    () => asset && asset.traits.nodes.length > 0 && asset.traits.nodes,
+    () =>
+      asset &&
+      asset.traits.nodes.length > 0 &&
+      asset.collection.traits &&
+      convertTraits(asset),
     [asset],
   )
 
@@ -331,6 +341,26 @@ const DetailPage: NextPage<Props> = ({
     [priceConversion],
   )
 
+  const refreshAsset = useRefreshAsset()
+  const refreshMetadata = useCallback(
+    async (assetId: string) => {
+      try {
+        await refreshAsset(assetId)
+        await refetch()
+        toast({
+          title: 'Successfully refreshed metadata',
+          status: 'success',
+        })
+      } catch (e) {
+        toast({
+          title: formatError(e),
+          status: 'error',
+        })
+      }
+    },
+    [refetch, refreshAsset, toast],
+  )
+
   if (!asset) return <></>
   return (
     <main id="token-info">
@@ -347,23 +377,17 @@ const DetailPage: NextPage<Props> = ({
               rounded={{ md: 'xl' }}
               pr={{base: 0, md: 12}}
             >
-              <Box position="relative" h="full" w="full" zIndex={1}>
-                <Box
-                  as={TokenMedia}
-                  image={asset.image}
-                  animationUrl={asset.animationUrl}
-                  unlockedContent={
-                    showPreview ? undefined : asset.unlockedContent
-                  }
-                  defaultText={asset.name}
-                  mx="auto"
-                  maxH="full"
-                  maxW="full"
-                  objectFit="contain"
-                  layout="fill"
-                  controls
-                />
-              </Box>
+              <TokenMedia
+                image={asset.image}
+                animationUrl={asset.animationUrl}
+                unlockedContent={showPreview ? undefined : asset.unlockedContent}
+                defaultText={asset.name}
+                controls
+                sizes="
+                (min-width: 80em) 500px,
+                (min-width: 48em) 50vw,
+                100vw"
+              />
               {asset.hasUnlockableContent && (
                 <Flex
                   w="full"
@@ -443,6 +467,9 @@ const DetailPage: NextPage<Props> = ({
                     }
                     </>)
                     }
+                    <MenuItem onClick={() => refreshMetadata(asset.id)}>
+                      {t('asset.detail.menu.refresh-metadata')}
+                    </MenuItem>
                     <ChakraLink
                       href={`mailto:${
                         environment.REPORT_EMAIL
@@ -460,35 +487,37 @@ const DetailPage: NextPage<Props> = ({
               </Flex>
             </Flex>
 
-            <TokenMetadata
-              creator={creator}
-              owners={owners}
-              saleSupply={BigNumber.from(
-                asset.sales.aggregates?.sum?.availableQuantity || 0,
-              )}
-              standard={asset.collection.standard}
-              totalSupply={BigNumber.from(
-                asset.ownerships.aggregates?.sum?.quantity || '0',
-              )}
-            />
-            <SaleDetail
-              assetId={asset.id}
-              blockExplorer={blockExplorer}
-              currencies={currencies}
-              signer={signer}
-              currentAccount={account?.toLowerCase()}
-              isSingle={isSingle}
-              isHomepage={false}
-              isOwner={isOwner}
-              auction={auction}
-              bestBid={bestBid}
-              directSales={directSales}
-              ownAllSupply={ownAllSupply}
-              onOfferCanceled={refresh}
-              onAuctionAccepted={refresh}
-              priceConversion={convertedPrice}
-            />
-          </Flex>
+          <TokenMetadata
+            assetId={asset.id}
+            creator={creator}
+            owners={owners}
+            numberOfOwners={asset.ownerships.totalCount}
+            saleSupply={BigNumber.from(
+              asset.sales.aggregates?.sum?.availableQuantity || 0,
+            )}
+            standard={asset.collection.standard}
+            totalSupply={BigNumber.from(
+              asset.ownerships.aggregates?.sum?.quantity || '0',
+            )}
+          />
+          <SaleDetail
+            assetId={asset.id}
+            blockExplorer={blockExplorer}
+            currencies={currencies}
+            signer={signer}
+            currentAccount={account?.toLowerCase()}
+            isSingle={isSingle}
+            isHomepage={false}
+            isOwner={isOwner}
+            auction={auction}
+            bestBid={bestBid}
+            directSales={directSales}
+            ownAllSupply={ownAllSupply}
+            onOfferCanceled={refresh}
+            onAuctionAccepted={refresh}
+            priceConversion={convertedPrice}
+          />
+        </Flex>
 
           <Box p={6}>
             <Heading as="h4" variant="heading2" color="brand.black">
@@ -544,49 +573,55 @@ const DetailPage: NextPage<Props> = ({
 
           </Box>
 
-          <div>
-            <Tabs
-              isManual
-              defaultIndex={defaultIndex}
-              colorScheme="brand"
-              overflowX="auto"
-              overflowY="hidden"
-            >
-              <TabList>
-                {tabs.map((tab, index) => (
-                  <ChakraLink key={index} href={tab.href} whiteSpace="nowrap">
-                    <Tab as="div">
-                      <Text as="span" variant="subtitle1">
-                        {tab.title}
-                      </Text>
-                    </Tab>
-                  </ChakraLink>
-                ))}
-              </TabList>
-            </Tabs>
-            <Box h={96} overflowY="auto" py={6}>
-              {(!query.filter || query.filter === AssetTabs.bids) && (
-                <BidList
-                  bids={bids}
-                  signer={signer}
-                  account={account?.toLowerCase()}
-                  isSingle={isSingle}
-                  blockExplorer={blockExplorer}
-                  preventAcceptation={!isOwner || !!activeAuction}
-                  onAccepted={refresh}
-                  onCanceled={refresh}
-                />
-              )}
-              {query.filter === AssetTabs.history && (
-                <HistoryList
-                  histories={histories}
-                  blockExplorer={blockExplorer}
-                />
-              )}
-            </Box>
-          </div>
-        </SimpleGrid>
-      </LargeLayout>
+        <div>
+          <Tabs
+            isManual
+            defaultIndex={defaultIndex}
+            colorScheme="brand"
+            overflowX="auto"
+            overflowY="hidden"
+          >
+            <TabList>
+              {tabs.map((tab, index) => (
+                <ChakraLink
+                  key={index}
+                  href={tab.href}
+                  whiteSpace="nowrap"
+                  mr={4}
+                >
+                  <Tab as="div">
+                    <Text as="span" variant="subtitle1">
+                      {tab.title}
+                    </Text>
+                  </Tab>
+                </ChakraLink>
+              ))}
+            </TabList>
+          </Tabs>
+          <Box h={96} overflowY="auto" py={6}>
+            {(!query.filter || query.filter === AssetTabs.bids) && (
+              <BidList
+                bids={bids}
+                signer={signer}
+                account={account?.toLowerCase()}
+                isSingle={isSingle}
+                blockExplorer={blockExplorer}
+                preventAcceptation={!isOwner || !!activeAuction}
+                onAccepted={refresh}
+                onCanceled={refresh}
+                totalOwned={totalOwned}
+              />
+            )}
+            {query.filter === AssetTabs.history && (
+              <HistoryList
+                histories={histories}
+                blockExplorer={blockExplorer}
+              />
+            )}
+          </Box>
+        </div>
+      </SimpleGrid>
+    </LargeLayout>
     </main>
   )
 }

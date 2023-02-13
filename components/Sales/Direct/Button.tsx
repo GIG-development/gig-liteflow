@@ -84,7 +84,6 @@ const SaleDirectButton: VFC<Props> = ({
         variant="outline"
         colorScheme="gray"
         size="full"
-        className='btn'
         bgColor="white"
         isFullWidth
         rightIcon={<HiArrowNarrowRight />}

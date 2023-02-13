@@ -173,6 +173,7 @@ const HomePage: NextPage<Props> = ({
           sales={asset.sales.nodes.map(convertSaleFull)}
           creator={convertUser(asset.creator, asset.creator.address)}
           owners={asset.ownerships.nodes.map(convertOwnership)}
+          numberOfOwners={asset.ownerships.totalCount}
           isHomepage={true}
           signer={signer}
           currentAccount={account?.toLowerCase()}
@@ -199,16 +200,17 @@ const HomePage: NextPage<Props> = ({
       
       <LargeLayout>
 
-        <Box my={6} textAlign='center'>
+        {/* <Box my={6} textAlign='center'>
           <Link  href='https://www.mangopase.com/event/artsynights2023?fbclid=PAAaYKXrvT5kS95jmueTGz7aDUxiwNQ87erOO-cd0GObYBRz6gqpxd1TJng60' title='Artsy Nights & GIG | 9 de Febrero' isExternal>
             <Image
               src={useBreakpointValue({base: '/img/evento_mobile.jpg', md:'/img/evento.jpg'}) || '/img/evento.jpg'}
               width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
               height={useBreakpointValue({base: '240', md:'160'}) || '160'}
+              layout='fill'
               alt='Artsy Nights & GIG | 9 de Febrero'
             />
           </Link>
-        </Box>
+        </Box> */}
 
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
@@ -360,6 +362,7 @@ const HomePage: NextPage<Props> = ({
                 </Button>
               </Link>
             </Flex>
+            
             <SimpleGrid spacing={6} columns={{ sm: 2, md: 3, lg: 4 }}>
               {assets.map((x, i) => (
                 <Flex key={i} justify="center">
@@ -383,6 +386,7 @@ const HomePage: NextPage<Props> = ({
                 </Flex>
               ))}
             </SimpleGrid>
+
             <Box w={'full'} textAlign='center' pt={12}>
               <Heading as="h2" variant="title" color="brand.black">
                 {t('home.keepExploring')}

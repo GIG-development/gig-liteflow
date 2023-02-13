@@ -1,26 +1,27 @@
-import { Box, Center, Icon, Stack, Text } from '@chakra-ui/react'
+import { Box, Center, Icon, Stack, Text, useTheme } from '@chakra-ui/react'
 import { FaImage } from '@react-icons/all-files/fa/FaImage'
-import Image, { ImageProps } from 'next/image'
-import { useEffect, useState, useCallback, VFC, VideoHTMLAttributes } from 'react'
+import { useEffect, useState, VFC, useCallback } from 'react'
+import Image from '../Image/Image'
 
-const TokenMedia: VFC<
-  (Omit<VideoHTMLAttributes<any>, 'src'> | Omit<ImageProps, 'src'>) & {
-    image: string | null | undefined
-    animationUrl: string | null | undefined
-    unlockedContent: { url: string; mimetype: string | null } | null | undefined
-    defaultText?: string
-    controls?: boolean | undefined
-    layout?: string | undefined
-  }
-> = ({
+const TokenMedia: VFC<{
+  image: string | null | undefined
+  animationUrl: string | null | undefined
+  unlockedContent: { url: string; mimetype: string | null } | null | undefined
+  defaultText?: string
+  controls?: boolean
+  fill?: boolean
+  sizes: string
+}> = ({
   image,
   animationUrl,
   unlockedContent,
   defaultText,
-  layout,
+  fill,
   controls,
-  ...props
+  sizes,
 }) => {
+  const { colors } = useTheme()
+
   // prioritize unlockedContent
   if (unlockedContent) {
     if (unlockedContent.mimetype?.startsWith('video/'))
@@ -47,76 +48,73 @@ const TokenMedia: VFC<
   }, [image, canPlay])
 
   if (animationUrl) {
-    const { objectFit, src, ...videoProps } = props as ImageProps
-    return (<>
-      <video
+    return (
+      <Box
+        as="video"
+        src={animationUrl}
         autoPlay
         playsInline
         muted
         loop
         controls={controls}
         poster={image ?? ''}
-        {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
-      >
-        <source src={animationUrl} type="video/mp4"/>
-        <Text color="gray.500" fontWeight="600">
-          An issue occurred
-        </Text>
-      </video>
-      <Text color="gray.200"  fontSize='8'>
-        (Codec is playable: {canPlayCodecs})
-      </Text>
-    </>
-    )
-  }
-  if (image) {
-    const rest = props as Omit<ImageProps, 'src'>
-    if (imageError)
-      return (
-        <Center width="100%" height="100%" bg="brand.100">
-          <Stack align="center" spacing={3}>
-            <Icon as={FaImage} color="gray.500" w="5em" h="4em" />
-            <Text color="gray.500" fontWeight="600">
-              An issue occurred
-            </Text>
-          </Stack>
-        </Center>
-      )
-    if (image.search('.mp4') > -1){
-      const { objectFit, src, ...videoProps } = props as ImageProps
-      return (<>
-        <video
-          autoPlay
-          playsInline
-          muted
-          loop
-          controls={controls}
-          poster='/social_og-image.jpg'
-          {...(videoProps as Omit<VideoHTMLAttributes<any>, 'src'>)}
-        >
-          <source src={image} type="video/mp4"/>
-          <Text color="gray.500" fontWeight="600">
-          An issue occurred
-          </Text>
-        </video>
-        <Text color="gray.200"  fontSize='8'>
-          (Codec is playable: {canPlayCodecs})
-        </Text>
-        </>
-      )
-    }
-    const customTag = { Image: Image as any }
-    return (
-      <customTag.Image
-        src={image}
-        alt={defaultText}
-        onError={() => setImageError(true)}
-        layout={layout}
-        {...rest}
+        maxW="full"
+        maxH="full"
       />
     )
   }
-  return <Box bgColor="brand.50" h="full" w="full" />
+  if (image) {
+    if (imageError)
+      return (
+        <>
+          <svg viewBox="0 0 1 1">
+            <rect width="1" height="1" fill={colors.brand[100]} />
+          </svg>
+          <Center width="100%" height="100%" position="absolute">
+            <Stack align="center" spacing={3}>
+              <Icon as={FaImage} color="gray.500" w="5em" h="4em" />
+              <Text color="gray.500" fontWeight="600">
+                An issue occurred
+              </Text>
+            </Stack>
+          </Center>
+        </>
+      )
+    if (image.search('.mp4') > -1){
+      return (
+        <Box
+        as="video"
+        src={image}
+        autoPlay
+        playsInline
+        muted
+        loop
+        controls={controls}
+        poster={image ?? ''}
+        maxW="full"
+        maxH="full"
+      />
+      )
+    }
+    return (
+      <Box position="relative" w="full" h="full">
+        <Image
+          src={image}
+          alt={defaultText}
+          onError={() => setImageError(true)}
+          layout="fill"
+          objectFit={fill ? 'cover' : 'scale-down'}
+          sizes={sizes}
+          unoptimized={unlockedContent?.mimetype === 'image/gif'}
+        />
+      </Box>
+    )
+  }
+  return (
+    <svg viewBox="0 0 1 1">
+      <rect width="1" height="1" fill={colors.brand[50]} />
+    </svg>
+  )
 }
 
 export default TokenMedia

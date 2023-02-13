@@ -1,7 +1,6 @@
 import {
     Button,
     Heading,
-    Image,
     Stack
 } from '@chakra-ui/react'
 import Link from '../components/Link/Link'
@@ -9,6 +8,7 @@ import Head from '../components/Head'
 import LargeLayout from '../layouts/large'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
+import Image from 'next/image'
 
 const Custom404: NextPage = () => {
     const { t } = useTranslation('templates')
@@ -20,7 +20,7 @@ const Custom404: NextPage = () => {
                 description=""
             />
             <Stack spacing={6} mb={20} align={'center'}>
-                <Image src={'/img/404/404.png'} w={'60%'} alt="404"/>
+                <Image src={'/img/404/404.png'} layout='fill' alt="404"/>
                 <Heading variant={'subtitle'} textAlign={'center'}>
                     {t('error.404.message')}
                 </Heading>

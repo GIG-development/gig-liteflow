@@ -1,4 +1,13 @@
-import { Box, Flex, Heading, Icon, Stack, useToast } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Icon,
+  Stack,
+  useToast,
+} from '@chakra-ui/react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { HiOutlineClock } from '@react-icons/all-files/hi/HiOutlineClock'
 import { useWeb3React } from '@web3-react/core'
@@ -46,6 +55,7 @@ type Props = {
     description: string
     image: string
   }
+  currentAccount: string | null
 }
 
 export const getServerSideProps = wrapServerSideProps<Props>(
@@ -65,6 +75,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
       variables: {
         id: assetId,
         now,
+        address: ctx.user.address || '',
       },
     })
     if (error) throw error
@@ -86,12 +97,13 @@ export const getServerSideProps = wrapServerSideProps<Props>(
           }),
           image: data.asset.image,
         },
+        currentAccount: ctx.user.address,
       },
     }
   },
 )
 
-const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
+const BidPage: NextPage<Props> = ({ now, assetId, meta, currentAccount }) => {
   const ready = useEagerConnect()
   const signer = useSigner()
   const { t } = useTranslation('templates')
@@ -104,6 +116,7 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
     variables: {
       id: assetId,
       now: date,
+      address: (ready ? account?.toLowerCase() : currentAccount) || '',
     },
   })
   useExecuteOnAccountChange(refetch, ready)
@@ -156,27 +169,30 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
           {t('offers.bid.title')}
         </Heading>
 
-        <Flex
-          mt={12}
-          mb={6}
-          direction={{ base: 'column', md: 'row' }}
-          align={{ base: 'center', md: 'flex-start' }}
-          justify="stretch"
-          gap={12}
-        >
-          <TokenCard
-            asset={convertAsset(asset)}
-            creator={convertUser(asset.creator, asset.creator.address)}
-            auction={auction ? convertAuctionWithBestBid(auction) : undefined}
-            sale={convertSale(asset.firstSale.nodes[0])}
-            numberOfSales={asset.firstSale.totalCount}
-            hasMultiCurrency={
-              parseInt(
-                asset.currencySales.aggregates?.distinctCount?.currencyId,
-                10,
-              ) > 1
-            }
-          />
+      <Grid
+        mt={12}
+        mb={6}
+        gap={12}
+        templateColumns={{ base: '1fr', md: '1fr 2fr' }}
+      >
+        <GridItem>
+          <Box pointerEvents="none">
+            <TokenCard
+              asset={convertAsset(asset)}
+              creator={convertUser(asset.creator, asset.creator.address)}
+              auction={auction ? convertAuctionWithBestBid(auction) : undefined}
+              sale={convertSale(asset.firstSale.nodes[0])}
+              numberOfSales={asset.firstSale.totalCount}
+              hasMultiCurrency={
+                parseInt(
+                  asset.currencySales.aggregates?.distinctCount?.currencyId,
+                  10,
+                ) > 1
+              }
+            />
+          </Box>
+        </GridItem>
+        <GridItem>
           <Flex direction="column" flex="1 1 0%">
             {auction && (
               <>
@@ -221,6 +237,7 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
                           alt={`${highestBid.currency.symbol} Logo`}
                           width={32}
                           height={32}
+                          objectFit="cover"
                         />
                       </Flex>
                       <Heading as="h2" variant="subtitle" color="brand.black">
@@ -280,9 +297,9 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta }) => {
               />
             )}
           </Flex>
-        </Flex>
-      </SmallLayout>
-    </main>
+        </GridItem>
+      </Grid>
+    </SmallLayout>
   )
 }
 

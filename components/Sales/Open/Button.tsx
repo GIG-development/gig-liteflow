@@ -22,7 +22,6 @@ const SaleOpenButton: VFC<Props> = ({ assetId, isHomepage, ownAllSupply }) => {
         colorScheme="gray"
         bgColor="white"
         size="full"
-        className='btn'
         rightIcon={<Icon as={HiArrowNarrowRight} />}
         isFullWidth
       >

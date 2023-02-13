@@ -9,6 +9,7 @@ import OwnersModal from './Owners/Modal'
 import Supply from './Supply'
 
 export type Props = {
+  assetId: string
   standard: Standard
   creator:
     | {
@@ -25,15 +26,18 @@ export type Props = {
     verified: boolean
     quantity: string
   }[]
+  numberOfOwners: number
   saleSupply: BigNumber
   totalSupply: BigNumber | null | undefined
   hideOwner?: boolean
 }
 
 const TokenMetadata: VFC<Props> = ({
+  assetId,
   standard,
   creator,
   owners,
+  numberOfOwners,
   saleSupply,
   totalSupply,
   hideOwner
@@ -59,7 +63,7 @@ const TokenMetadata: VFC<Props> = ({
           />
         </Stack>
       )}
-      {!hideOwner && owners.length === 1 && owners[0] && (
+      {!hideOwner && numberOfOwners === 1 && owners[0] && (
         <Stack spacing={3}>
           <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owner')}
@@ -72,12 +76,16 @@ const TokenMetadata: VFC<Props> = ({
           />
         </Stack>
       )}
-      {!hideOwner && owners.length > 1 && (
+      {!hideOwner && numberOfOwners > 1 && (
         <Stack spacing={3}>
           <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('token.metadata.owners')}
           </Heading>
-          <OwnersModal owners={owners} />
+          <OwnersModal
+            assetId={assetId}
+            ownersPreview={owners}
+            numberOfOwners={numberOfOwners}
+          />
         </Stack>
       )}
       {standard === 'ERC721' && (

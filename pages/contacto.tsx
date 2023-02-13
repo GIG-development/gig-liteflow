@@ -1,6 +1,5 @@
 import {
   Heading,
-  Image,
   Stack,
   Text
 } from '@chakra-ui/react'
@@ -9,6 +8,7 @@ import LargeLayout from '../layouts/large'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 import {event} from 'nextjs-google-analytics'
+import Image from 'next/image'
   
 const Contacto: NextPage = () => {
   const { t } = useTranslation('templates')
@@ -25,7 +25,7 @@ const Contacto: NextPage = () => {
               <Heading as={'h1'} variant="title">
                 {t('contact.title')}
               </Heading>
-              <Image alt="Contactanos" src='/img/contacto.png' w={'320px'}/>
+              <Image alt="Contactanos" src='/img/contacto.png' width={'320px'} height='auto'/>
               <Heading variant={'heading3'}>
                 {t('contact.subtitle')}
               </Heading>
