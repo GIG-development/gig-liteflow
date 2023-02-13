@@ -265,35 +265,6 @@ const CreatePage: NextPage<Props> = ({
           <Flex as={Text} color="brand.black" mb={3} variant="button1">
             {t('asset.form.preview')}
           </Flex>
-<<<<<<< HEAD
-          <TokenCard
-            asset={asset}
-            creator={creator}
-            auction={undefined}
-            sale={undefined}
-            numberOfSales={0}
-            hasMultiCurrency={false}
-            isPreview
-          />
-        </div>
-        <TokenFormCreate
-          signer={signer}
-          collection={data.collection}
-          categories={categories}
-          uploadUrl={environment.UPLOAD_URL}
-          blockExplorer={blockExplorer}
-          onCreated={onCreated}
-          onInputChange={setFormData}
-          login={{
-            ...connectors,
-            networkName: environment.NETWORK_NAME,
-          }}
-          activateUnlockableContent={false}
-          maxRoyalties={environment.MAX_ROYALTIES}
-          activateLazyMint={config?.hasLazyMint || false}
-        />
-      </Flex>
-=======
           <Box pointerEvents="none">
             {asset && (
               <TokenCard
@@ -326,7 +297,6 @@ const CreatePage: NextPage<Props> = ({
           />
         </GridItem>
       </Grid>
->>>>>>> upstream/main
     </Layout>
   )
 }
