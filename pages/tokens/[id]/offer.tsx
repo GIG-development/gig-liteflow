@@ -299,6 +299,7 @@ const OfferPage: NextPage<Props> = ({ currentAccount, now, assetId, meta }) => {
         </GridItem>
       </Grid>
     </SmallLayout>
+    </main>
   )
 }
 

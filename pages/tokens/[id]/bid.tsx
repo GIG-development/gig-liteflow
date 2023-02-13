@@ -300,6 +300,7 @@ const BidPage: NextPage<Props> = ({ now, assetId, meta, currentAccount }) => {
         </GridItem>
       </Grid>
     </SmallLayout>
+    </main>
   )
 }
 
