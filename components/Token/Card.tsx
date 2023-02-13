@@ -139,6 +139,7 @@ const TokenCard: VFC<Props> = ({
     sale,
     numberOfSales,
     hasMultiCurrency,
+    isPreview
   ])
 
   // TODO: is the width correct?
