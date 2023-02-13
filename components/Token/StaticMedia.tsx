@@ -15,9 +15,9 @@ const TokenStaticMedia: VFC<{
   image,
   unlockedContent,
   defaultText,
-  fill,
+  //fill,
   controls,
-  sizes,
+  //sizes,
 }) => {
   const { colors } = useTheme()
 
