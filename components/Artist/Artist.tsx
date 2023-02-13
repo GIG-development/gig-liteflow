@@ -23,7 +23,7 @@ type Props = {
 const Artist: FC<PropsWithChildren<Props>> = ({
     name,
     handle,
-    description,
+    //description,
     tags,
     image,
     link
