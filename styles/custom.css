@@ -3,18 +3,18 @@
 }
 :root{
     scrollbar-color: #BE94FF #f1f1f1;
-    scrollbar-width: thin;
+    scrollbar-width: 10px;
 }
 ::-webkit-scrollbar,
 -ms-overflow-style {
     width: 10px;
-    margin-left: 2px;
+    padding-left: 2px;
 }
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    border-radius: 2px;
+    border-radius: 5px;
     background: #666;
 }
 ::-webkit-scrollbar-thumb:hover {

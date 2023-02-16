@@ -39,17 +39,21 @@ const Price: FC<
   }, [amount, currency, averageFrom])
   if (!currency) return null
 
+  if(priceConversion){
+    return (
+      <Flex flexDirection={{base: 'column', md: 'row'}} justify='center' align='center'>
+        <span {...props}>
+          {amountFormatted} {currency.symbol}
+        </span>
+        <FiatPriceConversion amount={priceConversion} />
+      </Flex>
+    )
+  }
   
   return (
-    <Flex flexDirection={{base: 'column', md: 'row'}} justify='center' align='center'>
       <span {...props}>
         {amountFormatted} {currency.symbol}
       </span>
-      {priceConversion && 
-        <FiatPriceConversion amount={priceConversion} />
-      }
-      
-    </Flex>
   )
 }
 

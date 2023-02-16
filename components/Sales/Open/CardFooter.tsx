@@ -29,7 +29,7 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
 }) => {
   const { t } = useTranslation('components')
   return (
-    <Box {...props}>
+    <Box {...props} px={6} pb={6}>
       <Flex
         as={Link}
         color={showButton ? 'white' : 'gray.500'}
@@ -37,6 +37,7 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
         py={2}
         px={4}
         w="full"
+        rounded='full'
         fontSize="sm"
         fontWeight="semibold"
         href={`/tokens/${assetId}${!isOwner ? '/bid' : ''}`}

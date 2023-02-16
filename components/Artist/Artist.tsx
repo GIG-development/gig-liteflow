@@ -52,6 +52,9 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                 bg="white"
                 border='1px solid'
                 borderColor='gray.200'
+                _hover={{
+                  shadow: '1px 0px 8px 6px #f2f2f2'
+                }}
                 >
                 <Box h={useBreakpointValue({base: '280px', md: '280px'})} overflow='hidden'>
                     <Link href={link}>
@@ -104,7 +107,7 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                             })}
                         </Box>
                         <Link href={link}>
-                            <Button w={'full'}>{t('home.featuredArtists.artistProfileButton')}</Button>
+                            <Button fontSize='sm' w={'full'}>{t('home.featuredArtists.artistProfileButton')}</Button>
                         </Link>
                     </Flex>
                 </Box>

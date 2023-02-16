@@ -84,6 +84,9 @@ const SaleDirectCardFooter: VFC<Props> = ({
       fontSize="sm"
       fontWeight="semibold"
       href={`/checkout/${saleId}`}
+      mx={6}
+      mb={6}
+      rounded='full'
     >
       {showButton
         ? isOwner

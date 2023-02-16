@@ -338,6 +338,7 @@ const HomePage: NextPage<Props> = ({
                     sale={undefined}
                     numberOfSales={0}
                     hasMultiCurrency={false}
+                    displayCreator
                   />
                 </Flex>
               ))}
@@ -384,6 +385,7 @@ const HomePage: NextPage<Props> = ({
                         10,
                       ) > 1
                     }
+                    displayCreator
                   />
                 </Flex>
               ))}

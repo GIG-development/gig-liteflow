@@ -155,6 +155,9 @@ const TokenCard: VFC<Props> = ({
       bgColor="white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      _hover={{
+        shadow: '1px 0px 8px 6px #f2f2f2'
+      }}
     >
       <Flex as={Link} href={href} w="full" position="relative">
         <AspectRatio w="full" ratio={1}>
@@ -192,8 +195,19 @@ const TokenCard: VFC<Props> = ({
           </HStack>
         )}
       </Flex>
-      <Flex justify="space-between" px={4} pt={4} pb={3} align="start">
-        <Stack spacing={0} w="full">
+      <Flex justify="space-between" p={6} align="start">
+        <Stack spacing={2} w="full">
+          <Link href={href}>
+            <Heading
+              as="h4"
+              variant="heading2"
+              color="brand.black"
+              title={asset.name}
+              isTruncated
+            >
+              {asset.name}
+            </Heading>
+          </Link>
           {displayCreator ? (
             <Avatar
               address={creator.address}
@@ -211,17 +225,6 @@ const TokenCard: VFC<Props> = ({
               </Text>
             </Link>
           )}
-          <Link href={href}>
-            <Heading
-              as="h4"
-              variant="heading2"
-              color="brand.black"
-              title={asset.name}
-              isTruncated
-            >
-              {asset.name}
-            </Heading>
-          </Link>
         </Stack>
         <Box visibility={isHovered ? 'visible' : 'hidden'}>
           <Menu>
