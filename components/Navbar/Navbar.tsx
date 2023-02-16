@@ -322,6 +322,7 @@ const DrawerMenu: VFC<{
               <>
                 <Divider mx={3} mt={4} w="auto" />
                 <Flex pl={3} pr={4} pt={6} pb={4}>
+                  <Text variant='text-sm'>{t('navbar.language')}</Text>
                   <Select
                     label=""
                     name="lang"
@@ -550,6 +551,7 @@ const Navbar: VFC<{
               alt="Logo"
               width={logo?.width || 139}
               height={logo?.height || 32}
+              priority
             />
           </Flex>
         </Flex>
@@ -564,6 +566,7 @@ const Navbar: VFC<{
               _placeholder={{ color: 'brand.black' }}
               border='1px solid'
               borderColor={'gray.200'}
+              fontSize='sm'
               _focus={{
                 border: '1px solid'
               }}

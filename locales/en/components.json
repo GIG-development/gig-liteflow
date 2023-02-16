@@ -393,7 +393,8 @@
       "edit": "Edit profile",
       "top-up": "Top-up",
       "sign-out": "Sign out"
-    }
+    },
+    "language": "Change language:"
   },
   "network-selection": {
     "title": "Wrong network",

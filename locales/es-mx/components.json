@@ -393,7 +393,8 @@
       "edit": "Editar perfil",
       "top-up": "Completar",
       "sign-out": "Cerrar sesión"
-    }
+    },
+    "language": "Cambiar idioma:"
   },
   "network-selection": {
     "title": "Red Incorrecta",

@@ -147,6 +147,8 @@ const TokenCard: VFC<Props> = ({
     <Flex
       direction="column"
       w="full"
+      minW={'280px'}
+      maxW={'280px'}
       align="stretch"
       overflow="hidden"
       rounded="xl"
