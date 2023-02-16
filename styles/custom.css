@@ -1,6 +1,18 @@
 *:focus{
     box-shadow: none !important;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #BE94FF;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #BE94FF;
+}
 #__next main{
     min-height: calc(100vh - 488px);
 }

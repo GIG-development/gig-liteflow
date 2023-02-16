@@ -181,13 +181,13 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
                 )}
               </Flex>
               {description && (
-                  <Box textAlign="justify" color="gray.500" fontSize={'xs'} maxH={'100px'} mb={4} overflowY='auto'
+                  <Box textAlign="justify" color="gray.500" fontSize={'xs'} maxH={{base: '120px', md: '76px'}} mb={4} overflowY='auto'
                       dangerouslySetInnerHTML={{__html: description}}>
                   </Box>
               )}
             </Flex>
           </Box>
-          <Flex maxW={'110px'} flexDirection={'column'}>
+          <Flex flexDirection={'column'}>
             <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
               {qrcode}
             </Flex>
