@@ -45,6 +45,8 @@
 /* QR Codes */
 .qr-codes{
     cursor: pointer;
+    width: 110px !important;
+    height: 110px !important;
 }
 
 /* EMBLA */

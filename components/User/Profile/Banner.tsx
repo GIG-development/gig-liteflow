@@ -187,7 +187,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
               )}
             </Flex>
           </Box>
-          <Flex maxW={'260px'} flexDirection={'column'}>
+          <Flex maxW={'110px'} flexDirection={'column'}>
             <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
               {qrcode}
             </Flex>

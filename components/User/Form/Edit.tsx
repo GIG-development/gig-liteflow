@@ -60,7 +60,7 @@ const UserFormEdit: FC<Props> = ({ signer, account, uploadUrl, onUpdated }) => {
       instagram: account.instagram || undefined,
       name: account.name || undefined,
       twitter: account.twitter || undefined,
-      website: account.website || undefined,
+      website: account.website || 'https://',
     },
   })
 
