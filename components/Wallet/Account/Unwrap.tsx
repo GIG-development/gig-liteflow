@@ -65,7 +65,7 @@ import {
           } catch(error) {
             toast({
               title: "Error!",
-              description: error,
+              description: String(error),
               status: "error"
             })
             console.error(error)
