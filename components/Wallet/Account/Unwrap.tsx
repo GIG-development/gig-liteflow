@@ -46,22 +46,29 @@ import {
     const unwrapEth = async (amount: string, signer: any) => {
         if(amount !== '0' && Number(amount) > 0 && signer){
           try{
-            await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
-            const tx = await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
-            if(tx){
-              onClose()
-              toast({
-                title: t('wallet.swap.transaction'),
-                description: tx.hash,
-                status: 'success'
-              })
-              setTimeout(reload,60000)
+            const allowance = await contract.connect(signer).allowance(account, WETH_ADDRESS)
+            if(allowance<=0){
+              await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
             }
+            setTimeout(async ()=>{
+              const tx = await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))
+              if(tx){
+                onClose()
+                toast({
+                  title: t('wallet.swap.transaction'),
+                  description: tx.hash,
+                  status: 'success'
+                })
+                setTimeout(reload,60000)
+              }
+            },2000)
           } catch(error) {
             toast({
               title: "Error!",
+              description: error,
               status: "error"
             })
+            console.error(error)
           }
         }
       }

@@ -447,9 +447,20 @@ const DetailPage: NextPage<Props> = ({
           </AspectRatio>
           <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
             <Flex justify="space-between">
-              <Heading as="h1" variant="title" color="brand.black">
-                {asset.name}
-              </Heading>
+              <Box>
+                {asset.collection.name && (
+                  <Heading as="p" variant="heading2" color="gray.500">
+                    <Link
+                      href={`/collection/${asset.collection.chainId}/${asset.collection.address}`}
+                    >
+                      {asset.collection.name}
+                    </Link>
+                  </Heading>
+                )}
+                <Heading as="h1" variant="title" color="brand.black">
+                  {asset.name}
+                </Heading>
+              </Box>
               <Flex direction="row" align="flex-start" gap={3}>
                 <Menu>
                   <MenuButton

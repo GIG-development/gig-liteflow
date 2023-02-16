@@ -199,19 +199,23 @@ const HomePage: NextPage<Props> = ({
       <LargeLayout>
 
         {/* <Box my={6} textAlign='center'>
-          <Link  href='https://www.mangopase.com/event/artsynights2023?fbclid=PAAaYKXrvT5kS95jmueTGz7aDUxiwNQ87erOO-cd0GObYBRz6gqpxd1TJng60' title='Artsy Nights & GIG | 9 de Febrero' isExternal>
+          <Link  href='' title='' isExternal>
             <Image
-              src={useBreakpointValue({base: '/img/evento_mobile.jpg', md:'/img/evento.jpg'}) || '/img/evento.jpg'}
+              src={useBreakpointValue({base: '', md:''}) || ''}
               width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
               height={useBreakpointValue({base: '240', md:'160'}) || '160'}
               layout='fill'
-              alt='Artsy Nights & GIG | 9 de Febrero'
+              alt=''
             />
           </Link>
         </Box> */}
 
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
+
+            <Heading as="h2" variant="title" color="brand.black">
+            {t('home.featured')}
+            </Heading>
             {featuredAssets.length === 1 ? (
               featuredAssets
             ) : (

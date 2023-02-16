@@ -77,7 +77,7 @@ const UsersPage: NextPage<Props> = () => {
     variables: {
       limit,
       offset,
-      filter: search ? searchFilter(search) : [],
+      filter: search ? searchFilter(search) : [{verification:{status:{equalTo:'VALIDATED'}}} as AccountFilter],
     },
   })
 

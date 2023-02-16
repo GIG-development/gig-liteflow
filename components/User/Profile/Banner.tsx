@@ -43,8 +43,9 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
       id='gig-qr-code'
       value={environment.BASE_URL+'/'+address}
       fgColor='#212121'
-      style={{width: '72px', height: '72px'}}
-      imageSettings={{src:'/favicon.png', width: 20, height: 20, excavate:true}}
+      size={256}
+      style={{width: '110px !important', height: '110px !important'}}
+      imageSettings={{src:'/favicon.png', width: 40, height: 40, excavate:true}}
       onClick={downloadQR}
     />
   )
@@ -103,7 +104,6 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
             flexDirection={'row'}
             justifyContent="center"
             pt={2}
-            pr={2}
           >
             {twitter && (
               <Link
@@ -146,6 +146,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           flexDirection={{base: 'column', md: 'row'}}
           justifyContent='space-between'
           pt={{base: 0, md: 24}}
+          gap={6}
         >
           <Box>
             <Flex

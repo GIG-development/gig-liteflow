@@ -48,8 +48,6 @@ import {
             to: WETH_ADDRESS,
             value: ethers.utils.parseEther(amount)
           })
-          console.log('Transaction:')
-          console.log(tx)
           if(tx){
             onClose()
             toast({
@@ -62,9 +60,10 @@ import {
         } catch(error) {
           toast({
             title: "Error",
-            description: "",
+            description: error,
             status: "error"
           })
+          console.error(error)
         }
       }
     }
