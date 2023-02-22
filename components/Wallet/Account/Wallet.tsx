@@ -56,7 +56,7 @@ const WalletAccount: FC<{
               ns="components"
               i18nKey={'wallet.magic.export'}
               components={[
-                <Link href='https://reveal.magic.link/gig' textDecoration='underline' isExternal />
+                <Link href='https://reveal.magic.link/gig' textDecoration='underline' isExternal key='exportMagicWallet'/>
               ]}
             />
           </Text>
