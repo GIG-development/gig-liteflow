@@ -920,6 +920,8 @@
       }
     },
     "wallet": {
+      "network": "You are connected to:",
+      "transactions": "See transactions history",
       "deposit": {
         "title": "Deposit tokens",
         "description": "You can deposit tokens and transfer funds at anytime on the following address"
@@ -928,7 +930,8 @@
         "title": "Use {{networkName}} network",
         "description": "Ensure the network you choose to deposit tokens is the {{networkName}} network, or assets may be lost."
       },
-      "balances": "Balances"
+      "balances": "Balances",
+      "available": "Available Balance:"
     },
     "balances": {
       "none": "There are no available balances."
@@ -940,6 +943,15 @@
       "unwrap": "Unwrap ETH",
       "unwrapBtn": "Unwrap",
       "unwrapInputPlaceholder": "Amount to Unwrap",
+      "transaction": "Transaction sent, wait for confirmation",
+      "confirmedTitle": "Transaction confirmed",
+      "confirmedMessage": ""
+    },
+    "transfer": {
+      "transfer": "Transfer Token",
+      "button": "Transfer",
+      "transferAmountInputPlaceholder": "Amount to Transfer",
+      "transferAccountInputPlaceholder": "Recipient address",
       "transaction": "Transaction sent, wait for confirmation",
       "confirmedTitle": "Transaction confirmed",
       "confirmedMessage": ""

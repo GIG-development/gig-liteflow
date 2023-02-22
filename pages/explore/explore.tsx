@@ -286,6 +286,7 @@ const ExplorePage: NextPage<Props> = ({ currentAccount, now, currencies }) => {
                       <TokenCard
                         asset={convertAsset(x)}
                         creator={convertUser(x.creator, x.creator.address)}
+                        displayCreator
                         auction={
                           x.auctions.nodes[0]
                             ? convertAuctionWithBestBid(x.auctions.nodes[0])

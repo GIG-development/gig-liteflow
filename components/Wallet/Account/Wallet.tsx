@@ -1,14 +1,13 @@
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
   Button,
+  Flex,
   Heading,
   Stack,
   Text,
+  useBreakpointValue
 } from '@chakra-ui/react'
+import Link from 'components/Link/Link'
+import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
 import { FC } from 'react'
 import WalletAddress from '../Address'
@@ -37,12 +36,22 @@ const WalletAccount: FC<{
           <Text as="p" variant="text" color="gray.500">
             {t('wallet.wallet.deposit.description')}
           </Text>
+          <Heading variant='heading3' mt={6} textAlign='center'>
+            {t('wallet.wallet.network')}<br/>
+            <Text fontWeight={'bold'}>{networkName}</Text>
+          </Heading>
         </div>
         <Button variant="outline" colorScheme="gray" isFullWidth>
           <Text as="span" isTruncated>
-            <WalletAddress address={account} isCopyable isShort />
+            <WalletAddress address={account} isCopyable isShort={useBreakpointValue({base: true, md: false})} />
           </Text>
         </Button>
+        <Flex align='center' justify='center'>
+          <Button as={Link} className='btn' href={`${environment.BLOCKCHAIN_EXPLORER_URL}/address/${account}`} maxW='300px' isExternal>
+            {t('wallet.wallet.transactions')}
+          </Button>
+        </Flex>
+        {/*
         <Alert status="warning" borderRadius="xl">
           <AlertIcon />
           <Box fontSize="sm">
@@ -54,6 +63,7 @@ const WalletAccount: FC<{
             </AlertDescription>
           </Box>
         </Alert>
+        */}
       </Stack>
       <hr />
       <Stack spacing={6}>

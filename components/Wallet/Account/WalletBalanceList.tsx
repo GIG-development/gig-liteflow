@@ -10,6 +10,7 @@ import List, { ListItem } from '../../List/List'
 import WalletBalance from './WalletBalance'
 import WrapToken from './Wrap'
 import UnwrapToken from './Unwrap'
+import TransferToken from './Transfer'
 
 type IProps = {
   currencies: {
@@ -52,26 +53,42 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
           action={
             <Flex as="span" alignItems={'center'} gap={6} color="brand.black" fontWeight="medium" flexDirection={{base: 'column', md: 'row'}}>
               <WalletBalance account={account} currency={x} />
-              {
-                (x.symbol === 'ETH') 
-                ? 
-                <WrapToken
-                  account={account}
-                  currencyId={x.id}
-                />
-                : 
-                <></> 
-              }
-              {
-                (x.symbol === 'WETH')
-                ? 
-                <UnwrapToken
-                  account={account}
-                  currencyId={x.id}
-                />
-                : 
-                <></> 
-              }
+              <Flex flexDirection={'row'} gap={2}>
+                  {
+                  (x.symbol === 'ETH') 
+                  ? 
+                  <>
+                    <WrapToken
+                      account={account}
+                      currencyId={x.id}
+                    />
+                    <TransferToken
+                      senderAccount={account}
+                      currencyId={x.id}
+                      currencySymbol={x.symbol}
+                    />
+                  </>
+                  : 
+                  <></> 
+                }
+                {
+                  (x.symbol === 'WETH')
+                  ? 
+                  <>
+                    <UnwrapToken
+                      account={account}
+                      currencyId={x.id}
+                    />
+                    <TransferToken
+                      senderAccount={account}
+                      currencyId={x.id}
+                      currencySymbol={x.symbol}
+                    />
+                  </>
+                  : 
+                  <></> 
+                }
+              </Flex>
             </Flex>
           }
         />

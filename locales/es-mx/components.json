@@ -181,7 +181,7 @@
   },
   "modal": {
     "accept-auction": {
-      "description": "Confirma la transacción en tu Wallet para continuar, ésta acción tendrá un costo (gas)",
+      "description": "Confirma la transacción en tu Wallet para continuar, esta acción tendrá un costo (gas)",
       "action": "Ver en {{name}}",
       "auction": {
         "resolve": {
@@ -920,6 +920,8 @@
       }
     },
     "wallet": {
+      "network": "Estás conectado a:",
+      "transactions": "Ver historial de transacciones",
       "deposit": {
         "title": "Depositar monedas",
         "description": "Puedes depositar monedas y transferir fondos en cualquier momento usando la siguiente dirección"
@@ -928,7 +930,8 @@
         "title": "Conéctate a la red {{networkName}}",
         "description": "Asegúrate de elegir la red {{networkName}} para depositar tus monedas o podrías perderlas."
       },
-      "balances": "Balances"
+      "balances": "Balances",
+      "available": "Balance Disponible:"
     },
     "balances": {
       "none": "No hay balances disponibles."
@@ -940,6 +943,15 @@
       "unwrap": "Desenvolver ETH",
       "unwrapBtn": "Desenvolver",
       "unwrapInputPlaceholder": "Monto a desenvolver",
+      "transaction": "Transacción enviada, espera la confirmación",
+      "confirmedTitle": "Transacción confirmada",
+      "confirmedMessage": ""
+    },
+    "transfer": {
+      "transfer": "Transferir Token",
+      "button": "Transferir",
+      "transferAmountInputPlaceholder": "Cantidad a Transferir",
+      "transferAccountInputPlaceholder": "Dirección del recipiente",
       "transaction": "Transacción enviada, espera la confirmación",
       "confirmedTitle": "Transacción confirmada",
       "confirmedMessage": ""

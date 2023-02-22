@@ -52,7 +52,7 @@ export function ListItem({
             {image}
           </Flex>
         )}
-        <Flex flex={1} align="center" gap={4}>
+        <Flex flex={1} align="baseline" gap={4}>
           <Box w="full" overflow="hidden">
             <Text
               as="p"
