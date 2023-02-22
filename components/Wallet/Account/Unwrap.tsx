@@ -90,8 +90,10 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayWethBalance)} WETH</strong></Text>
+            <Text variant='text-sm'>{t('wallet.wallet.available')} <strong>{ethers.utils.formatEther(displayWethBalance)} WETH</strong></Text>
             <InputGroup>
+            <label>
+              {t('wallet.swap.unwrapInputPlaceholder')}
                 <NumberInput
                   placeholder={t('wallet.swap.unwrapInputPlaceholder')}
                   size='lg'
@@ -104,12 +106,13 @@ import {
                   max={Number(WethBalance)}
                   onChange={(e) => setAmountToUnwrap(e)}
                 >
-                <NumberInputField/>
-                <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                </NumberInputStepper>
+                  <NumberInputField/>
+                  <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                  </NumberInputStepper>
                 </NumberInput>
+            </label>
             </InputGroup>
             <Button
                 disabled={ (amountToUnwrap === '0' || Number(amountToUnwrap) === 0) ? true : false}

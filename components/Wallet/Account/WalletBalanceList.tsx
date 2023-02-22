@@ -54,9 +54,8 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
             <Flex as="span" alignItems={'center'} gap={6} color="brand.black" fontWeight="medium" flexDirection={{base: 'column', md: 'row'}}>
               <WalletBalance account={account} currency={x} />
               <Flex flexDirection={'row'} gap={2}>
-                  {
-                  (x.symbol === 'ETH') 
-                  ? 
+                {
+                  (x.symbol === 'ETH') &&
                   <>
                     <WrapToken
                       account={account}
@@ -68,12 +67,9 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                       currencySymbol={x.symbol}
                     />
                   </>
-                  : 
-                  <></> 
                 }
                 {
-                  (x.symbol === 'WETH')
-                  ? 
+                  (x.symbol === 'WETH') &&
                   <>
                     <UnwrapToken
                       account={account}
@@ -85,8 +81,6 @@ const WalletBalanceList: VFC<IProps> = ({ account, currencies }) => {
                       currencySymbol={x.symbol}
                     />
                   </>
-                  : 
-                  <></> 
                 }
               </Flex>
             </Flex>

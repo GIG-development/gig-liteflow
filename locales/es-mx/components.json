@@ -955,6 +955,9 @@
       "transaction": "Transacción enviada, espera la confirmación",
       "confirmedTitle": "Transacción confirmada",
       "confirmedMessage": ""
+    },
+    "magic": {
+      "export": "Si estas usando Magic Wallet, puedes <0>exportar tu Wallet aquí</0>."
     }
   },
   "filterAccordion": {

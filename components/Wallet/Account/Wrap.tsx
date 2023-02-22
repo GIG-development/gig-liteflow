@@ -85,26 +85,29 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>Balance: <strong>{ethers.utils.formatEther(displayEthBalance)} ETH</strong></Text>
+            <Text variant='text-sm'>{t('wallet.wallet.available')} <strong>{ethers.utils.formatEther(displayEthBalance)} ETH</strong></Text>
             <InputGroup>
+              <label>
+                {t('wallet.swap.wrapInputPlaceholder')}
                 <NumberInput
-                  placeholder={t('wallet.swap.wrapInputPlaceholder')}
-                  size='lg'
-                  w="full"
-                  defaultValue={0}
-                  value={amountToWrap}
-                  precision={18}
-                  step={Math.pow(10, -18)}
-                  min={0}
-                  max={Number(EthBalance)}
-                  onChange={(e) => setAmountToWrap(e)}
-                >
-                <NumberInputField/>
-                <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                </NumberInputStepper>
-                </NumberInput>
+                    placeholder={t('wallet.swap.wrapInputPlaceholder')}
+                    size='lg'
+                    w="full"
+                    defaultValue={0}
+                    value={amountToWrap}
+                    precision={18}
+                    step={Math.pow(10, -18)}
+                    min={0}
+                    max={Number(EthBalance)}
+                    onChange={(e) => setAmountToWrap(e)}
+                  >
+                    <NumberInputField/>
+                    <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+              </label>
             </InputGroup>
             <Button
                 disabled={ (amountToWrap === '0' || Number(amountToWrap) === 0) ? true : false}

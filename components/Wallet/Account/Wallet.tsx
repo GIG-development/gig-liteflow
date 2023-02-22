@@ -12,6 +12,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { FC } from 'react'
 import WalletAddress from '../Address'
 import WalletBalanceList from './WalletBalanceList'
+import Trans from 'next-translate/Trans'
 
 const WalletAccount: FC<{
   account: string
@@ -28,7 +29,7 @@ const WalletAccount: FC<{
 
   return (
     <Stack spacing={12} pt={12}>
-      <Stack spacing={6}>
+      <Stack spacing={4}>
         <div>
           <Heading as="h2" variant="subtitle" color="brand.black">
             {t('wallet.wallet.deposit.title')}
@@ -46,10 +47,19 @@ const WalletAccount: FC<{
             <WalletAddress address={account} isCopyable isShort={useBreakpointValue({base: true, md: false})} />
           </Text>
         </Button>
-        <Flex align='center' justify='center'>
+        <Flex flexDirection='column' align='center' justify='center'>
           <Button as={Link} className='btn' href={`${environment.BLOCKCHAIN_EXPLORER_URL}/address/${account}`} maxW='300px' isExternal>
             {t('wallet.wallet.transactions')}
           </Button>
+          <Text variant='text-sm' pt={2} textAlign='center'>
+            <Trans
+              ns="components"
+              i18nKey={'wallet.magic.export'}
+              components={[
+                <Link href='https://reveal.magic.link/gig' textDecoration='underline' isExternal />
+              ]}
+            />
+          </Text>
         </Flex>
         {/*
         <Alert status="warning" borderRadius="xl">
