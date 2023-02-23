@@ -291,7 +291,7 @@ const CreatePage: NextPage<Props> = ({
               ...connectors,
               networkName: environment.NETWORK_NAME,
             }}
-            activateUnlockableContent={config?.hasUnlockableContent || false}
+            activateUnlockableContent={/* config?.hasUnlockableContent || */ false}
             maxRoyalties={environment.MAX_ROYALTIES}
             activateLazyMint={config?.hasLazyMint || false}
           />
