@@ -15,7 +15,8 @@ import {
     ModalHeader,
     Text,
     useToast,
-    useDisclosure
+    useDisclosure,
+    useBreakpointValue
   } from '@chakra-ui/react'
   import useTranslation from 'next-translate/useTranslation'
   import { VFC, useState } from 'react'
@@ -77,7 +78,7 @@ import {
             onClick={onOpen}>
             {t('wallet.swap.wrapBtn')}
         </Button>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="sm">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size={useBreakpointValue({base:'sm', md: 'md'})}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>

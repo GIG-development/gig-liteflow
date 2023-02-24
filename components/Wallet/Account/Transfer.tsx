@@ -16,7 +16,8 @@ import {
     ModalHeader,
     Text,
     useToast,
-    useDisclosure
+    useDisclosure,
+    useBreakpointValue
   } from '@chakra-ui/react'
   import useTranslation from 'next-translate/useTranslation'
   import { VFC, useState } from 'react'
@@ -46,7 +47,12 @@ import {
     const [accountToSend, setAccountToSend] = useState('')
   
     const sendToken = async (amount: string, account: string, currencyId: string) => {
-      if(amount !== '0' && Number(amount) > 0 && accountToSend !=='0x' && accountToSend!=='' && currencyId!=="0"){
+      if(
+          amount !== '0' &&
+          Number(amount) > 0 && 
+          ethers.utils.isAddress(accountToSend) &&
+          currencyId!=="0"
+        ){
         try{
           signer?.getGasPrice().then(async res => {
             if(currencyId==="1" || currencyId==="5"){
@@ -59,9 +65,9 @@ import {
                 if(tx){
                     onClose()
                     toast({
-                    title: t('wallet.transfer.transaction'),
-                    description: tx.hash,
-                    status: 'success'
+                      title: t('wallet.transfer.transaction'),
+                      description: tx.hash,
+                      status: 'success'
                     })
                     setTimeout(reload, 30000)
                 }
@@ -103,11 +109,11 @@ import {
             onClick={onOpen}>
             {t('wallet.transfer.button')}
         </Button>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="sm">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size={useBreakpointValue({base:'sm', md: 'lg'})}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading>{t('wallet.transfer.transfer')}</Heading>
+            <Heading>{t('wallet.transfer.transfer')}: {currencySymbol}</Heading>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -139,11 +145,17 @@ import {
             <InputGroup>
                 <label>
                     {t('wallet.transfer.transferAccountInputPlaceholder')}
-                    <Input placeholder={t('wallet.transfer.transferAccountInputPlaceholder')} value={accountToSend} onChange={(e) => setAccountToSend(e.target.value)} size='lg' />
+                    <Input
+                      placeholder={t('wallet.transfer.transferAccountInputPlaceholder')}
+                      value={accountToSend}
+                      onChange={(e) => setAccountToSend(e.target.value)}
+                      size='lg'
+                      fontSize={useBreakpointValue({base:'xs', md: 'sm'})}
+                    />
                 </label>
             </InputGroup>
             <Button
-                disabled={ (amountToSend === '0' || Number(amountToSend) === 0 || accountToSend==='') ? true : false}
+                disabled={ (amountToSend === '0' || Number(amountToSend) === 0 || accountToSend==='' || !ethers.utils.isAddress(accountToSend)) ? true : false}
                 width="full"
                 my={6}
                 onClick={()=>sendToken(amountToSend, accountToSend, currencyId)}
