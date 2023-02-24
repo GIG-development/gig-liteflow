@@ -171,7 +171,7 @@ const CreatePage: NextPage = () => {
           </Heading>
           <Button
             as={Link}
-            href='/login'
+            href='/login?redirectTo=/create'
           >
             {t('asset.restricted.loginBtn')}
           </Button>

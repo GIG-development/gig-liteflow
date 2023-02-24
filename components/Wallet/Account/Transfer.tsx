@@ -48,10 +48,13 @@ import {
     const sendToken = async (amount: string, account: string, currencyId: string) => {
       if(amount !== '0' && Number(amount) > 0 && accountToSend !=='0x' && accountToSend!=='' && currencyId!=="0"){
         try{
+          signer?.getGasPrice().then(async res => {
             if(currencyId==="1" || currencyId==="5"){
                 const tx = await signer?.sendTransaction({
                     to: account,
-                    value: ethers.utils.parseEther(amount)
+                    value: ethers.utils.parseEther(amount),
+                    gasPrice: res,
+                    gasLimit: 100000
                 })
                 if(tx){
                     onClose()
@@ -60,7 +63,7 @@ import {
                     description: tx.hash,
                     status: 'success'
                     })
-                    setTimeout(reload, 60000)
+                    setTimeout(reload, 30000)
                 }
             }else{
                 const contract = new ethers.Contract(
@@ -75,9 +78,11 @@ import {
                         description: transferResult.hash,
                         status: 'success'
                     })
-                    setTimeout(reload, 60000)
+                    setTimeout(reload, 30000)
                 })
             }
+          })
+
         } catch(error) {
           toast({
             title: "Error",
@@ -118,6 +123,7 @@ import {
                     value={amountToSend}
                     precision={18}
                     step={Math.pow(10, -18)}
+                    clampValueOnBlur={false}
                     min={0}
                     max={Number(TokenBalance)}
                     onChange={(e) => setAmountToSend(e)}
