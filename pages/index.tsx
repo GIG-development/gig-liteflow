@@ -80,9 +80,11 @@ export const getServerSideProps = wrapServerSideProps<Props>(
       tokensToRender = res.data.assets?.nodes.map((x) => x.id) || []
     }
 
-    let randomizedFeaturedTokens = environment.FEATURED_TOKEN.sort(
-      () => Math.random() - 0.5,
-    ).slice(0, environment.PAGINATION_LIMIT)
+    const randomizedFeaturedTokens = environment.FEATURED_TOKEN ? 
+      environment.FEATURED_TOKEN.sort(
+        () => Math.random() - 0.5,
+      ).slice(0, environment.PAGINATION_LIMIT)
+      : ''
 
     const { data, error } = await client.query<FetchHomePageQuery>({
       query: FetchHomePageDocument,
