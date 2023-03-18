@@ -22,7 +22,7 @@ const CryptoPage: NextPage = () => {
   const router = useRouter()
 
   useEffect(()=>{
-    if(environment.CHAIN_ID === 5){
+    if(environment.CHAIN_ID === 5 && account){
         new RampInstantSDK({
             hostAppName: 'GIG Marketplace',
             hostLogoUrl: 'https://gig.io/logo_beta_bn.png',
@@ -44,7 +44,7 @@ const CryptoPage: NextPage = () => {
         })
         .show()
     }
-  },[])
+  },[account])
 
   if (!account) return <></>
 
