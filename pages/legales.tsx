@@ -43,8 +43,8 @@ import {
                             shadow: '1px 0px 8px 6px #f2f2f2'
                         }
                     }>
-                        <Link
-                            as={Flex} 
+                        <Flex
+                            as={Link} 
                             gap={4}
                             flexDir='column'
                             alignItems='center'
@@ -55,7 +55,7 @@ import {
                             <Heading as='h2' variant='heading4'>
                                 {t('legal.terms')}
                             </Heading>
-                        </Link>
+                        </Flex>
                     </Box>
                     <Box
                         w={'320px'}
@@ -67,8 +67,8 @@ import {
                             shadow: '1px 0px 8px 6px #f2f2f2'
                         }
                     }>
-                        <Link
-                            as={Flex}
+                        <Flex
+                            as={Link}
                             gap={4}
                             flexDir='column'
                             alignItems='center'
@@ -79,7 +79,7 @@ import {
                             <Heading as='h2' variant='heading4'>
                                 {t('legal.privacy')}
                             </Heading>
-                        </Link>
+                        </Flex>
                     </Box>
                 </Flex>
             </Stack>
