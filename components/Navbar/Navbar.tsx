@@ -50,6 +50,7 @@ import Link from '../Link/Link'
 import LoginModal from '../Modal/Login'
 import Select from '../Select/Select'
 import AccountImage from '../Wallet/Image'
+import environment from 'environment'
 import {event} from 'nextjs-google-analytics'
 
 type MultiLang = {
@@ -293,6 +294,12 @@ const DrawerMenu: VFC<{
                       <Link href={`/account/wallet`}>
                         <NavItemMobile>{t('navbar.user.wallet')}</NavItemMobile>
                       </Link>
+                     {
+                      environment.CHAIN_ID === 5 && 
+                        <Link href={`/account/crypto`}>
+                          <NavItemMobile>{t('navbar.user.crypto')}</NavItemMobile>
+                        </Link>
+                      }
                       <Link href={`/account/edit`}>
                         <NavItemMobile>{t('navbar.user.edit')}</NavItemMobile>
                       </Link>
@@ -447,6 +454,12 @@ const UserMenu: VFC<{
         <Link href="/account/wallet">
           <MenuItem>{t('navbar.user.wallet')}</MenuItem>
         </Link>
+        {
+          environment.CHAIN_ID === 5 && 
+          <Link href="/account/crypto">
+            <MenuItem>{t('navbar.user.crypto')}</MenuItem>
+          </Link>
+        }
         <Link href="/account/edit">
           <MenuItem>{t('navbar.user.edit')}</MenuItem>
         </Link>
@@ -542,7 +555,7 @@ const Navbar: VFC<{
   })
 
   return (
-    <>
+    <Box backgroundColor={'white'} w='full' position='sticky' inset='0' zIndex='99999'>
       <Flex mx="auto" h={16} gap={6} px={{ base: 6, lg: 8 }} maxW="7xl">
         <Flex align="center">
           <Flex as={Link} href="/">
@@ -670,7 +683,7 @@ const Navbar: VFC<{
         </Flex>
       </Flex>
       <LoginModal isOpen={isOpen} onClose={onClose} {...login} />
-    </>
+    </Box>
   )
 }
 

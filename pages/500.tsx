@@ -1,16 +1,17 @@
 import {
+    Box,
     Button,
     Heading,
     Text,
     Stack
 } from '@chakra-ui/react'
 import Link from '../components/Link/Link'
+import Image from '../components/Image/Image'
 import Head from '../components/Head'
 import LargeLayout from '../layouts/large'
 import environment from '../environment'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
-import Image from 'next/image'
 
 const Custom500: NextPage = () => {
     const { t } = useTranslation('templates')
@@ -22,7 +23,15 @@ const Custom500: NextPage = () => {
                     description=""
                 />
                 <Stack spacing={6} mb={20} align={'center'}>
-                    <Image src='/img/familia/eskeri.png' layout='fill' width={'120px'} alt="Error 500"/>
+                    <Box w={{base: '320px', md: '600px'}} pos='relative'>
+                        <Image
+                            src={'/img/familia/eskeri.png'}
+                            width='120px'
+                            height='120px'
+                            layout='responsive'
+                            alt="500"
+                        />
+                    </Box>
                     <Heading variant={'subtitle'} textAlign={'center'}>
                         {t('error.500.message')}
                     </Heading>

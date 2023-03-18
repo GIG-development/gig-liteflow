@@ -390,6 +390,7 @@
       "title": "Mi cuenta",
       "profile": "Perfil",
       "wallet": "Wallet",
+      "crypto": "Comprar Crypto",
       "edit": "Editar perfil",
       "top-up": "Completar",
       "sign-out": "Cerrar sesión"
@@ -790,6 +791,16 @@
           "label": "Contenido desbloqueable",
           "hint": "(Opcional)",
           "choice": "El contenido del ítem sólo puede ser desbloqueado por el propietario del ítem."
+        },
+        "attributes": {
+          "attributes": "Atributos Especiales",
+          "phygital" : "Phygital: el NFT incluye una pieza física",
+          "vip" : "Acceso VIP: "
+        },
+        "terms": {
+          "title": "Términos y Condiciones",
+          "required": "(requerido)",
+          "terms": "Acepto los <0>Términos y Condiciones</0> para la creación de NFTs"
         }
       }
     },

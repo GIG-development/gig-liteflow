@@ -390,6 +390,7 @@
       "title": "My Account",
       "profile": "Profile",
       "wallet": "Wallet",
+      "crypto": "Buy Crypto",
       "edit": "Edit profile",
       "top-up": "Top-up",
       "sign-out": "Sign out"
@@ -790,6 +791,16 @@
           "label": "Unlockable content",
           "hint": "(Optional)",
           "choice": "The item's content can only be unlocked by the owner of the item"
+        },
+        "attributes": {
+          "attributes": "Special Attributes",
+          "phygital" : "Phygital: this NFT has a physical piece",
+          "vip" : "VIP Access: "
+        },
+        "terms": {
+          "title": "Terms and Conditions",
+          "required": "(required)",
+          "terms": "I agree with the <0>Terms and Conditions</0> for NFT creation"
         }
       }
     },

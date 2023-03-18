@@ -1,6 +1,7 @@
 import {
   Button,
   Checkbox,
+  CheckboxGroup,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -36,6 +37,7 @@ import Dropzone from '../../Dropzone/Dropzone'
 import CreateCollectibleModal from '../../Modal/CreateCollectible'
 import LoginModal from '../../Modal/Login'
 import Select from '../../Select/Select'
+import Link from 'components/Link/Link'
 
 export type FormData = {
   name: string
@@ -47,6 +49,8 @@ export type FormData = {
   preview: File | undefined
   isPrivate: boolean
   isAnimation: boolean
+  isPhygital: boolean
+  userTermsAgreement: boolean
 }
 
 type Props = {
@@ -109,6 +113,8 @@ const TokenFormCreate: FC<Props> = ({
       description: '',
       royalties: '0',
       isPrivate: false,
+      isPhygital: false,
+      userTermsAgreement: false
     },
   })
   const res = useWatch({ control })
@@ -127,6 +133,11 @@ const TokenFormCreate: FC<Props> = ({
   const onSubmit = handleSubmit(async (data) => {
     if (!data.content) throw new Error('content falsy')
 
+    if(!data.userTermsAgreement) return
+
+    const attributes = [{ type: 'Category', value: data.category }]
+    if(data.isPhygital) attributes.push({type: 'Special Attribute', value: 'Phygital'})
+
     try {
       createCollectibleOnOpen()
       if (parseFloat(data.royalties) > maxRoyalties)
@@ -142,7 +153,7 @@ const TokenFormCreate: FC<Props> = ({
         isPrivate: data.isPrivate,
         amount: collection.standard === 'ERC1155' ? parseInt(data.amount) : 1,
         royalties: parseFloat(data.royalties),
-        traits: [{ type: 'Category', value: data.category }],
+        traits: attributes,
       })
 
       onCreated(assetId)
@@ -204,7 +215,7 @@ const TokenFormCreate: FC<Props> = ({
             <FormLabel m={0}>
               {t('token.form.create.unlockable.label')}
             </FormLabel>
-            <FormHelperText>
+            <FormHelperText fontSize='xs'>
               {t('token.form.create.unlockable.hint')}
             </FormHelperText>
           </HStack>
@@ -261,7 +272,7 @@ const TokenFormCreate: FC<Props> = ({
           <FormLabel htmlFor="description" m={0}>
             {t('token.form.create.description.label')}
           </FormLabel>
-          <FormHelperText>
+          <FormHelperText fontSize='xs'>
             {t('token.form.create.description.info')}
           </FormHelperText>
         </HStack>
@@ -316,7 +327,7 @@ const TokenFormCreate: FC<Props> = ({
           <FormLabel htmlFor="royalties" m={0}>
             {t('token.form.create.royalties.label')}
           </FormLabel>
-          <FormHelperText>
+          <FormHelperText fontSize='xs'>
             {t('token.form.create.royalties.info')}
           </FormHelperText>
         </HStack>
@@ -379,6 +390,47 @@ const TokenFormCreate: FC<Props> = ({
         required
         error={errors.category}
       />
+
+      <FormControl>
+        <HStack spacing={1} mb={2}>
+          <FormLabel htmlFor="attributes" m={0}>{t('token.form.create.attributes.attributes')}</FormLabel>
+          <FormHelperText fontSize='xs'>
+            {t('token.form.create.royalties.info')}
+          </FormHelperText>
+        </HStack>
+        <CheckboxGroup colorScheme='brand'>
+          <Stack spacing={[1, 5]} direction={['column', 'column']}>
+            <Checkbox value='phygital' onChange={() => setValue('isPhygital', !res.isPhygital)}>
+              {t('token.form.create.attributes.phygital')}
+            </Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl backgroundColor={'gray.100'} p={3} rounded={6}>
+        <HStack spacing={1} mb={2}>
+          <FormLabel htmlFor="terms" m={0}>{t('token.form.create.terms.title')}</FormLabel>
+          <FormHelperText fontSize='xs'>
+            {t('token.form.create.terms.required')}
+          </FormHelperText>
+        </HStack>
+        <CheckboxGroup colorScheme='brand'>
+          <Stack spacing={[1, 5]} direction={['column', 'column']}>
+            <Checkbox value='terms' onChange={() => setValue('userTermsAgreement', !res.userTermsAgreement)} required>
+              <Text fontSize='xs'>
+                <Trans
+                  ns="components"
+                  i18nKey={'token.form.create.terms.terms'}
+                  components={[
+                    <Link href='https://gig.io/GIG_terminos-y-condiciones.pdf' key='terms' isExternal textDecor='underline' ></Link>
+                  ]}
+                />
+              </Text>
+            </Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
       {signer ? (
         <Button isLoading={activeStep !== CreateNftStep.INITIAL} type="submit">
           <Text as="span" isTruncated>

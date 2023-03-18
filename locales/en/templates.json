@@ -57,6 +57,11 @@
     "line2": "Find us in social media as",
     "button": "Send a Message"
   },
+  "legal": {
+    "title": "Legal Documents",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
   "creadores": {
     "formId": "EK6ZlQsM",
     "hero": {

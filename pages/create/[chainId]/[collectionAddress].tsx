@@ -274,6 +274,7 @@ const CreatePage: NextPage<Props> = ({
                 sale={undefined}
                 numberOfSales={0}
                 hasMultiCurrency={false}
+                isPreview={true}
               />
             )}
           </Box>

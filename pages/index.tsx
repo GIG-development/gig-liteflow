@@ -219,7 +219,7 @@ const HomePage: NextPage<Props> = ({
         {featuredAssets && featuredAssets.length > 0 && (
           <header>
 
-            <Heading as="h2" variant="title" color="brand.black">
+            <Heading as="h2" variant="title" color="brand.black" mt={6}>
             {t('home.featured')}
             </Heading>
             {featuredAssets.length === 1 ? (

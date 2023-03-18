@@ -42,20 +42,21 @@ import {
     const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
     const signer = useSigner()
     const [TokenBalance, {loading}] = useBalance(senderAccount, currencyId)
-    const displayTokenBalance = TokenBalance ? TokenBalance.toString() : '0'
     const [amountToSend, setAmountToSend] = useState('0')
     const [accountToSend, setAccountToSend] = useState('')
   
     const sendToken = async (amount: string, account: string, currencyId: string) => {
       if(
           amount !== '0' &&
-          Number(amount) > 0 && 
           ethers.utils.isAddress(accountToSend) &&
-          currencyId!=="0"
+          currencyId !== '0'
         ){
         try{
           signer?.getGasPrice().then(async res => {
             if(currencyId==="1" || currencyId==="5"){
+                if (Number(ethers.utils.parseEther(amount)) >= Number(TokenBalance) - Number(res)){
+                  throw Error('Amount too big, be sure you have enough ETH to pay gas')
+                }
                 const tx = await signer?.sendTransaction({
                     to: account,
                     value: ethers.utils.parseEther(amount),
@@ -88,7 +89,6 @@ import {
                 })
             }
           })
-
         } catch(error) {
           toast({
             title: "Error",
@@ -117,7 +117,7 @@ import {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text variant='text-sm'>{t('wallet.wallet.available')} <strong>{ethers.utils.formatEther(displayTokenBalance)} {currencySymbol}</strong></Text>
+            <Text variant='text-sm'>{t('wallet.wallet.available')} <strong>{TokenBalance ? ethers.utils.formatEther(TokenBalance.toString()) : '0'} {currencySymbol}</strong></Text>
             <InputGroup>
                 <label>
                     {t('wallet.transfer.transferAmountInputPlaceholder')}
@@ -155,7 +155,16 @@ import {
                 </label>
             </InputGroup>
             <Button
-                disabled={ (amountToSend === '0' || Number(amountToSend) === 0 || accountToSend==='' || !ethers.utils.isAddress(accountToSend)) ? true : false}
+                disabled={
+                  ( 
+                    amountToSend === '0' ||
+                    Number(amountToSend) === 0 ||
+                    accountToSend==='' ||
+                    !ethers.utils.isAddress(accountToSend)
+                  ) 
+                  ? true 
+                  : false
+                }
                 width="full"
                 my={6}
                 onClick={()=>sendToken(amountToSend, accountToSend, currencyId)}

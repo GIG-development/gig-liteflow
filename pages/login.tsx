@@ -45,7 +45,7 @@ const LoginPage: NextPage = () => {
         await activate(connector, onError, throwErrors)
         event("LoginSuccess", {
           category: "Login",
-          label: account ? account : ''
+          label: account ? account.toString().toLowerCase() : ''
         })
         if (!referral) return
         await accept(referral)

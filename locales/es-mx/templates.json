@@ -71,6 +71,11 @@
     "line2": "Encuéntranos en redes sociales como",
     "button": "Escríbenos aquí"
   },
+  "legal": {
+    "title": "Documentos Legales",
+    "terms": "Términos y Condiciones",
+    "privacy": "Aviso de Privacidad"
+  },
   "creadores": {
     "formId": "eyQRCt11",
     "hero": {
