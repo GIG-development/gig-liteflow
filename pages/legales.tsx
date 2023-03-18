@@ -10,8 +10,6 @@ import {
   import useTranslation from 'next-translate/useTranslation'
   import { event } from 'nextjs-google-analytics'
   import Link from 'components/Link/Link'
-  import { GrDocumentUser } from '@react-icons/all-files/Gr/GrDocumentUser'
-  import { GrDocumentLocked } from '@react-icons/all-files/Gr/GrDocumentLocked'
     
   const Contacto: NextPage = () => {
     const { t } = useTranslation('templates')
@@ -54,7 +52,6 @@ import {
                             isExternal
                             onClick={()=>{callAnalyticsEvent('TerminosCondiciones')}}
                         >
-                            <GrDocumentUser fontSize={'48px'}/>
                             <Heading as='h2' variant='heading4'>
                                 {t('legal.terms')}
                             </Heading>
@@ -79,7 +76,6 @@ import {
                             isExternal
                             onClick={()=>{callAnalyticsEvent('AvisoPrivacidad')}}
                         >
-                            <GrDocumentLocked fontSize={'48px'}/>
                             <Heading as='h2' variant='heading4'>
                                 {t('legal.privacy')}
                             </Heading>
