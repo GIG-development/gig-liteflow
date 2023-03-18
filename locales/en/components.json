@@ -935,7 +935,7 @@
       "transactions": "See transactions history",
       "deposit": {
         "title": "Deposit tokens",
-        "description": "You can deposit tokens and transfer funds at anytime on the following address"
+        "description": "You can deposit tokens and transfer funds at anytime on the following address:"
       },
       "banner": {
         "title": "Use {{networkName}} network",

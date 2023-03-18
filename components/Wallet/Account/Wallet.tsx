@@ -37,16 +37,18 @@ const WalletAccount: FC<{
           <Text as="p" variant="text" color="gray.500">
             {t('wallet.wallet.deposit.description')}
           </Text>
-          <Heading variant='heading3' mt={6} textAlign='center'>
-            {t('wallet.wallet.network')}<br/>
-            <Text fontWeight={'bold'}>{networkName}</Text>
-          </Heading>
         </div>
         <Button variant="outline" colorScheme="gray" isFullWidth>
           <Text as="span" isTruncated>
             <WalletAddress address={account} isCopyable isShort={useBreakpointValue({base: true, md: false})} />
           </Text>
         </Button>
+
+        <Heading variant='heading3' mt={6} textAlign='center'>
+            {t('wallet.wallet.network')}<br/>
+            <Text fontWeight={'bold'}>{networkName}</Text>
+        </Heading>
+
         <Flex flexDirection='column' align='center' justify='center'>
           <Button as={Link} className='btn' href={`${environment.BLOCKCHAIN_EXPLORER_URL}/address/${account}`} maxW='300px' isExternal>
             {t('wallet.wallet.transactions')}

@@ -935,7 +935,7 @@
       "transactions": "Ver historial de transacciones",
       "deposit": {
         "title": "Depositar monedas",
-        "description": "Puedes depositar monedas y transferir fondos en cualquier momento usando la siguiente dirección"
+        "description": "Puedes depositar monedas y transferir fondos en cualquier momento usando la siguiente dirección:"
       },
       "banner": {
         "title": "Conéctate a la red {{networkName}}",

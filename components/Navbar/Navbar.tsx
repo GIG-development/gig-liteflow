@@ -528,6 +528,8 @@ const Navbar: VFC<{
     skip: !account,
   })
 
+  console.log(environment.CHAIN_ID)
+
   useEffect(() => {
     if (!isReady) return
     if (!query.search) return setValue('search', '')
