@@ -55,7 +55,12 @@ import {
           signer?.getGasPrice().then(async res => {
             if(currencyId==="1" || currencyId==="5"){
                 if (Number(ethers.utils.parseEther(amount)) >= Number(TokenBalance) - Number(res)){
-                  throw Error('Amount too big, be sure you have enough ETH to pay gas')
+                  toast({
+                    title: "Error",
+                    description: t('wallet.transfer.amountError')+ethers.utils.formatEther(res)+' ETH',
+                    status: "error"
+                  })
+                  throw Error(t('wallet.transfer.amountError')+ethers.utils.formatEther(res)+' ETH',)
                 }
                 const tx = await signer?.sendTransaction({
                     to: account,

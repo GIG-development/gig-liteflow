@@ -18,12 +18,14 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import useTranslation from 'next-translate/useTranslation'
+import Trans from 'next-translate/Trans'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo, useState } from 'react'
 import WalletCoinbase from '../Wallet/Connectors/Coinbase'
 import WalletEmail from '../Wallet/Connectors/Email'
 import WalletMetamask from '../Wallet/Connectors/Metamask'
 import WalletWalletConnect from '../Wallet/Connectors/WalletConnect'
+import Link from 'components/Link/Link'
 import {event} from 'nextjs-google-analytics'
 
 type Props = {
@@ -199,6 +201,16 @@ const LoginModal: FC<Props> = ({
           )}
           
           {email && <WalletEmail connector={email} activate={activate} />}
+
+          <Text variant='text-sm' color='gray.400' w='full' textAlign='center'>
+            <Trans
+              ns="templates"
+              i18nKey={'login.terms'}
+              components={[
+                <Link href='https://gig.io/legales' key='terms' isExternal textDecor='underline' ></Link>
+              ]}
+            />
+          </Text>
 
         </ModalBody>
         <ModalFooter as="div" />

@@ -60,7 +60,9 @@
   "legal": {
     "title": "Legal Documents",
     "terms": "Terms & Conditions",
-    "privacy": "Privacy Policy"
+    "termsFile": "https://gig.io/docs/GIG-Legal_Terms.pdf",
+    "privacy": "Privacy Policy",
+    "privacyFile": "https://gig.io/docs/GIG-Privacy_Policy.pdf"
   },
   "creadores": {
     "formId": "EK6ZlQsM",
@@ -621,6 +623,7 @@
     "successes": {
       "invitation": "Your invitation has been linked to your account."
     },
+    "terms": "By logging in, you accept the <0>Terms & Conditions</0>, as well as our <0>Privacy Policy</0>.",
     "errors": {
       "general": "An error happened. Be sure you have a wallet available in your device. If the error persists, try using Metamasks' app browser or our WalletConnect option.",
       "wrong-network": "You are connected to the wrong network. Please switch to the {{networkName}} network.",

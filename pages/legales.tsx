@@ -11,7 +11,7 @@ import {
   import { event } from 'nextjs-google-analytics'
   import Link from 'components/Link/Link'
     
-  const Contacto: NextPage = () => {
+  const Legales: NextPage = () => {
     const { t } = useTranslation('templates')
 
     const callAnalyticsEvent = (desc: string) => {
@@ -22,7 +22,7 @@ import {
     }
 
     return (
-      <main id="contacto">
+      <main id="legales">
         <LargeLayout>
             <Head
                 title="Legales"
@@ -48,7 +48,7 @@ import {
                             gap={4}
                             flexDir='column'
                             alignItems='center'
-                            href='https://gig.io/GIG-Terminos_Legales.pdf'
+                            href={t('legal.termsFile')}
                             isExternal
                             onClick={()=>{callAnalyticsEvent('TerminosCondiciones')}}
                         >
@@ -72,7 +72,7 @@ import {
                             gap={4}
                             flexDir='column'
                             alignItems='center'
-                            href='https://gig.io/GIG-Aviso_de_Privacidad.pdf'
+                            href={t('legal.privacyFile')}
                             isExternal
                             onClick={()=>{callAnalyticsEvent('AvisoPrivacidad')}}
                         >
@@ -88,4 +88,4 @@ import {
     )
   }
   
-  export default Contacto
+  export default Legales

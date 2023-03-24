@@ -74,7 +74,9 @@
   "legal": {
     "title": "Documentos Legales",
     "terms": "Términos y Condiciones",
-    "privacy": "Aviso de Privacidad"
+    "termsFile": "https://gig.io/docs/GIG-Terminos_Legales.pdf",
+    "privacy": "Aviso de Privacidad",
+    "privacyFile": "https://gig.io/docs/GIG-Aviso_de_Privacidad.pdf"
   },
   "creadores": {
     "formId": "eyQRCt11",
@@ -635,6 +637,7 @@
     "successes": {
       "invitation": "Tu invitación ha sido asociada a tu cuenta."
     },
+    "terms": "Al iniciar sesión, aceptas los <0>Términos y Condiciones</0> así como el <0>Aviso de Privacidad</0>",
     "errors": {
       "general": "Ocurrió un error. Asegúrate de tener una Wallet disponible en tu dispositivo. Si el error persiste, intenta utilizar el navegador de la app de Metamask o la opción de WalletConnect .",
       "wrong-network": "Estás en la red incorrecta. Por favor, conéctate a la red {{networkName}}.",

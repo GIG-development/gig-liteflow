@@ -422,7 +422,7 @@ const TokenFormCreate: FC<Props> = ({
                   ns="components"
                   i18nKey={'token.form.create.terms.terms'}
                   components={[
-                    <Link href='https://gig.io/GIG_terminos-y-condiciones.pdf' key='terms' isExternal textDecor='underline' ></Link>
+                    <Link href='https://gig.io/legales' key='terms' isExternal textDecor='underline' ></Link>
                   ]}
                 />
               </Text>

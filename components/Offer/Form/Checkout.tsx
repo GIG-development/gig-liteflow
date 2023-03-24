@@ -20,6 +20,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import Link from 'components/Link/Link'
 import { Signer } from '@ethersproject/abstract-signer'
 import { EmailConnector } from '@nft/email-connector'
 import { formatError, useAcceptOffer, useBalance } from '@nft/hooks'
@@ -36,6 +37,8 @@ import AcceptOfferModal from '../../Modal/AcceptOffer'
 import LoginModal from '../../Modal/Login'
 import Balance from '../../User/Balance'
 import Summary from '../Summary'
+import environment from 'environment'
+import Trans from 'next-translate/Trans'
 
 type FormData = {
   quantity: string
@@ -207,6 +210,18 @@ const OfferFormCheckout: FC<Props> = ({
           />
         )}
       </div>
+
+      {!canPurchase &&
+        <Text variant='text-sm' mb={6}>
+          <Trans
+          ns='components'
+          i18nKey='offer.form.checkout.buyCrypto'
+          components={[
+            <Link href={`${environment.BASE_URL}/account/crypto`} fontWeight='bold' textDecor='underline'></Link>
+          ]}
+          />
+        </Text>
+      }
 
       <Alert status="info" borderRadius="xl" mb={8}>
         <AlertIcon />

@@ -500,6 +500,7 @@
       "checkout": {
         "title": "Comprar Coleccionable",
         "submit": "Proceder al Pago",
+        "buyCrypto": "Si necesitas tokens para completar la compra, puedes comprarlos <0>aquí</0>",
         "validation": {
           "required": "Este campo es obligatorio.",
           "integer": "Este campo debe ser un número entero.",
@@ -965,7 +966,8 @@
       "transferAccountInputPlaceholder": "Dirección del recipiente",
       "transaction": "Transacción enviada, espera la confirmación",
       "confirmedTitle": "Transacción confirmada",
-      "confirmedMessage": ""
+      "confirmedMessage": "",
+      "amountError": "Monto muy alto, asegúrate de tener suficiente ETH para pagar el Gas de la transacción. Total de gas estimado: "
     },
     "magic": {
       "export": "Si estas usando Magic Wallet, puedes <0>exportar tu Wallet aquí</0>."

@@ -500,6 +500,7 @@
       "checkout": {
         "title": "Purchase Collectible",
         "submit": "Proceed to Payment",
+        "buyCrypto": "If you need tokens to complete your purchase, you can get them <0>here</0>",
         "validation": {
           "required": "This field is required.",
           "integer": "This field must be an integer.",
@@ -965,7 +966,8 @@
       "transferAccountInputPlaceholder": "Recipient address",
       "transaction": "Transaction sent, wait for confirmation",
       "confirmedTitle": "Transaction confirmed",
-      "confirmedMessage": ""
+      "confirmedMessage": "",
+      "amountError": "Amount too big, be sure you have enough ETH to pay gas. Estimated gas fee: "
     },
     "magic": {
       "export": "If you are using Magic Wallet, you can <0>export your Wallet here</0>."

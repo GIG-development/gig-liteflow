@@ -4,6 +4,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
+import Trans from 'next-translate/Trans'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Head from '../components/Head'
@@ -17,6 +18,7 @@ import environment from '../environment'
 import useEagerConnect from '../hooks/useEagerConnect'
 import useSigner from '../hooks/useSigner'
 import SmallLayout from '../layouts/small'
+import Link from 'components/Link/Link'
 import {event} from 'nextjs-google-analytics'
 
 const LoginPage: NextPage = () => {
@@ -55,16 +57,16 @@ const LoginPage: NextPage = () => {
         })
       } catch (error) {
         console.warn(error)
-        event("LoginError", {
-          category: "Login",
-          label: String(error)
-        })
         if(referral){
           toast({
             title: t('login.errors.invitation'),
             status: 'warning',
           })
         }else{
+          event("LoginError", {
+            category: "Login",
+            label: String(error)
+          })
           // toast({
           //   title: t('login.errors.general'),
           //   status: 'warning',
@@ -230,6 +232,15 @@ const LoginPage: NextPage = () => {
             />
           )}
 
+          <Text variant='text-sm' color='gray.400' w='full' textAlign='center'>
+            <Trans
+              ns="templates"
+              i18nKey={'login.terms'}
+              components={[
+                <Link href='https://gig.io/legales' key='terms' isExternal textDecor='underline' ></Link>
+              ]}
+            />
+          </Text>
         </Flex>
       </SmallLayout>
     </main>
