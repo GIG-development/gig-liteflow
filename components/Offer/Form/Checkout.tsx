@@ -215,10 +215,9 @@ const OfferFormCheckout: FC<Props> = ({
         <Text variant='text-sm' mb={6}>
           <Trans
           ns='components'
-          key='offer.form.checkout.buyCrypto'
           i18nKey='offer.form.checkout.buyCrypto'
           components={[
-            <Link href={`${environment.BASE_URL}/account/crypto`} fontWeight='bold' textDecor='underline'></Link>
+            <Link href={`${environment.BASE_URL}/account/crypto`} fontWeight='bold' key='legal-link' textDecor='underline'></Link>
           ]}
           />
         </Text>
