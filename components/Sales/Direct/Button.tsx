@@ -31,14 +31,16 @@ const SaleDirectButton: VFC<Props> = ({
   onOfferCanceled,
 }) => {
   const { t } = useTranslation('components')
-  const [sUrl, setSignedUrl] = useState('')
+  const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
 
   useEffect(()=>{
-    if(environment.CHAIN_ID === 5) 
-      fetch(`https://testnet.gig.io/api/mp/sign`)
+    if(environment.CHAIN_ID === 5){
+      const assetInfo = assetId.split("-")
+      fetch(`https://testnet.gig.io/api/mp/sign?ethAddress=${signer}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}`)
       .then(res => res?.json())
-      .then(data => setSignedUrl(data?.sUrl))
+      .then(data => setMoonpaySignedUrl(data?.sUrl))
       .catch(e => console.error(e))
+    }
   },[])
 
   const bid = useMemo(() => {
@@ -74,16 +76,16 @@ const SaleDirectButton: VFC<Props> = ({
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
-      {(sUrl && environment.CHAIN_ID === 5) &&
-        <Button as={Link} href={sUrl} isExternal size="full" className='btn'>
+      {(moonpaySignedUrl && signer && environment.CHAIN_ID === 5) &&
+        <Button as={Link} href={moonpaySignedUrl} isExternal size="full" className='btn'>
           <Text as="span" isTruncated>
-          Buy with MoonPay
+            {t('sales.direct.button.moonpay')}
           </Text>
         </Button>
       }
       </>
     )
-  }, [sales, ownAllSupply, t, sUrl])
+  }, [sales, ownAllSupply, t, moonpaySignedUrl])
 
   const seeOffers = useMemo(() => {
     if (sales.length <= 1) return

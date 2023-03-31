@@ -7,9 +7,12 @@ export default async function sign(
     res: NextApiResponse,
   ): Promise<any> {
     if(req){
+        const walletAddress = req.query.ethAddress ? req.query.ethAddress : ''
+        const contractAddress = req.query.contractAddress ? req.query.contractAddress : ''
+        const tokenId = req.query.tokenId ? req.query.tokenId : ''
         const pk = environment.MOONPAY_API_KEY
         const sk = environment.MOONPAY_SECRET
-        const oUrl = `https://buy-sandbox.moonpay.com/nft?apiKey=${pk}`
+        const oUrl = `https://buy-sandbox.moonpay.com/nft?apiKey=${pk}&walletAddress=${walletAddress}&contractAddress=${contractAddress}&tokenId=${tokenId}`
         const sign = crypto
                         .createHmac('sha256', sk)
                         .update(new URL(oUrl).search)

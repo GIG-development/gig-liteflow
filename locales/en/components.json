@@ -639,7 +639,8 @@
       "button": {
         "place-bid": "Place a bid",
         "buy": "Buy Collectible",
-        "view": "View Collectible"
+        "view": "View Collectible",
+        "moonpay": "Buy with Credit Card"
       },
       "card-footer": {
         "price": "Price",
