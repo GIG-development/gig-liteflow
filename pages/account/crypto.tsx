@@ -10,26 +10,14 @@ import Link from 'components/Link/Link'
 import useEagerConnect from '../../hooks/useEagerConnect'
 import useLoginRedirect from '../../hooks/useLoginRedirect'
 import SmallLayout from '../../layouts/small'
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { event } from 'nextjs-google-analytics'
 import environment from 'environment'
 
 const CryptoPage: NextPage = () => {
-  const ready = useEagerConnect()
+  const { locale } = useRouter()
   const { account } = useWeb3React()
+  const ready = useEagerConnect()
   useLoginRedirect(ready)
-  const {locale} = useRouter()
-
-  useEffect(()=>{
-    if(environment.CHAIN_ID === 5 && account){
-
-      event("CryptoPurchase", {
-          category: "On-Ramp Crypto Purchase",
-          label: ''
-      })
-    }
-  },[account])
 
   if (!account) return <></>
 

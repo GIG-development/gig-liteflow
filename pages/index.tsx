@@ -132,7 +132,6 @@ const HomePage: NextPage<Props> = ({
   artists
 }) => {
   const verifiedArtists = artists.data.users.nodes.filter((user:any)=>user.verification?.status === "VALIDATED")
-  console.log(artists.data.users)
   const ready = useEagerConnect()
   //const signer = useSigner()
   const { t } = useTranslation('templates')

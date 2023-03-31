@@ -1,8 +1,9 @@
 import { Button, Flex, Text } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
+import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
-import { useMemo, VFC } from 'react'
+import { useEffect, useMemo, VFC } from 'react'
 import { BlockExplorer } from '../../../hooks/useBlockExplorer'
 import Link from '../../Link/Link'
 import type { Props as ModalProps } from './Modal'
@@ -30,6 +31,11 @@ const SaleDirectButton: VFC<Props> = ({
   onOfferCanceled,
 }) => {
   const { t } = useTranslation('components')
+
+  useEffect(()=>{
+    if(environment.CHAIN_ID === 5) fetch(`https://testnet.gig.io/api/mp/sign`).then(res=>console.log(res))
+  },[])
+
   const bid = useMemo(() => {
     if (ownAllSupply) return
     return (

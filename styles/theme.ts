@@ -158,8 +158,8 @@ export const theme = extendTheme({
     Heading: {
       variants: {
         title: {
-          fontSize: '36px',
-          lineHeight: '40px',
+          fontSize: '28px',
+          lineHeight: '32px',
           fontWeight: 800
         },
         subtitle: {
