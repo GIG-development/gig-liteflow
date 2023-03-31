@@ -35,12 +35,13 @@ const SaleDirectButton: VFC<Props> = ({
 
   useEffect(()=>{
     if(environment.CHAIN_ID === 5 && signer){
-      const assetInfo = assetId.split("-")
-      const ethAddress = signer.getAddress()
-      fetch(`https://testnet.gig.io/api/mp/sign?ethAddress=${ethAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}`)
-      .then(res => res?.json())
-      .then(data => setMoonpaySignedUrl(data?.sUrl))
-      .catch(e => console.error(e))
+      signer.getAddress().then( ethAddress  => {
+        const assetInfo = assetId.split("-")
+        fetch(`https://testnet.gig.io/api/mp/sign?ethAddress=${ethAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}`)
+        .then(res => res?.json())
+        .then(data => setMoonpaySignedUrl(data?.sUrl))
+        .catch(e => console.error(e))
+      })
     }
   },[assetId, signer])
 
