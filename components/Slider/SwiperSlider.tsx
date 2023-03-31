@@ -69,7 +69,7 @@ const Hero: FC<PropsWithChildren<Props>> = ({
           </SwiperSlide>
         )
       }),
-    [items],
+    [items, t],
   )
 
   return (
