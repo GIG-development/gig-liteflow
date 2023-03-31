@@ -31,6 +31,7 @@ import {
 } from '../convert'
 import environment from '../environment'
 import {
+  AccountFilter,
   FetchDefaultAssetIdsDocument,
   FetchDefaultAssetIdsQuery,
   FetchHomePageDocument,
@@ -102,10 +103,9 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     if (error) throw error
     if (!data) throw new Error('data is falsy')
 
-    const queryFilter: any = []
     const res = await client.query<FetchExploreUsersQuery>({
       query: FetchExploreUsersDocument,
-      variables: { limit: 50, offset: 0, filter: queryFilter },
+      variables: { limit: 20, offset: 0, filter: [{verification:{status:{equalTo:'VALIDATED'}}} as AccountFilter] },
     })
     if (error) throw error
     if (!data) throw new Error('data is falsy')
