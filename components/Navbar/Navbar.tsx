@@ -51,6 +51,7 @@ import LoginModal from '../Modal/Login'
 import Select from '../Select/Select'
 import AccountImage from '../Wallet/Image'
 import environment from 'environment'
+import { useRouter } from 'next/router'
 import {event} from 'nextjs-google-analytics'
 
 type MultiLang = {
@@ -127,6 +128,7 @@ const DrawerMenu: VFC<{
   const { asPath, events, query, push } = router
   const { t } = useTranslation('components')
   const btnRef = useRef(null)
+  const {locale} = useRouter()
 
   useEffect(() => {
     events.on('routeChangeStart', () => onClose())
@@ -296,7 +298,7 @@ const DrawerMenu: VFC<{
                       </Link>
                      {
                       environment.CHAIN_ID === 5 && 
-                        <Link href={`/account/crypto`}>
+                        <Link href={`https://buy-sandbox.moonpay.com?currencyCode=eth&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}`} isExternal>
                           <NavItemMobile>{t('navbar.user.crypto')}</NavItemMobile>
                         </Link>
                       }
@@ -434,6 +436,7 @@ const UserMenu: VFC<{
   signOutFn: () => void
 }> = ({ account, user, topUp, signOutFn }) => {
   const { t } = useTranslation('components')
+  const {locale} = useRouter()
   return (
     <Menu>
       <MenuButton>
@@ -456,7 +459,7 @@ const UserMenu: VFC<{
         </Link>
         {
           environment.CHAIN_ID === 5 && 
-          <Link href="/account/crypto">
+          <Link href={`https://buy-sandbox.moonpay.com?currencyCode=eth&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}`} isExternal>
             <MenuItem>{t('navbar.user.crypto')}</MenuItem>
           </Link>
         }

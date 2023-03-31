@@ -26,6 +26,7 @@ import React, {
   useMemo,
 } from 'react'
 import { CookiesProvider, useCookies } from 'react-cookie'
+import ChatWindow from '../components/ChatWindow'
 import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
 import connectors from '../connectors'
@@ -70,35 +71,37 @@ function Layout({
   )
 
   return (
-      <Box>
-        <Navbar
-          logo={{ path: '/logo_beta_bn.png', width: 100, height: 53 }}
-          allowTopUp={environment.ALLOW_TOP_UP}
-          router={{
-            asPath: router.asPath,
-            isReady: router.isReady,
-            push: router.push,
-            query: router.query,
-            events: router.events,
-          }}
-          login={{
-            ...connectors,
-            networkName: environment.NETWORK_NAME,
-          }}
-          multiLang={{
-            locale: router.locale,
-            pathname: router.pathname,
-            choices: [
-              { label: 'ES', value: 'es-mx' },
-              { label: 'EN', value: 'en' }
-            ],
-          }}
-          signer={signer}
-          disableMinting={environment.MINTABLE_COLLECTIONS.length === 0}
-        />
-        {children}
-        <Footer userProfileLink={userProfileLink}/>
-      </Box>
+    <ChatWindow>
+        <Box>
+          <Navbar
+            logo={{ path: '/logo_beta_bn.png', width: 100, height: 53 }}
+            allowTopUp={environment.ALLOW_TOP_UP}
+            router={{
+              asPath: router.asPath,
+              isReady: router.isReady,
+              push: router.push,
+              query: router.query,
+              events: router.events,
+            }}
+            login={{
+              ...connectors,
+              networkName: environment.NETWORK_NAME,
+            }}
+            multiLang={{
+              locale: router.locale,
+              pathname: router.pathname,
+              choices: [
+                { label: 'ES', value: 'es-mx' },
+                { label: 'EN', value: 'en' }
+              ],
+            }}
+            signer={signer}
+            disableMinting={environment.MINTABLE_COLLECTIONS.length === 0}
+          />
+          {children}
+          <Footer userProfileLink={userProfileLink}/>
+        </Box>
+      </ChatWindow>
   )
 }
 

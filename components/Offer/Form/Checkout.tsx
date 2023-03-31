@@ -38,7 +38,9 @@ import LoginModal from '../../Modal/Login'
 import Balance from '../../User/Balance'
 import Summary from '../Summary'
 import environment from 'environment'
+import { useRouter } from 'next/router'
 import Trans from 'next-translate/Trans'
+import { ethers } from 'ethers'
 
 type FormData = {
   quantity: string
@@ -80,6 +82,7 @@ const OfferFormCheckout: FC<Props> = ({
   const { t } = useTranslation('components')
   const [acceptOffer, { activeStep, transactionHash }] = useAcceptOffer(signer)
   const toast = useToast()
+  const {locale} = useRouter()
   const {
     isOpen: loginIsOpen,
     onOpen: loginOnOpen,
@@ -112,6 +115,11 @@ const OfferFormCheckout: FC<Props> = ({
     if (!balance || !quantityBN) return false
     return balance.gte(priceUnit.mul(quantityBN))
   }, [balance, priceUnit, quantityBN])
+
+  const cryptoBuyAmount = useMemo(() => {
+    const amount =  (Number(ethers.utils.formatEther(priceUnit)) * Number(quantity)) * 1.05
+    return amount.toFixed(2)
+  }, [priceUnit, quantity])
 
   const onSubmit = handleSubmit(async ({ quantity }) => {
     if (!offer) throw new Error('offer falsy')
@@ -217,7 +225,13 @@ const OfferFormCheckout: FC<Props> = ({
           ns='components'
           i18nKey='offer.form.checkout.buyCrypto'
           components={[
-            <Link href={`${environment.BASE_URL}/account/crypto`} fontWeight='bold' key='legal-link' textDecor='underline'></Link>
+            <Link
+              href={`https://buy-sandbox.moonpay.com?currencyCode=eth&baseCurrencyCode=mxn&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}&quoteCurrencyAmount=${cryptoBuyAmount}`}
+              isExternal
+              fontWeight='bold'
+              key='legal-link'
+              textDecor='underline'>
+            </Link>
           ]}
           />
         </Text>
