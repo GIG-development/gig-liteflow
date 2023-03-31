@@ -1,8 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function notification(
+export default async function sign(
     req: NextApiRequest,
     res: NextApiResponse,
   ): Promise<void> {
-    res.status(200).json({ test: 'Test', request: req })
+    if(req)
+        res
+            .status(200)
+            .json({ test: 'Test', request: req })
   }
