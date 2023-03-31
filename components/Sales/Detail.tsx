@@ -1,4 +1,4 @@
-import { Stack,Text } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { BigNumberish } from '@ethersproject/bignumber'
 import { useAuctionStatus } from '@nft/hooks'
