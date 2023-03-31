@@ -34,7 +34,6 @@ import {
   Tabs,
   Text,
   Tooltip,
-  useBreakpointValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
