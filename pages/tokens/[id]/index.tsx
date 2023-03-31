@@ -418,7 +418,7 @@ const DetailPage: NextPage<Props> = ({
         console.error(e)
       }
     },
-  [transferAsset, toast]
+  [transferAsset, toast, t, onClose, signer]
   )
 
   if (!asset) return <></>
