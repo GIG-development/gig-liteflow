@@ -103,20 +103,9 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     if (!data) throw new Error('data is falsy')
 
     const queryFilter: any = []
-    const limit = ctx.query.limit
-      ? Array.isArray(ctx.query.limit)
-        ? parseInt(ctx.query.limit[0] || '0', 10)
-        : parseInt(ctx.query.limit, 10)
-      : environment.PAGINATION_LIMIT
-    const page = ctx.query.page
-      ? Array.isArray(ctx.query.page)
-        ? parseInt(ctx.query.page[0] || '0', 10)
-        : parseInt(ctx.query.page, 10)
-      : 1
-    const offset = (page - 1) * limit
     const res = await client.query<FetchExploreUsersQuery>({
       query: FetchExploreUsersDocument,
-      variables: { limit, offset, filter: queryFilter },
+      variables: { limit: 50, offset: 0, filter: queryFilter },
     })
     if (error) throw error
     if (!data) throw new Error('data is falsy')
@@ -143,6 +132,7 @@ const HomePage: NextPage<Props> = ({
   artists
 }) => {
   const verifiedArtists = artists.data.users.nodes.filter((user:any)=>user.verification?.status === "VALIDATED")
+  console.log(artists.data.users)
   const ready = useEagerConnect()
   //const signer = useSigner()
   const { t } = useTranslation('templates')
@@ -263,7 +253,7 @@ const HomePage: NextPage<Props> = ({
           <Heading as="h2" variant="title" color="brand.black">
             {t('home.featuredArtists.title')}
           </Heading>
-          <Slider items={9}>
+          <Slider items={verifiedArtists.length}>
             {verifiedArtists.map((artist:any, i: number)=>{
               return (
                 <Flex
