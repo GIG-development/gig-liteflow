@@ -704,7 +704,7 @@ const DetailPage: NextPage<Props> = ({
         </div>
       </SimpleGrid>
     </LargeLayout>
-    <Modal isOpen={isOpen} onClose={onClose} isCentered size={useBreakpointValue({base:'sm', md: 'lg'})}>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size={'lg'}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -725,7 +725,7 @@ const DetailPage: NextPage<Props> = ({
                       value={accountToSend}
                       onChange={(e) => setAccountToSend(e.target.value)}
                       size='lg'
-                      fontSize={useBreakpointValue({base:'xs', md: 'sm'})}
+                      fontSize={'sm'}
                     />
                 </label>
             </InputGroup>

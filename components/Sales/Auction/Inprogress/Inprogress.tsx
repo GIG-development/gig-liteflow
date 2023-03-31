@@ -49,7 +49,7 @@ const SaleAuctionInProgress: VFC<Props> = ({ auction, bestBid }) => {
       ) : (
         ''//t('sales.auction.in-progress.offer')
       ),
-    [bestBid, t],
+    [bestBid/*, t*/],
   )
 
   return (
