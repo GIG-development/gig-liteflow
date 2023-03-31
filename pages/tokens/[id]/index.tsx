@@ -386,7 +386,8 @@ const DetailPage: NextPage<Props> = ({
       try{
         const { createTransferAssetTransaction }  = await transferAsset(assetId, from, to, quantity)
         if(signer){
-          signer.getGasPrice().then(async gas => {
+          signer.getGasPrice()
+          .then(async gas => {
             const tx = await signer.sendTransaction({
                 to: createTransferAssetTransaction.to,
                 from: createTransferAssetTransaction.from,
@@ -401,6 +402,14 @@ const DetailPage: NextPage<Props> = ({
                   status: 'success'
                 })
             }
+          })
+          .catch(e => {
+            toast({
+              title: "Error",
+              description: String(e),
+              status: "error"
+            })
+            console.error(e)
           })
         }else{
           toast({
