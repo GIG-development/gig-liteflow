@@ -377,7 +377,7 @@ const DetailPage: NextPage<Props> = ({
         })
       }
     },
-    [refetch, refreshAsset, toast],
+    [refetch, refreshAsset, toast, t],
   )
 
   const transferAsset = useTransferAsset()
