@@ -38,6 +38,8 @@ const SaleDirectButton: VFC<Props> = ({
         href={`/tokens/${assetId}/bid`}
         variant="outline"
         colorScheme="gray"
+        border='1px solid'
+        borderColor='gray.100'
         size="full"
         p={3}
         fontSize={{base: 'xs', md: 'sm'}}
@@ -55,7 +57,7 @@ const SaleDirectButton: VFC<Props> = ({
     if (!sales[0]) return
     if (ownAllSupply) return
     return (
-      <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn' isFullWidth>
+      <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn'>
         <Text as="span" isTruncated>
           {t('sales.direct.button.buy')}
         </Text>
@@ -85,6 +87,8 @@ const SaleDirectButton: VFC<Props> = ({
         colorScheme="gray"
         size="full"
         bgColor="white"
+        border='1px solid'
+        borderColor='gray.100'
         isFullWidth
         rightIcon={<HiArrowNarrowRight />}
       >

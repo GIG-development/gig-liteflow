@@ -9,11 +9,24 @@ import {
   Heading,
   Icon,
   IconButton,
+  Input,
+  InputGroup,
   Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Modal,
+  ModalOverlay,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  NumberInput,
+  NumberInputField,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInputStepper,
   SimpleGrid,
   Switch,
   Tab,
@@ -21,6 +34,8 @@ import {
   Tabs,
   Text,
   Tooltip,
+  useBreakpointValue,
+  useDisclosure,
   useToast,
 } from '@chakra-ui/react'
 import { BigNumber } from '@ethersproject/bignumber'
@@ -67,6 +82,7 @@ import useBlockExplorer from '../../../hooks/useBlockExplorer'
 import useEagerConnect from '../../../hooks/useEagerConnect'
 import useNow from '../../../hooks/useNow'
 import useSigner from '../../../hooks/useSigner'
+import useTransferAsset from '../../../hooks/useTransferAsset'
 import LargeLayout from '../../../layouts/large'
 import { wrapServerSideProps } from '../../../props'
 
@@ -186,6 +202,7 @@ const DetailPage: NextPage<Props> = ({
   const ready = useEagerConnect()
   const signer = useSigner()
   const { t } = useTranslation('templates')
+  const {isOpen, onOpen, onClose} = useDisclosure()
   const toast = useToast()
   const { account } = useWeb3React()
   const { query } = useRouter()
@@ -194,6 +211,8 @@ const DetailPage: NextPage<Props> = ({
     environment.BLOCKCHAIN_EXPLORER_URL,
   )
   const [showPreview, setShowPreview] = useState(false)
+  const [amountToSend, setAmountToSend] = useState('1')
+  const [accountToSend, setAccountToSend] = useState('')
 
   const date = useMemo(() => new Date(nowProp), [nowProp])
   const { data, refetch } = useFetchAssetQuery({
@@ -348,7 +367,7 @@ const DetailPage: NextPage<Props> = ({
         await refreshAsset(assetId)
         await refetch()
         toast({
-          title: 'Successfully refreshed metadata',
+          title: t('asset.detail.menu.refresh-metadata-success'),
           status: 'success',
         })
       } catch (e) {
@@ -359,6 +378,47 @@ const DetailPage: NextPage<Props> = ({
       }
     },
     [refetch, refreshAsset, toast],
+  )
+
+  const transferAsset = useTransferAsset()
+  const handleTransfer = useCallback(
+    async (assetId: string, from: string, to: string, quantity: string) => {
+      try{
+        const { createTransferAssetTransaction }  = await transferAsset(assetId, from, to, quantity)
+        if(signer){
+          signer.getGasPrice().then(async gas => {
+            const tx = await signer.sendTransaction({
+                to: createTransferAssetTransaction.to,
+                from: createTransferAssetTransaction.from,
+                data: createTransferAssetTransaction.data,
+                gasPrice: gas
+            })
+            if(tx){
+                onClose()
+                toast({
+                  title: t('asset.detail.menu.transfer.transactionSent'),
+                  description: tx.hash,
+                  status: 'success'
+                })
+            }
+          })
+        }else{
+          toast({
+            title: "Error",
+            description: t('asset.detail.menu.transfer.signerError'),
+            status: "error"
+          })
+        }
+      } catch(e){
+        toast({
+          title: "Error",
+          description: String(e),
+          status: "error"
+        })
+        console.error(e)
+      }
+    },
+  [transferAsset, toast]
   )
 
   if (!asset) return <></>
@@ -474,7 +534,9 @@ const DetailPage: NextPage<Props> = ({
                   <MenuList>
                     { isOwner && (<>
                     {
-                    // TO DO : Opciones para Transfer y Burn
+                      <MenuItem onClick={onOpen}>
+                        {t('asset.detail.menu.transfer.label')}
+                      </MenuItem>
                     }
                     </>)
                     }
@@ -633,6 +695,75 @@ const DetailPage: NextPage<Props> = ({
         </div>
       </SimpleGrid>
     </LargeLayout>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size={useBreakpointValue({base:'sm', md: 'lg'})}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Heading>
+              {t('asset.detail.menu.transfer.title')}
+            </Heading>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text variant='text-sm'>
+              {t('asset.detail.menu.transfer.description')}<strong>{' '+environment.NETWORK_NAME}</strong>
+            </Text>
+            <InputGroup>
+                <label>
+                  {t('asset.detail.menu.transfer.account')}
+                    <Input
+                      placeholder={t('asset.detail.menu.transfer.account')}
+                      value={accountToSend}
+                      onChange={(e) => setAccountToSend(e.target.value)}
+                      size='lg'
+                      fontSize={useBreakpointValue({base:'xs', md: 'sm'})}
+                    />
+                </label>
+            </InputGroup>
+            <InputGroup>
+                <label>
+                  {t('asset.detail.menu.transfer.amount')}
+                    <NumberInput
+                    placeholder={t('asset.detail.menu.transfer.amount')}
+                    size='lg'
+                    w="full"
+                    defaultValue={1}
+                    value={amountToSend}
+                    step={1}
+                    clampValueOnBlur={false}
+                    min={1}
+                    onChange={(e) => setAmountToSend(e)}
+                    >
+                        <NumberInputField/>
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                </label>
+            </InputGroup>
+            <Button
+                disabled={
+                  ( 
+                    amountToSend === '0' ||
+                    Number(amountToSend) === 0 ||
+                    accountToSend==='' ||
+                    !ethers.utils.isAddress(accountToSend)
+                  ) 
+                  ? true 
+                  : false
+                }
+                width="full"
+                my={6}
+                onClick={()=>handleTransfer(asset.id, account ? account : '', accountToSend, amountToSend)}
+            >
+                <Text as="span" isTruncated>
+                  {t('asset.detail.menu.transfer.label')}
+                </Text>
+            </Button>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </main>
   )
 }

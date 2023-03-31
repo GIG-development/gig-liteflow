@@ -31,13 +31,17 @@ type Environment = {
     address: string
   }[]
   COINMARKETCAP_API_KEY: string
+  WETH_ADDRESS: string
 }
 
-// coinmarketcap api key 
+// Coinmarketcap API Key 
 invariant(process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY, 'Missing CoinMarketCap API key')
 
+// WETH Contract Address
+invariant(process.env.NEXT_PUBLIC_WETH_ADDRESS, 'Missing WETH Address')
+
 // magic api key
-invariant(process.env.NEXT_PUBLIC_MAGIC_API_KEY, 'Missing magic API key')
+invariant(process.env.NEXT_PUBLIC_MAGIC_API_KEY, 'Missing Magic API key')
 
 // ethereum provider
 invariant(
@@ -136,7 +140,8 @@ const environment: Environment = {
   MAX_ROYALTIES: 30,
   ALLOW_TOP_UP: false,
   MINTABLE_COLLECTIONS,
-  COINMARKETCAP_API_KEY: process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY
+  COINMARKETCAP_API_KEY: process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY,
+  WETH_ADDRESS: process.env.NEXT_PUBLIC_WETH_ADDRESS
 }
 
 export default environment

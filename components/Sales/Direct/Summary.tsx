@@ -126,7 +126,7 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle, priceConversion }) => 
     () =>
       sales.length > 1 && salesWithUniqueCurrency.length === 1
         ? t('sales.direct.summary.on-sale-from')
-        : t('sales.direct.summary.on-sale-for'),
+        : ''/*t('sales.direct.summary.on-sale-for')*/,
     [sales, salesWithUniqueCurrency, t],
   )
 
@@ -141,7 +141,7 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle, priceConversion }) => 
           <Heading as="h2" variant="subtitle" color="brand.black">
             {subtitle}
             {caption && (
-              <Heading as="span" variant="heading3" fontSize={'14px'} color="gray.500" display='block' mt={-1}>
+              <Heading as="span" variant="heading3" fontSize={'12px'} color="gray.500" display='block' mt={-1}>
                 {caption}
               </Heading>
             )}
@@ -149,13 +149,13 @@ const SaleDirectSummary: VFC<Props> = ({ sales, isSingle, priceConversion }) => 
         </Flex>
       </Flex>
       {sales.length === 1 && sales[0]?.expiredAt && (
-        <Flex direction="column" gap={3}>
+        <Flex direction="column" gap={3} pt='4'>
           <Heading as="h5" variant="heading3" color="gray.500" textAlign={{base: 'center', md: 'left'}} fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
             {t('sales.direct.summary.expires')}
           </Heading>
           <Flex h="full" align="center" gap={1}>
-            <Icon as={HiOutlineClock} h={5} w={5} color="gray.400" />
-            <Heading as="h5" variant="heading3" color="gray.500">
+            <Icon as={HiOutlineClock} h={5} w={5} color="gray.400" mt='-4'/>
+            <Heading as="h5" variant="heading3" fontSize='12px' mt='-4' color="gray.500">
               {formatDate(sales[0].expiredAt)}
             </Heading>
           </Flex>

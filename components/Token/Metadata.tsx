@@ -46,8 +46,9 @@ const TokenMetadata: VFC<Props> = ({
   return (
     <Flex
       wrap="wrap"
-      flexDirection={{base: 'column', md: 'row'}}
+      flexDirection='row'
       alignItems='center'
+      justifyContent={{base: 'center', md: 'flex-start'}}
       gap={6}
     >
       {creator && (
@@ -107,6 +108,7 @@ const TokenMetadata: VFC<Props> = ({
             {t('token.metadata.edition')}
           </Heading>
           <Supply
+            small
             current={saleSupply}
             total={totalSupply || BigNumber.from('0')}
           />

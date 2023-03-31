@@ -108,10 +108,10 @@ const TokenHeader: VFC<Props> = ({
           </AspectRatio>
         </Flex>
       </Box>
-      <Stack spacing={8} p={{ base: 6, md: 12 }}>
+      <Stack spacing={8} p={[6,12]}>
         <Stack spacing={1}>
           {asset.collection.name && (
-            <Heading as="p" variant="heading1" color="gray.500">
+            <Heading as="p" variant="heading1" color="gray.500" textAlign={{base: 'center', md: 'left'}}>
               <Link
                 href={`/collection/${asset.collection.chainId}/${asset.collection.address}`}
               >
@@ -119,7 +119,7 @@ const TokenHeader: VFC<Props> = ({
               </Link>
             </Heading>
           )}
-          <Heading as="h1" variant="title" color="brand.black" wordBreak='break-word'>
+          <Heading as="h1" variant="title" color="brand.black" wordBreak='break-word' textAlign={{base: 'center', md: 'left'}}>
             {asset.name}
           </Heading>
         </Stack>

@@ -978,5 +978,7 @@
   },
   "fiatConversion": {
     "convert": "~"
-  }
+  },
+  "swiperBuyButton": "Comprar",
+  "swiperOpenToOffer": "Abierto a ofertas"
 }

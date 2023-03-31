@@ -37,7 +37,7 @@ import {
     const toast = useToast()
     const {isOpen, onOpen, onClose} = useDisclosure()
     const { reload } = useRouter()
-    const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
+    const WETH_ADDRESS = environment.WETH_ADDRESS
     const signer = useSigner()
     const contract = new ethers.Contract(WETH_ADDRESS, WETH9.abi)
     const [WethBalance, {loading}] = useBalance(account, currencyId)
@@ -49,7 +49,7 @@ import {
           try{
             const allowance = await contract.connect(signer).allowance(account, WETH_ADDRESS)
             if(allowance<=0){
-              await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther('1000'))
+              await contract.connect(signer).approve(WETH_ADDRESS, ethers.utils.parseEther(amount))
             }
             setTimeout(async ()=>{
               const tx = await contract.connect(signer).withdraw(ethers.utils.parseEther(amount))

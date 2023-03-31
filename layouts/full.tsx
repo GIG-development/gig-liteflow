@@ -4,6 +4,10 @@ import { FC, PropsWithChildren } from 'react'
 type Props = {
   backgroundColor?: string
   backgroundImage?: string
+  padding?: {
+    mobile: string
+    desktop: string
+  }
   children: any
   hasBottomCaret?: boolean
   id?: string
@@ -12,6 +16,7 @@ type Props = {
 const FullLayout: FC<PropsWithChildren<Props>> = ({
     backgroundColor,
     backgroundImage,
+    padding,
     children,
     id,
     hasBottomCaret
@@ -19,7 +24,7 @@ const FullLayout: FC<PropsWithChildren<Props>> = ({
   <Box
     mx="auto"
     w="full"
-    py={{ base: 8, lg: 12 }}
+    py={{ base: padding ? padding.mobile : 8, lg: padding ? padding.desktop : 12 }}
     backgroundColor={backgroundColor}
     backgroundImage={
       backgroundImage ? `url(${backgroundImage})` : ''

@@ -47,7 +47,7 @@ const TraitList: FC<TraitListProps> = ({ traits }) => {
               ? t(`categories.${trait.value}`, null, { fallback: trait.value })
               : trait.value}
           </Text>
-          <Text
+          {/* <Text
             as="span"
             variant="caption"
             color="brand.black"
@@ -55,7 +55,7 @@ const TraitList: FC<TraitListProps> = ({ traits }) => {
             isTruncated
           >
             {t('traits.percent', { value: trait.percent.toFixed(2) })}
-          </Text>
+          </Text> */}
         </Flex>
       ))}
     </SimpleGrid>

@@ -570,7 +570,17 @@
           "subject": "Reportar un NFT",
           "body": "Quisiera reportar el siguiente NFT: {{name}} (#{{id}})\nReason: "
         },
-        "refresh-metadata": "Actualizar metadatos"
+        "refresh-metadata": "Actualizar metadatos",
+        "refresh-metadata-success": "Metadatos actualizados",
+        "transfer": {
+          "label": "Transferir",
+          "title": "Transferir NFT",
+          "description": "Asegúrate de usar una dirección de wallet de la siguiente red:",
+          "account": "Wallet para transferir",
+          "amount": "Cantidad",
+          "signerError": "No hay signer, por favor refresca la página",
+          "transactionSent": "Transacción enviada. Por favor espera unos minutos mientras se confirma la transacción en el blockchain."
+        }
       },
       "explorerLink": "Ver en {{name}}",
       "ipfsLink": "Ver en IPFS",
@@ -676,7 +686,7 @@
         "purchased": "¡La compra se realizó exitosamente!"
       },
       "on-sale": "En venta por",
-      "per-edition": "per edition"
+      "per-edition": "por edición"
     },
     "form": {
       "meta": {

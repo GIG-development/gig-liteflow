@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from '../Link/Link'
+import SwiperSlider from 'components/Slider/SwiperSlider'
 import { FC, PropsWithChildren, ReactElement } from 'react'
 
 type Props = {
@@ -22,6 +23,7 @@ type Props = {
     isSpecialButton?: boolean
     specialButton?: ReactElement<any,any>
     image?: string
+    featuredItems? : {}
 }
   
 const Hero: FC<PropsWithChildren<Props>> = ({
@@ -35,7 +37,8 @@ const Hero: FC<PropsWithChildren<Props>> = ({
     button_2_link = '',
     isSpecialButton = false,
     specialButton = '',
-    image = ''
+    image = '',
+    featuredItems = []
 }) => {
     return (
     <div id="main-hero">
@@ -109,7 +112,7 @@ const Hero: FC<PropsWithChildren<Props>> = ({
                     </Stack>
                 </Flex>
                 <Flex flex={1} minW={{base: '320px', md: '600px'}} minH={{base: '360px'}} position='relative' alignItems={'center'}>
-                    {image!=='' &&
+                    {image!=='' ?
                         <Image
                             alt={'Main Hero Animation'}
                             src={image}
@@ -120,6 +123,8 @@ const Hero: FC<PropsWithChildren<Props>> = ({
                                     33vw'
                             priority
                         />       
+                    :
+                    <SwiperSlider items={featuredItems}/>
                     }
                 </Flex>
             </Stack>

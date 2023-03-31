@@ -26,7 +26,8 @@ const nextConfig = {
               'ipfs.pixura.io',
               "arweave.net",
               "amazonaws.com",
-              "dhc-nft-images.s3.us-east-2.amazonaws.com"
+              "dhc-nft-images.s3.us-east-2.amazonaws.com",
+              "static.looksnice.org"
             ],
   },
   webpack: (config, options) => {

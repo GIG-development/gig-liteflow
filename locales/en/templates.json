@@ -556,7 +556,17 @@
           "subject": "Report an NFT",
           "body": "I would like to report the following NFT {{name}} (#{{id}})\nReason: "
         },
-        "refresh-metadata": "Refresh Metadata"
+        "refresh-metadata": "Refresh Metadata",
+        "refresh-metadata-success": "Successfully refreshed metadata",
+        "transfer": {
+          "label": "Transfer",
+          "title": "Transfer Asset",
+          "description": "Be sure to use an address of the following network:",
+          "account": "Account",
+          "amount": "Amount",
+          "signerError": "No signer, please refresh the page.",
+          "transactionSent": "Transaction Sent. Please wait a few minutes while the transaction is being processed by the blockchain."
+        }
       },
       "explorerLink": "View on {{name}}",
       "ipfsLink": "View on IPFS",

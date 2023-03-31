@@ -77,9 +77,6 @@ const Artist: FC<PropsWithChildren<Props>> = ({
                     <Heading color={'black'} fontSize={'xs'} noOfLines={1}>
                         {handle}
                     </Heading>
-                    {/* <Text color={'gray.500'} fontSize={'xs'} noOfLines={2} mt={2} h={'108px'}>
-                        {description}
-                    </Text> */}
 
                     <Flex alignContent='space-between' direction='column' mt={2}>
                         <Box mt={2} h={'50px'}>

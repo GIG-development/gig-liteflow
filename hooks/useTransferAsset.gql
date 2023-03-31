@@ -1,0 +1,9 @@
+mutation TransferAsset ($assetId: String!, $from: Address!, $to: Address!, $quantity: Uint256!) {
+  createTransferAssetTransaction (assetId: $assetId, from: $from, to: $to, quantity: $quantity){
+    to
+    from
+    data
+    gasPrice
+    value
+  }
+}

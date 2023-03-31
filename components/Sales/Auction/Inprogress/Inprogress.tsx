@@ -33,7 +33,7 @@ const SaleAuctionInProgress: VFC<Props> = ({ auction, bestBid }) => {
     () =>
       bestBid
         ? t('sales.auction.in-progress.highest-bid')
-        : t('sales.auction.in-progress.open'),
+        : ''/*t('sales.auction.in-progress.open')*/,
     [bestBid, t],
   )
 
@@ -47,46 +47,45 @@ const SaleAuctionInProgress: VFC<Props> = ({ auction, bestBid }) => {
       bestBid ? (
         <Price amount={bestBid.unitPrice} currency={bestBid.currency} />
       ) : (
-        t('sales.auction.in-progress.offer')
+        ''//t('sales.auction.in-progress.offer')
       ),
     [bestBid, t],
   )
 
   return (
-    <Flex wrap="wrap" gap={8}>
-      <Flex direction="column" gap={3}>
-        <Heading as="h5" variant="heading3" color="gray.500">
-          {bidTitle}
-        </Heading>
-        <Flex gap={2}>
-          <Flex
-            as="span"
-            h={8}
-            w={8}
-            align="center"
-            justify="center"
-            rounded="full"
-            borderWidth="1px"
-            borderColor="gray.200"
-          >
-            {currency.image && (
-              <Image
-                src={currency.image}
-                alt={currency.symbol}
-                width={32}
-                height={32}
-                objectFit="cover"
-              />
-            )}
-          </Flex>
-          <Heading as="h2" variant="subtitle" color="brand.black">
-            {bidChildren}
+    <Flex wrap="wrap" gap={8} justifyContent={['center', 'flex-start']}>
+      {(currency.image && bestBid) && (
+        <Flex direction="column" gap={3}>
+          <Heading as="h5" variant="heading3" fontSize={['sm','md']} color="gray.500" textAlign={{base: 'center', md: 'left'}}>
+            {bidTitle}
           </Heading>
+          <Flex gap={2}>
+              <Flex
+                as="span"
+                h={8}
+                w={8}
+                align="center"
+                justify="center"
+                rounded="full"
+                borderWidth="1px"
+                borderColor="gray.200"
+              >
+                  <Image
+                    src={currency.image}
+                    alt={currency.symbol}
+                    width={32}
+                    height={32}
+                    objectFit="cover"
+                  />
+              </Flex>
+            <Heading as="h2" variant="subtitle" fontSize={['sm','xl']} color="brand.black" textAlign={{base: 'center', md: 'left'}}>
+              {bidChildren}
+            </Heading>
+          </Flex>
         </Flex>
-      </Flex>
-
+      )}
       <Flex direction="column" gap={3}>
-        <Heading as="h5" variant="heading3" color="gray.500" fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}}>
+        <Heading as="h5" variant="heading3" color="gray.500" fontSize={{base: 'xs', md: 'sm'}} fontWeight={{base: 'bold', md: 'normal'}} textAlign={{base: 'center', md: 'left'}}>
           {t('sales.auction.in-progress.ending')}
         </Heading>
         <Flex align="center" gap={3}>
@@ -101,7 +100,7 @@ const SaleAuctionInProgress: VFC<Props> = ({ auction, bestBid }) => {
           >
             <Icon as={HiOutlineClock} h={5} w={5} color="white" />
           </Flex>
-          <Heading as="h2" variant="subtitle" color="brand.black">
+          <Heading as="h2" variant="subtitle" fontSize={['md','lg']} color="brand.black" textAlign={{base: 'center', md: 'left'}}>
             <Countdown date={auction.endAt} />
           </Heading>
         </Flex>

@@ -33,10 +33,7 @@ const TokenMedia: VFC<{
   const [canPlayCodecs, setCanPlayCodecs] = useState('checking')
   const canPlay = useCallback(() => {
     const video = document.createElement('video')
-    const canPlayMp4v208 = video.canPlayType('video/mp4;codecs="mp4v.20.8"') !== '' ? true : false
-    const canPlayMp4avc1 = video.canPlayType('video/mp4;codecs="avc1.42E01E"') !== '' ? true : false
-
-    setCanPlayCodecs(`Mp4v208: ${canPlayMp4v208}', Mp4avc1: '${canPlayMp4avc1}`)
+    setCanPlayCodecs(`Mp4v208: ${video.canPlayType('video/mp4;codecs="mp4v.20.8"')}', Mp4avc1: '${video.canPlayType('video/mp4;codecs="avc1.42E01E"')}`)
     return
   }, [])
   useEffect(canPlay,[canPlay, canPlayCodecs])

@@ -127,7 +127,9 @@ const TokenFormCreate: FC<Props> = ({
 
   const handleFileDrop = (file: File) => {
     if (!file) return
-    setValue('isAnimation', file.type.startsWith('video/'))
+    console.log(file.type)
+    const showPreview = file.type.startsWith('video/') || file.type.startsWith('model/')
+    setValue('isAnimation', showPreview)
   }
 
   const onSubmit = handleSubmit(async (data) => {
@@ -195,7 +197,7 @@ const TokenFormCreate: FC<Props> = ({
         heading={t('token.form.create.file.heading')}
         hint={t('token.form.create.file.hint')}
         name="content"
-        acceptTypes="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm"
+        acceptTypes="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,model/gltf-binary"
         maxSize={100000000} // 100 MB
         required
         control={control}

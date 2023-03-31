@@ -39,7 +39,7 @@ import {
     const toast = useToast()
     const {isOpen, onOpen, onClose} = useDisclosure()
     const { reload } = useRouter()
-    const WETH_ADDRESS = environment.CHAIN_ID === 1 ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' : '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
+    const WETH_ADDRESS = environment.WETH_ADDRESS
     const signer = useSigner()
     const [TokenBalance, {loading}] = useBalance(senderAccount, currencyId)
     const [amountToSend, setAmountToSend] = useState('0')
@@ -52,21 +52,20 @@ import {
           currencyId !== '0'
         ){
         try{
-          signer?.getGasPrice().then(async res => {
+          signer?.getGasPrice().then(async gas => {
             if(currencyId==="1" || currencyId==="5"){
-                if (Number(ethers.utils.parseEther(amount)) >= Number(TokenBalance) - Number(res)){
+                if (Number(ethers.utils.parseEther(amount)) >= Number(TokenBalance) - Number(gas)){
                   toast({
                     title: "Error",
-                    description: t('wallet.transfer.amountError')+ethers.utils.formatEther(res)+' ETH',
+                    description: t('wallet.transfer.amountError')+ethers.utils.formatEther(gas)+' ETH',
                     status: "error"
                   })
-                  throw Error(t('wallet.transfer.amountError')+ethers.utils.formatEther(res)+' ETH',)
+                  throw Error(t('wallet.transfer.amountError')+ethers.utils.formatEther(gas)+' ETH',)
                 }
                 const tx = await signer?.sendTransaction({
                     to: account,
                     value: ethers.utils.parseEther(amount),
-                    gasPrice: res,
-                    gasLimit: 100000
+                    gasPrice: gas
                 })
                 if(tx){
                     onClose()
