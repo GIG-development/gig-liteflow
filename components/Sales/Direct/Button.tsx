@@ -39,7 +39,7 @@ const SaleDirectButton: VFC<Props> = ({
       .then(res => res?.json())
       .then(data => setSignedUrl(data?.sUrl))
       .catch(e => console.error(e))
-  },[sUrl])
+  },[])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return
@@ -83,7 +83,7 @@ const SaleDirectButton: VFC<Props> = ({
       }
       </>
     )
-  }, [sales, ownAllSupply, t])
+  }, [sales, ownAllSupply, t, sUrl])
 
   const seeOffers = useMemo(() => {
     if (sales.length <= 1) return
