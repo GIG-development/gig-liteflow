@@ -42,6 +42,7 @@ const SaleDirectButton: VFC<Props> = ({
         .then(data => setMoonpaySignedUrl(data?.sUrl))
         .catch(e => console.error(e))
       })
+      .catch(e=>console.error(e))
     }
   },[assetId, signer])
 
