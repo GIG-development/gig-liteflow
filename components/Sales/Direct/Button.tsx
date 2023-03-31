@@ -3,7 +3,7 @@ import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
-import { useEffect, useMemo, VFC } from 'react'
+import { useState, useEffect, useMemo, VFC } from 'react'
 import { BlockExplorer } from '../../../hooks/useBlockExplorer'
 import Link from '../../Link/Link'
 import type { Props as ModalProps } from './Modal'
@@ -31,13 +31,14 @@ const SaleDirectButton: VFC<Props> = ({
   onOfferCanceled,
 }) => {
   const { t } = useTranslation('components')
+  const [sUrl, setSignedUrl] = useState('')
 
   useEffect(()=>{
     if(environment.CHAIN_ID === 5) 
       fetch(`https://testnet.gig.io/api/mp/sign`)
-      .then(res=>res?.json())
-      .then(data => console.log(data))
-      .catch(e=>console.error(e))
+      .then(res => res?.json())
+      .then(data => setSignedUrl(data?.sUrl))
+      .catch(e => console.error(e))
   },[])
 
   const bid = useMemo(() => {
@@ -67,11 +68,20 @@ const SaleDirectButton: VFC<Props> = ({
     if (!sales[0]) return
     if (ownAllSupply) return
     return (
+      <>
       <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn'>
         <Text as="span" isTruncated>
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
+      {sUrl &&
+        <Button as={Link} href={sUrl} isExternal size="full" className='btn'>
+          <Text as="span" isTruncated>
+          Buy with MoonPay
+          </Text>
+        </Button>
+      }
+      </>
     )
   }, [sales, ownAllSupply, t])
 
