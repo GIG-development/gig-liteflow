@@ -74,7 +74,7 @@ const SaleDirectButton: VFC<Props> = ({
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
-      {sUrl &&
+      {(sUrl && environment.CHAIN_ID === 5) &&
         <Button as={Link} href={sUrl} isExternal size="full" className='btn'>
           <Text as="span" isTruncated>
           Buy with MoonPay
