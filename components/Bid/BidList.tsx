@@ -41,7 +41,7 @@ const BidList: VFC<Props> = ({
   return (
     <List>
       {bids.map((bid, i) => (
-        <>
+        <div key={bid.id}>
           {i > 0 && bids[i - 1]?.currency.id !== bid.currency.id && <hr />}
           <Bid
             bid={bid}
@@ -55,7 +55,7 @@ const BidList: VFC<Props> = ({
             isSingle={isSingle}
             totalOwned={totalOwned}
           />
-        </>
+        </div>
       ))}
     </List>
   )

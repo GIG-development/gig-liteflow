@@ -13,7 +13,8 @@
     "Access": "Access",
     "Gaming": "Gaming",
     "Fashion": "Fashion",
-    "Art Toys": "Art Toys"
+    "Art Toys": "Art Toys",
+    "Collectibles": "Collectibles"
   },
   "account": {
     "title": "Account",
@@ -980,5 +981,10 @@
     "convert": "~"
   },
   "swiperBuyButton": "Buy",
-  "swiperOpenToOffer": "Open to offers"
+  "swiperOpenToOffer": "Open to offers",
+  "pagination": {
+    "result": {
+      "label": ""
+    }
+  }
 }

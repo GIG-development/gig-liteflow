@@ -33,7 +33,11 @@ const SaleDirectButton: VFC<Props> = ({
   const { t } = useTranslation('components')
 
   useEffect(()=>{
-    if(environment.CHAIN_ID === 5) fetch(`https://testnet.gig.io/api/mp/sign`).then(res=>console.log(res)).catch(e=>console.error(e))
+    if(environment.CHAIN_ID === 5) 
+      fetch(`https://testnet.gig.io/api/mp/sign`)
+      .then(res=>res?.json())
+      .then(data => console.log(data))
+      .catch(e=>console.error(e))
   },[])
 
   const bid = useMemo(() => {
