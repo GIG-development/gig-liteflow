@@ -53,24 +53,22 @@ const asset_info = async(
                     creatorAddress
                     sales {
                         nodes {
-                            id
                             unitPrice
-                            expiredAt
                             availableQuantity
                             currency {
-                            image
-                            name
-                            id
-                            decimals
-                            symbol
+                                image
+                                name
+                                id
+                                decimals
+                                symbol
                             }
                             maker {
-                            image
-                            address
-                            name
-                            verification {
-                                status
-                            }
+                                image
+                                address
+                                name
+                                verification {
+                                    status
+                                }
                             }
                         }
                         aggregates {
@@ -97,7 +95,7 @@ const asset_info = async(
                 imageUrl: data.asset.image,
                 explorerUrl: `${environment.BLOCKCHAIN_EXPLORER_URL}/token/${contractAddress}?a=${tokenId}`,
                 price: data.asset.sales.nodes[0].unitPrice,
-                priceCurrencyCode: 'ETH',
+                priceCurrencyCode: data.asset.sales.nodes[0].currency.symbol,
                 quantity: data.asset.sales.nodes[0].availableQuantity,
                 sellerAddress: data.asset.sales.nodes[0].maker.address,
                 sellType: 'secondary',
