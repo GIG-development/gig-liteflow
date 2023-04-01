@@ -89,7 +89,6 @@ const SaleDetail: VFC<Props> = ({
     <Stack spacing={8} alignItems={{base: 'center', md: 'baseline'}}>
       {directSales && directSales.length > 0 ? (
         <>
-        <p>Direct</p>
           <SaleDirectSummary
             sales={directSales}
             isSingle={isSingle} 

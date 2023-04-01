@@ -37,12 +37,12 @@ const SaleDirectButton: VFC<Props> = ({
     if(environment.CHAIN_ID === 5 && signer){
       signer.getAddress().then( ethAddress  => {
         const assetInfo = assetId.split("-")
-        fetch(`https://testnet.gig.io/api/mp/sign?ethAddress=${ethAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}`)
+        fetch(`https://testnet.gig.io/api/mp/sign?ethAddress=${ethAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}&listingId=${assetId}`)
         .then(res => res?.json())
         .then(data => setMoonpaySignedUrl(data?.sUrl))
         .catch(e => console.error(e))
       })
-      .catch(e=>console.error(e))
+      .catch(e => console.error(e))
     }
   },[assetId, signer])
 

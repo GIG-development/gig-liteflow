@@ -1,0 +1,42 @@
+query FetchAssetDataForMoonpayApi($id: String!) {
+    asset(id: $id){
+        id
+        name
+        image
+        chainId
+        tokenId
+        tokenUri
+        collection {
+            name
+        }
+        creatorAddress
+        sales {
+            nodes {
+                id
+                unitPrice
+                expiredAt
+                availableQuantity
+                currency {
+                image
+                name
+                id
+                decimals
+                symbol
+                }
+                maker {
+                image
+                address
+                name
+                verification {
+                    status
+                }
+                }
+            }
+            aggregates {
+                sum {
+                availableQuantity
+                }
+            }
+        }
+    }
+}
