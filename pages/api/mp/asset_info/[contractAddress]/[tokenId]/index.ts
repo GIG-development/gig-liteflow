@@ -85,7 +85,6 @@ const asset_info = async(
         const { data } = await client.query({
             query: query
         });
-        console.log(data.asset.sales.nodes[0].unitPrice)
 
         data 
         ? res
