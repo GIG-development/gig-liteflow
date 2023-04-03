@@ -1,12 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import { request, gql } from 'graphql-request'
 import Cors from 'cors'
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import environment from 'environment';
 
-const client = new ApolloClient({
-    uri: environment.GRAPHQL_URL,
-    cache: new InMemoryCache()
-  });
+const endpoint = environment.GRAPHQL_URL
 
 const cors = Cors({
     methods: ['POST', 'GET', 'HEAD']
@@ -33,14 +30,11 @@ const asset_info = async(
   ): Promise<any> => {
     if(req){
         await runMiddleware(req,res,cors)
-
-        const contractAddress: string = req.query.contractAddress ? req.query.contractAddress.toString() : ''
-        const tokenId: string = req.query.tokenId ? req.query.tokenId.toString() : ''
-        //const listingId: string = req.query.listingId ? req.query.listingId.toString() : ''
-
+        const listingId: string = req.query.listingId ? req.query.listingId.toString() : ''
+        const variables = { listingId: listingId }
         const query = gql`
-            query GetAssetInfo {
-                asset(id: "5-0x6188453fa8bb443e32d5d52dff9ee7c440380f97-45387924270393257389334086320371254840416599882299913161774614679165044293936"){
+            query GetAssetInfo ($listingId: String!) {
+                asset(id: $listingId){
                     id
                     name
                     image
@@ -50,6 +44,7 @@ const asset_info = async(
                     collection {
                         name
                     }
+                    collectionAddress
                     creatorAddress
                     sales {
                         nodes {
@@ -80,32 +75,31 @@ const asset_info = async(
                 }
             }
         `
-        const { data } = await client.query({
-            query: query
-        });
-
-        data 
+       try{
+        const { asset } = await request(endpoint, query, variables)
+        asset 
         ? res
             .status(200)
             .json({ 
-                tokenId: tokenId,
-                contractAddress: contractAddress,
-                name: data.asset.name,
-                collection: data.asset.collection.name,
-                imageUrl: data.asset.image,
-                explorerUrl: `${environment.BLOCKCHAIN_EXPLORER_URL}/token/${contractAddress}?a=${tokenId}`,
-                price: data.asset.sales.nodes[0].unitPrice,
-                priceCurrencyCode: data.asset.sales.nodes[0].currency.symbol,
-                quantity: data.asset.sales.nodes[0].availableQuantity,
-                sellerAddress: data.asset.sales.nodes[0].maker.address,
+                tokenId: asset.tokenId,
+                contractAddress: asset.collectionAddress,
+                name: asset.name,
+                collection: asset.collection.name,
+                imageUrl: asset.image,
+                explorerUrl: `${environment.BLOCKCHAIN_EXPLORER_URL}/token/${asset.collectionAddress}?a=${asset.tokenId}`,
+                price: asset.sales.nodes[0].unitPrice,
+                priceCurrencyCode: asset.sales.nodes[0].currency.symbol,
+                quantity: asset.sales.nodes[0].availableQuantity,
+                sellerAddress: asset.sales.nodes[0].maker.address,
                 sellType: 'secondary',
                 flow: 'Direct',
                 network: 'eth'
             })
-        : res.status(500).end()
-
+        : res.status(500).json('Something went wrong')
+       }catch(e){
+        res.status(500).json('Something went wrong')
+       }
     }
-    res.status(500).end()
 }
 
 export const config = {
