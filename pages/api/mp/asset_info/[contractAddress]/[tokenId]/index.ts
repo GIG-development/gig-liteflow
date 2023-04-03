@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { request, gql } from 'graphql-request'
 import Cors from 'cors'
 import environment from 'environment';
+import { ethers } from 'ethers';
 
 const endpoint = environment.GRAPHQL_URL
 
@@ -87,9 +88,9 @@ const asset_info = async(
                 collection: asset.collection.name,
                 imageUrl: asset.image,
                 explorerUrl: `${environment.BLOCKCHAIN_EXPLORER_URL}/token/${asset.collectionAddress}?a=${asset.tokenId}`,
-                price: asset.sales.nodes[0].unitPrice,
+                price: ethers.utils.formatEther(asset.sales.nodes[0].unitPrice),
                 priceCurrencyCode: asset.sales.nodes[0].currency.symbol,
-                quantity: asset.sales.nodes[0].availableQuantity,
+                quantity: Number(asset.sales.nodes[0].availableQuantity),
                 sellerAddress: asset.sales.nodes[0].maker.address,
                 sellType: 'secondary',
                 flow: 'Direct',
