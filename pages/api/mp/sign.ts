@@ -8,7 +8,7 @@ export default async function sign(
   ): Promise<any> {
 
     if(req){
-        const urlToSign = req.query.urlToSign ? req.query.urlToSign.toString() : undefined
+        const urlToSign = req.query.url ? req.query.url.toString() : undefined
         if(urlToSign){
           const sign = crypto
                           .createHmac('sha256', environment.MOONPAY_SECRET)
