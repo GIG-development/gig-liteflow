@@ -37,9 +37,13 @@ const SaleDirectButton: VFC<Props> = ({
     if(environment.CHAIN_ID === 5 && signer){
       signer.getAddress().then( walletAddress  => {
         const assetInfo = assetId.split("-")
+        console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?walletAddress=${walletAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}&listingId=${assetId}`)
         fetch(`https://testnet.gig.io/api/mp/sign?walletAddress=${walletAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}&listingId=${assetId}`)
         .then(res => res?.json())
-        .then(data => setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${data?.sUrl}`))
+        .then(data => {
+          console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${data?.sUrl}`)
+          setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${data?.sUrl}`)
+        })
         .catch(e => console.error(e))
       })
       .catch(e => console.error(e))

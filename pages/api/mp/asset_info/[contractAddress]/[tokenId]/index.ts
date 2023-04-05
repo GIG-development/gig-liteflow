@@ -96,9 +96,13 @@ const asset_info = async(
                 flow: 'Direct',
                 network: 'Ethereum'
             })
-        : res.status(500).json('Something went wrong')
+        : res
+            .status(500)
+            .json('Something went wrong')
        }catch(e){
-        res.status(500).json('Something went wrong')
+        res
+            .status(500)
+            .json('Something went wrong')
        }
     }
 }
