@@ -37,10 +37,10 @@ const SaleDirectButton: VFC<Props> = ({
     if(environment.CHAIN_ID === 5 && signer && assetId){
       signer.getAddress().then( walletAddress  => {
         const urlParamsForWidget = `/nft?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`
-        fetch(`https://testnet.gig.io/api/mp/sign?url=urlParamsForWidget${encodeURIComponent(urlParamsForWidget)}`)
+        fetch(`https://testnet.gig.io/api/mp/sign?url=urlParamsForWidget${encodeURIComponent(urlParamsForWidget.toString())}`)
           .then(res => res?.json())
           .then(data => {
-            console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget)}`)
+            console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget.toString())}`)
             console.log(`Sent URL params: ${data?.params}`)
             console.log(`Signature: ${data?.signature}`)
             console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
