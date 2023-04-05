@@ -32,6 +32,8 @@ const asset_info = async(
     if(req){
         await runMiddleware(req,res,cors)
         const listingId: string = req.query.listingId ? req.query.listingId.toString() : ''
+        const timestamp: string = req.query.timestamp ? req.query.timestamp.toString() : ''
+        const signature: string = req.query.signature ? req.query.signature.toString() : ''
         const variables = { listingId: listingId }
         const query = gql`
             query GetAssetInfo ($listingId: String!) {

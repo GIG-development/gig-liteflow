@@ -33,12 +33,22 @@ const SaleDirectButton: VFC<Props> = ({
   const { t } = useTranslation('components')
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
 
-  useEffect(()=>{
-    if(environment.CHAIN_ID === 5 && signer){
+  const getMoonpaySignerUrl = () => {
+    if(environment.CHAIN_ID === 5 && signer && assetId){
       signer.getAddress().then( walletAddress  => {
         const assetInfo = assetId.split("-")
-        console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?walletAddress=${walletAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}&listingId=${assetId}`)
-        fetch(`https://testnet.gig.io/api/mp/sign?walletAddress=${walletAddress}&contractAddress=${assetInfo[1]}&tokenId=${assetInfo[2]}&listingId=${assetId}`)
+        const contractAddress = assetInfo[1] ? assetInfo[1].toString() : ''
+        const listingId = assetInfo[2] ? assetInfo[2].toString() : ''
+        const tokenId = assetId ? assetId.toString() : ''
+        const url = `https://testnet.gig.io/api/mp/sign
+                        ?apiKey=${environment.MOONPAY_API_KEY}
+                        &contractAddress=${contractAddress}
+                        &tokenId=${tokenId}
+                        &listingId=${listingId}
+                        &walletAddress=${walletAddress}
+                    `
+        console.log(`Widget URL request before sign: ${url}`)
+        fetch(url)
         .then(res => res?.json())
         .then(data => {
           console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${data?.sUrl}`)
@@ -48,7 +58,11 @@ const SaleDirectButton: VFC<Props> = ({
       })
       .catch(e => console.error(e))
     }
-  },[assetId, signer])
+  }
+
+  useEffect(()=>{
+    getMoonpaySignerUrl()
+  },[getMoonpaySignerUrl])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return

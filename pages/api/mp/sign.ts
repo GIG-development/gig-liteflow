@@ -9,10 +9,10 @@ export default async function sign(
 
     if(req){
 
-        const walletAddress = req.query.walletAddress ? req.query.walletAddress : ''
-        const contractAddress = req.query.contractAddress ? req.query.contractAddress : ''
-        const listingId = req.query.listingId ? req.query.listingId : ''
-        const tokenId = req.query.tokenId ? req.query.tokenId : ''
+        const walletAddress = req.query.walletAddress ? req.query.walletAddress.toString() : ''
+        const contractAddress = req.query.contractAddress ? req.query.contractAddress.toString() : ''
+        const listingId = req.query.listingId ? req.query.listingId.toString() : ''
+        const tokenId = req.query.tokenId ? req.query.tokenId.toString() : ''
         
         const oUrl = `/nft?apiKey=${environment.MOONPAY_API_KEY}
                           &contractAddress=${contractAddress}
