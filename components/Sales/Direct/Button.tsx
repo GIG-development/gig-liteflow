@@ -59,7 +59,7 @@ const SaleDirectButton: VFC<Props> = ({
 
   useEffect(()=>{
     getMoonpaySignerUrl()
-  },[signer, assetId])
+  },[signer, assetId, getMoonpaySignerUrl])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return
