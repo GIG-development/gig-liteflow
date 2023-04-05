@@ -34,14 +34,14 @@ const SaleDirectButton: VFC<Props> = ({
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
 
   const getMoonpaySignerUrl = useCallback( () => {
-    if(environment.CHAIN_ID === 5 && signer && assetId){
+    if(signer && assetId){
       signer.getAddress().then( walletAddress  => {
         const urlParamsForWidget = `/nft?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`
         fetch(`https://testnet.gig.io/api/mp/sign?url=urlParamsForWidget${encodeURIComponent(urlParamsForWidget.toString())}`)
           .then(res => res?.json())
           .then(data => {
-            console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget.toString())}`)
             console.log(`Sent URL params: ${data?.params}`)
+            console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget.toString())}`)
             console.log(`Signature: ${data?.signature}`)
             console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
             setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
@@ -53,7 +53,9 @@ const SaleDirectButton: VFC<Props> = ({
   }, [assetId,signer])
 
   useEffect(()=>{
-    getMoonpaySignerUrl()
+    if(environment.CHAIN_ID === 5){
+      getMoonpaySignerUrl()
+    }
   },[getMoonpaySignerUrl])
 
   const bid = useMemo(() => {
@@ -89,7 +91,7 @@ const SaleDirectButton: VFC<Props> = ({
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
-      {(moonpaySignedUrl && signer && environment.CHAIN_ID === 5) &&
+      {(moonpaySignedUrl && signer) &&
         <Button as={Link} href={moonpaySignedUrl} isExternal size="full" className='btn'>
           <Text as="span" isTruncated>
             {t('sales.direct.button.moonpay')}
