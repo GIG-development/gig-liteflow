@@ -8,35 +8,29 @@ export default async function sign(
   ): Promise<any> {
 
     if(req){
+        const urlToSign = req.query.urlToSign ? req.query.urlToSign.toString() : undefined
+        if(urlToSign){
+          const sign = crypto
+                          .createHmac('sha256', environment.MOONPAY_SECRET)
+                          .update(urlToSign)
+                          .digest('base64')
+          console.log(`URL to sign: ${urlToSign}`)
+          console.log(`Signature: ${sign}`)
+          res
+            .status(200)
+            .json({ signature: encodeURIComponent(sign) })
+        }else{
+          res
+            .status(500)
+            .json({error: 'No URL to sign'})
+        }
 
-        const walletAddress = req.query.walletAddress ? req.query.walletAddress.toString() : ''
-        const contractAddress = req.query.contractAddress ? req.query.contractAddress.toString() : ''
-        const listingId = req.query.listingId ? req.query.listingId.toString() : ''
-        const tokenId = req.query.tokenId ? req.query.tokenId.toString() : ''
-        
-        const oUrl = `/nft?apiKey=${environment.MOONPAY_API_KEY}
-                          &contractAddress=${contractAddress}
-                          &tokenId=${tokenId}
-                          &listingId=${listingId}
-                          &walletAddress=${walletAddress}
-                      `
-        console.log(new URL(oUrl).search)
-        const sign = crypto
-                        .createHmac('sha256', environment.MOONPAY_SECRET)
-                        .update(new URL(oUrl).search)
-                        .digest('base64')
-
-        console.log(sign)
-        const sUrl = `${oUrl}&signature=${encodeURIComponent(sign)}`
-
-        res
-          .status(200)
-          .json({ sUrl: sUrl })
-
+    }else{
+      res
+        .status(500)
+        .json({error: 'No request received'})
     }
-    res
-      .status(500)
-      .json('Something went wrong')
+
   }
 
   export const config = {
