@@ -14,11 +14,9 @@ export default async function sign(
                           .createHmac('sha256', environment.MOONPAY_SECRET)
                           .update(urlToSign)
                           .digest('base64')
-          console.log(`URL to sign: ${urlToSign}`)
-          console.log(`Signature: ${sign}`)
           res
             .status(200)
-            .json({ signature: encodeURIComponent(sign) })
+            .json({ signature: sign, params: urlToSign })
         }else{
           res
             .status(500)

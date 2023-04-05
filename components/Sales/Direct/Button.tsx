@@ -33,14 +33,16 @@ const SaleDirectButton: VFC<Props> = ({
   const { t } = useTranslation('components')
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
 
-  const getMoonpaySignerUrl = useCallback(()=>{
+  const getMoonpaySignerUrl = useCallback( () => {
     if(environment.CHAIN_ID === 5 && signer && assetId){
       signer.getAddress().then( walletAddress  => {
         const urlParamsForWidget = `/nft?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`
-        console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget)}`)
         fetch(`https://testnet.gig.io/api/mp/sign?url=urlParamsForWidget${encodeURIComponent(urlParamsForWidget)}`)
           .then(res => res?.json())
           .then(data => {
+            console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget)}`)
+            console.log(`Sent URL params: ${data?.params}`)
+            console.log(`Signature: ${data?.signature}`)
             console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
             setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
           })
@@ -48,7 +50,7 @@ const SaleDirectButton: VFC<Props> = ({
       })
       .catch(e => console.error(e))
     }
-  },[assetId,signer])
+  }, [assetId,signer])
 
   useEffect(()=>{
     getMoonpaySignerUrl()
