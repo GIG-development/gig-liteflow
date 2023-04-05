@@ -33,7 +33,7 @@ const SaleDirectButton: VFC<Props> = ({
   const { t } = useTranslation('components')
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
 
-  const getMoonpaySignerUrl = () => useCallback(()=>{
+  const getMoonpaySignerUrl = useCallback(()=>{
     if(environment.CHAIN_ID === 5 && signer && assetId){
       signer.getAddress().then( walletAddress  => {
         const urlParamsForWidget = `
@@ -55,11 +55,11 @@ const SaleDirectButton: VFC<Props> = ({
       })
       .catch(e => console.error(e))
     }
-  },[signer, assetId, setMoonpaySignedUrl])
+  },[])
 
   useEffect(()=>{
     getMoonpaySignerUrl()
-  },[getMoonpaySignerUrl])
+  },[])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return
