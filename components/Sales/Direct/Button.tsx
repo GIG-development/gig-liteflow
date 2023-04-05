@@ -36,26 +36,22 @@ const SaleDirectButton: VFC<Props> = ({
   const getMoonpaySignerUrl = () => {
     if(environment.CHAIN_ID === 5 && signer && assetId){
       signer.getAddress().then( walletAddress  => {
-        const assetInfo = assetId.split("-")
-        const contractAddress = assetInfo[1] ? assetInfo[1].toString() : ''
-        const listingId = assetInfo[2] ? assetInfo[2].toString() : ''
-        const tokenId = assetId ? assetId.toString() : ''
         const urlParamsForWidget = `
           /nft
             ?apiKey=${environment.MOONPAY_API_KEY}
-            &contractAddress=${contractAddress}
-            &tokenId=${tokenId}
-            &listingId=${listingId}
+            &contractAddress=${assetId.split("-")[1]}
+            &tokenId=${assetId.split("-")[2]}
+            &listingId=${assetId}
             &walletAddress=${walletAddress}
         `
         console.log(`Widget URL request before sign: https://testnet.gig.io/api/mp/sign?url=${encodeURIComponent(urlParamsForWidget)}`)
         fetch(`https://testnet.gig.io/api/mp/sign?url=urlParamsForWidget${encodeURIComponent(urlParamsForWidget)}`)
-        .then(res => res?.json())
-        .then(data => {
-          console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
-          setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
-        })
-        .catch(e => console.error(e))
+          .then(res => res?.json())
+          .then(data => {
+            console.log(`Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
+            setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
+          })
+          .catch(e => console.error(e))
       })
       .catch(e => console.error(e))
     }
@@ -63,7 +59,7 @@ const SaleDirectButton: VFC<Props> = ({
 
   useEffect(()=>{
     getMoonpaySignerUrl()
-  },[])
+  },[signer, assetId])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return
