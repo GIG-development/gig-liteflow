@@ -39,6 +39,12 @@ const SaleDirectButton: VFC<Props> = ({
         fetch(`https://testnet.gig.io/api/mp/sign?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`)
           .then(res => res?.json())
           .then(data => {
+            // console.log(`1 > Built > Widget URL request before sign: https://testnet.gig.io/api/mp/sign${urlParamsForWidget}`)
+            // console.log(`2 > Sent > URL params (not encoded): ${urlParamsForWidget}`)
+            // console.log(`3 > Received > URL + params (encoded): ${data?.fullUrlWithoutSignature}`)
+            // console.log(`4 > Received > Signature: ${data?.signature}`)
+            // console.log(`5 > Built > Signed widget URL: https://buy-sandbox.moonpay.com/nft${urlParamsForWidget}&signature=${data?.signature}`)
+            // console.log(`6 > Test > Returned URL + signature: ${data?.fullUrlWithoutSignature}&signature=${data?.signature}`)
             setMoonpaySignedUrl(`${data?.fullUrlWithoutSignature}&signature=${data?.signature}`)
           })
           .catch(e => console.error(e))
