@@ -48,7 +48,7 @@ const SaleDirectButton: VFC<Props> = ({
             console.log(`5 > Built > Signed widget URL: https://buy-sandbox.moonpay.com/nft${urlParamsForWidget}?signature=${data?.signature}`)
             console.log(`6 > Test > Returned URL + signature: ${data?.fullUrlWithoutSignature}?signature=${data?.signature}`)
 
-            setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com/nft${urlParamsForWidget}?signature=${data?.signature}`)
+            setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com/nft${urlParamsForWidget}&signature=${data?.signature}`)
           })
           .catch(e => console.error(e))
       })
