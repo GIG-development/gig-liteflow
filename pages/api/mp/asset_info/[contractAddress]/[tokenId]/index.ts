@@ -5,7 +5,9 @@ import environment from 'environment';
 import { ethers } from 'ethers';
 
 const cors = Cors({
-    methods: ['POST', 'GET', 'HEAD']
+    origin: ['https://*.gig.io','https://*.moonpay.com'],
+    methods: ['POST', 'GET', 'HEAD'],
+    allowedHeaders: ['Content-Type']
 })
 
 const runMiddleware =(

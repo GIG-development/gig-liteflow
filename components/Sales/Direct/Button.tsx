@@ -143,9 +143,6 @@ const SaleDirectButton: VFC<Props> = ({
       {bid}
       {buyNow}
       {seeOffers}
-      {(moonpaySignedUrl && signer) &&
-        <iframe src={moonpaySignedUrl} />
-      }
     </Flex>
   )
 }
