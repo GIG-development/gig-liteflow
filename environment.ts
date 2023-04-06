@@ -34,12 +34,14 @@ type Environment = {
   WETH_ADDRESS: string
   MOONPAY_API_KEY: string
   MOONPAY_SECRET: string
+  MOONPAY_ENDPOINT: string
 }
 
 // Coinmarketcap API Key 
 invariant(process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY, 'Missing CoinMarketCap API key')
 
-// Moonpay API Keys
+// Moonpay APIs
+invariant(process.env.NEXT_PUBLIC_MOONPAY_API_ENDPOINT, 'Missing Moonpay API endpoint')
 invariant(process.env.NEXT_PUBLIC_MOONPAY_API_KEY, 'Missing Moonpay API key')
 invariant(process.env.NEXT_PUBLIC_MOONPAY_SECRET, 'Missing Moonpay API secret')
 
@@ -149,7 +151,8 @@ const environment: Environment = {
   COINMARKETCAP_API_KEY: process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY,
   WETH_ADDRESS: process.env.NEXT_PUBLIC_WETH_ADDRESS,
   MOONPAY_API_KEY: process.env.NEXT_PUBLIC_MOONPAY_API_KEY,
-  MOONPAY_SECRET: process.env.NEXT_PUBLIC_MOONPAY_SECRET
+  MOONPAY_SECRET: process.env.NEXT_PUBLIC_MOONPAY_SECRET,
+  MOONPAY_ENDPOINT: process.env.NEXT_PUBLIC_MOONPAY_API_ENDPOINT
 }
 
 export default environment

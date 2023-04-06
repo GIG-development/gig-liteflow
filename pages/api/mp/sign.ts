@@ -1,11 +1,34 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import Cors from 'cors'
 import crypto from 'crypto'
 import environment from 'environment'
+
+const cors = Cors({
+  origin: ['https://*.gig.io', 'https://localhost:3000'],
+  methods: ['POST', 'GET', 'HEAD'],
+  allowedHeaders: ['Content-Type']
+})
+
+const runMiddleware =(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  fn: Function
+)=>{
+  return new Promise((resolve, reject) => {
+      fn(req,res, (result: any) => {
+          if(result instanceof Error){
+              return reject(result)
+          }
+          return resolve(result)
+      })
+  })
+}
 
 export default async function sign(
     req: NextApiRequest,
     res: NextApiResponse,
   ): Promise<any> {
+    await runMiddleware(req,res,cors)
 
     if(req){
       const apiKey = req.query.apiKey ? encodeURIComponent(req.query.apiKey.toString())  : undefined

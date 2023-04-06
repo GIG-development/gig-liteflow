@@ -3,8 +3,9 @@ import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
-import { useState, useEffect, useMemo, VFC, useCallback } from 'react'
+import { useState, useEffect, useMemo, VFC } from 'react'
 import { BlockExplorer } from '../../../hooks/useBlockExplorer'
+import useMoonpayCheckout from 'hooks/useMoonpayCheckout'
 import Link from '../../Link/Link'
 import type { Props as ModalProps } from './Modal'
 import SaleDirectModal from './Modal'
@@ -31,33 +32,14 @@ const SaleDirectButton: VFC<Props> = ({
   onOfferCanceled,
 }) => {
   const { t } = useTranslation('components')
+
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
-
-  const getMoonpaySignerUrl = useCallback( () => {
-    if(signer && assetId){
-      signer.getAddress().then( walletAddress  => {
-        fetch(`https://testnet.gig.io/api/mp/sign?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`)
-          .then(res => res?.json())
-          .then(data => {
-            // console.log(`1 > Built > Widget URL request before sign: https://testnet.gig.io/api/mp/sign${urlParamsForWidget}`)
-            // console.log(`2 > Sent > URL params (not encoded): ${urlParamsForWidget}`)
-            // console.log(`3 > Received > URL + params (encoded): ${data?.fullUrlWithoutSignature}`)
-            // console.log(`4 > Received > Signature: ${data?.signature}`)
-            // console.log(`5 > Built > Signed widget URL: https://buy-sandbox.moonpay.com/nft${urlParamsForWidget}&signature=${data?.signature}`)
-            // console.log(`6 > Test > Returned URL + signature: ${data?.fullUrlWithoutSignature}&signature=${data?.signature}`)
-            setMoonpaySignedUrl(`${data?.fullUrlWithoutSignature}&signature=${data?.signature}`)
-          })
-          .catch(e => console.error(e))
-      })
-      .catch(e => console.error(e))
-    }
-  }, [assetId,signer])
-
+  const getMoonpaySignerUrl = useMoonpayCheckout()
   useEffect(()=>{
     if(environment.CHAIN_ID === 5){
-      getMoonpaySignerUrl()
+      setMoonpaySignedUrl(getMoonpaySignerUrl(assetId,signer))
     }
-  },[getMoonpaySignerUrl])
+  },[getMoonpaySignerUrl, assetId, signer])
 
   const bid = useMemo(() => {
     if (ownAllSupply) return
