@@ -4,7 +4,7 @@ import crypto from 'crypto'
 import environment from 'environment'
 
 const cors = Cors({
-  origin: ['https://*.gig.io', 'https://localhost:3000'],
+  origin: ['https://*.gig.io'],
   methods: ['POST', 'GET', 'HEAD'],
   allowedHeaders: ['Content-Type']
 })

@@ -8,7 +8,7 @@ import { ethers } from 'ethers';
 const SIGNATURE_VALID_FOR = 30
 
 const cors = Cors({
-    origin: ['https://*.gig.io', 'https://*.moonpay.com', 'https://localhost:3000'],
+    origin: ['https://*.gig.io', 'https://*.moonpay.com'],
     methods: ['POST', 'GET', 'HEAD'],
     allowedHeaders: ['Content-Type', 'X-SIGNATURE-V2', 'X-TIMESTAMP']
 })
@@ -193,7 +193,7 @@ const asset_info = async(
                             .json({error: 'Something went wrong'})
         
                     }
-                    
+
                 }catch(e){
         
                     res
