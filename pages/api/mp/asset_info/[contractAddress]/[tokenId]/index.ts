@@ -106,8 +106,10 @@ const asset_info = async(
                         quantity: Number(asset.sales.nodes[0].availableQuantity),
                         sellerAddress: asset.sales.nodes[0].maker.address,
                         sellType: 'Secondary',
-                        flow: 'Direct',
-                        network: 'Ethereum'
+                        flow: 'Lite',
+                        network: 'Ethereum',
+                        tokenType: 'ERC-721',
+                        subFlow: ''
                     })
 
             }else{
