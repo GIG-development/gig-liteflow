@@ -24,7 +24,7 @@ export default async function sign(
           res
             .status(200)
             .json({ 
-              signature: sign, 
+              signature: encodeURIComponent(sign),
               fullUrlWithoutSignature: url
             })
         }else{
