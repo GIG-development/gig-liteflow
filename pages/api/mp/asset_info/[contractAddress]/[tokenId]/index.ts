@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import type { IncomingMessage } from "http";
 import { request, gql } from 'graphql-request'
 import Cors from 'cors'
 import crypto from 'crypto'
@@ -26,10 +25,6 @@ const runMiddleware =(
         })
     })
 }
-
-export const hasMappedHeaders = (headers: Headers | IncomingMessage['headers']): headers is Headers => {
-    return headers instanceof Headers;
-};
 
 const asset_info = async(
     req: NextApiRequest,
@@ -96,8 +91,8 @@ const asset_info = async(
 
         await runMiddleware(req,res,cors)
         
-        const timestamp: (number|undefined) = hasMappedHeaders(req.headers) ? Number(req.headers.get('X-TIMESTAMP')) : undefined
-        const signature: (string|null|undefined) = hasMappedHeaders(req.headers) ? req.headers.get('X-SIGNATURE-V2') : undefined
+        const timestamp: (number|undefined) = req.query.timestamp ? Number(req.query.timestamp.toString()) : undefined
+        const signature: (string|undefined) = req.query.signature ? req.query.signature.toString() : undefined
         const path: (string|undefined) = req.url ? req.url : undefined
         const method: (string|undefined) = req.method ? req.method : undefined
 
@@ -211,7 +206,12 @@ const asset_info = async(
 
                 res
                     .status(500)
-                    .json({error: 'Signature not valid'})
+                    .json({error: 'Signature not valid', reqHeaders: {
+                        timestamp,
+                        signature,
+                        path,
+                        method
+                    }})
 
             }
         }else{
