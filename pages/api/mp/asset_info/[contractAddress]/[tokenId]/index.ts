@@ -93,7 +93,7 @@ const asset_info = async(
         
         const timestamp: (number|undefined) = req.query.timestamp ? Number(req.query.timestamp.toString()) : undefined
         const signature: (string|undefined) = req.query.signature ? req.query.signature.toString() : undefined
-        const path: (string|undefined) = req.url ? req.url : undefined
+        const path: (string|undefined) = req.url ? req.url.substring(7,req.url.length) : undefined
         const method: (string|undefined) = req.method ? req.method : undefined
 
         if(timestamp && signature && path && method){
