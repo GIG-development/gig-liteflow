@@ -8,25 +8,25 @@ export default async function sign(
   ): Promise<any> {
 
     if(req){
-        const urlToSign = req.query.url ? req.query.url.toString() : undefined
-        if(urlToSign){
+        const signRequest = req.query.signRequest ? req.query.signRequest.toString() : undefined
+        if(signRequest){
           const sign = crypto
                           .createHmac('sha256', environment.MOONPAY_SECRET)
-                          .update(urlToSign)
+                          .update(signRequest)
                           .digest('base64')
           res
             .status(200)
-            .json({ signature: sign, params: urlToSign })
+            .json({ signature: sign, params: signRequest })
         }else{
           res
             .status(500)
-            .json({error: 'No URL to sign'})
+            .json({error: 'No signRequest parameter to sign'})
         }
 
     }else{
       res
         .status(500)
-        .json({error: 'No request received'})
+        .json({error: 'No API request received'})
     }
 
   }
