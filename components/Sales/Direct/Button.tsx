@@ -1,4 +1,12 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { 
+  Button, 
+  Flex, 
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text 
+} from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import environment from 'environment'
@@ -67,21 +75,35 @@ const SaleDirectButton: VFC<Props> = ({
     if (sales.length !== 1) return
     if (!sales[0]) return
     if (ownAllSupply) return
+
+    if (moonpaySignedUrl && signer){
+      return (
+        <Menu>
+          <MenuButton as={Button} size='full' px={6}>
+            {t('sales.direct.button.buy')}
+          </MenuButton>
+          <MenuList>
+            <MenuItem as={Link} href={`/checkout/${sales[0].id}`}>
+              <Text as="span" isTruncated>
+                {t('sales.direct.button.crypto')}
+              </Text>
+            </MenuItem>
+            <MenuItem as={Link} href={moonpaySignedUrl} isExternal>
+              <Text as="span" isTruncated>
+                {t('sales.direct.button.moonpay')}
+              </Text>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      )
+    }
+
     return (
-      <>
       <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn'>
         <Text as="span" isTruncated>
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
-      {(moonpaySignedUrl && signer) &&
-        <Button as={Link} href={moonpaySignedUrl} isExternal size="full" className='btn'>
-          <Text as="span" isTruncated>
-            {t('sales.direct.button.moonpay')}
-          </Text>
-        </Button>
-      }
-      </>
     )
   }, [sales, ownAllSupply, t, moonpaySignedUrl, signer])
 

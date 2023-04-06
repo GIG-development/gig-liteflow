@@ -640,6 +640,7 @@
         "place-bid": "Place a bid",
         "buy": "Buy Collectible",
         "view": "View Collectible",
+        "crypto": "Buy with ETH",
         "moonpay": "Buy with Credit Card"
       },
       "card-footer": {

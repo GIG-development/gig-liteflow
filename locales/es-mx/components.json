@@ -640,6 +640,7 @@
         "place-bid": "Crear una oferta",
         "buy": "Comprar Coleccionable",
         "view": "Ver Coleccionable",
+        "crypto": "Comprar con ETH",
         "moonpay": "Comprar con Tarjeta de Crédito"
       },
       "card-footer": {

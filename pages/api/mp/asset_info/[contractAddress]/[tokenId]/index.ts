@@ -99,7 +99,8 @@ const asset_info = async(
         if(timestamp && signature && path && method){
 
             const valid = verifySignature(
-                signature,environment.MOONPAY_SECRET,
+                signature,
+                environment.MOONPAY_SECRET,
                 path,
                 method,
                 timestamp,
