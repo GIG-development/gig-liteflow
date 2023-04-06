@@ -201,6 +201,10 @@ const asset_info = async(
                         .json({error: e})
         
                 }
+            }else{
+                res
+                    .status(500)
+                    .json({error: 'Signature not valid'})
             }
         }
     }
