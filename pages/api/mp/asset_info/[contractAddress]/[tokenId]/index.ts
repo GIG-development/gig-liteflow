@@ -5,8 +5,6 @@ import crypto from 'crypto'
 import environment from 'environment';
 import { ethers } from 'ethers';
 
-const SIGNATURE_VALID_FOR = 30
-
 const cors = Cors({
     origin: ['https://*.gig.io', 'https://*.moonpay.com'],
     methods: ['POST', 'GET', 'HEAD'],
@@ -28,64 +26,66 @@ const runMiddleware =(
     })
 }
 
-const getTimestamp = (): number => {
-    return Math.round(new Date().getTime() / 1000)
-}
-
-const validateTimestamp = (timestamp: number): boolean => {
-    return getTimestamp() - timestamp <= SIGNATURE_VALID_FOR
-}
-
-const generateSignature = (
-    secretKey: string,
-    uri: string,
-    method: string,
-    timestamp: number,
-    body?: string
-): string => {
-    let payload = `${method};${uri};${timestamp}`
-    if(body){
-        payload += `;${body}`
-    }
-    return crypto
-        .createHmac('sha256', secretKey)
-        .update(payload)
-        .digest('hex')
-}
-
-const verifySignature = (
-    signature: string,
-    secretKey: string,
-    uri: string,
-    method: string,
-    timestamp: number,
-    body?: string
-): boolean => {
-    const generatedSignature = generateSignature(
-        secretKey,
-        uri,
-        method,
-        timestamp,
-        body
-    )
-    if(
-        !crypto.timingSafeEqual(
-            Buffer.from(generatedSignature, 'hex'),
-            Buffer.from(signature, 'hex')
-        )
-    ){
-        return false
-    }
-    if(!validateTimestamp(timestamp)){
-        return false
-    }
-    return true
-}
-
 const asset_info = async(
     req: NextApiRequest,
     res: NextApiResponse,
   ): Promise<any> => {
+
+    const SIGNATURE_VALID_FOR = 30
+
+    const getTimestamp = (): number => {
+        return Math.round(new Date().getTime() / 1000)
+    }
+    
+    const validateTimestamp = (timestamp: number): boolean => {
+        return getTimestamp() - timestamp <= SIGNATURE_VALID_FOR
+    }
+    
+    const generateSignature = (
+        secretKey: string,
+        uri: string,
+        method: string,
+        timestamp: number,
+        body?: string
+    ): string => {
+        let payload = `${method};${uri};${timestamp}`
+        if(body){
+            payload += `;${body}`
+        }
+        return crypto
+            .createHmac('sha256', secretKey)
+            .update(payload)
+            .digest('hex')
+    }
+    
+    const verifySignature = (
+        signature: string,
+        secretKey: string,
+        uri: string,
+        method: string,
+        timestamp: number,
+        body?: string
+    ): boolean => {
+        const generatedSignature = generateSignature(
+            secretKey,
+            uri,
+            method,
+            timestamp,
+            body
+        )
+        if(
+            !crypto.timingSafeEqual(
+                Buffer.from(generatedSignature, 'hex'),
+                Buffer.from(signature, 'hex')
+            )
+        ){
+            return false
+        }
+        if(!validateTimestamp(timestamp)){
+            return false
+        }
+        return true
+    }
 
     if(req){
 
@@ -203,10 +203,16 @@ const asset_info = async(
         
                 }
             }else{
+
                 res
                     .status(500)
                     .json({error: 'Signature not valid'})
+
             }
+        }else{
+            res
+                .status(500)
+                .json({error: 'Missing headers'})
         }
     }
 }
