@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import type { IncomingMessage } from "http";
 import { request, gql } from 'graphql-request'
 import Cors from 'cors'
 import crypto from 'crypto'
@@ -25,6 +26,10 @@ const runMiddleware =(
         })
     })
 }
+
+export const hasMappedHeaders = (headers: Headers | IncomingMessage['headers']): headers is Headers => {
+    return headers instanceof Headers;
+};
 
 const asset_info = async(
     req: NextApiRequest,
@@ -91,8 +96,8 @@ const asset_info = async(
 
         await runMiddleware(req,res,cors)
         
-        const timestamp: (number|undefined) = req.headers.timestamp ? Number(req.headers.timestamp) : undefined
-        const signature: (string|undefined) = req.headers.signature ? req.headers.signature.toString() : undefined
+        const timestamp: (number|undefined) = hasMappedHeaders(req.headers) ? Number(req.headers.get('X-TIMESTAMP')) : undefined
+        const signature: (string|null|undefined) = hasMappedHeaders(req.headers) ? req.headers.get('X-SIGNATURE-V2') : undefined
         const path: (string|undefined) = req.url ? req.url : undefined
         const method: (string|undefined) = req.method ? req.method : undefined
 
