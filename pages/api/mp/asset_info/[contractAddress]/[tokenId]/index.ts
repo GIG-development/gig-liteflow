@@ -108,7 +108,7 @@ const asset_info = async(
                         sellType: 'Secondary',
                         flow: 'Lite',
                         network: 'Ethereum',
-                        tokenType: 'ERC-721',
+                        tokenType: '',
                         subFlow: ''
                     })
 
