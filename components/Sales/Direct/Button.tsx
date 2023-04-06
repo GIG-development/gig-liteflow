@@ -9,6 +9,9 @@ import {
 } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
+import { HiOutlineChevronDown } from '@react-icons/all-files/hi/HiOutlineChevronDown'
+import { BsCreditCard } from '@react-icons/all-files/bs/BsCreditCard' 
+import { FaEthereum } from '@react-icons/all-files/fa/FaEthereum'
 import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect, useMemo, VFC } from 'react'
@@ -60,7 +63,8 @@ const SaleDirectButton: VFC<Props> = ({
         border='1px solid'
         borderColor='gray.100'
         size="full"
-        p={3}
+        px={6}
+        py={3}
         fontSize={{base: 'xs', md: 'sm'}}
         isFullWidth
       >
@@ -79,17 +83,19 @@ const SaleDirectButton: VFC<Props> = ({
     if (moonpaySignedUrl && signer){
       return (
         <Menu>
-          <MenuButton as={Button} size='full' px={6}>
+          <MenuButton as={Button} size='full' px={6} py={3} rightIcon={<HiOutlineChevronDown/>}>
             {t('sales.direct.button.buy')}
           </MenuButton>
           <MenuList>
             <MenuItem as={Link} href={`/checkout/${sales[0].id}`}>
-              <Text as="span" isTruncated>
+              <FaEthereum/>
+              <Text as="span" isTruncated pl={2}>
                 {t('sales.direct.button.crypto')}
               </Text>
             </MenuItem>
             <MenuItem as={Link} href={moonpaySignedUrl} isExternal>
-              <Text as="span" isTruncated>
+              <BsCreditCard/>
+              <Text as="span" isTruncated pl={2}>
                 {t('sales.direct.button.moonpay')}
               </Text>
             </MenuItem>
