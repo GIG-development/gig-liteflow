@@ -215,10 +215,23 @@ const asset_info = async(
 
             }
         }else{
+
             res
                 .status(500)
-                .json({error: 'Missing headers'})
+                .json({error: 'Missing headers', reqHeaders: {
+                    timestamp,
+                    signature,
+                    path,
+                    method
+                }})
+
         }
+    }else{
+
+        res
+            .status(500)
+            .json({error: 'No request'})
+
     }
 }
 
