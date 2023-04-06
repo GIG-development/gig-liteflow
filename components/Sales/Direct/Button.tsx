@@ -36,18 +36,18 @@ const SaleDirectButton: VFC<Props> = ({
   const getMoonpaySignerUrl = useCallback( () => {
     if(signer && assetId){
       signer.getAddress().then( walletAddress  => {
-        const urlParamsForWidget = `https://buy-sandbox.moonpay.com/nft?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`
-        console.log(`1 > Built > Widget URL request before sign with encoded params: \n https://testnet.gig.io/api/mp/sign?signRequest=${encodeURIComponent(urlParamsForWidget)}`)
-        fetch(`https://testnet.gig.io/api/mp/sign?signRequest=${encodeURIComponent(urlParamsForWidget)}`)
+        const urlParamsForWidget = `?apiKey=${environment.MOONPAY_API_KEY}&contractAddress=${assetId.split("-")[1]}&tokenId=${assetId.split("-")[2]}&listingId=${assetId}&walletAddress=${walletAddress}`
+        fetch(`https://testnet.gig.io/api/mp/sign${(urlParamsForWidget)}`)
           .then(res => res?.json())
           .then(data => {
 
-            console.log(`2 > Sent > URL + params for signing (not encoded): ${urlParamsForWidget}`)
-            console.log(`3 > Received > URL params from sign request (encoded): ${data?.params}`)
+            console.log(`1 > Built > Widget URL request before sign: https://testnet.gig.io/api/mp/sign${urlParamsForWidget}`)
+            console.log(`2 > Sent > URL params: ${urlParamsForWidget}`)
+            console.log(`3 > Received > URL with encoded params from sign request: ${data?.fullUrlWithoutSignature}`)
             console.log(`4 > Received > Signature: ${data?.signature}`)
-            console.log(`5 > Built > Signed widget URL: ${urlParamsForWidget}?signature=${data?.signature}`)
+            console.log(`5 > Built > Signed widget URL: https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
 
-            setMoonpaySignedUrl(`${urlParamsForWidget}?signature=${data?.signature}`)
+            setMoonpaySignedUrl(`https://buy-sandbox.moonpay.com${urlParamsForWidget}?signature=${data?.signature}`)
           })
           .catch(e => console.error(e))
       })

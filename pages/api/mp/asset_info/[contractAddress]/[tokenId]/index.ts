@@ -101,7 +101,7 @@ const asset_info = async(
                         collection: asset.collection.name,
                         imageUrl: asset.image,
                         explorerUrl: `${environment.BLOCKCHAIN_EXPLORER_URL}/token/${asset.collectionAddress}?a=${asset.tokenId}`,
-                        price: Number(ethers.utils.formatEther(asset.sales.nodes[0].unitPrice)),
+                        price: ethers.utils.formatEther(asset.sales.nodes[0].unitPrice).toString(),
                         priceCurrencyCode: asset.sales.nodes[0].currency.symbol,
                         quantity: Number(asset.sales.nodes[0].availableQuantity),
                         sellerAddress: asset.sales.nodes[0].maker.address,

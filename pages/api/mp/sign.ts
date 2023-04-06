@@ -8,17 +8,24 @@ export default async function sign(
   ): Promise<any> {
 
     if(req){
-        const signRequest = req.query.signRequest ? req.query.signRequest.toString() : undefined
-        if(signRequest){
+      const apiKey = req.query.apiKey ? encodeURIComponent(req.query.apiKey.toString())  : undefined
+      const contractAddress = req.query.contractAddress ? encodeURIComponent(req.query.contractAddress.toString()) : undefined
+      const tokenId = req.query.tokenId ? encodeURIComponent(req.query.tokenId.toString()) : undefined
+      const listingId = req.query.listingId ? encodeURIComponent(req.query.listingId.toString()) : undefined
+      const walletAddress = req.query.walletAddress ? encodeURIComponent(req.query.walletAddress.toString()) : undefined
+
+      const url = `https://buy-sandbox.moonpay.com/nft?apiKey=${apiKey}&contractAddress=${contractAddress}&tokenId=${tokenId}&listingId=${listingId}&walletAddress=${walletAddress}`
+      
+        if(apiKey && contractAddress && tokenId && listingId && walletAddress){
           const sign = crypto
                           .createHmac('sha256', environment.MOONPAY_SECRET)
-                          .update(signRequest)
+                          .update(new URL(url).search)
                           .digest('base64')
           res
             .status(200)
             .json({ 
               signature: sign, 
-              params: signRequest
+              fullUrlWithoutSignature: url
             })
         }else{
           res
