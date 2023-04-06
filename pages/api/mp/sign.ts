@@ -8,7 +8,7 @@ export default async function sign(
   ): Promise<any> {
 
     if(req){
-        const signRequest = req.query.signRequest ? req.query.signRequest.toString() : undefined
+        const signRequest: string | undefined = req.query.signRequest ? encodeURIComponent(req.query.signRequest.toString()) : undefined
         if(signRequest){
           const sign = crypto
                           .createHmac('sha256', environment.MOONPAY_SECRET)
@@ -16,7 +16,10 @@ export default async function sign(
                           .digest('base64')
           res
             .status(200)
-            .json({ signature: sign, params: signRequest })
+            .json({ 
+              signature: sign, 
+              params: signRequest
+            })
         }else{
           res
             .status(500)
