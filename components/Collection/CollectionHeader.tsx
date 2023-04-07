@@ -169,19 +169,33 @@ const CollectionHeader: FC<Props> = ({ collection, explorer, reportEmail }) => {
           </Heading>
           <Heading color="gray.500" variant="heading1">
             {t('collection.header.by')}{' '}
-            <Text
-              as={Link}
-              href={`/users/${collection.deployerAddress}`}
-              color="brand.black"
-            >
-              <Text as="span" color="">
-                {collection.deployer?.name ||
-                  formatAddress(collection.deployerAddress, 10)}
+            { collection.deployerAddress!='0x0000000000000000000000000000000000000000' &&
+              <Text
+                as={Link}
+                href={`/users/${collection.deployerAddress}`}
+                color="brand.black"
+              >
+                <Text as="span" color="">
+                  {collection.deployer?.name ||
+                    formatAddress(collection.deployerAddress, 10)}
+                </Text>
+                {collection.deployer?.verified && (
+                  <Icon as={HiBadgeCheck} color="brand.500" boxSize={5} />
+                )}
               </Text>
-              {collection.deployer?.verified && (
+            }
+            { collection.deployerAddress=='0x0000000000000000000000000000000000000000' &&
+              <Text
+                as={Link}
+                href={`/users/0x750519ace128bf440a31046c39a45394b344dc21`}
+                color="brand.black"
+              >
+                <Text as="span" color="">
+                  GIG
+                </Text>
                 <Icon as={HiBadgeCheck} color="brand.500" boxSize={5} />
-              )}
-            </Text>
+              </Text>
+            }
           </Heading>
         </Box>
         <Flex justify="flex-end">
