@@ -11,8 +11,9 @@ import {
 import Image from 'next/image';
 import Link from '../Link/Link'
 import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
-//import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
+import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import useTranslation from 'next-translate/useTranslation'
   
@@ -108,23 +109,29 @@ const Footer: FC<PropsWithChildren<Props>> = ({
               <ListHeader>{t('footer.listTitle3')}</ListHeader>
             
               <Stack direction={'column'} spacing={6} align={'flex-start'}>
-                {/* <Box>
-                  <SocialButton label={'Twitter'} href={'https://twitter.com/holagig'}>
+                <Box>
+                  <SocialButton label={'Twitter'} href={'https://twitter.com/0xgigio'}>
                     <FaTwitter /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://twitter.com/holagig'}>Twitter</Link>
-                </Box> */}
+                  <Link ml={2} href={'https://twitter.com/0xgigio'} isExternal>Twitter</Link>
+                </Box>
                 <Box>
                   <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'}>
                     <FaYoutube /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'}>Youtube</Link>
+                  <Link ml={2} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'} isExternal>Youtube</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'Instagram'} href={'https://instagram.com/holagig'}>
+                  <SocialButton label={'Facebook'} href={'https://www.facebook.com/0xgigio'}>
+                    <FaFacebook /> 
+                  </SocialButton>
+                  <Link ml={2} href={'https://www.facebook.com/0xgigio'} isExternal>Facebook</Link>
+                </Box>
+                <Box>
+                  <SocialButton label={'Instagram'} href={'https://instagram.com/0xgigio'}>
                     <FaInstagram /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://instagram.com/holagig'}>Instagram</Link>
+                  <Link ml={2} href={'https://instagram.com/0xgigio'} isExternal>Instagram</Link>
                 </Box>
               </Stack>
             </Stack>

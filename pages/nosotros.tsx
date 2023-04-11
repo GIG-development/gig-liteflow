@@ -38,6 +38,7 @@ const Nosotros: NextPage = () => {
                                 />
                             </Flex>
                             <Stack spacing={4}>
+                                <Heading as={'h2'} variant={'subtitle'}>{t('about.block1.title')}</Heading>
                                 <Text color={'gray.500'} fontSize={useBreakpointValue({ base: 'sm', md: 'md' })}>
                                 {t('about.block1.line1')}{' '}
                                 <b>{t('about.block1.line2')}</b>
