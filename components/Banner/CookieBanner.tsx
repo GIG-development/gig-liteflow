@@ -23,7 +23,7 @@ const CookieBanner: FC = () => {
         }else{
             setTimeout(onToggle,1000)
         }
-    },[cookies, onToggle])
+    },[cookies])/* eslint-disable-line react-hooks/exhaustive-deps */
     
     const handleAccept = () => {
         setCookie('cookie-agreement', new Date(), {
