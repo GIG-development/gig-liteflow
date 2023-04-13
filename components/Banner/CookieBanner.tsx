@@ -51,7 +51,7 @@ const CookieBanner: FC = () => {
                         <Trans
                             ns='components'
                             i18nKey={'cookies.text'}
-                            components={[<br/>]}
+                            components={[<br key='break'/>]}
                         />
                     </Text>
                     <Button onClick={handleAccept} backgroundColor={'white'} color={'brand.500'} size='sm'>
