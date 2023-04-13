@@ -989,5 +989,9 @@
     "result": {
       "label": ""
     }
+  },
+  "cookies": {
+    "text": "Our platform uses cookies.",
+    "button": "Agree"
   }
 }

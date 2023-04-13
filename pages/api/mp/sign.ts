@@ -37,7 +37,7 @@ export default async function sign(
       const listingId = req.query.listingId ? encodeURIComponent(req.query.listingId.toString()) : undefined
       const walletAddress = req.query.walletAddress ? encodeURIComponent(req.query.walletAddress.toString()) : undefined
 
-      const url = `https://buy-sandbox.moonpay.com/nft?apiKey=${apiKey}&contractAddress=${contractAddress}&tokenId=${tokenId}&listingId=${listingId}&walletAddress=${walletAddress}`
+      const url = `${environment.MOONPAY_WIDGET}/nft?apiKey=${apiKey}&contractAddress=${contractAddress}&tokenId=${tokenId}&listingId=${listingId}&walletAddress=${walletAddress}`
       
         if(apiKey && contractAddress && tokenId && listingId && walletAddress){
           const sign = crypto

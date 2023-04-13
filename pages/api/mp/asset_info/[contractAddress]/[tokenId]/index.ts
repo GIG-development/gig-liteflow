@@ -182,11 +182,11 @@ const asset_info = async(
                                 priceCurrencyCode: asset.sales.nodes[0].currency.symbol,
                                 quantity: Number(asset.sales.nodes[0].availableQuantity),
                                 sellerAddress: asset.sales.nodes[0].maker.address,
-                                sellType: 'Secondary',
-                                flow: 'Lite',
-                                network: 'Ethereum',
-                                tokenType: '',
-                                subFlow: ''
+                                sellType: 'primary',
+                                flow: 'lite',
+                                network: 'ethereum'//,
+                                //tokenType: '',
+                                //subFlow: ''
                             })
         
                     }else{

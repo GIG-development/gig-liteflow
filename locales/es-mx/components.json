@@ -989,5 +989,9 @@
     "result": {
       "label": ""
     }
+  },
+  "cookies": {
+    "text": "Nuestra plataforma usa cookies sólo para asegurar una mejor experiencia de nuestros usuarios.",
+    "button": "Aceptar"
   }
 }
