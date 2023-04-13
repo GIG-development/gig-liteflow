@@ -14,6 +14,7 @@ import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
 import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
+import { FaMediumM } from '@react-icons/all-files/fa/FaMediumM';
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import useTranslation from 'next-translate/useTranslation'
   
@@ -108,7 +109,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
             <Stack align={'flex-start'} fontSize='14px'>
               <ListHeader>{t('footer.listTitle3')}</ListHeader>
             
-              <Stack direction={'column'} spacing={6} align={'flex-start'}>
+              <Stack direction={'column'} spacing={2} align={'flex-start'}>
                 <Box>
                   <SocialButton label={'Twitter'} href={'https://twitter.com/0xgigio'}>
                     <FaTwitter /> 
@@ -132,6 +133,12 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                     <FaInstagram /> 
                   </SocialButton>
                   <Link ml={2} href={'https://instagram.com/0xgigio'} isExternal>Instagram</Link>
+                </Box>
+                <Box>
+                  <SocialButton label={'Medium'} href={'https://medium.com/@0xGIGio'}>
+                    <FaMediumM /> 
+                  </SocialButton>
+                  <Link ml={2} href={'https://medium.com/@0xGIGio'} isExternal>Medium</Link>
                 </Box>
               </Stack>
             </Stack>
