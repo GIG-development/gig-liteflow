@@ -18,11 +18,8 @@ const CookieBanner: FC = () => {
 
 
     useEffect(()=>{
-        if (cookies['cookie-agreement'] !== undefined){
-            setAgreed(true)
-        }else{
-            setTimeout(onToggle,1000)
-        }
+        if (cookies['cookie-agreement'] !== undefined) setAgreed(true)
+        if (!agreed) onToggle()
     },[cookies])/* eslint-disable-line react-hooks/exhaustive-deps */
     
     const handleAccept = () => {
