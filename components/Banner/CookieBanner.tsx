@@ -23,7 +23,7 @@ const CookieBanner: FC = () => {
         }else{
             onToggle()
         }
-    },[cookies])
+    },[cookies, onToggle])
     
     const handleAccept = () => {
         setCookie('cookie-agreement', new Date(), {
