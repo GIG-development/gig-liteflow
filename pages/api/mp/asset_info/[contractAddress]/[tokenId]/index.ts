@@ -107,7 +107,7 @@ const asset_info = async(
                 timestamp,
                 req.body
             )
-
+            
             //Once PATH is correct: delete the TRUE condition below
             if(valid || true){
 
@@ -182,7 +182,7 @@ const asset_info = async(
                                 priceCurrencyCode: asset.sales.nodes[0].currency.symbol,
                                 quantity: Number(asset.sales.nodes[0].availableQuantity),
                                 sellerAddress: asset.sales.nodes[0].maker.address,
-                                sellType: 'Primary',
+                                sellType: 'Secondary',
                                 flow: 'Lite',
                                 network: 'Ethereum',
                                 tokenType: '',

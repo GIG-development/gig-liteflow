@@ -7,7 +7,6 @@ import {
   MenuItem,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Text,
@@ -169,7 +168,6 @@ const SaleDirectButton: VFC<Props> = ({
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
       <ModalOverlay />
       <ModalContent minW={'475px'} minH={'650px'}>
-        <ModalCloseButton />
           <ModalBody>
             <iframe src={moonpaySignedUrl} style={{width: '100%', height: '650px'}}/>
           </ModalBody>
