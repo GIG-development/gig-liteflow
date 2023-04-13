@@ -38,12 +38,16 @@ const CookieBanner: FC = () => {
                 <Flex
                 px='8'
                 py='4'
-                color='white'
-                bg='brand.500'
+                color='gray.400'
+                bg='white'
                 rounded='md'
                 shadow='md'
+                border='1px solid'
+                borderColor={'brand.500'}
                 justify='space-between'
                 align='center'
+                mx={12}
+                mb={6}
                 >
                     <Text fontSize={12}>
                         <Trans
@@ -52,7 +56,7 @@ const CookieBanner: FC = () => {
                             components={[<br key='break'/>]}
                         />
                     </Text>
-                    <Button onClick={handleAccept} backgroundColor={'white'} color={'brand.500'} size='sm'>
+                    <Button onClick={handleAccept} backgroundColor={'brand.500'} color={'white'} size='sm'>
                         {t('cookies.button')}
                     </Button>
                 </Flex>
