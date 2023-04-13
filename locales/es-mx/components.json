@@ -641,7 +641,8 @@
         "buy": "Comprar Coleccionable",
         "view": "Ver Coleccionable",
         "crypto": "Comprar con ETH",
-        "moonpay": "Comprar con Tarjeta de Crédito"
+        "moonpay": "Comprar con Tarjeta de Crédito/Débito",
+        "moonpayLink": "(usando Moonpay)"
       },
       "card-footer": {
         "price": "Precio",

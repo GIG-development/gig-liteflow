@@ -5,7 +5,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Text 
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  Text,
+  useDisclosure
 } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
@@ -43,6 +49,7 @@ const SaleDirectButton: VFC<Props> = ({
   onOfferCanceled,
 }) => {
   const { t } = useTranslation('components')
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [moonpaySignedUrl, setMoonpaySignedUrl] = useState('')
   const getMoonpaySignerUrl = useMoonpayCheckout()
@@ -93,10 +100,14 @@ const SaleDirectButton: VFC<Props> = ({
                 {t('sales.direct.button.crypto')}
               </Text>
             </MenuItem>
-            <MenuItem as={Link} href={moonpaySignedUrl} isExternal>
+            <MenuItem onClick={onOpen}>
               <BsCreditCard/>
               <Text as="span" isTruncated pl={2}>
                 {t('sales.direct.button.moonpay')}
+                <br/>
+                <Text fontSize={10}>
+                  {t('sales.direct.button.moonpayLink')}
+                </Text>
               </Text>
             </MenuItem>
           </MenuList>
@@ -149,11 +160,22 @@ const SaleDirectButton: VFC<Props> = ({
   if (!bid && !buyNow && !seeOffers) return null
 
   return (
+  <>
     <Flex gap={6} direction={{ base: 'column', md: 'row' }}>
       {bid}
       {buyNow}
       {seeOffers}
     </Flex>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
+      <ModalOverlay />
+      <ModalContent minW={'475px'} minH={'650px'}>
+        <ModalCloseButton />
+          <ModalBody>
+            <iframe src={moonpaySignedUrl} style={{width: '100%', height: '650px'}}/>
+          </ModalBody>
+      </ModalContent>
+    </Modal>
+  </>
   )
 }
 
