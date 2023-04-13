@@ -29,6 +29,7 @@ import { CookiesProvider, useCookies } from 'react-cookie'
 import ChatWindow from '../components/ChatWindow'
 import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
+import CookieBanner from 'components/Banner/CookieBanner'
 import connectors from '../connectors'
 import environment from '../environment'
 import useEagerConnect from '../hooks/useEagerConnect'
@@ -215,6 +216,7 @@ function MyApp({
               <AccountProvider cache={pageProps[APOLLO_STATE_PROP_NAME]}>
                 <Layout userAddress={pageProps?.user?.address || null}>
                   <Component {...pageProps} />
+                  <CookieBanner/>
                 </Layout>
               </AccountProvider>
             </LiteflowProvider>

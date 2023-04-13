@@ -192,8 +192,8 @@ const asset_info = async(
                     }else{
         
                         res
-                            .status(500)
-                            .json({error: 'Something went wrong'})
+                            .status(404)
+                            .json({error: 'NFT not found'})
         
                     }
 

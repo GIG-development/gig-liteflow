@@ -1,5 +1,6 @@
 import {
-  Box,
+  ButtonGroup,
+  IconButton,
   chakra,
   Flex,
   Grid,
@@ -19,7 +20,7 @@ import { NextPage } from 'next'
 import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import Empty from '../../components/Empty/Empty'
 import ExploreTemplate from '../../components/Explore'
 import FilterAsset, { NoFilter } from '../../components/Filter/FilterAsset'
@@ -28,6 +29,9 @@ import Head from '../../components/Head'
 import Pagination from '../../components/Pagination/Pagination'
 import Select from '../../components/Select/Select'
 import TokenCard from '../../components/Token/Card'
+import TokenListRow from '../../components/Token/ListRow'
+import {BsListUl} from '@react-icons/all-files/bs/BsListUl'
+import {BsFillGridFill} from '@react-icons/all-files/bs/BsFillGridFill'
 import {
   convertAsset,
   convertAuctionWithBestBid,
@@ -207,6 +211,8 @@ const ExplorePage: NextPage<Props> = ({ currentAccount, now, currencies }) => {
   const [changePage, changeLimit, { loading: pageLoading }] = usePaginate()
   const ChakraPagination = chakra(Pagination)
 
+  const [NFTview, setNFTview] = useState('grid')
+
   return (
     <>
       <Head title={t('explore.title')} />
@@ -225,7 +231,7 @@ const ExplorePage: NextPage<Props> = ({ currentAccount, now, currencies }) => {
               count={count}
               onClear={() => updateFilter(NoFilter)}
             />
-            <Box>
+            <Flex>
               <Select<AssetsOrderBy>
                 label={isSmall ? undefined : t('explore.nfts.orderBy.label')}
                 name="orderBy"
@@ -243,7 +249,11 @@ const ExplorePage: NextPage<Props> = ({ currentAccount, now, currencies }) => {
                 value={orderBy}
                 inlineLabel
               />
-            </Box>
+              <ButtonGroup size='md' isAttached ml={6} display={{base: 'none', md: 'flex'}}>
+                <IconButton aria-label='Grid view' icon={<BsFillGridFill />} onClick={()=>setNFTview('grid')}/>
+                <IconButton aria-label='List view' icon={<BsListUl />} onClick={()=>setNFTview('list')}/>
+              </ButtonGroup>
+            </Flex>
           </Flex>
           {isSmall && (
             <Modal isOpen={showFilters} onClose={close} size="full">
@@ -277,33 +287,59 @@ const ExplorePage: NextPage<Props> = ({ currentAccount, now, currencies }) => {
                   spacing="4"
                   columns={
                     showFilters
-                      ? { base: 1, sm: 2, md: 3, lg: 4 }
+                      ? NFTview === 'grid'
+                          ? { base: 1, sm: 2, md: 3, lg: 4 }
+                          : 1
                       : { base: 1, sm: 2, md: 4, lg: 6 }
                   }
                 >
-                  {data.assets.nodes.map((x, i) => (
-                    <Flex key={i} justify="center">
-                      <TokenCard
-                        asset={convertAsset(x)}
-                        creator={convertUser(x.creator, x.creator.address)}
-                        displayCreator
-                        auction={
-                          x.auctions.nodes[0]
-                            ? convertAuctionWithBestBid(x.auctions.nodes[0])
-                            : undefined
-                        }
-                        sale={convertSale(x.firstSale.nodes[0])}
-                        numberOfSales={x.firstSale.totalCount}
-                        hasMultiCurrency={
-                          parseInt(
-                            x.currencySales.aggregates?.distinctCount
-                              ?.currencyId,
-                            10,
-                          ) > 1
-                        }
-                      />
-                    </Flex>
-                  ))}
+                {NFTview ==='grid' && data.assets.nodes.map((x, i) => (
+                  <Flex key={i} justify="center">
+                    <TokenCard
+                      asset={convertAsset(x)}
+                      creator={convertUser(x.creator, x.creator.address)}
+                      displayCreator
+                      auction={
+                        x.auctions.nodes[0]
+                          ? convertAuctionWithBestBid(x.auctions.nodes[0])
+                          : undefined
+                      }
+                      sale={convertSale(x.firstSale.nodes[0])}
+                      numberOfSales={x.firstSale.totalCount}
+                      hasMultiCurrency={
+                        parseInt(
+                          x.currencySales.aggregates?.distinctCount
+                            ?.currencyId,
+                          10,
+                        ) > 1
+                      }
+                    />
+                  </Flex>
+                ))}
+                {NFTview ==='list' && data.assets.nodes.map((x, i) => (
+                  <Flex key={i} justify="center">
+                    <TokenListRow
+                      asset={convertAsset(x)}
+                      creator={convertUser(x.creator, x.creator.address)}
+                      displayCreator
+                      auction={
+                        x.auctions.nodes[0]
+                          ? convertAuctionWithBestBid(x.auctions.nodes[0])
+                          : undefined
+                      }
+                      sale={convertSale(x.firstSale.nodes[0])}
+                      numberOfSales={x.firstSale.totalCount}
+                      hasMultiCurrency={
+                        parseInt(
+                          x.currencySales.aggregates?.distinctCount
+                            ?.currencyId,
+                          10,
+                        ) > 1
+                      }
+                    />
+                  </Flex>
+                ))}
+
                 </SimpleGrid>
               ) : (
                 <Flex align="center" justify="center" h="full" py={12}>

@@ -991,7 +991,7 @@
     }
   },
   "cookies": {
-    "text": "Our platform uses cookies.",
-    "button": "Agree"
+    "text": "This website uses cookies to anonymously and statistically analyze the use of the platform, improve the content and your browsing experience. <0/>For more information access the Cookies Policy. By clicking ACCEPT you accept all cookies.",
+    "button": "Accept"
   }
 }
