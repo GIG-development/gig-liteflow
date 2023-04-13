@@ -21,7 +21,7 @@ const CookieBanner: FC = () => {
         if (cookies['cookie-agreement'] !== undefined){
             setAgreed(true)
         }else{
-            onToggle()
+            setTimeout(onToggle,1000)
         }
     },[cookies, onToggle])
     
@@ -36,6 +36,7 @@ const CookieBanner: FC = () => {
 
     if(!agreed){
         return (
+            <>
             <Slide direction='bottom' in={isOpen} style={{ zIndex: 9999999 }}>
                 <Flex
                 px='8'
@@ -59,6 +60,7 @@ const CookieBanner: FC = () => {
                     </Button>
                 </Flex>
             </Slide>
+            </>
         )
     }
     return <></>
