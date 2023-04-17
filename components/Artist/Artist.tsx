@@ -5,8 +5,8 @@ import {
     Text,
     Flex,
     useBreakpointValue
-} from '@chakra-ui/react';
-import Image from 'next/image';
+} from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from '../Link/Link'
 import { FC, PropsWithChildren } from 'react'
 import useTranslation from 'next-translate/useTranslation'

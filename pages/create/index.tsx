@@ -39,6 +39,7 @@ import useEagerConnect from '../../hooks/useEagerConnect'
 import SmallLayout from '../../layouts/small'
 import { wrapServerSideProps } from '../../props'
 import {event} from 'nextjs-google-analytics'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 const collectionsFilter = {
   or: environment.MINTABLE_COLLECTIONS.map(({ chainId, address }) => ({
@@ -335,16 +336,19 @@ const CreatePage: NextPage = () => {
                 )}
               </Flex>
               <Box textAlign="center">
-                <Heading as="h3" variant="heading1" color="brand.black">
-                  {standard === 'ERC721'
-                    ? t('asset.typeSelector.single.name')
-                    : t('asset.typeSelector.multiple.name')}
+                <Heading as="h3" variant="heading1" color="brand.black" textAlign='center'>
+                  <Flex align='center' justify='center'>
+                    {standard === 'ERC721'
+                      ? t('asset.typeSelector.single.name')
+                      : t('asset.typeSelector.multiple.name')}
+                    <Tooltip text={standard==='ERC721' ? t('tooltips.create.collections.erc721') : t('tooltips.create.collections.erc1155')}></Tooltip>
+                  </Flex>
                 </Heading>
-                <Heading as="h5" fontSize='14px' fontWeight='normal' color="gray.500" mt={2}>
+                {/* <Heading as="h5" fontSize='14px' fontWeight='normal' color="gray.500" mt={2}>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.type')
                     : t('asset.typeSelector.multiple.type')}
-                </Heading>
+                </Heading> */}
                 <Text variant='text-sm' textAlign='center' color="gray.500" minH='40px'>
                   {standard === 'ERC721'
                     ? t('asset.typeSelector.single.title')

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -23,6 +24,7 @@ import {
 } from 'react'
 import { ErrorCode, useDropzone } from 'react-dropzone'
 import { Control, FieldError, useController } from 'react-hook-form'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 const GIF_SIZE_LIMIT = 5_000_000
 
@@ -42,6 +44,7 @@ type IProps = InputHTMLAttributes<any> & {
   labelInfo?: string | JSX.Element
   multiple?: boolean
   children: (context: { hasPreview: boolean }) => ReactNode
+  tooltip?: string
 }
 
 const Dropzone: FC<IProps> = ({
@@ -61,6 +64,7 @@ const Dropzone: FC<IProps> = ({
   multiple,
   onChange,
   children,
+  tooltip
 }) => {
   const { t } = useTranslation('components')
   const [file, setFile] = useState<File>()
@@ -132,7 +136,10 @@ const Dropzone: FC<IProps> = ({
       {label && (
         <HStack spacing={1}>
           <FormLabel htmlFor={name} m={0}>
-            {label}
+            <Flex align='center'>
+              {label}
+              <Tooltip text={tooltip || ''}/>
+            </Flex>
           </FormLabel>
           {labelInfo && <FormHelperText>{labelInfo}</FormHelperText>}
         </HStack>

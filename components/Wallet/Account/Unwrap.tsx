@@ -79,7 +79,6 @@ import {
         <Button
             disabled={Number(WethBalance)===0 || loading}
             fontSize={'sm'}
-            w={'90px'}
             onClick={onOpen}>
             {t('wallet.swap.unwrapBtn')}
         </Button>

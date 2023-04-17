@@ -993,5 +993,24 @@
   "cookies": {
     "text": "This website uses cookies to anonymously and statistically analyze the use of the platform, improve the content and your browsing experience. <0/>For more information access the Cookies Policy. By clicking ACCEPT you accept all cookies.",
     "button": "Accept"
+  },
+  "tooltips": {
+    "create": {
+      "file": "You can upload images (JPG, PNG, WEBP), video (MP4) and animations (GIF). If your animation file is very large, we recommend exporting it as a video and generating a smaller GIF for the preview. The maximum size of this file is 100Mb.",
+      "preview": "The preview of your video or animation can be a GIF or static image of maximum 5Mb.",
+      "name": "The name of your creation is very important, think carefully about what you want to call it publicly since this name cannot be changed.",
+      "description": "The description of your work can include information about its creation and important information for potential buyers. Remember that this information cannot be modified, so you must be very careful with the spelling and with any information you want to include.",
+      "amount": "The number of copies you want to have of this work in the series.",
+      "royalties": "You can define a percentage of royalties that you will receive after each secondary sale that is made of your creation.",
+      "category": "Choose the category that best represents your creation.",
+      "attributes": "You can add special attributes to your creation. Please note that some of these attributes have special terms and conditions that apply to their use and for which you are responsible as the creator.",
+      "collections": {
+        "erc721": "An ERC-721 type NFT is a unique work created on the Blockchain, in this case within our open GIG Singles collection.",
+        "erc1155": "An ERC-1155 type NFT is a work with multiple copies created on the Blockchain as a series, in this case within our open GIG Series collection."
+      }
+    },
+    "bid": {
+      "wrap": "WETH is an ERC-20 token that exists within the Ethereum Blockchain. It is mostly used in auction settings to place a bid without withholding money, but to ensure that the user creating the bid has the funds required to fulfill the bid and complete the transaction."
+    }
   }
 }

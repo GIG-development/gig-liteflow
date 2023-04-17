@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -16,7 +17,7 @@ import {
   NumberInputStepper,
   Stack,
   Text,
-  Tooltip,
+  Tooltip as TT,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
@@ -47,6 +48,7 @@ import Balance from '../../User/Balance'
 import Summary from '../Summary'
 import WrapToken from 'components/Wallet/Account/Wrap'
 import environment from 'environment'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 type FormData = {
   bid: string
@@ -358,7 +360,7 @@ const OfferFormBid: FC<Props> = (props) => {
             {t('offer.form.bid.expiration.label')}
           </FormLabel>
           <FormHelperText>
-            <Tooltip
+            <TT
               label={
                 <Text as="span" variant="caption" color="brand.black">
                   {t('offer.form.bid.expiration.tooltip')}
@@ -379,7 +381,7 @@ const OfferFormBid: FC<Props> = (props) => {
                   color="gray.400"
                 />
               </span>
-            </Tooltip>
+            </TT>
           </FormHelperText>
         </HStack>
         <Input
@@ -412,12 +414,17 @@ const OfferFormBid: FC<Props> = (props) => {
             allowTopUp={allowTopUp && ((price && !canBid) || balanceZero)}
           />
           {
-          ((price && !canBid) || balanceZero) 
+          (1) 
           ?
-            <WrapToken
-              account={account}
-              currencyId={environment.CHAIN_ID === 1 ? '1' : '5'}
-            />
+            <>
+            <Flex align='center'>
+              <WrapToken
+                account={account}
+                currencyId={environment.CHAIN_ID === 1 ? '1' : '5'}
+              />
+              <Tooltip text={t('tooltips.bid.wrap')}/>
+            </Flex>
+            </>
           : 
             <></>
           }

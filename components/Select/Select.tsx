@@ -19,6 +19,7 @@ import { HiChevronDown } from '@react-icons/all-files/hi/HiChevronDown'
 import { HTMLAttributes, ReactElement, useMemo } from 'react'
 import { Control, Controller, FieldError } from 'react-hook-form'
 import Image from '../Image/Image'
+import Tooltip from '../Tooltip/Tooltip'
 
 type IProps<T extends string> = HTMLAttributes<any> & {
   selectWidth?: string | number
@@ -41,6 +42,7 @@ type IProps<T extends string> = HTMLAttributes<any> & {
   labelInfo?: string | JSX.Element
   inlineLabel?: boolean
   sortAlphabetically?: boolean
+  tooltip?: string
 }
 
 const Select = <T extends string>({
@@ -59,6 +61,7 @@ const Select = <T extends string>({
   labelInfo,
   inlineLabel,
   sortAlphabetically,
+  tooltip,
   ...props
 }: IProps<T>): ReactElement => {
   const selectedChoice = useMemo(
@@ -88,7 +91,10 @@ const Select = <T extends string>({
         {label && (
           <HStack spacing={1} minWidth={inlineLabel ? 'max' : 'initial'}>
             <FormLabel htmlFor={name} m={0}>
-              {label}
+              <Flex align='center'>
+                {label}
+                <Tooltip text={tooltip || ''}/>
+              </Flex>
             </FormLabel>
             {labelInfo && <FormHelperText>{labelInfo}</FormHelperText>}
           </HStack>

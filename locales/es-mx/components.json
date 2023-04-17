@@ -953,12 +953,12 @@
       "none": "No hay balances disponibles."
     },
     "swap": {
-      "wrap": "Envolver ETH",
-      "wrapBtn": "Envolver",
-      "wrapInputPlaceholder": "Monto a envolver",
-      "unwrap": "Desenvolver ETH",
-      "unwrapBtn": "Desenvolver",
-      "unwrapInputPlaceholder": "Monto a desenvolver",
+      "wrap": "Convertir ETH a WETH",
+      "wrapBtn": "Convertir ETH a WETH",
+      "wrapInputPlaceholder": "Monto a convertir",
+      "unwrap": "Convertir WETH a ETH",
+      "unwrapBtn": "Convertir WETH a ETH",
+      "unwrapInputPlaceholder": "Monto a convertir",
       "transaction": "Transacción enviada, espera la confirmación",
       "confirmedTitle": "Transacción confirmada",
       "confirmedMessage": ""
@@ -993,5 +993,24 @@
   "cookies": {
     "text": "Esta página web utiliza cookies para analizar de forma anónima y estadística el uso de la plataforma, mejorar los contenidos y tu experiencia de navegación. <0/>Para más información accede a la Política de Cookies. Al hacer clic en ACEPTAR aceptas todas las cookies.",
     "button": "Aceptar"
+  },
+  "tooltips": {
+    "create": {
+      "file": "Puedes cargar imágenes (JPG, PNG, WEBP), video (MP4) y animaciones (GIF). Si el archivo de tu animación es muy pesado, te recomendamos exportarla como video y generar un GIF más pequeño para la previsualización. El tamaño máximo de este archivo es 100Mb.",
+      "preview": "La previsualización de tu video o animación puede ser un GIF o imagen estática de máximo 5Mb.",
+      "name": "El nombre de tu creación es muy importante, piensa muy bien cómo quieres llamarla públicamente ya que este nombre no se puede cambiar.",
+      "description": "La descripción de tu obra puede incluir datos sobre su creación e información importante para los potenciales compradores. Recuerda que esta información no puede ser modificada, por lo cual debes tener mucho cuidado con la ortografía y con cualquier información que desees incluir.",
+      "amount": "La cantidad de copias que quieres tener de esta obra en la serie.",
+      "royalties": "Puedes definir un porcentaje de regalías que percibirás posterior a cada venta secundaria que se realice de tu creación.",
+      "category": "Elige la categoría que mejor represente a tu creación.",
+      "attributes": "Puedes agregarle atributos especiales a tu creación. Ten en cuenta que algunos de estos atributos tienen términos y condiciones especiales que aplican para su uso y de los cuales serás responsable como creador.",
+      "collections": {
+        "erc721": "Un NFT del tipo ERC-721 es una obra única creada en la Blockchain, en este caso dentro de nuestra colección abierta GIG Singles.",
+        "erc1155": "Un NFT del tipo ERC-1155 es una obra con múltiples copias creadas en la Blockchain como una serie, en este caso dentro de nuestra colección abierta GIG Series."
+      }
+    },
+    "bid": {
+      "wrap": "WETH es un token ERC-20 que existe dentro de la Blockchain de Ethereum. Se utiliza mayormente en entornos de subastas para hacer una oferta sin retener el dinero, pero asegurar que el usuario que crea la oferta posea los fondos requeridos para cumplir con la oferta y completar la transacción."
+    }
   }
 }

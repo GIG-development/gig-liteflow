@@ -41,6 +41,7 @@ import useExecuteOnAccountChange from '../../hooks/useExecuteOnAccountChange'
 import useSigner from '../../hooks/useSigner'
 import SmallLayout from '../../layouts/small'
 import { wrapServerSideProps } from '../../props'
+import {event} from 'nextjs-google-analytics'
 
 type Props = {
   offerId: string
@@ -138,6 +139,10 @@ const CheckoutPage: NextPage<Props> = ({
     toast({
       title: t('offers.checkout.notifications.purchased'),
       status: 'success',
+    })
+    event("DirectPurchaseComplete", {
+      category: "Sales",
+      label: "Se completo una venta directa"
     })
     await push(`/tokens/${data.offer.asset.id}`)
   }, [data, toast, t, push])

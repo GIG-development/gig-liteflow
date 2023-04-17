@@ -2,6 +2,7 @@ import {
   Button,
   Checkbox,
   CheckboxGroup,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -38,6 +39,7 @@ import CreateCollectibleModal from '../../Modal/CreateCollectible'
 import LoginModal from '../../Modal/Login'
 import Select from '../../Select/Select'
 import Link from 'components/Link/Link'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 export type FormData = {
   name: string
@@ -204,6 +206,7 @@ const TokenFormCreate: FC<Props> = ({
         error={errors.content}
         onChange={(e) => handleFileDrop(e as unknown as File)}
         value={res.content as any}
+        tooltip={t('tooltips.create.file')}
       >
         {({ hasPreview }) =>
           hasPreview
@@ -246,6 +249,7 @@ const TokenFormCreate: FC<Props> = ({
           control={control}
           error={errors.preview}
           value={res.preview as any}
+          tooltip={t('tooltips.create.preview')}
         >
           {({ hasPreview }) =>
             hasPreview
@@ -256,7 +260,10 @@ const TokenFormCreate: FC<Props> = ({
       )}
       <FormControl isInvalid={!!errors.name}>
         <FormLabel htmlFor="name">
-          {t('token.form.create.name.label')}
+          <Flex align='center'>
+            {t('token.form.create.name.label')}
+            <Tooltip text={t('tooltips.create.name')}/>
+          </Flex>
         </FormLabel>
         <Input
           id="name"
@@ -272,7 +279,10 @@ const TokenFormCreate: FC<Props> = ({
       <FormControl>
         <HStack spacing={1} mb={2}>
           <FormLabel htmlFor="description" m={0}>
-            {t('token.form.create.description.label')}
+            <Flex align='center'>
+              {t('token.form.create.description.label')}
+              <Tooltip text={t('tooltips.create.description')}/>
+            </Flex>
           </FormLabel>
           <FormHelperText fontSize='xs'>
             {t('token.form.create.description.info')}
@@ -288,7 +298,10 @@ const TokenFormCreate: FC<Props> = ({
       {collection.standard === 'ERC1155' && (
         <FormControl isInvalid={!!errors.amount}>
           <FormLabel htmlFor="amount">
-            {t('token.form.create.amount.label')}
+            <Flex align='center'>
+              {t('token.form.create.amount.label')}
+              <Tooltip text={t('tooltips.create.amount')}/>
+            </Flex>
           </FormLabel>
           <InputGroup>
             <NumberInput
@@ -327,7 +340,10 @@ const TokenFormCreate: FC<Props> = ({
       <FormControl isInvalid={!!errors.royalties}>
         <HStack spacing={1} mb={2}>
           <FormLabel htmlFor="royalties" m={0}>
-            {t('token.form.create.royalties.label')}
+            <Flex align='center'>
+              {t('token.form.create.royalties.label')}
+              <Tooltip text={t('tooltips.create.royalties')}/>
+            </Flex>
           </FormLabel>
           <FormHelperText fontSize='xs'>
             {t('token.form.create.royalties.info')}
@@ -391,11 +407,17 @@ const TokenFormCreate: FC<Props> = ({
         value={res.category}
         required
         error={errors.category}
+        tooltip={t('tooltips.create.category')}
       />
 
       <FormControl>
         <HStack spacing={1} mb={2}>
-          <FormLabel htmlFor="attributes" m={0}>{t('token.form.create.attributes.attributes')}</FormLabel>
+          <FormLabel htmlFor="attributes" m={0}>
+            <Flex align='center'>
+              {t('token.form.create.attributes.attributes')}
+              <Tooltip text={t('tooltips.create.attributes')}/>
+            </Flex>
+          </FormLabel>
           <FormHelperText fontSize='xs'>
             {t('token.form.create.royalties.info')}
           </FormHelperText>
