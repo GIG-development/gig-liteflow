@@ -1,5 +1,5 @@
 import { Box, Tooltip as TT } from '@chakra-ui/react'
-import { BsInfoCircleFill as InfoIcon } from '@react-icons/all-files/Bs/BsInfoCircleFill'
+import { BsFillInfoCircleFill as InfoIcon } from '@react-icons/all-files/Bs/BsFillInfoCircleFill'
 import { FC, PropsWithChildren } from 'react'
 
 type Props = {
