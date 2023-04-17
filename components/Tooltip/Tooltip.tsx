@@ -1,5 +1,5 @@
 import { Box, Tooltip as TT } from '@chakra-ui/react'
-import {BsFillInfoCircleFill} from '@react-icons/all-files/Bs/BsFillInfoCircleFill'
+import { BsInfoCircleFill as InfoIcon } from '@react-icons/all-files/Bs/BsInfoCircleFill'
 import { FC, PropsWithChildren } from 'react'
 
 type Props = {
@@ -22,7 +22,7 @@ const Tooltip: FC<PropsWithChildren<Props>> = ({
                 rounded={4}
             >
                 <span>
-                    <BsFillInfoCircleFill
+                    <InfoIcon
                         color='lightgray'
                         fontSize='12'
                     />
