@@ -1,5 +1,6 @@
 import { Box, Tooltip as TT } from '@chakra-ui/react'
 import { FC, PropsWithChildren } from 'react'
+import { BsFillInfoCircleFill as InfoIcon2 } from '@react-icons/all-files/bs/BsFillInfoCircleFill'
 
 type Props = {
     text: string
@@ -24,6 +25,7 @@ const Tooltip: FC<PropsWithChildren<Props>> = ({
             >
                 <span>
                     {InfoIcon}
+                    <InfoIcon2 color='lightgray' fontSize={12}/>
                 </span>
             </TT>
         </Box>
