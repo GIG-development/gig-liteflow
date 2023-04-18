@@ -35,7 +35,7 @@ const CookieBanner: FC = () => {
             <>
             <Slide direction='bottom' in={isOpen} style={{ zIndex: 9999999 }}>
                 <Flex
-                px='8'
+                px={{base: 4, md: 8}}
                 py='4'
                 color='gray.400'
                 bg='white'
@@ -43,19 +43,21 @@ const CookieBanner: FC = () => {
                 shadow='md'
                 border='1px solid'
                 borderColor={'brand.500'}
-                justify='space-between'
+                flexDir={{base: 'column', md: 'row'}}
+                justify={{base: 'center', md: 'space-between'}}
+                textAlign={{base: 'justify', md: 'left'}}
                 align='center'
-                mx={12}
+                mx={{base: 4, md: 12}}
                 mb={6}
                 >
-                    <Text fontSize={12}>
+                    <Text fontSize={{base: 10, md: 12}}>
                         <Trans
                             ns='components'
                             i18nKey={'cookies.text'}
                             components={[<br key='break'/>]}
                         />
                     </Text>
-                    <Button onClick={handleAccept} backgroundColor={'brand.500'} color={'white'} size='sm'>
+                    <Button onClick={handleAccept} backgroundColor={'brand.500'} mt={{base: 2, md: 0}} color={'white'} minW={'60px'} size='sm'>
                         {t('cookies.button')}
                     </Button>
                 </Flex>
