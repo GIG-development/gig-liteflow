@@ -55,6 +55,7 @@ import useSigner from '../../../../hooks/useSigner'
 import LargeLayout from '../../../../layouts/large'
 import { getLimit, getOffset, getOrder } from '../../../../params'
 import { wrapServerSideProps } from '../../../../props'
+import { event } from 'nextjs-google-analytics'
 
 type Props = {
   userAddress: string
@@ -160,6 +161,10 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
         toast({
           title: t('user.bid-received.notifications.accepted'),
           status: 'success',
+        })
+        event('AuctionSaleCompleted', {
+          category: 'Sales',
+          label: 'Se completo una subasta con una oferta final'
         })
         await refetch()
       } catch (e) {

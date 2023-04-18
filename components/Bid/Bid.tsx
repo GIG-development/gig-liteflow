@@ -30,6 +30,7 @@ import Price from '../Price/Price'
 import WalletAddress from '../Wallet/Address'
 import AccountImage from '../Wallet/Image'
 import BidAcceptModal from './AcceptModal'
+import { event } from 'nextjs-google-analytics'
 
 export type Props = {
   bid: {
@@ -114,6 +115,10 @@ const Bid: VFC<Props> = ({
       acceptOfferOnOpen()
       confirmAcceptOnClose()
       await acceptOffer(bid, quantity || bid.availableQuantity)
+      event('AuctionSaleCompleted', {
+        category: 'Sales',
+        label: 'Se completo una subasta con una oferta final'
+      })
       await onAccepted(bid.id)
     } finally {
       acceptOfferOnClose()
