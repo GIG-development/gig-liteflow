@@ -37,9 +37,6 @@ const Hero: FC<PropsWithChildren<Props>> = ({
           <SwiperSlide key={asset.id}>
             <Box
               minH={['300px','420px']}
-              backgroundImage={`url(${asset.image})`}
-              backgroundSize='cover'
-              backgroundRepeat='no-repeat'
               position='relative'
             >
               <Image

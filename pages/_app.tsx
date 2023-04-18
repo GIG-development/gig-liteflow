@@ -26,7 +26,7 @@ import React, {
   useMemo,
 } from 'react'
 import { CookiesProvider, useCookies } from 'react-cookie'
-import ChatWindow from '../components/ChatWindow'
+//import ChatWindow from '../components/ChatWindow'
 import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
 import CookieBanner from 'components/Banner/CookieBanner'
@@ -72,7 +72,7 @@ function Layout({
   )
 
   return (
-    <ChatWindow>
+    // <ChatWindow>
         <Box>
           <Navbar
             logo={{ path: '/logo_beta_bn.png', width: 100, height: 53 }}
@@ -102,7 +102,7 @@ function Layout({
           {children}
           <Footer userProfileLink={userProfileLink}/>
         </Box>
-      </ChatWindow>
+      // </ChatWindow>
   )
 }
 

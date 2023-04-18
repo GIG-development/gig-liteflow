@@ -2,8 +2,7 @@ import {
     Flex,
     Button,
     Slide,
-    Text,
-    useDisclosure
+    Text
 } from '@chakra-ui/react';
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans';
@@ -12,14 +11,14 @@ import { FC, useEffect, useState } from 'react'
   
 const CookieBanner: FC = () => { 
     const { t } = useTranslation('components')
-    const { isOpen, onToggle } = useDisclosure()
-    const [cookies, setCookie] = useCookies()
-    const [agreed, setAgreed] = useState(false)
-
+    const [ isOpen, toggle ] = useState(false)
+    const [ agreed, setAgreed ] = useState(false)
+    const [ cookies, setCookie ] = useCookies()
 
     useEffect(()=>{
+        if (agreed) return
         if (cookies['cookie-agreement'] !== undefined) setAgreed(true)
-        if (!agreed) onToggle()
+        if (!agreed) toggle(true)
     },[cookies])/* eslint-disable-line react-hooks/exhaustive-deps */
     
     const handleAccept = () => {
@@ -28,7 +27,7 @@ const CookieBanner: FC = () => {
             sameSite: true,
             path: '*',
         })
-        onToggle()
+        toggle(false)
     }
 
     if(!agreed){
