@@ -103,12 +103,12 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     if (error) throw error
     if (!data) throw new Error('data is falsy')
 
-    const res = await client.query<FetchExploreUsersQuery>({
+    const artists = await client.query<FetchExploreUsersQuery>({
       query: FetchExploreUsersDocument,
       variables: { limit: 20, offset: 0, filter: [{verification:{status:{equalTo:'VALIDATED'}}} as AccountFilter] },
     })
-    if (error) throw error
-    if (!data) throw new Error('data is falsy')
+    if (artists?.error) throw error
+    if (!artists?.data) throw new Error('data is falsy')
 
     return {
       props: {
@@ -117,7 +117,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
         featuredTokens: environment.FEATURED_TOKEN,
         tokens: tokensToRender,
         currentAccount: ctx.user.address,
-        artists: res
+        artists: artists
       },
     }
   },
@@ -131,7 +131,7 @@ const HomePage: NextPage<Props> = ({
   tokens,
   artists
 }) => {
-  const verifiedArtists = artists.data.users.nodes.filter((user:any)=>user.verification?.status === "VALIDATED")
+  const verifiedArtists = artists.data.users.nodes.filter((user:any)=>user.verification?.status === "VALIDATED").sort(() => Math.random() - 0.5)
   const ready = useEagerConnect()
   //const signer = useSigner()
   const { t } = useTranslation('templates')
