@@ -71,6 +71,8 @@ const TokenStaticMedia: VFC<{
           //objectFit={fill ? 'cover' : 'scale-down'}
           //sizes={sizes}
           unoptimized={unlockedContent?.mimetype === 'image/gif'}
+          placeholder="blur"
+          blurDataURL="/uri-loading.gif"
         />
       </Box>
     )

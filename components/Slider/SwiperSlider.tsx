@@ -17,6 +17,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectCards, Autoplay } from "swiper"
 import Price from '../Price/Price'
 import Link from '../Link/Link'
+import Image from '../Image/Image'
 import environment from 'environment'
 
 type Props = {
@@ -41,6 +42,15 @@ const Hero: FC<PropsWithChildren<Props>> = ({
               backgroundRepeat='no-repeat'
               position='relative'
             >
+              <Image
+                position='absolute'
+                top='0'
+                layout="fill"
+                objectFit='cover'
+                src={asset.image} 
+                placeholder="blur"
+                blurDataURL="/uri-loading.gif"
+              />
               <Flex justifyContent='space-between' position='absolute' bottom='0' w='full' p={[4,6]} backgroundColor='rgba(0,0,0,0.2)'>
                 <Flex flexDir='column'>
                   <Heading variant='heading2' color='white'>{asset.name}</Heading>
