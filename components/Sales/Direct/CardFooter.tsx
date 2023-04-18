@@ -87,6 +87,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
       mx={6}
       mb={6}
       rounded='full'
+      justify="center"
     >
       {showButton
         ? isOwner

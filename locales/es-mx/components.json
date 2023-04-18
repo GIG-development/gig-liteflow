@@ -1003,11 +1003,7 @@
       "amount": "La cantidad de copias que quieres tener de esta obra en la serie.",
       "royalties": "Puedes definir un porcentaje de regalías que percibirás posterior a cada venta secundaria que se realice de tu creación.",
       "category": "Elige la categoría que mejor represente a tu creación.",
-      "attributes": "Puedes agregarle atributos especiales a tu creación. Ten en cuenta que algunos de estos atributos tienen términos y condiciones especiales que aplican para su uso y de los cuales serás responsable como creador.",
-      "collections": {
-        "erc721": "Un NFT del tipo ERC-721 es una obra única creada en la Blockchain, en este caso dentro de nuestra colección abierta GIG Singles.",
-        "erc1155": "Un NFT del tipo ERC-1155 es una obra con múltiples copias creadas en la Blockchain como una serie, en este caso dentro de nuestra colección abierta GIG Series."
-      }
+      "attributes": "Puedes agregarle atributos especiales a tu creación. Ten en cuenta que algunos de estos atributos tienen términos y condiciones especiales que aplican para su uso y de los cuales serás responsable como creador."
     },
     "bid": {
       "wrap": "WETH es un token ERC-20 que existe dentro de la Blockchain de Ethereum. Se utiliza mayormente en entornos de subastas para hacer una oferta sin retener el dinero, pero asegurar que el usuario que crea la oferta posea los fondos requeridos para cumplir con la oferta y completar la transacción."

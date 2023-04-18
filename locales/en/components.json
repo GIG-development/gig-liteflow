@@ -1003,11 +1003,7 @@
       "amount": "The number of copies you want to have of this work in the series.",
       "royalties": "You can define a percentage of royalties that you will receive after each secondary sale that is made of your creation.",
       "category": "Choose the category that best represents your creation.",
-      "attributes": "You can add special attributes to your creation. Please note that some of these attributes have special terms and conditions that apply to their use and for which you are responsible as the creator.",
-      "collections": {
-        "erc721": "An ERC-721 type NFT is a unique work created on the Blockchain, in this case within our open GIG Singles collection.",
-        "erc1155": "An ERC-1155 type NFT is a work with multiple copies created on the Blockchain as a series, in this case within our open GIG Series collection."
-      }
+      "attributes": "You can add special attributes to your creation. Please note that some of these attributes have special terms and conditions that apply to their use and for which you are responsible as the creator."
     },
     "bid": {
       "wrap": "WETH is an ERC-20 token that exists within the Ethereum Blockchain. It is mostly used in auction settings to place a bid without withholding money, but to ensure that the user creating the bid has the funds required to fulfill the bid and complete the transaction."

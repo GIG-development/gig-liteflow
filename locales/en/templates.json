@@ -596,12 +596,14 @@
       "single": {
         "name": "GIG Singles",
         "title": "Single edition collectible",
-        "type": "ERC721"
+        "type": "ERC721",
+        "info": "An ERC-721 type NFT is a unique work created on the Blockchain, in this case within our open GIG Singles collection."
       },
       "multiple": {
         "name": "GIG Series",
         "title": "Collectible with multiple editions",
-        "type": "ERC1155"
+        "type": "ERC1155",
+        "info": "An ERC-1155 type NFT is a work with multiple copies created on the Blockchain as a series, in this case within our open GIG Series collection."
       },
       "empty": {
         "title": "No collection found",

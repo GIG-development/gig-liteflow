@@ -341,7 +341,7 @@ const CreatePage: NextPage = () => {
                     {standard === 'ERC721'
                       ? t('asset.typeSelector.single.name')
                       : t('asset.typeSelector.multiple.name')}
-                    <Tooltip text={standard==='ERC721' ? t('tooltips.create.collections.erc721') : t('tooltips.create.collections.erc1155')}></Tooltip>
+                    <Tooltip text={standard==='ERC721' ? t('asset.typeSelector.single.info') : t('asset.typeSelector.multiple.info')}></Tooltip>
                   </Flex>
                 </Heading>
                 {/* <Heading as="h5" fontSize='14px' fontWeight='normal' color="gray.500" mt={2}>

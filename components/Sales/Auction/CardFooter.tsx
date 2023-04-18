@@ -39,6 +39,7 @@ const SaleAuctionCardFooter: VFC<Props> = ({
       rounded='full'
       fontSize="sm"
       fontWeight="semibold"
+      justify="center"
       href={`/tokens/${assetId}${!isOwner ? '/bid' : ''}`}
     >
       {showButton ? (

@@ -22,7 +22,7 @@ const Tooltip: FC<PropsWithChildren<Props>> = ({
                 rounded={4}
             >
                 <span>
-                    <InfoIcon color='lightgray' fontSize={12}/>
+                    <InfoIcon color='lightgray' fontSize={12} cursor='pointer'/>
                 </span>
             </TT>
         </Box>

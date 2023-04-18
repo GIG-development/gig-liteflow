@@ -6,7 +6,6 @@ import {
   FormHelperText,
   FormLabel,
   HStack,
-  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -17,7 +16,6 @@ import {
   NumberInputStepper,
   Stack,
   Text,
-  Tooltip as TT,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
@@ -30,7 +28,6 @@ import {
   useBalance,
   useCreateOffer,
 } from '@nft/hooks'
-import { FaInfoCircle } from '@react-icons/all-files/fa/FaInfoCircle'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
@@ -360,28 +357,7 @@ const OfferFormBid: FC<Props> = (props) => {
             {t('offer.form.bid.expiration.label')}
           </FormLabel>
           <FormHelperText>
-            <TT
-              label={
-                <Text as="span" variant="caption" color="brand.black">
-                  {t('offer.form.bid.expiration.tooltip')}
-                </Text>
-              }
-              placement="top"
-              rounded="xl"
-              shadow="lg"
-              p={3}
-              bg="white"
-            >
-              <span>
-                <Icon
-                  as={FaInfoCircle}
-                  h={4}
-                  w={4}
-                  cursor="pointer"
-                  color="gray.400"
-                />
-              </span>
-            </TT>
+            <Tooltip text={t('offer.form.bid.expiration.tooltip')} />
           </FormHelperText>
         </HStack>
         <Input
