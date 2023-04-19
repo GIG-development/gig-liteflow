@@ -59,6 +59,8 @@ import SaleDetail from '../../../components/Sales/Detail'
 import TokenMedia from '../../../components/Token/Media'
 import TokenMetadata from '../../../components/Token/Metadata'
 import TraitList from '../../../components/Trait/TraitList'
+import ShareModal from '../../../components/Modal/Share'
+import { FaShare } from '@react-icons/all-files/fa/FaShare'
 import {
   convertAuctionFull,
   convertBidFull,
@@ -201,7 +203,16 @@ const DetailPage: NextPage<Props> = ({
   const ready = useEagerConnect()
   const signer = useSigner()
   const { t } = useTranslation('templates')
-  const {isOpen, onOpen, onClose} = useDisclosure()
+  const {
+    isOpen: isOpenTransfer,
+    onOpen: onOpenTransfer,
+    onClose: onCloseTransfer
+  } = useDisclosure()
+  const {
+    isOpen: isOpenShare,
+    onOpen: onOpenShare,
+    onClose: onCloseShare
+  } = useDisclosure()
   const toast = useToast()
   const { account } = useWeb3React()
   const { query } = useRouter()
@@ -328,28 +339,6 @@ const DetailPage: NextPage<Props> = ({
     await refetch()
   }, [refetch])
 
-  const downloadQR = () => {
-    const link = document.createElement('a')
-    link.download = 'GIG-QR-Code.png'
-    link.href = document.querySelector('canvas')?.toDataURL("image/png").replace("image/png", "image/octet-stream") || ''
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
-  const qrcode = (
-    <QRCodeCanvas
-      title={t('asset.detail.qrCode.download')}
-      includeMargin={false}
-      className='qr-codes'
-      id='gig-qr-code'
-      value={environment.BASE_URL+'/tokens/'+data?.asset?.id}
-      fgColor='#212121'
-      imageSettings={{src:'/favicon.png', width: 20, height: 20, excavate:true}}
-      onClick={downloadQR}
-    />
-  )
-
   // const convertedPrice = (priceConversion && priceConversion.data && priceConversion.data[0].quote)
   //                          ? priceConversion.data[0]?.quote?.USD.price
   //                          : undefined
@@ -394,7 +383,7 @@ const DetailPage: NextPage<Props> = ({
                 gasPrice: gas
             })
             if(tx){
-                onClose()
+                onCloseTransfer()
                 toast({
                   title: t('asset.detail.menu.transfer.transactionSent'),
                   description: tx.hash,
@@ -426,7 +415,7 @@ const DetailPage: NextPage<Props> = ({
         console.error(e)
       }
     },
-  [transferAsset, toast, t, onClose, signer]
+  [transferAsset, toast, t, onCloseTransfer, signer]
   )
 
   if (!asset) return <></>
@@ -530,6 +519,7 @@ const DetailPage: NextPage<Props> = ({
                 </Heading>
               </Box>
               <Flex direction="row" align="flex-start" gap={3}>
+                <Button onClick={onOpenShare} fontSize={14} variant='icon' color='brand.black' rightIcon={<FaShare/>} />
                 <Menu>
                   <MenuButton
                     as={IconButton}
@@ -542,7 +532,7 @@ const DetailPage: NextPage<Props> = ({
                   <MenuList>
                     { isOwner && (<>
                     {
-                      <MenuItem onClick={onOpen}>
+                      <MenuItem onClick={onOpenTransfer}>
                         {t('asset.detail.menu.transfer.label')}
                       </MenuItem>
                     }
@@ -646,12 +636,6 @@ const DetailPage: NextPage<Props> = ({
                 <TraitList traits={traits} />
               </Box>
             )}
-            
-            <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={8}>
-              {qrcode}
-              <Text fontSize='8'>{t('asset.detail.qrCode.download')}</Text>
-            </Flex>
-
           </Box>
 
         <div>
@@ -703,7 +687,7 @@ const DetailPage: NextPage<Props> = ({
         </div>
       </SimpleGrid>
     </LargeLayout>
-    <Modal isOpen={isOpen} onClose={onClose} isCentered size={'lg'}>
+    <Modal isOpen={isOpenTransfer} onClose={onCloseTransfer} isCentered size={'lg'}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -772,6 +756,7 @@ const DetailPage: NextPage<Props> = ({
           </ModalBody>
         </ModalContent>
       </Modal>
+      <ShareModal isOpen={isOpenShare} onClose={onCloseShare} link={environment.BASE_URL+'/tokens/'+data?.asset?.id}/>
     </main>
   )
 }

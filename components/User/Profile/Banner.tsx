@@ -1,6 +1,5 @@
-import { Box, Button, Flex, Heading, Icon, Link } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Link, useDisclosure } from '@chakra-ui/react'
 import { VFC } from 'react'
-import { QRCodeCanvas } from "qrcode.react";
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
 import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
@@ -9,7 +8,9 @@ import { SiInstagram } from '@react-icons/all-files/si/SiInstagram'
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
 import useTranslation from 'next-translate/useTranslation'
 import WalletAddress from '../../Wallet/Address'
-import environment from 'environment';
+import ShareModal from '../../Modal/Share'
+import { FaShare } from '@react-icons/all-files/fa/FaShare'
+import environment from 'environment'
 
 type Props = {
   address: string
@@ -26,31 +27,10 @@ type Props = {
 const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website }) => {
   if (!address) throw new Error('account is falsy')
   const { t } = useTranslation('components')
-
-  const downloadQR = () => {
-    const link = document.createElement('a')
-    link.download = 'GIG-QR-Code.png'
-    link.href = document.querySelector('canvas')?.toDataURL("image/png").replace("image/png", "image/octet-stream") || ''
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
-  const qrcode = (
-    <QRCodeCanvas
-      includeMargin={false}
-      className='qr-codes'
-      id='gig-qr-code'
-      value={environment.BASE_URL+'/'+address}
-      fgColor='#212121'
-      size={256}
-      style={{width: '110px !important', height: '110px !important'}}
-      imageSettings={{src:'/favicon.png', width: 40, height: 40, excavate:true}}
-      onClick={downloadQR}
-    />
-  )
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
+    <>
     <Flex
       flexDirection={'column'}
     >
@@ -189,12 +169,16 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           </Box>
           <Flex flexDirection={'column'}>
             <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
-              {qrcode}
+              <Button onClick={onOpen} w='100px' fontSize={12} rightIcon={<FaShare/>}>
+                {t('modal.share.title')}
+              </Button>
             </Flex>
           </Flex>
         </Flex>
       </Flex>
     </Flex>
+    <ShareModal isOpen={isOpen} onClose={onClose} link={environment.BASE_URL+'/'+address}/>
+    </>
   )
 }
 

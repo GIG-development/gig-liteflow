@@ -360,6 +360,12 @@
       "errors": {
         "wrong-network": "You are connected to the wrong network. Please switch to the {{networkName}} network."
       }
+    },
+    "share": {
+      "title": "Share",
+      "qrCode": {
+        "download": "Click to download QR code"
+      }
     }
   },
   "back": "Go back",

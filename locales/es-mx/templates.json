@@ -562,8 +562,8 @@
         "bids": "Ofertas",
         "history": "Historia"
       },
-      "qrCode": {
-        "download": "Click para descargar código QR"
+      "share": {
+        "title": "Compartir"
       },
       "menu": {
         "report": {

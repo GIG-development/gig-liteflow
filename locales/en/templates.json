@@ -548,8 +548,8 @@
         "bids": "Bids",
         "history": "History"
       },
-      "qrCode": {
-        "download": "Click to download QR code"
+      "share": {
+        "title": "Share"
       },
       "menu": {
         "report": {

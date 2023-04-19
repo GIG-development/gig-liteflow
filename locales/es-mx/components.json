@@ -360,6 +360,12 @@
       "errors": {
         "wrong-network": "Estás en la red incorrecta. Por favor, conéctate a la red {{networkName}}."
       }
+    },
+    "share": {
+      "title": "Compartir",
+      "qrCode": {
+        "download": "Click para descargar código QR"
+      }
     }
   },
   "back": "Volver",
