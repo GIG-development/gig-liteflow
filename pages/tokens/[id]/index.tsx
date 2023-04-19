@@ -50,7 +50,6 @@ import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
 import { ethers } from 'ethers'
 import invariant from 'ts-invariant'
-import { QRCodeCanvas } from "qrcode.react";
 import BidList from '../../../components/Bid/BidList'
 import Head from '../../../components/Head'
 import HistoryList from '../../../components/History/HistoryList'
