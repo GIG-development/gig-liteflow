@@ -38,7 +38,6 @@ import LoginModal from '../../Modal/Login'
 import Balance from '../../User/Balance'
 import Summary from '../Summary'
 import environment from 'environment'
-import { useRouter } from 'next/router'
 import Trans from 'next-translate/Trans'
 import { ethers } from 'ethers'
 
