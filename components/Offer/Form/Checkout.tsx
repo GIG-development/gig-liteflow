@@ -82,7 +82,6 @@ const OfferFormCheckout: FC<Props> = ({
   const { t } = useTranslation('components')
   const [acceptOffer, { activeStep, transactionHash }] = useAcceptOffer(signer)
   const toast = useToast()
-  const {locale} = useRouter()
   const {
     isOpen: loginIsOpen,
     onOpen: loginOnOpen,
@@ -226,7 +225,7 @@ const OfferFormCheckout: FC<Props> = ({
           i18nKey='offer.form.checkout.buyCrypto'
           components={[
             <Link
-              href={(environment.CHAIN_ID === 5 && account) ? `/account/crypto` : '#'}
+              href={(environment.CHAIN_ID === 5 && account) ? `/account/crypto?buyAmount=${cryptoBuyAmount}` : '#'}
               isExternal
               fontWeight='bold'
               key='legal-link'
