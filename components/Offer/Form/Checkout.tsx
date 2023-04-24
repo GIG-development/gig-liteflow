@@ -226,7 +226,7 @@ const OfferFormCheckout: FC<Props> = ({
           i18nKey='offer.form.checkout.buyCrypto'
           components={[
             <Link
-              href={`https://buy-sandbox.moonpay.com?currencyCode=eth&baseCurrencyCode=mxn&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}&quoteCurrencyAmount=${cryptoBuyAmount}`}
+              href={(environment.CHAIN_ID === 5 && account) ? `/account/crypto` : '#'}
               isExternal
               fontWeight='bold'
               key='legal-link'

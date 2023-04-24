@@ -859,6 +859,22 @@
       "edit": "Edit profile",
       "bio": "Bio"
     },
+    "social": {
+      "options": {
+        "follow": {
+          "button": "Follow",
+          "success": "Success!"
+        },
+        "following": {
+          "button": "",
+          "success": ""
+        },
+        "unfollow": {
+          "button": "",
+          "success": ""
+        }
+      }
+    },
     "referral": {
       "title": "Refer a creator",
       "description": "Share your referral link to onboard new creators and gets rewards.",

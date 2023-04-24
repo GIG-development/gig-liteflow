@@ -859,6 +859,22 @@
       "edit": "Editar perfil",
       "bio": "Bio"
     },
+    "social": {
+      "options": {
+        "follow": {
+          "button": "Seguir",
+          "success": "Exito!"
+        },
+        "following": {
+          "button": "",
+          "success": ""
+        },
+        "unfollow": {
+          "button": "",
+          "success": ""
+        }
+      }
+    },
     "referral": {
       "title": "Referir a un creador",
       "description": "Comparte tu código de referencia para invitar nuevos creadores y ganar recompensas.",

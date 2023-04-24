@@ -6,6 +6,9 @@ import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
 import { HiOutlineGlobeAlt } from '@react-icons/all-files/hi/HiOutlineGlobeAlt'
 import { SiInstagram } from '@react-icons/all-files/si/SiInstagram'
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
+import { BiUserPlus } from '@react-icons/all-files/bi/BiUserPlus'
+//import { BiUserCheck } from '@react-icons/all-files/bi/BiUserCheck'
+//import { BiUserMinus } from '@react-icons/all-files/bi/BiUserMinus'
 import useTranslation from 'next-translate/useTranslation'
 import WalletAddress from '../../Wallet/Address'
 import ShareModal from '../../Modal/Share'
@@ -60,7 +63,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
         as="nav"
         flexDirection={{base: 'column', md: 'row'}}
         gap={6}
-        mx={10}
+        mx={{base: 0, md: 10}}
         mt={-20}
       >
         <Flex
@@ -116,7 +119,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           </Flex>
           <Button 
             colorScheme="gray"
-            fontSize={'sm'}
+            fontSize={{base: 'xs', md: 'sm'}}
           >
             <WalletAddress address={address} isCopyable isShort />
           </Button>
@@ -168,8 +171,20 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
             </Flex>
           </Box>
           <Flex flexDirection={'column'}>
-            <Flex flexDirection='column' justifyContent={'center'} alignItems='center' pt={2}>
-              <Button onClick={onOpen} w='100px' fontSize={12} rightIcon={<FaShare/>}>
+            <Flex flexDirection={{base: 'row', md: 'column'}} justifyContent={'center'} alignItems='center' pt={2} gap={2}>
+              <Button
+                w='120px'
+                fontSize={{base: 'xs', md: 'sm'}}
+                leftIcon={<BiUserPlus fontSize={24}/>}
+              >
+                {t('user.social.options.follow.button')}
+              </Button>
+              <Button
+                w='120px'
+                fontSize={{base: 'xs', md: 'sm'}}
+                leftIcon={<FaShare fontSize={16}/>}
+                onClick={onOpen} 
+              >
                 {t('modal.share.title')}
               </Button>
             </Flex>

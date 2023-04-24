@@ -51,7 +51,6 @@ import LoginModal from '../Modal/Login'
 import Select from '../Select/Select'
 import AccountImage from '../Wallet/Image'
 import environment from 'environment'
-import { useRouter } from 'next/router'
 import {event} from 'nextjs-google-analytics'
 
 type MultiLang = {
@@ -128,7 +127,6 @@ const DrawerMenu: VFC<{
   const { asPath, events, query, push } = router
   const { t } = useTranslation('components')
   const btnRef = useRef(null)
-  const {locale} = useRouter()
 
   useEffect(() => {
     events.on('routeChangeStart', () => onClose())
@@ -296,12 +294,9 @@ const DrawerMenu: VFC<{
                       <Link href={`/account/wallet`}>
                         <NavItemMobile>{t('navbar.user.wallet')}</NavItemMobile>
                       </Link>
-                     {
-                      environment.CHAIN_ID === 5 && 
-                        <Link href={`https://buy-sandbox.moonpay.com?currencyCode=eth&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}`} isExternal>
-                          <NavItemMobile>{t('navbar.user.crypto')}</NavItemMobile>
-                        </Link>
-                      }
+                      <Link href={(environment.CHAIN_ID === 5 && account) ? `/account/crypto` : '#'}>
+                        <NavItemMobile>{t('navbar.user.crypto')}</NavItemMobile>
+                      </Link>
                       <Link href={`/account/edit`}>
                         <NavItemMobile>{t('navbar.user.edit')}</NavItemMobile>
                       </Link>
@@ -436,7 +431,6 @@ const UserMenu: VFC<{
   signOutFn: () => void
 }> = ({ account, user, topUp, signOutFn }) => {
   const { t } = useTranslation('components')
-  const {locale} = useRouter()
   return (
     <Menu>
       <MenuButton>
@@ -457,12 +451,9 @@ const UserMenu: VFC<{
         <Link href="/account/wallet">
           <MenuItem>{t('navbar.user.wallet')}</MenuItem>
         </Link>
-        {
-          environment.CHAIN_ID === 5 && 
-          <Link href={`https://buy-sandbox.moonpay.com?currencyCode=eth&colorCode=%23BE94FF&language=${locale}&apiKey=${environment.MOONPAY_API_KEY}`} isExternal>
-            <MenuItem>{t('navbar.user.crypto')}</MenuItem>
-          </Link>
-        }
+        <Link href={(environment.CHAIN_ID === 5 && account) ? `/account/crypto` : '#'}>
+          <MenuItem>{t('navbar.user.crypto')}</MenuItem>
+        </Link>
         <Link href="/account/edit">
           <MenuItem>{t('navbar.user.edit')}</MenuItem>
         </Link>

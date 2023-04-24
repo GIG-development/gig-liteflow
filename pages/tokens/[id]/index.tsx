@@ -42,6 +42,7 @@ import { formatError } from '@nft/hooks'
 import { FaInfoCircle } from '@react-icons/all-files/fa/FaInfoCircle'
 import { HiOutlineDotsHorizontal } from '@react-icons/all-files/hi/HiOutlineDotsHorizontal'
 import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink'
+import { HiOutlineChevronDown } from '@react-icons/all-files/hi/HiOutlineChevronDown'
 import { useWeb3React } from '@web3-react/core'
 import useRefreshAsset from 'hooks/useRefreshAsset'
 import { NextPage } from 'next'
@@ -501,7 +502,7 @@ const DetailPage: NextPage<Props> = ({
               )}
             </Center>
           </AspectRatio>
-          <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
+          <Flex direction="column" my="auto" gap={8} p={0}>
             <Flex justify="space-between">
               <Box>
                 {asset.collection.name && (
@@ -611,7 +612,28 @@ const DetailPage: NextPage<Props> = ({
                   {t('asset.detail.explorerLink', blockExplorer)}
                 </Text>
               </Button>
-
+              {asset.animationUrl
+              ?
+              <Menu>
+                <MenuButton as={Button} size='full' px={6} py={3} rightIcon={<HiOutlineChevronDown/>}>
+                {t('asset.detail.ipfsLink')}
+                </MenuButton>
+                <MenuList>
+                  <MenuItem as={Link} isExternal href={asset.image}>
+                    <Text as="span" isTruncated pl={2}>
+                      {t('asset.detail.ipfsLink')}
+                    </Text>
+                    <HiOutlineExternalLink />
+                  </MenuItem>
+                  <MenuItem as={Link} isExternal href={asset.animationUrl}>
+                    <Text as="span" isTruncated pl={2}>
+                      {t('asset.detail.ipfsLink')}
+                    </Text>
+                    <HiOutlineExternalLink />
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+              :
               <Button
                 as={Link}
                 href={asset.image}
@@ -625,6 +647,8 @@ const DetailPage: NextPage<Props> = ({
                   {t('asset.detail.ipfsLink')}
                 </Text>
               </Button>
+              }
+
             </Flex>
 
             {traits && (
