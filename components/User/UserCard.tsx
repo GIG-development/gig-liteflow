@@ -25,6 +25,9 @@ const UserCard: FC<Props> = ({ user }) => {
         borderColor="gray.300"
         w="full"
         overflow="hidden"
+        _hover={{
+          shadow: '1px 0px 8px 6px #f2f2f2'
+        }}
       >
         <Box position="relative" height="7.5rem">
           {user.cover ? (

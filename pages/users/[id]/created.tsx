@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import invariant from 'ts-invariant'
 import Head from '../../../components/Head'
 import UserProfileTemplate from '../../../components/Profile'
@@ -33,6 +33,7 @@ import useSigner from '../../../hooks/useSigner'
 import LargeLayout from '../../../layouts/large'
 import { getLimit, getOffset, getOrder } from '../../../params'
 import { wrapServerSideProps } from '../../../props'
+import { connect, StreamFeed, DefaultGenerics} from 'getstream'
 
 type Props = {
   userAddress: string
@@ -48,7 +49,8 @@ type Props = {
 export const getServerSideProps = wrapServerSideProps<Props>(
   environment.GRAPHQL_URL,
   async (ctx, client) => {
-    const userAddress = ctx.params?.id
+
+    const userAddress: (string|null|undefined) = ctx.params?.id
       ? Array.isArray(ctx.params.id)
         ? ctx.params.id[0]?.toLowerCase()
         : ctx.params.id.toLowerCase()
@@ -56,7 +58,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
     invariant(userAddress, 'userAddress is falsy')
 
     const limit = getLimit(ctx, environment.PAGINATION_LIMIT)
-    const orderBy = getOrder<AssetsOrderBy>(ctx, 'CREATED_AT_DESC')
+    const orderBy: any = getOrder<AssetsOrderBy>(ctx, 'CREATED_AT_DESC')
     const offset = getOffset(ctx, environment.PAGINATION_LIMIT)
 
     const now = new Date()
@@ -82,7 +84,7 @@ export const getServerSideProps = wrapServerSideProps<Props>(
           title: data.account?.name || userAddress,
           description: data.account?.description || '',
           image: data.account?.image || '',
-        },
+        }
       },
     }
   },
@@ -92,7 +94,7 @@ const CreatedPage: NextPage<Props> = ({
   meta,
   now,
   userAddress,
-  currentAccount,
+  currentAccount
 }) => {
   const ready = useEagerConnect()
   const signer = useSigner()
@@ -102,6 +104,34 @@ const CreatedPage: NextPage<Props> = ({
   const orderBy = useOrderByQuery<AssetsOrderBy>('CREATED_AT_DESC')
   const [changePage, changeLimit] = usePaginate()
   const { account } = useWeb3React()
+
+  const [streamUserToken, setStreamUserToken] = useState()
+  const getStreamUserToken = async (account: (string|null|undefined)) => {
+    if(account){
+      fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      .then(res=>res.json())
+      .then(data => {
+        setStreamUserToken(data.streamUserToken)
+      })
+    }
+  }
+
+  useEffect(()=>{
+    getStreamUserToken(account)
+  },[account])
+
+  const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
+  useEffect(()=>{
+    if(streamUserToken){
+      const streamUserClient = connect(
+        environment.STREAM_API_KEY,
+        streamUserToken,
+        environment.STREAM_APP_ID
+      )
+      const streamUser = streamUserClient.feed('user', account || '')
+      setStreamUser(streamUser)
+    }
+  },[streamUserToken])
 
   const date = useMemo(() => new Date(now), [now])
   const { data, refetch } = useFetchCreatedAssetsQuery({
@@ -172,6 +202,7 @@ const CreatedPage: NextPage<Props> = ({
               ['owned', data.owned?.totalCount || 0],
             ])
           }
+          streamUser={streamUser}
         >
           <TokenGrid<AssetsOrderBy>
             assets={assets}

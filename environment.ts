@@ -37,6 +37,9 @@ type Environment = {
   MOONPAY_SECRET: string
   MOONPAY_ENDPOINT: string
   MOONPAY_WIDGET: string
+  STREAM_API_KEY: string
+  STREAM_API_SECRET: string
+  STREAM_APP_ID: string
 }
 
 // Coinmarketcap API Key 
@@ -50,6 +53,11 @@ invariant(process.env.NEXT_PUBLIC_MOONPAY_API_ENDPOINT, 'Missing Moonpay API end
 invariant(process.env.NEXT_PUBLIC_MOONPAY_WIDGET_URL, 'Missing Moonpay widget URL')
 invariant(process.env.NEXT_PUBLIC_MOONPAY_API_KEY, 'Missing Moonpay API key')
 invariant(process.env.NEXT_PUBLIC_MOONPAY_SECRET, 'Missing Moonpay API secret')
+
+// Stream API
+invariant(process.env.NEXT_PUBLIC_STREAM_API_KEY, 'Missing API key')
+invariant(process.env.NEXT_PUBLIC_STREAM_API_SECRET, 'Missing API secret')
+invariant(process.env.NEXT_PUBLIC_STREAM_APP_ID, 'Missing APP ID')
 
 // WETH Contract Address
 invariant(process.env.NEXT_PUBLIC_WETH_ADDRESS, 'Missing WETH Address')
@@ -160,7 +168,10 @@ const environment: Environment = {
   MOONPAY_API_KEY: process.env.NEXT_PUBLIC_MOONPAY_API_KEY,
   MOONPAY_SECRET: process.env.NEXT_PUBLIC_MOONPAY_SECRET,
   MOONPAY_ENDPOINT: process.env.NEXT_PUBLIC_MOONPAY_API_ENDPOINT,
-  MOONPAY_WIDGET: process.env.NEXT_PUBLIC_MOONPAY_WIDGET_URL
+  MOONPAY_WIDGET: process.env.NEXT_PUBLIC_MOONPAY_WIDGET_URL,
+  STREAM_API_KEY: process.env.NEXT_PUBLIC_STREAM_API_KEY,
+  STREAM_API_SECRET: process.env.NEXT_PUBLIC_STREAM_API_SECRET,
+  STREAM_APP_ID: process.env.NEXT_PUBLIC_STREAM_APP_ID
 }
 
 export default environment

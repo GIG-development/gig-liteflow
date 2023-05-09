@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
   useToast,
+  useBreakpointValue
 } from '@chakra-ui/react'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import { useWeb3React } from '@web3-react/core'
@@ -50,6 +51,7 @@ import Head from '../components/Head'
 import Hero from '../components/Hero/Hero'
 import SecondaryHero from '../components/Hero/SecondaryHero'
 import Banner from '../components/Banner/Block'
+import Image from 'components/Image/Image'
 import { wrapServerSideProps } from '../props'
 import UserCard from '../components/User/UserCard'
 import { convertUserWithCover } from '../convert'
@@ -221,17 +223,22 @@ const HomePage: NextPage<Props> = ({
       
       <LargeLayout>
 
-        {/* <Box my={6} textAlign='center'>
-          <Link  href='' title='' isExternal>
+        <Box
+          my={6}
+          textAlign='center'
+          width={useBreakpointValue({base: '360px', md:'640px'}) || '640px'}
+          height={useBreakpointValue({base: '240px', md:'118px'}) || '118px'}
+          position='relative'
+          margin='0 auto'
+        >
+          <Link  href='/faq' title='' isExternal>
             <Image
-              src={useBreakpointValue({base: '', md:''}) || ''}
-              width={useBreakpointValue({base: '360', md:'1280'}) || '1280'}
-              height={useBreakpointValue({base: '240', md:'160'}) || '160'}
+              src={useBreakpointValue({base: '/img/home/mint-free.gif', md:'/img/home/mint-free.gif'}) || ''}
               layout='fill'
               alt=''
             />
           </Link>
-        </Box> */}
+        </Box>
 
 
         {/* {featuredAssets && featuredAssets.length > 0 && (

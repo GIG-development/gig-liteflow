@@ -111,10 +111,10 @@ const Footer: FC<PropsWithChildren<Props>> = ({
             
               <Stack direction={'column'} spacing={2} align={'flex-start'}>
                 <Box>
-                  <SocialButton label={'Twitter'} href={'https://twitter.com/0xgigio'}>
+                  <SocialButton label={'Twitter'} href={'https://twitter.com/familiagig'}>
                     <FaTwitter /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://twitter.com/0xgigio'} isExternal>Twitter</Link>
+                  <Link ml={2} href={'https://twitter.com/familiagig'} isExternal>Twitter</Link>
                 </Box>
                 <Box>
                   <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'}>
@@ -123,22 +123,22 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                   <Link ml={2} href={'https://www.youtube.com/channel/UCD-vpRbSkFp3iJfDDbBTjeg'} isExternal>Youtube</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'Facebook'} href={'https://www.facebook.com/0xgigio'}>
+                  <SocialButton label={'Facebook'} href={'https://www.facebook.com/familiagig'}>
                     <FaFacebook /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://www.facebook.com/0xgigio'} isExternal>Facebook</Link>
+                  <Link ml={2} href={'https://www.facebook.com/familiagig'} isExternal>Facebook</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'Instagram'} href={'https://instagram.com/0xgigio'}>
+                  <SocialButton label={'Instagram'} href={'https://instagram.com/familiagig'}>
                     <FaInstagram /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://instagram.com/0xgigio'} isExternal>Instagram</Link>
+                  <Link ml={2} href={'https://instagram.com/familiagig'} isExternal>Instagram</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'Medium'} href={'https://medium.com/@0xGIGio'}>
+                  <SocialButton label={'Medium'} href={'https://medium.com/familiagig'}>
                     <FaMediumM /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://medium.com/@0xGIGio'} isExternal>Medium</Link>
+                  <Link ml={2} href={'https://medium.com/familiagig'} isExternal>Medium</Link>
                 </Box>
               </Stack>
             </Stack>

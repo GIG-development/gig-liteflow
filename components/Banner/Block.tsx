@@ -58,7 +58,6 @@ const Banner: FC<PropsWithChildren<Props>> = ({
                 <Stack spacing={6} direction={useBreakpointValue({ base: 'column', md: 'row' })} align={'center'}>
                     <Link href={'/tutoriales'}>
                         <Button
-                        rounded={'full'}
                         color={'white'}
                         bg={'brand.500'}
                         _hover={{ bg: 'brand.600' }}>
@@ -67,7 +66,6 @@ const Banner: FC<PropsWithChildren<Props>> = ({
                     </Link>
                     <Link href={'/faq'}>
                         <Button
-                        rounded={'full'}
                         color={'white'}
                         bg={'gray.400'}
                         _hover={{ bg: 'gray.600' }}>

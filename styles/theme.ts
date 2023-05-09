@@ -11,7 +11,7 @@ export const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {
-        rounded: 'full'
+        rounded: '6'
       },
       variants: {
         'outline': {
@@ -154,6 +154,11 @@ export const theme = extendTheme({
           textDecoration: 'none',
         },
       },
+      variants: {
+        button: {
+          rounded: "6"
+        }
+      }
     },
     Heading: {
       variants: {

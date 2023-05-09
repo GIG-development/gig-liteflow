@@ -22,11 +22,7 @@ const CookieBanner: FC = () => {
     },[cookies])/* eslint-disable-line react-hooks/exhaustive-deps */
     
     const handleAccept = () => {
-        setCookie('cookie-agreement', new Date(), {
-            secure: true,
-            sameSite: true,
-            path: '*',
-        })
+        setCookie('cookie-agreement', new Date())
         toggle(false)
     }
 

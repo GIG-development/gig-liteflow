@@ -23,11 +23,13 @@ const UserProfileTemplate: FC<{
   }
   currentTab: TabsEnum
   totals: Map<TabsEnum, number>
+  streamUser: any
 }> = ({
   currentAccount,
   account,
   currentTab,
   totals,
+  streamUser,
   children,
 }) => {
   if (!account) throw new Error('account is falsy')
@@ -43,6 +45,7 @@ const UserProfileTemplate: FC<{
         twitter={account.twitter}
         website={account.website}
         verified={account.verified}
+        streamUser={streamUser}
       />
       <UserProfileInfo
         address={account.address}

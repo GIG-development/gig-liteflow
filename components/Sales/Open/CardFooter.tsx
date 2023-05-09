@@ -37,9 +37,9 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
         py={2}
         px={4}
         w="full"
-        rounded='full'
         fontSize="sm"
         fontWeight="semibold"
+        variant="button"
         justify="center"
         href={`/tokens/${assetId}${!isOwner ? '/bid' : ''}`}
       >

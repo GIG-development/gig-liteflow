@@ -86,7 +86,7 @@ const SaleDirectCardFooter: VFC<Props> = ({
       href={`/checkout/${saleId}`}
       mx={6}
       mb={6}
-      rounded='full'
+      variant="button"
       justify="center"
     >
       {showButton

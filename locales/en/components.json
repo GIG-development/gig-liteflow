@@ -866,12 +866,12 @@
           "success": "Success!"
         },
         "following": {
-          "button": "",
-          "success": ""
+          "button": "Following",
+          "success": "Success!"
         },
         "unfollow": {
-          "button": "",
-          "success": ""
+          "button": "Unfollow",
+          "success": "Success!"
         }
       }
     },

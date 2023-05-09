@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading, Icon, Link, useDisclosure } from '@chakra-ui/react'
-import { VFC } from 'react'
+import { Box, Button, Flex, Heading, Icon, Link, useDisclosure, useToast } from '@chakra-ui/react'
+import { useEffect, useState, VFC } from 'react'
 import Image from '../../Image/Image'
 import AccountImage from '../../Wallet/Image'
 import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
@@ -7,7 +7,7 @@ import { HiOutlineGlobeAlt } from '@react-icons/all-files/hi/HiOutlineGlobeAlt'
 import { SiInstagram } from '@react-icons/all-files/si/SiInstagram'
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
 import { BiUserPlus } from '@react-icons/all-files/bi/BiUserPlus'
-//import { BiUserCheck } from '@react-icons/all-files/bi/BiUserCheck'
+import { BiUserCheck } from '@react-icons/all-files/bi/BiUserCheck'
 //import { BiUserMinus } from '@react-icons/all-files/bi/BiUserMinus'
 import useTranslation from 'next-translate/useTranslation'
 import WalletAddress from '../../Wallet/Address'
@@ -25,12 +25,43 @@ type Props = {
   twitter: string | null | undefined
   instagram: string | null | undefined
   website: string | null | undefined
+  streamUser: any
 }
 
-const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website }) => {
+const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website, streamUser }) => {
   if (!address) throw new Error('account is falsy')
   const { t } = useTranslation('components')
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast()
+
+  const [following, setFollowing] = useState(false)
+  useEffect(()=>{
+    if(streamUser){
+      streamUser?.following()
+        .then((res: any)=>{
+          console.log(res.results,res.results.filter((u:any) => u.target_id === `user:${address}`).length > 0)
+          setFollowing(res.results.filter((u:any) => u.target_id === `user:${address}`).length > 0)
+        })
+    }
+  },[streamUser])
+
+  const onFollowUnfollow = (streamUser: any, userToFollow: string) => {
+    if(following){
+      streamUser.unfollow('user',userToFollow)
+      setFollowing(false)
+      toast({
+        title: 'Unfollowing user: '+userToFollow,
+        status: 'success',
+      })
+      return
+    }
+    streamUser.follow('user',userToFollow)
+    setFollowing(true)
+    toast({
+      title: 'Following user: '+userToFollow,
+      status: 'success',
+    })
+  }
 
   return (
     <>
@@ -172,13 +203,30 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           </Box>
           <Flex flexDirection={'column'}>
             <Flex flexDirection={{base: 'row', md: 'column'}} justifyContent={'center'} alignItems='center' pt={2} gap={2}>
-              <Button
-                w='120px'
-                fontSize={{base: 'xs', md: 'sm'}}
-                leftIcon={<BiUserPlus fontSize={24}/>}
-              >
-                {t('user.social.options.follow.button')}
-              </Button>
+              { streamUser &&
+                <Button
+                  w='120px'
+                  fontSize={{base: 'xs', md: 'sm'}}
+                  leftIcon={following
+                              ? <BiUserCheck fontSize={24}/>
+                              : <BiUserPlus fontSize={24}/>
+                            }
+                  _hover={following
+                            ? {backgroundColor: "red.400"}
+                            : {backgroundColor: "green.400"}
+                          }
+                  title={following
+                          ? t('user.social.options.unfollow.button')
+                          : t('user.social.options.follow.button')
+                        }
+                  onClick={()=>onFollowUnfollow(streamUser,address)}
+                >
+                  {following
+                    ? t('user.social.options.following.button')
+                    : t('user.social.options.follow.button')
+                  }
+                </Button>
+              }
               <Button
                 w='120px'
                 fontSize={{base: 'xs', md: 'sm'}}

@@ -51,22 +51,24 @@ const Hero: FC<PropsWithChildren<Props>> = ({
               <Flex justifyContent='space-between' position='absolute' bottom='0' w='full' p={[4,6]} backgroundColor='rgba(0,0,0,0.2)'>
                 <Flex flexDir='column'>
                   <Heading variant='heading2' color='white'>{asset.name}</Heading>
-                  <Text variant='text-sm' color='white'>
+                  <Box>
                     {sales.length > 0 ?
                       <Price
                         amount={sales[0]?.unitPrice}
                         currency={sales[0]?.currency}
+                        style={{color: "white", fontSize: "14px"}}
                       />
                       :
                     bestBid ?
                       <Price
                         amount={bestBid.unitPrice}
                         currency={bestBid.currency}
+                        style={{color: "white", fontSize: "14px"}}
                       />
                     :
-                      <Text>{t('swiperOpenToOffer')}</Text>
+                      <Text variant='text-sm' color='white'>{t('swiperOpenToOffer')}</Text>
                     }
-                  </Text>
+                  </Box>
                 </Flex>
                 <Link as={Button} href={`${environment.BASE_URL}/tokens/${asset.id}`} color='white'>
                   {t('swiperBuyButton')}
