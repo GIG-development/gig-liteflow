@@ -120,32 +120,34 @@ const BidPlacedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
   const ownerLoggedIn = useIsLoggedIn(userAddress)
 
   const [streamUserToken, setStreamUserToken] = useState()
-  const getStreamUserToken = async (account: (string|null|undefined)):Promise<void> => {
+  const getStreamUserToken = async (account: (string|null|undefined)) => {
     if(account){
       void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      .catch(err => {
+        throw(new Error(err))
+      })
       .then(res=>res.json())
       .then(data => {
         setStreamUserToken(data.streamUserToken)
-      })
-      .catch(err => {
-        throw(new Error(err))
       })
     }
   }
 
   useEffect(()=>{
-    getStreamUserToken(account)
+    if(account){
+      void getStreamUserToken(account)
+    }
   },[account])
 
   const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
   useEffect(()=>{
-    if(streamUserToken){
+    if(streamUserToken && account){
       const streamUserClient = connect(
         environment.STREAM_API_KEY,
         streamUserToken,
         environment.STREAM_APP_ID
       )
-      const streamUser = streamUserClient.feed('user', account || '')
+      const streamUser = streamUserClient.feed('user', account.toUpperCase())
       setStreamUser(streamUser)
     }
   },[streamUserToken, account])

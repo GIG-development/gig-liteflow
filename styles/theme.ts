@@ -342,9 +342,9 @@ export const theme = extendTheme({
   },
   styles: {
     global: (props: StyleFunctionProps) => ({
-      body: {
-        bg: props.colorMode === 'dark' ? 'white' : 'white'
-      },
+      // body: {
+      //   bg: props.colorMode === 'dark' ? 'white' : 'white'
+      // },
       h1: {
         color: props.colorMode === 'dark' ? 'brand.400' : 'brand.black'
       },

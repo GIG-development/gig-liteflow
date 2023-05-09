@@ -30,7 +30,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
-import { FC, useEffect } from 'react'
+import { FC, useEffect /*, useState */ } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Standard } from '../../../graphql'
 import { BlockExplorer } from '../../../hooks/useBlockExplorer'
@@ -40,6 +40,8 @@ import LoginModal from '../../Modal/Login'
 import Select from '../../Select/Select'
 import Link from 'components/Link/Link'
 import Tooltip from 'components/Tooltip/Tooltip'
+// import { connect, StreamFeed, DefaultGenerics} from 'getstream'
+// import environment from 'environment'
 
 export type FormData = {
   name: string
@@ -129,7 +131,6 @@ const TokenFormCreate: FC<Props> = ({
 
   const handleFileDrop = (file: File) => {
     if (!file) return
-    console.log(file.type)
     const showPreview = file.type.startsWith('video/') || file.type.startsWith('model/')
     setValue('isAnimation', showPreview)
   }
@@ -159,7 +160,6 @@ const TokenFormCreate: FC<Props> = ({
         royalties: parseFloat(data.royalties),
         traits: attributes,
       })
-
       onCreated(assetId)
     } catch (e) {
       toast({
@@ -170,6 +170,43 @@ const TokenFormCreate: FC<Props> = ({
       createCollectibleOnClose()
     }
   })
+
+  // const [streamUserToken, setStreamUserToken] = useState()
+  // const getStreamUserToken = async (account: (string|null|undefined)) => {
+  //   if(account){
+  //     void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+  //     .catch(err => {
+  //       throw(new Error(err))
+  //     })
+  //     .then(res=>res.json())
+  //     .then(data => {
+  //       setStreamUserToken(data.streamUserToken)
+  //     })
+  //   }
+  // }
+  // const [userWalletAddress, setUserWalletAddress] = useState('')
+  // useEffect(()=>{
+  //   if(signer){
+  //     signer.getAddress()
+  //       .then(address=>{
+  //         setUserWalletAddress(address.toUpperCase())
+  //         void getStreamUserToken(userWalletAddress)
+  //       })
+  //   }
+  // },[signer])
+  // const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
+  // useEffect(()=>{
+  //   if(streamUserToken && userWalletAddress){
+  //     const streamUserClient = connect(
+  //       environment.STREAM_API_KEY,
+  //       streamUserToken,
+  //       environment.STREAM_APP_ID
+  //     )
+  //     const streamUser = streamUserClient.feed('user', userWalletAddress.toUpperCase())
+  //     setStreamUser(streamUser)
+  //   }
+  // },[streamUserToken, userWalletAddress])
+
 
   // TODO: activate this again when we want to reactivate the automatic blur with useFileTransformer()
   // useEffect(() => {

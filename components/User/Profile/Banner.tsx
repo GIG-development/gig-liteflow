@@ -13,6 +13,7 @@ import useTranslation from 'next-translate/useTranslation'
 import WalletAddress from '../../Wallet/Address'
 import ShareModal from '../../Modal/Share'
 import { FaShare } from '@react-icons/all-files/fa/FaShare'
+import { StreamFeed, DefaultGenerics } from 'getstream'
 import environment from 'environment'
 
 type Props = {
@@ -25,10 +26,11 @@ type Props = {
   twitter: string | null | undefined
   instagram: string | null | undefined
   website: string | null | undefined
-  streamUser: any
+  streamUser: StreamFeed<DefaultGenerics> | undefined
+  isSameAddress: boolean
 }
 
-const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website, streamUser }) => {
+const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, description, verified, twitter, instagram, website, streamUser, isSameAddress }) => {
   if (!address) throw new Error('account is falsy')
   const { t } = useTranslation('components')
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -36,29 +38,28 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
 
   const [following, setFollowing] = useState(false)
   useEffect(()=>{
-    if(streamUser){
-      streamUser?.following()
+    if(streamUser && address){
+      streamUser.following()
         .then((res: any)=>{
-          console.log(res.results,res.results.filter((u:any) => u.target_id === `user:${address}`).length > 0)
-          setFollowing(res.results.filter((u:any) => u.target_id === `user:${address}`).length > 0)
+          setFollowing(res.results.filter((user:any) => user.target_id === `user:${address.toUpperCase()}`).length > 0)
         })
     }
   },[streamUser, address])
 
   const onFollowUnfollow = (streamUser: any, userToFollow: string) => {
     if(following){
-      streamUser.unfollow('user',userToFollow)
+      streamUser.unfollow('user',userToFollow.toUpperCase())
       setFollowing(false)
       toast({
-        title: 'Unfollowing user: '+userToFollow,
+        title: t('user.social.options.unfollow.action'),
         status: 'success',
       })
       return
     }
-    streamUser.follow('user',userToFollow)
+    streamUser.follow('user',userToFollow.toUpperCase())
     setFollowing(true)
     toast({
-      title: 'Following user: '+userToFollow,
+      title: t('user.social.options.follow.action'),
       status: 'success',
     })
   }
@@ -203,16 +204,20 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           </Box>
           <Flex flexDirection={'column'}>
             <Flex flexDirection={{base: 'row', md: 'column'}} justifyContent={'center'} alignItems='center' pt={2} gap={2}>
-              { streamUser &&
+              { (streamUser && verified && !isSameAddress) &&
                 <Button
                   w='120px'
                   fontSize={{base: 'xs', md: 'sm'}}
+                  variant={following
+                            ? 'outline'
+                            : 'solid'
+                          }
                   leftIcon={following
                               ? <BiUserCheck fontSize={24}/>
                               : <BiUserPlus fontSize={24}/>
                             }
                   _hover={following
-                            ? {backgroundColor: "red.400"}
+                            ? {backgroundColor: "red.400", color: 'white'}
                             : {backgroundColor: "green.400"}
                           }
                   title={following

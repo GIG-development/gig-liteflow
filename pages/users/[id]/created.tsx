@@ -120,18 +120,20 @@ const CreatedPage: NextPage<Props> = ({
   }
 
   useEffect(()=>{
-    void getStreamUserToken(account)
+    if(account){
+      void getStreamUserToken(account)
+    }
   },[account])
 
   const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
   useEffect(()=>{
-    if(streamUserToken){
+    if(streamUserToken && account){
       const streamUserClient = connect(
         environment.STREAM_API_KEY,
         streamUserToken,
         environment.STREAM_APP_ID
       )
-      const streamUser = streamUserClient.feed('user', account || '')
+      const streamUser = streamUserClient.feed('user', account.toUpperCase())
       setStreamUser(streamUser)
     }
   },[streamUserToken, account])

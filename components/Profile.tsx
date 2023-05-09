@@ -6,6 +6,7 @@ import type { TabsEnum } from '../components/User/Profile/Navigation'
 import UserProfileNavigation from '../components/User/Profile/Navigation'
 import UserProfileBanner from './User/Profile/Banner'
 import UserProfileInfo from './User/Profile/Info'
+import { StreamFeed, DefaultGenerics } from 'getstream'
 
 const UserProfileTemplate: FC<{
   signer: Signer | undefined
@@ -23,7 +24,7 @@ const UserProfileTemplate: FC<{
   }
   currentTab: TabsEnum
   totals: Map<TabsEnum, number>
-  streamUser: any
+  streamUser: StreamFeed<DefaultGenerics> | undefined
 }> = ({
   currentAccount,
   account,
@@ -46,6 +47,10 @@ const UserProfileTemplate: FC<{
         website={account.website}
         verified={account.verified}
         streamUser={streamUser}
+        isSameAddress={
+          !!currentAccount &&
+          isSameAddress(currentAccount, account.address)
+        }
       />
       <UserProfileInfo
         address={account.address}

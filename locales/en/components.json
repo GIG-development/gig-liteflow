@@ -863,7 +863,8 @@
       "options": {
         "follow": {
           "button": "Follow",
-          "success": "Success!"
+          "success": "Success!",
+          "action": "Following user"
         },
         "following": {
           "button": "Following",
@@ -871,7 +872,8 @@
         },
         "unfollow": {
           "button": "Unfollow",
-          "success": "Success!"
+          "success": "Success!",
+          "action": "Unfollowing user"
         }
       }
     },

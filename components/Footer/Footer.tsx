@@ -138,7 +138,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                   <SocialButton label={'Medium'} href={'https://medium.com/familiagig'}>
                     <FaMediumM /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://medium.com/familiagig'} isExternal>Medium</Link>
+                  <Link ml={2} href={'https://medium.com/@familiagig'} isExternal>Medium</Link>
                 </Box>
               </Stack>
             </Stack>
