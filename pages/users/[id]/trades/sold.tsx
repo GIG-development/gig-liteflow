@@ -158,6 +158,7 @@ const TradeSoldPage: NextPage<Props> = ({ meta, now, userAddress }) => {
             ['owned', data?.owned?.totalCount || 0],
           ])
         }
+        streamUser={undefined}
       >
         <Stack spacing={6}>
           <Flex

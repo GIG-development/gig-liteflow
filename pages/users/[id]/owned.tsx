@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import invariant from 'ts-invariant'
 import Head from '../../../components/Head'
 import UserProfileTemplate from '../../../components/Profile'
@@ -33,6 +33,7 @@ import useSigner from '../../../hooks/useSigner'
 import LargeLayout from '../../../layouts/large'
 import { getLimit, getOffset, getOrder } from '../../../params'
 import { wrapServerSideProps } from '../../../props'
+import { connect, StreamFeed, DefaultGenerics} from 'getstream'
 
 type Props = {
   userAddress: string
@@ -103,6 +104,34 @@ const OwnedPage: NextPage<Props> = ({
   const [changePage, changeLimit] = usePaginate()
   const { account } = useWeb3React()
 
+  const [streamUserToken, setStreamUserToken] = useState()
+  const getStreamUserToken = async (account: (string|null|undefined)) => {
+    if(account){
+      fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      .then(res=>res.json())
+      .then(data => {
+        setStreamUserToken(data.streamUserToken)
+      })
+    }
+  }
+
+  useEffect(()=>{
+    getStreamUserToken(account)
+  },[account])
+
+  const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
+  useEffect(()=>{
+    if(streamUserToken){
+      const streamUserClient = connect(
+        environment.STREAM_API_KEY,
+        streamUserToken,
+        environment.STREAM_APP_ID
+      )
+      const streamUser = streamUserClient.feed('user', account || '')
+      setStreamUser(streamUser)
+    }
+  },[streamUserToken])
+
   const date = useMemo(() => new Date(now), [now])
   const { data, refetch } = useFetchOwnedAssetsQuery({
     variables: {
@@ -172,6 +201,7 @@ const OwnedPage: NextPage<Props> = ({
               ['owned', data.owned?.totalCount || 0],
             ])
           }
+          streamUser={streamUser}
         >
           <TokenGrid<OwnershipsOrderBy>
             assets={assets}

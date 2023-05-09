@@ -27,7 +27,7 @@ import { NextPage } from 'next'
 import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import invariant from 'ts-invariant'
 import Head from '../../../../components/Head'
 import Image from '../../../../components/Image/Image'
@@ -54,6 +54,7 @@ import useSigner from '../../../../hooks/useSigner'
 import LargeLayout from '../../../../layouts/large'
 import { getLimit, getOffset, getOrder } from '../../../../params'
 import { wrapServerSideProps } from '../../../../props'
+import { connect, StreamFeed, DefaultGenerics} from 'getstream'
 
 type Props = {
   userAddress: string
@@ -117,6 +118,34 @@ const BidPlacedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const ownerLoggedIn = useIsLoggedIn(userAddress)
+
+  const [streamUserToken, setStreamUserToken] = useState()
+  const getStreamUserToken = async (account: (string|null|undefined)) => {
+    if(account){
+      fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      .then(res=>res.json())
+      .then(data => {
+        setStreamUserToken(data.streamUserToken)
+      })
+    }
+  }
+
+  useEffect(()=>{
+    getStreamUserToken(account)
+  },[account])
+
+  const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
+  useEffect(()=>{
+    if(streamUserToken){
+      const streamUserClient = connect(
+        environment.STREAM_API_KEY,
+        streamUserToken,
+        environment.STREAM_APP_ID
+      )
+      const streamUser = streamUserClient.feed('user', account || '')
+      setStreamUser(streamUser)
+    }
+  },[streamUserToken])
 
   const date = useMemo(() => new Date(now), [now])
   const { data, refetch } = useFetchUserBidsPlacedQuery({
@@ -196,6 +225,7 @@ const BidPlacedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
             ['owned', data?.owned?.totalCount || 0],
           ])
         }
+        streamUser={streamUser}
       >
         <Stack spacing={6}>
           <Flex
