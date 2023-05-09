@@ -113,6 +113,9 @@ const CreatedPage: NextPage<Props> = ({
       .then(data => {
         setStreamUserToken(data.streamUserToken)
       })
+      .catch(err => {
+        throw(new Error(err))
+      })
     }
   }
 

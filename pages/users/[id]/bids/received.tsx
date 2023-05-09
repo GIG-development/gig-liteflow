@@ -122,12 +122,15 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
   const ownerLoggedIn = useIsLoggedIn(userAddress)
 
   const [streamUserToken, setStreamUserToken] = useState()
-  const getStreamUserToken = async (account: (string|null|undefined)) => {
+  const getStreamUserToken = async (account: (string|null|undefined)):Promise<void> => {
     if(account){
       void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
       .then(res=>res.json())
       .then(data => {
         setStreamUserToken(data.streamUserToken)
+      })
+      .catch(err => {
+        throw(new Error(err))
       })
     }
   }
@@ -147,7 +150,7 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
       const streamUser = streamUserClient.feed('user', account || '')
       setStreamUser(streamUser)
     }
-  },[streamUserToken])
+  },[streamUserToken,account])
 
   const date = useMemo(() => new Date(now), [now])
   const { data, refetch } = useFetchUserBidsReceivedQuery({

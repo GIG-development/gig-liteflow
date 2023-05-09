@@ -105,12 +105,15 @@ const OwnedPage: NextPage<Props> = ({
   const { account } = useWeb3React()
 
   const [streamUserToken, setStreamUserToken] = useState()
-  const getStreamUserToken = async (account: (string|null|undefined)) => {
+  const getStreamUserToken = async (account: (string|null|undefined)):Promise<void> => {
     if(account){
       void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
       .then(res=>res.json())
       .then(data => {
         setStreamUserToken(data.streamUserToken)
+      })
+      .catch(err => {
+        throw(new Error(err))
       })
     }
   }
@@ -130,7 +133,7 @@ const OwnedPage: NextPage<Props> = ({
       const streamUser = streamUserClient.feed('user', account || '')
       setStreamUser(streamUser)
     }
-  },[streamUserToken])
+  },[streamUserToken, account])
 
   const date = useMemo(() => new Date(now), [now])
   const { data, refetch } = useFetchOwnedAssetsQuery({
