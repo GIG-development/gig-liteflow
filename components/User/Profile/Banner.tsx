@@ -43,7 +43,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
           setFollowing(res.results.filter((u:any) => u.target_id === `user:${address}`).length > 0)
         })
     }
-  },[streamUser])
+  },[streamUser, address])
 
   const onFollowUnfollow = (streamUser: any, userToFollow: string) => {
     if(following){
