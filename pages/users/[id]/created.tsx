@@ -109,12 +109,12 @@ const CreatedPage: NextPage<Props> = ({
   const getStreamUserToken = async (account: (string|null|undefined)):Promise<void> => {
     if(account){
       fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      .catch(err => {
+        throw(new Error(err))
+      })
       .then(res=>res.json())
       .then(data => {
         setStreamUserToken(data.streamUserToken)
-      })
-      .catch(err => {
-        throw(new Error(err))
       })
     }
   }
