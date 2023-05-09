@@ -106,9 +106,9 @@ const CreatedPage: NextPage<Props> = ({
   const { account } = useWeb3React()
 
   const [streamUserToken, setStreamUserToken] = useState()
-  const getStreamUserToken = async (account: (string|null|undefined)):Promise<void> => {
+  const getStreamUserToken = async (account: (string|null|undefined)) => {
     if(account){
-      fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
       .catch(err => {
         throw(new Error(err))
       })
@@ -120,7 +120,7 @@ const CreatedPage: NextPage<Props> = ({
   }
 
   useEffect(()=>{
-    getStreamUserToken(account)
+    void getStreamUserToken(account)
   },[account])
 
   const [streamUser, setStreamUser] = useState<StreamFeed<DefaultGenerics>>()
