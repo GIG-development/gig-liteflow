@@ -43,6 +43,7 @@ const UserProfileBanner: VFC<Props> = ({ cover, image, address, name, descriptio
         .then((res: any)=>{
           setFollowing(res.results.filter((user:any) => user.target_id === `user:${address.toUpperCase()}`).length > 0)
         })
+        .catch(e=>{throw(new Error(e))})
     }
   },[streamUser, address])
 
