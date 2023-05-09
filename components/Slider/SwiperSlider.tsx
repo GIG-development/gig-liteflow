@@ -47,6 +47,7 @@ const Hero: FC<PropsWithChildren<Props>> = ({
                 src={asset.image} 
                 placeholder="blur"
                 blurDataURL="/uri-loading.gif"
+                alt={asset.name}
               />
               <Flex justifyContent='space-between' position='absolute' bottom='0' w='full' p={[4,6]} backgroundColor='rgba(0,0,0,0.2)'>
                 <Flex flexDir='column'>

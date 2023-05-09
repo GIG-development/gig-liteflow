@@ -107,7 +107,7 @@ const OwnedPage: NextPage<Props> = ({
   const [streamUserToken, setStreamUserToken] = useState()
   const getStreamUserToken = async (account: (string|null|undefined)) => {
     if(account){
-      fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
+      void fetch(`/api/social/createUserToken/?userWalletAddress=${account}`)
       .then(res=>res.json())
       .then(data => {
         setStreamUserToken(data.streamUserToken)
