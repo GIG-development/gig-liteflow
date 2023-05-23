@@ -151,6 +151,7 @@ const CreatedPage: NextPage<Props> = ({
             description: x.description
         }))
   ,[data])
+  
   useEffect(()=>{
     if (data && !data.account) replace('/404')
   },[data, replace])
@@ -207,9 +208,9 @@ const CreatedPage: NextPage<Props> = ({
                                     <Box position='relative' h='280px'>
                                         {c.image 
                                         ?
-                                            <Image src={c.image} layout='fill'/>
+                                            <Image src={c.image} layout='fill' alt={c.name}/>
                                         :
-                                            <Image src={`/no-image.jpg`} layout='fill'/>
+                                            <Image src={`/no-image.jpg`} layout='fill' alt='No Image'/>
                                         }
                                     </Box>
                                     <Flex gap={6} p={6} flexDir='column'>

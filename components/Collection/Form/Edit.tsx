@@ -74,18 +74,20 @@ const CollectionEditForm: FC<Props> = ({
     const updateCollection = useUpdateCollection(uploadUrl, collectionDetails.address || '')
 
     const onSubmit = handleSubmit(async (data) => {
-        console.log(data)
-        const updatedCollection = await updateCollection({
-            name: data.name,
-            description: data.description,
-            image: data.image,
-            cover: data.cover,
-            twitter: data.twitter,
-            discord: data.discord,
-            website: data.website
-        })
-        console.log(updatedCollection)
-        onSuccess(collectionDetails.address || '')
+        try{
+            const updatedCollection = await updateCollection({
+                name: data.name,
+                description: data.description,
+                image: data.image,
+                cover: data.cover,
+                twitter: data.twitter,
+                discord: data.discord,
+                website: data.website
+            })
+            if(updatedCollection) onSuccess(collectionDetails.address || '')
+        }catch(e){
+            console.error(e)
+        }
     })
     
     if(account?.toUpperCase() !== collectionDetails.deployerAddress.toUpperCase()) return null
