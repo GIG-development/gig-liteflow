@@ -84,7 +84,7 @@ const CollectionEditForm: FC<Props> = ({
                 discord: data.discord,
                 website: data.website
             })
-            if(updatedCollection) onSuccess(collectionDetails.address || '')
+            if(updatedCollection) void onSuccess(collectionDetails.address || '')
         }catch(e){
             console.error(e)
         }
