@@ -909,7 +909,12 @@
       }
     },
     "created-collections": {
-      "view": "Ver Colección"
+      "view": "Ver Colección",
+      "empty": {
+        "title": "Sin Colecciones",
+        "description": "No tienes ninguna Colección todavía",
+        "button": "Explorar Colecciones"
+      }
     },
     "trade-purchased": {
       "nav": {

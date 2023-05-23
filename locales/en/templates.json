@@ -896,7 +896,12 @@
       }
     },
     "created-collections": {
-      "view": "View Collection"
+      "view": "View Collection",
+      "empty": {
+        "title": "No Collections",
+        "description": "You have no Collections yet",
+        "button": "Explore Collections"
+      }
     },
     "trade-purchased": {
       "nav": {

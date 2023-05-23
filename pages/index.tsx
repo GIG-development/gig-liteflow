@@ -14,20 +14,14 @@ import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
-import { /*useCallback,*/ useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import Link from '../components/Link/Link'
 import Slider from '../components/Slider/Slider'
 import TokenCard from '../components/Token/Card'
-//import TokenHeader from '../components/Token/Header'
 import {
   convertAsset,
-  //convertAssetWithSupplies,
-  //convertAuctionFull,
   convertAuctionWithBestBid,
-  //convertBid,
-  //convertOwnership,
   convertSale,
-  //convertSaleFull,
   convertUser,
 } from '../convert'
 import environment from '../environment'
@@ -41,10 +35,8 @@ import {
   FetchExploreUsersDocument,
   FetchExploreUsersQuery,
 } from '../graphql'
-//import useBlockExplorer from '../hooks/useBlockExplorer'
 import useEagerConnect from '../hooks/useEagerConnect'
 import useOrderById from '../hooks/useOrderById'
-//import useSigner from '../hooks/useSigner'
 import LargeLayout from '../layouts/large'
 import FullLayout from '../layouts/full'
 import Head from '../components/Head'
@@ -135,12 +127,11 @@ const HomePage: NextPage<Props> = ({
 }) => {
   const verifiedArtists = artists.data.users.nodes.filter((user:any)=>user.verification?.status === "VALIDATED").sort(() => Math.random() - 0.5)
   const ready = useEagerConnect()
-  //const signer = useSigner()
   const { t } = useTranslation('templates')
   const { account } = useWeb3React()
   const toast = useToast()
   const date = useMemo(() => new Date(now), [now])
-  const { data, /*refetch,*/ error } = useFetchHomePageQuery({
+  const { data, error } = useFetchHomePageQuery({
     variables: {
       featuredIds: featuredTokens,
       now: date,
@@ -159,51 +150,9 @@ const HomePage: NextPage<Props> = ({
     })
   }, [error, t, toast])
 
-  // const blockExplorer = useBlockExplorer(
-  //   environment.BLOCKCHAIN_EXPLORER_NAME,
-  //   environment.BLOCKCHAIN_EXPLORER_URL,
-  // )
-
   const featured = useOrderById(featuredTokens, data?.featured?.nodes)
   const assets = useOrderById(tokens, data?.assets?.nodes)
-  //const currencies = useMemo(() => data?.currencies?.nodes || [], [data])
   const auctions = useMemo(() => data?.auctions?.nodes || [], [data])
-
-  // const reloadInfo = useCallback(async () => {
-  //   void refetch()
-  // }, [refetch])
-
-  // const featuredAssets = useMemo(
-  //   () =>
-  //     featured?.map((asset) => (
-  //       <TokenHeader
-  //         key={asset.id}
-  //         blockExplorer={blockExplorer}
-  //         asset={convertAssetWithSupplies(asset)}
-  //         currencies={currencies}
-  //         auction={
-  //           asset.auctions.nodes[0]
-  //             ? convertAuctionFull(asset.auctions.nodes[0])
-  //             : undefined
-  //         }
-  //         bestBid={
-  //           asset.auctions.nodes[0]?.bestBid?.nodes[0]
-  //             ? convertBid(asset.auctions.nodes[0]?.bestBid?.nodes[0])
-  //             : undefined
-  //         }
-  //         sales={asset.sales.nodes.map(convertSaleFull)}
-  //         creator={convertUser(asset.creator, asset.creator.address)}
-  //         owners={asset.ownerships.nodes.map(convertOwnership)}
-  //         numberOfOwners={asset.ownerships.totalCount}
-  //         isHomepage={true}
-  //         signer={signer}
-  //         currentAccount={account?.toLowerCase()}
-  //         onOfferCanceled={reloadInfo}
-  //         onAuctionAccepted={reloadInfo}
-  //       />
-  //     )),
-  //   [featured, blockExplorer, account, signer, reloadInfo, currencies],
-  // )
 
   return (
     <main id="home">
@@ -239,21 +188,6 @@ const HomePage: NextPage<Props> = ({
             />
           </Link>
         </Box>
-
-
-        {/* {featuredAssets && featuredAssets.length > 0 && (
-          <header>
-
-            <Heading as="h2" variant="title" color="brand.black" mt={6}>
-            {t('home.featured')}
-            </Heading>
-            {featuredAssets.length === 1 ? (
-              featuredAssets
-            ) : (
-              <Flex as={Slider}>{featuredAssets}</Flex>
-            )}
-          </header>
-        )} */}
 
         <Stack spacing={6} mt={20}>
           <Heading as="h2" variant="title" color="brand.black">

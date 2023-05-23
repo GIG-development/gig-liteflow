@@ -235,9 +235,9 @@ const CreatedPage: NextPage<Props> = ({
             </SimpleGrid>
             :
                 <Empty
-                    title='No Collections'
-                    description='You have no Collections yet'
-                    button='Explore Collections'
+                    title={t('user.created-collections.empty.title')}
+                    description={t('user.created-collections.empty.description')}
+                    button={t('user.created-collections.empty.button')}
                     href="/explore/collections"
                 />
             }
