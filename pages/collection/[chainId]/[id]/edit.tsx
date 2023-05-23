@@ -108,7 +108,7 @@ import {
           })
           await push(`/collection/${collectionDetails?.chainId}/${collectionAddress}`)
         },
-        [toast, t, push],
+        [toast, t, push, collectionDetails],
     )
   
     if (!collectionDetails) return null

@@ -186,7 +186,7 @@ const OwnedPage: NextPage<Props> = ({
 
   useEffect(()=>{
     if (data && !data.account) replace('/404')
-  },[data])
+  },[data, replace])
 
   if (!assets) return <></>
   if (!data) return <></>

@@ -167,7 +167,7 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
 
   useEffect(()=>{
     if (data && !data.account) replace('/404')
-  },[data])
+  },[data, replace])
 
   const bids = useMemo(
     () =>

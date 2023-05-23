@@ -165,7 +165,7 @@ const BidPlacedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
 
   useEffect(()=>{
     if (data && !data.account) replace('/404')
-  },[data])
+  },[data, replace])
 
   const userAccount = useMemo(
     () => convertFullUser(data?.account || null, userAddress),

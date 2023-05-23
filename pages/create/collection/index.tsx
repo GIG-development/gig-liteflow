@@ -7,7 +7,6 @@ import {
     Icon,
     Stack,
     Text,
-    useToast,
   } from '@chakra-ui/react'
   import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
   import { useWeb3React } from '@web3-react/core'
@@ -29,7 +28,7 @@ import {
   import useEagerConnect from '../../../hooks/useEagerConnect'
   import useSigner from '../../../hooks/useSigner'
   import SmallLayout from '../../../layouts/small'
-  import {event} from 'nextjs-google-analytics'
+  import { event } from 'nextjs-google-analytics'
   
   type Props = {
     chainId: number
@@ -56,7 +55,6 @@ import {
     const { t } = useTranslation('templates')
     const { back } = useRouter()
     const { account } = useWeb3React()
-    const toast = useToast()
     const { data } = useCheckUserVerificationStatusQuery({
       variables: {
         address: (ready ? account?.toLowerCase() : currentAccount) || '',
@@ -79,7 +77,7 @@ import {
           label: collectionAddress.toString()
         })
       },
-      [t, toast, data],
+      [],
     )
   
     if (environment.RESTRICT_TO_VERIFIED_ACCOUNT && !verified) {
