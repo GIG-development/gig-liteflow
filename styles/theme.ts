@@ -15,7 +15,8 @@ export const theme = extendTheme({
       },
       variants: {
         'outline': {
-          border: '1px solid gray.200',
+          border: '1px solid',
+          borderColor: 'gray.100',
           boxShadow: 'none'
         },
         'icon': {
@@ -25,7 +26,6 @@ export const theme = extendTheme({
           background: 'none',
           border: 'none',
           boxShadow: 'none'
-
         }
       },
       defaultProps: {

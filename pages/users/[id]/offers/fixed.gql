@@ -43,6 +43,11 @@ query FetchUserFixedPrice(
   ) {
     totalCount
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
   offers: offers(
     orderBy: $orderBy
     first: $limit

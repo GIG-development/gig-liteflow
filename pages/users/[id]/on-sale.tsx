@@ -183,6 +183,10 @@ const OnSalePage: NextPage<Props> = ({
     [data],
   )
 
+  useEffect(()=>{
+    if (data && !data.account) replace('/404')
+  },[data])
+
   if (!assets) return <></>
   if (!data) return <></>
   return (
@@ -204,6 +208,7 @@ const OnSalePage: NextPage<Props> = ({
               ['created', data.created?.totalCount || 0],
               ['on-sale', data.onSale?.totalCount || 0],
               ['owned', data.owned?.totalCount || 0],
+              ['collections', data.collections?.totalCount || 0]
             ])
           }
           streamUser={streamUser}

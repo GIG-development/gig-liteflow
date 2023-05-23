@@ -43,6 +43,11 @@ query FetchUserBidsReceived(
   ) {
     totalCount
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
   bids: offerOpenBuys(
     orderBy: $orderBy
     first: $limit

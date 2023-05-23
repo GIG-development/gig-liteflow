@@ -34,6 +34,7 @@ const UserProfileInfo: VFC<{
           <Flex
             flexDirection={{base: 'column', row: 'row'}}
             alignItems='center'
+            gap={2}
           >
               <Button
                 as={Link}

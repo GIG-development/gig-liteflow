@@ -43,6 +43,11 @@ query FetchUserAuctions(
   ) {
     totalCount
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
   auctions(
     orderBy: $orderBy
     first: $limit

@@ -7,6 +7,7 @@ export type TabsEnum =
   | 'on-sale'
   | 'owned'
   | 'created'
+  | 'collections'
   | 'bids'
   | 'trades'
   | 'offers'
@@ -51,6 +52,12 @@ const UserProfileNavigation: VFC<IProps> = ({
         count: totals.get('created') || 0,
         type: 'created',
         href: `${baseUrl}/created`,
+      } as Tab,
+      {
+        title: t('user.navigation.collections'),
+        count: totals.get('collections') || 0,
+        type: 'collections',
+        href: `${baseUrl}/collections`,
       } as Tab,
       {
         title: t('user.navigation.bids'),

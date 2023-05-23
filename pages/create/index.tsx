@@ -16,6 +16,7 @@ import { BsFillPersonCheckFill } from '@react-icons/all-files/bs/BsFillPersonChe
 import { HiExclamationCircle } from '@react-icons/all-files/hi/HiExclamationCircle'
 import { IoImageOutline } from '@react-icons/all-files/io5/IoImageOutline'
 import { IoImagesOutline } from '@react-icons/all-files/io5/IoImagesOutline'
+import { IoImagesSharp } from '@react-icons/all-files/io5/IoImagesSharp'
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -36,7 +37,7 @@ import {
 import useSigner from '../../hooks/useSigner'
 import { useVerifyAccount } from '@nft/hooks'
 import useEagerConnect from '../../hooks/useEagerConnect'
-import SmallLayout from '../../layouts/small'
+import LargeLayout from '../../layouts/large'
 import { wrapServerSideProps } from '../../props'
 import {event} from 'nextjs-google-analytics'
 import Tooltip from 'components/Tooltip/Tooltip'
@@ -72,7 +73,7 @@ export const getServerSideProps = wrapServerSideProps(
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <main id="create-options">
-    <SmallLayout>
+    <LargeLayout>
       <Head
         title="Crear un NFT"
         description="Convierte tu talento en NFTs almacenados en la blockchain"
@@ -80,7 +81,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
         <script src="//embed.typeform.com/next/embed.js"></script>
       </Head>
       {children}
-    </SmallLayout>
+    </LargeLayout>
   </main>
 )
 
@@ -358,6 +359,51 @@ const CreatePage: NextPage = () => {
             </Stack>
           </Link>
         ))}
+          <Link
+            href={`/create/collection`}
+            key={`/create/collection`}
+          >
+            <Stack
+              as="a"
+              w={64}
+              align="center"
+              justify="center"
+              spacing={8}
+              rounded="xl"
+              border="1px"
+              borderColor="gray.200"
+              borderStyle="solid"
+              bg="white"
+              p={8}
+              shadow="sm"
+              _hover={{ shadow: 'md' }}
+              cursor="pointer"
+            >
+              <Flex
+                align="center"
+                justify="center"
+                mx="auto"
+                h={36}
+                w={36}
+                rounded="full"
+                bgColor={'yellow.50'}
+                color={'yellow.500'}
+              >
+                <Icon as={IoImagesSharp} h={10} w={10} />
+              </Flex>
+              <Box textAlign="center">
+                <Heading as="h3" variant="heading1" color="brand.black" textAlign='center'>
+                  <Flex align='center' justify='center'>
+                    {t('asset.typeSelector.collection.name')}
+                    <Tooltip text={t('asset.typeSelector.collection.info')}></Tooltip>
+                  </Flex>
+                </Heading>
+                <Text variant='text-sm' textAlign='center' color="gray.500" minH='40px'>
+                  {t('asset.typeSelector.collection.title')}
+                </Text>
+              </Box>
+            </Stack>
+          </Link>
         {called && !data?.collections && (
           <Empty
             title={t('asset.typeSelector.empty.title')}

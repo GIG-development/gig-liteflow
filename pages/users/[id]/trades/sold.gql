@@ -43,6 +43,11 @@ query FetchUserTradeSold(
   ) {
     totalCount
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
   trades(
     orderBy: $orderBy
     first: $limit

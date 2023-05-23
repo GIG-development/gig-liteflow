@@ -525,6 +525,8 @@
   "collection": {
     "filter": "Filtros",
     "header": {
+      "edit-button": "Editar Colección",
+      "mint-button": "Mintear",
       "data-labels": {
         "floor-price": "Precio piso",
         "total-volume": "Volumen total",
@@ -592,9 +594,16 @@
     "form": {
       "title": {
         "single": "Crear Coleccionable Individual",
-        "multiple": "Crear Múltiples Coleccionables"
+        "multiple": "Crear Múltiples Coleccionables",
+        "collection": "Crear Colección de NFTs"
       },
       "preview": "Previsualizar",
+      "collection": {
+        "edit": {
+          "title": "Editar Colección",
+          "onlyOwner": "Debes ser el dueńo de una colección para poder editarla."
+        }
+      },
       "notifications": {
         "created": "¡Tu NFT ha sido creado!"
       },
@@ -618,6 +627,11 @@
         "title": "Coleccionable con múltiples ediciones",
         "type": "ERC1155",
         "info": "Un NFT del tipo ERC-1155 es una obra con múltiples copias creadas en la Blockchain como una serie, en este caso dentro de nuestra colección abierta GIG Series."
+      },
+      "collection": {
+        "name": "Colección",
+        "title": "Crea tu propia colección de NFTs",
+        "info": "Puedes crear tu propia colección de NFTs fácilmente tan sólo aprobando una transacción"
       },
       "empty": {
         "title": "No se ha encontrado ninguna colección",
@@ -893,6 +907,9 @@
           "createdAtAsc": "Fecha: más antiguos"
         }
       }
+    },
+    "created-collections": {
+      "view": "Ver Colección"
     },
     "trade-purchased": {
       "nav": {

@@ -1,0 +1,8 @@
+query CheckUserVerificationStatus ($address: Address!){
+    account(address: $address){
+        address
+        verification {
+            status
+        }
+    }
+}

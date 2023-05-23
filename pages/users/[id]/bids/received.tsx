@@ -165,6 +165,10 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
     },
   })
 
+  useEffect(()=>{
+    if (data && !data.account) replace('/404')
+  },[data])
+
   const bids = useMemo(
     () =>
       (data?.bids?.nodes || []).map((x) => ({
@@ -237,6 +241,7 @@ const BidReceivedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
             ['created', data?.created?.totalCount || 0],
             ['on-sale', data?.onSale?.totalCount || 0],
             ['owned', data?.owned?.totalCount || 0],
+            ['collections', data?.collections?.totalCount || 0]
           ])
         }
         streamUser={streamUser}

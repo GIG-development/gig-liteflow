@@ -50,4 +50,9 @@ query FetchCreatedAssets(
   ) {
     totalCount
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
 }

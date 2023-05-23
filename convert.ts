@@ -215,6 +215,7 @@ export const convertCollectionFull = (
     | 'twitter'
     | 'discord'
     | 'website'
+    | 'mintType'
     | 'deployerAddress'
     | 'numberOfOwners'
     | 'supply'
@@ -237,6 +238,7 @@ export const convertCollectionFull = (
   twitter: string | null
   discord: string | null
   website: string | null
+  mintType: string | null
   deployerAddress: string
   deployer: {
     address: string
@@ -270,6 +272,7 @@ export const convertCollectionFull = (
           verified: collection.deployer?.verification?.status === 'VALIDATED',
         }
       : null,
+    mintType: collection.mintType,
     totalVolume: collection.totalVolume?.valueInRef,
     totalVolumeCurrencySymbol: collection.totalVolume.refCode,
     floorPrice: collection.floorPrice?.valueInRef || null,

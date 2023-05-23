@@ -1,0 +1,12 @@
+mutation CreateCollection ($chainId: Int!, $name: String!, $symbol: String!, $standard: Standard!, $mintType: MintType!) {
+    createCollectionTransaction(chainId: $chainId, name: $name, symbol: $symbol, standard: $standard, mintType: $mintType){
+        collectionAddress
+        transaction {
+            to
+            from
+            data
+            value
+            gasPrice
+        }
+    }
+}

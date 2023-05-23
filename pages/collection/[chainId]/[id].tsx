@@ -292,6 +292,7 @@ const CollectionPage: FC<Props> = ({
           name: environment.BLOCKCHAIN_EXPLORER_NAME,
           url: environment.BLOCKCHAIN_EXPLORER_URL,
         }}
+        account={account}
       />
 
       <Flex py="6" justifyContent="space-between">

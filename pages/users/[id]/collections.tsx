@@ -1,14 +1,12 @@
-import { Text } from '@chakra-ui/react'
+import { Box, Button, Flex, SimpleGrid, Heading } from '@chakra-ui/react'
 import { useWeb3React } from '@web3-react/core'
 import { NextPage } from 'next'
-import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo, useState, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import invariant from 'ts-invariant'
 import Head from '../../../components/Head'
 import UserProfileTemplate from '../../../components/Profile'
-import TokenGrid from '../../../components/Token/Grid'
 import {
   convertAsset,
   convertAuctionWithBestBid,
@@ -18,90 +16,60 @@ import {
 } from '../../../convert'
 import environment from '../../../environment'
 import {
-  AssetDetailFragment,
-  FetchOwnedAssetsDocument,
-  FetchOwnedAssetsQuery,
-  OwnershipsOrderBy,
-  useFetchOwnedAssetsQuery,
+  AssetsOrderBy,
+  useFetchCreatedCollectionsQuery,
 } from '../../../graphql'
 import useEagerConnect from '../../../hooks/useEagerConnect'
 import useExecuteOnAccountChange from '../../../hooks/useExecuteOnAccountChange'
 import useOrderByQuery from '../../../hooks/useOrderByQuery'
-import usePaginate from '../../../hooks/usePaginate'
 import usePaginateQuery from '../../../hooks/usePaginateQuery'
 import useSigner from '../../../hooks/useSigner'
 import LargeLayout from '../../../layouts/large'
-import { getLimit, getOffset, getOrder } from '../../../params'
 import { wrapServerSideProps } from '../../../props'
 import { connect, StreamFeed, DefaultGenerics} from 'getstream'
+import Image from 'components/Image/Image'
+import Link from 'components/Link/Link'
+import Empty from 'components/Empty/Empty'
 
 type Props = {
   userAddress: string
   currentAccount: string | null
   now: string
-  meta: {
-    title: string
-    description: string
-    image: string
-  }
 }
 
 export const getServerSideProps = wrapServerSideProps<Props>(
   environment.GRAPHQL_URL,
-  async (ctx, client) => {
-    const userAddress = ctx.params?.id
+  async (ctx) => {
+
+    const userAddress: (string|null|undefined) = ctx.params?.id
       ? Array.isArray(ctx.params.id)
         ? ctx.params.id[0]?.toLowerCase()
         : ctx.params.id.toLowerCase()
       : null
     invariant(userAddress, 'userAddress is falsy')
-
-    const limit = getLimit(ctx, environment.PAGINATION_LIMIT)
-    const orderBy = getOrder<OwnershipsOrderBy>(ctx, 'CREATED_AT_DESC')
-    const offset = getOffset(ctx, environment.PAGINATION_LIMIT)
-
     const now = new Date()
-    const { data, error } = await client.query<FetchOwnedAssetsQuery>({
-      query: FetchOwnedAssetsDocument,
-      variables: {
-        address: userAddress.toLowerCase(),
-        currentAddress: ctx.user.address || '',
-        now,
-        limit,
-        offset,
-        orderBy,
-      },
-    })
-    if (error) throw error
-    if (!data) throw new Error('data is falsy')
+
     return {
       props: {
         userAddress,
         currentAccount: ctx.user.address,
         now: now.toJSON(),
-        meta: {
-          title: data.account?.name || userAddress,
-          description: data.account?.description || '',
-          image: data.account?.image || '',
-        },
       },
     }
   },
 )
 
-const OwnedPage: NextPage<Props> = ({
-  meta,
-  now,
+const CreatedPage: NextPage<Props> = ({
   userAddress,
   currentAccount,
+  now
 }) => {
   const ready = useEagerConnect()
   const signer = useSigner()
   const { t } = useTranslation('templates')
-  const { pathname, replace, query } = useRouter()
-  const { limit, offset, page } = usePaginateQuery()
-  const orderBy = useOrderByQuery<OwnershipsOrderBy>('CREATED_AT_DESC')
-  const [changePage, changeLimit] = usePaginate()
+  const { replace } = useRouter()
+  const { limit, offset } = usePaginateQuery()
+  const orderBy = useOrderByQuery<AssetsOrderBy>('CREATED_AT_DESC')
   const { account } = useWeb3React()
 
   const [streamUserToken, setStreamUserToken] = useState()
@@ -138,14 +106,14 @@ const OwnedPage: NextPage<Props> = ({
   },[streamUserToken, account])
 
   const date = useMemo(() => new Date(now), [now])
-  const { data, refetch } = useFetchOwnedAssetsQuery({
+  const { data, refetch } = useFetchCreatedCollectionsQuery({
     variables: {
-      address: userAddress,
-      currentAddress: (ready ? account?.toLowerCase() : currentAccount) || '',
-      limit,
-      offset,
-      orderBy,
-      now: date,
+        address: userAddress,
+        currentAddress: (ready ? account?.toLowerCase() : currentAccount) || '',
+        limit,
+        offset,
+        orderBy,
+        now: date,
     },
   })
   useExecuteOnAccountChange(refetch, ready)
@@ -155,18 +123,9 @@ const OwnedPage: NextPage<Props> = ({
     [data, userAddress],
   )
 
-  const changeOrder = useCallback(
-    async (orderBy: any) => {
-      await replace({ pathname, query: { ...query, orderBy } })
-    },
-    [replace, pathname, query],
-  )
-
   const assets = useMemo(
     () =>
-      (data?.owned?.nodes || [])
-        .map((x) => x.asset)
-        .filter((x): x is AssetDetailFragment => !!x)
+      (data?.created?.nodes || [])
         .map((x) => ({
           ...convertAsset(x),
           auction: x.auctions?.nodes[0]
@@ -183,26 +142,34 @@ const OwnedPage: NextPage<Props> = ({
         })),
     [data],
   )
+  const collections = useMemo(()=>(data?.collections?.nodes || [])
+        .map((x)=>({
+            name: x.name,
+            address: x.address,
+            image: x.image,
+            chainId: x.chainId,
+            description: x.description
+        }))
+  ,[data])
 
   useEffect(()=>{
-    if (data && !data.account) replace('/404')
+    if (data && !data.collections) replace('/404')
   },[data])
 
   if (!assets) return <></>
   if (!data) return <></>
   return (
-    <main id="user-owned">
+    <main id="user-collections">
       <LargeLayout>
         <Head
-          title={meta.title}
-          description={meta.description}
-          image={`${meta.image}?filename=artist-metadata.jpg`}
+          title='Colecciones'
         />
+
         <UserProfileTemplate
           signer={signer}
           currentAccount={account}
           account={userAccount}
-          currentTab="owned"
+          currentTab="collections"
           totals={
             new Map([
               ['created', data.created?.totalCount || 0],
@@ -213,50 +180,71 @@ const OwnedPage: NextPage<Props> = ({
           }
           streamUser={streamUser}
         >
-          <TokenGrid<OwnershipsOrderBy>
-            assets={assets}
-            orderBy={{
-              value: orderBy,
-              choices: [
+            {collections.length > 0
+                ? 
+                <SimpleGrid
+                    flexWrap="wrap"
+                    spacing={{ base: 4, lg: 3, xl: 4 }}
+                    columns={{ base: 1, sm: 2, md: 4 }}
+                    py={6}
+                >
                 {
-                  label: t('user.owned-assets.orderBy.values.createdAtDesc'),
-                  value: 'CREATED_AT_DESC',
-                },
-                {
-                  label: t('user.owned-assets.orderBy.values.createdAtAsc'),
-                  value: 'CREATED_AT_ASC',
-                },
-              ],
-              onSort: changeOrder,
-            }}
-            pagination={{
-              limit,
-              limits: [environment.PAGINATION_LIMIT, 24, 36, 48],
-              page,
-              total: data.owned?.totalCount || 0,
-              onPageChange: changePage,
-              onLimitChange: changeLimit,
-              result: {
-                label: t('pagination.result.label'),
-                caption: (props) => (
-                  <Trans
-                    ns="templates"
-                    i18nKey="pagination.result.caption"
-                    values={props}
-                    components={[
-                      <Text as="span" color="brand.black" key="text" />,
-                    ]}
-                  />
-                ),
-                pages: (props) =>
-                  t('pagination.result.pages', { count: props.total }),
-              },
-            }}
-          />
+                    collections.map((c)=>{
+                        return (
+                            <Flex key={c.address} justify="center">
+                                <Flex 
+                                    direction="column"
+                                    w="full"
+                                    maxW='280px'
+                                    align="stretch"
+                                    overflow="hidden"
+                                    rounded="xl"
+                                    borderWidth="1px"
+                                    borderColor="gray.200"
+                                    bgColor="white"
+                                    _hover={{
+                                        shadow: '1px 0px 8px 6px #f2f2f2'
+                                }}>
+                                    <Box position='relative' h='280px'>
+                                        {c.image 
+                                        ?
+                                            <Image src={c.image} layout='fill'/>
+                                        :
+                                            <Image src={`/no-image.jpg`} layout='fill'/>
+                                        }
+                                    </Box>
+                                    <Flex gap={6} p={6} flexDir='column'>
+                                        <Heading
+                                            as="h4"
+                                            variant="heading2"
+                                            color="brand.black"
+                                            title={c.name}
+                                            isTruncated
+                                        >
+                                            {c.name}
+                                        </Heading>
+                                        <Button as={Link} href={`/collection/${c.chainId}/${c.address}`}>
+                                            {t('user.created-collections.view')}
+                                        </Button>
+                                    </Flex>
+                                </Flex>
+                            </Flex>
+                        )
+                    })
+                }
+            </SimpleGrid>
+            :
+                <Empty
+                    title='No Collections'
+                    description='You have no Collections yet'
+                    button='Explore Collections'
+                    href="/explore/collections"
+                />
+            }
         </UserProfileTemplate>
       </LargeLayout>
     </main>
   )
 }
 
-export default OwnedPage
+export default CreatedPage

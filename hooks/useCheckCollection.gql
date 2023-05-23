@@ -1,0 +1,5 @@
+  query CheckCollection($chainId: Int!, $address: Address!) {
+    collection(chainId: $chainId, address: $address) {
+      createdAt
+    }
+  }

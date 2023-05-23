@@ -70,6 +70,64 @@
     "listItem": {
       "allTime": "Todo el tiempo",
       "floor": "Piso: {{price}}"
+    },
+    "form": {
+      "create": {
+        "validation": {
+          "required": "Este campo es requerido."
+        },
+        "button": "Crear Colección",
+        "transactionHash": "Transacción enviada",
+        "creating": "Creando Colección...",
+        "loadingText": "La Colección está siendo creada...",
+        "readyText": "¡Tu Colección está lista!",
+        "loadingModalText1": "Tu Colección esta siendo creada, esto puede tardar unos minutos mientras la transacción es procesada por la blockchain.",
+        "loadingModalText2": "Si cierrar esta ventana, puedes conseguir tu nueva colección en tu perfil cuando esté lista.",
+        "created": "¡Colección creada!",
+        "goToCollectionButton": "Ver Colección",
+        "checkTransactionButton": "Ver Transacción",
+        "edit-button": "Guardar cambios",
+        "name": {
+          "label": "Nombre",
+          "tooltip": "Usa un nombre original y distintivo para tu Colección, haz que resalte.",
+          "placeholder": "Nobre para tu Colección"
+        },
+        "description": {
+          "label": "Descripción",
+          "tooltip": "Esta descripción sera visible públicamente en GIG.",
+          "placeholder": "Dale una descripción a tu Colección"
+        },
+        "twitter": {
+          "label": "Twitter",
+          "tooltip": "La cuenta de twitter de la Colección.",
+          "placeholder": "https://twitter.com/tu-usuario"
+        },
+        "discord": {
+          "label": "Discord",
+          "tooltip": "El link de invitación a tu Discord para que otros usuarios se puedan sumar a tu comunidad.",
+          "placeholder": "Link de invitación al Discord"
+        },
+        "website": {
+          "label": "Sitio Web",
+          "tooltip": "El sitio web de la Colección.",
+          "placeholder": "Sitio Web de tu Colección"
+        },
+        "symbol": {
+          "label": "Símbolo",
+          "tooltip": "Este es un identificador para tu Colección en la blockchain, usualmente es una abreviación del nombre de tu Colección.",
+          "placeholder": "GIG, BAYC..."
+        },
+        "standard": {
+          "label": "Estándar",
+          "tooltip": "Este es el tipo de NFTs que se podrán crear en tu Colección. ERC-721 son piezas individuales y ERC-1155 te permite crear piezas seriadas."
+        },
+        "mintType": {
+          "label": "Tipo de Colección",
+          "tooltip": "Puedes elegir si deseas que tu Colección sea Pública o Privada. Si eliges Pública, otros usuarios podrán crear NFTs en esta Colección.",
+          "public": "Pública",
+          "private": "Privada"
+        }
+      }
     }
   },
   "countdown": {
@@ -886,6 +944,7 @@
       "on-sale": "En Venta",
       "owned": "Colección",
       "created": "Creados",
+      "collections": "Colecciones",
       "bids": "Ofertas",
       "trades": "Transacciones",
       "offers": "Mis Ventas"

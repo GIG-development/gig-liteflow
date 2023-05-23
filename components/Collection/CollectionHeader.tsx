@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   Flex,
   Heading,
@@ -46,6 +47,7 @@ type Props = {
       username: string | null
       verified: boolean
     } | null
+    mintType: string | null
     totalVolume: string
     totalVolumeCurrencySymbol: string
     floorPrice: string | null
@@ -59,9 +61,10 @@ type Props = {
     name: string
     url: string
   }
+  account: string | undefined | null
 }
 
-const CollectionHeader: FC<Props> = ({ collection, explorer, reportEmail }) => {
+const CollectionHeader: FC<Props> = ({ collection, explorer, reportEmail, account }) => {
   const { t } = useTranslation('templates')
   const blockExplorer = useBlockExplorer(explorer.name, explorer.url)
 
@@ -117,6 +120,14 @@ const CollectionHeader: FC<Props> = ({ collection, explorer, reportEmail }) => {
       t,
     ],
   )
+
+  const canEdit = useMemo(()=>{
+    return account?.toUpperCase() === collection.deployerAddress.toUpperCase()
+  },[collection,account])
+
+  const canMint = useMemo(()=>{
+    return (collection.mintType === 'PUBLIC' || account?.toUpperCase() === collection.deployerAddress.toUpperCase())
+  },[collection,account])
 
   return (
     <>
@@ -200,6 +211,16 @@ const CollectionHeader: FC<Props> = ({ collection, explorer, reportEmail }) => {
         </Box>
         <Flex justify="flex-end">
           <Flex gap={4}>
+            { canMint && 
+              <Button as={Link} href={`/create/${collection.chainId}/${collection.address}`}>
+                {t('collection.header.mint-button')}
+              </Button>
+            }
+            { canEdit &&
+              <Button variant='outline' as={Link} href={`/collection/${collection.chainId}/${collection.address}/edit`}>
+                {t('collection.header.edit-button')}
+              </Button>
+            }
             <IconButton
               as={Link}
               aria-label={`Visit ${blockExplorer.name}`}

@@ -1,0 +1,8 @@
+mutation UpdateCollection ($input: UpdateCollectionInput!) {
+    updateCollection (input: $input) {
+        clientMutationId
+        collection { 
+            address
+        }
+    }
+}

@@ -52,4 +52,9 @@ query FetchOwnedAssets(
       }
     }
   }
+  collections: collections(
+    filter: { deployerAddress: { equalTo: $address } }
+  ) {
+    totalCount
+  }
 }

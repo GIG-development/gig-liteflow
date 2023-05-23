@@ -135,10 +135,10 @@ const Footer: FC<PropsWithChildren<Props>> = ({
                   <Link ml={2} href={'https://instagram.com/familiagig'} isExternal>Instagram</Link>
                 </Box>
                 <Box>
-                  <SocialButton label={'Medium'} href={'https://medium.com/familiagig'}>
+                  <SocialButton label={'Medium'} href={'https://blog.gig.io'}>
                     <FaMediumM /> 
                   </SocialButton>
-                  <Link ml={2} href={'https://medium.com/@familiagig'} isExternal>Medium</Link>
+                  <Link ml={2} href={'https://blog.gig.io'} isExternal>Medium</Link>
                 </Box>
               </Stack>
             </Stack>

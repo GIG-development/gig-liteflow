@@ -70,6 +70,72 @@
     "listItem": {
       "allTime": "All-time",
       "floor": "Floor: {{price}}"
+    },
+    "form": {
+      "create": {
+        "validation": {
+          "required": "This field is required"
+        },
+        "button": "Create Collection",
+        "transactionHash": "Transaction sent",
+        "creating": "Creating Collection...",
+        "loadingText": "Your collection is being created...",
+        "readyText": "Your collection is ready!",
+        "loadingModalText1": "Your collection is being prepared, this may take a few minutes while the transaction is being processed by the blockchain.",
+        "loadingModalText2": "If you close this window, you can find your new Collection on your profile once it's ready.",
+        "created": "Collection Created!",
+        "goToCollectionButton": "Go to Collection",
+        "checkTransactionButton": "Check Transaction",
+        "edit-button": "Save changes",
+        "name": {
+          "label": "Name",
+          "tooltip": "Use a distinctive and original name for your Collection, make it stand out.",
+          "placeholder": "Name for your Collection"
+        },
+        "description": {
+          "label": "Description",
+          "tooltip": "This description will be publicly visible on GIG.",
+          "placeholder": "Give a description to your Collection"
+        },
+        "image": {
+          "label": "Upload the Collection's Image",
+          "heading": "Select a file..."
+        },
+        "cover": {
+          "label": "Upload a Cover Image",
+          "heading": "Select a file..."
+        },
+        "twitter": {
+          "label": "Twitter",
+          "tooltip": "The Collection's twitter account.",
+          "placeholder": "https://twitter.com/your-username"
+        },
+        "discord": {
+          "label": "Discord",
+          "tooltip": "The Collection's discord invite link for other users to join your Community.",
+          "placeholder": "Your Discord invite link"
+        },
+        "website": {
+          "label": "Website",
+          "tooltip": "The Collection's website.",
+          "placeholder": "Website of your Collection"
+        },
+        "symbol": {
+          "label": "Symbol",
+          "tooltip": "This is the identifier for your Collection on the blockchain, usually is an abbreviation of your Collection name.",
+          "placeholder": "GIG, BAYC..."
+        },
+        "standard": {
+          "label": "Standard",
+          "tooltip": "This is the type of tokens that will be mintable in your Collection. ERC-721 are singles and ERC-1155 are series."
+        },
+        "mintType": {
+          "label": "Collection Type",
+          "tooltip": "You can choose if you want your Collection to be public or private. If you choose Public, other users can also mint to your Collection.",
+          "public": "Public",
+          "private": "Private"
+        }
+      }
     }
   },
   "countdown": {
@@ -886,6 +952,7 @@
       "on-sale": "On Sale",
       "owned": "Owned",
       "created": "Created",
+      "collections": "Collections",
       "bids": "Bids",
       "trades": "Trades",
       "offers": "Offers"

@@ -20,7 +20,7 @@ import { NextPage } from 'next'
 import Trans from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useEffect } from 'react'
 import invariant from 'ts-invariant'
 import Head from '../../../../components/Head'
 import Image from '../../../../components/Image/Image'
@@ -121,6 +121,10 @@ const TradePurchasedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
     },
   })
 
+  useEffect(()=>{
+    if (data && !data.account) replace('/404')
+  },[data])
+
   const userAccount = useMemo(
     () => convertFullUser(data?.account || null, userAddress),
     [data, userAddress],
@@ -155,6 +159,7 @@ const TradePurchasedPage: NextPage<Props> = ({ meta, now, userAddress }) => {
             ['created', data?.created?.totalCount || 0],
             ['on-sale', data?.onSale?.totalCount || 0],
             ['owned', data?.owned?.totalCount || 0],
+            ['collections', data?.collections?.totalCount || 0]
           ])
         }
         streamUser={undefined}

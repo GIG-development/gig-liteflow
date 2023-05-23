@@ -1,17 +1,24 @@
-query FetchUserBidsPlaced(
+query FetchCreatedCollections (
+  $address: Address!
+  $currentAddress: Address!
+  $now: Datetime!
   $limit: Int!
   $offset: Int!
-  $orderBy: [OfferOpenBuysOrderBy!]
-  $address: Address!
-  $now: Datetime
+  $orderBy: [AssetsOrderBy!]
 ) {
   account(address: $address) {
     ...AccountDetail
   }
   created: assets(
     filter: { ownershipsExist: true, creatorAddress: { equalTo: $address } }
+    first: $limit
+    offset: $offset
+    orderBy: $orderBy
   ) {
     totalCount
+    nodes {
+      ...AssetDetail
+    }
   }
   onSale: assets(
     filter: {
@@ -47,41 +54,12 @@ query FetchUserBidsPlaced(
     filter: { deployerAddress: { equalTo: $address } }
   ) {
     totalCount
-  }
-  bids: offerOpenBuys(
-    orderBy: $orderBy
-    first: $limit
-    offset: $offset
-    filter: { makerAddress: { equalTo: $address } }
-  ) {
-    totalCount
     nodes {
-      id
-      unitPrice
-      amount
-      availableQuantity
-      expiredAt
-      createdAt
-      maker {
+        image
+        name
+        description
+        chainId
         address
-        name
-        image
-        verification {
-          status
-        }
-      }
-      currency {
-        image
-        name
-        id
-        decimals
-        symbol
-      }
-      asset {
-        id
-        name
-        image
-      }
     }
   }
 }

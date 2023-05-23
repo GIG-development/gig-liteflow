@@ -10,6 +10,7 @@ query FetchCollectionDetails($collectionAddress: Address!, $chainId: Int!) {
     twitter
     website
     standard
+    mintType
     deployerAddress
     deployer {
       address

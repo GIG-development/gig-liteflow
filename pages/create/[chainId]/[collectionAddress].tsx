@@ -13,7 +13,7 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { BigNumber } from '@ethersproject/bignumber'
-import { isSameAddress, useConfig } from '@nft/hooks'
+import { useConfig } from '@nft/hooks'
 import { HiBadgeCheck } from '@react-icons/all-files/hi/HiBadgeCheck'
 import { HiExclamationCircle } from '@react-icons/all-files/hi/HiExclamationCircle'
 import { useWeb3React } from '@web3-react/core'
@@ -65,12 +65,12 @@ export const getServerSideProps = wrapServerSideProps<Props>(
       : context.query.collectionAddress
     invariant(collectionAddress, "collectionAddress can't be falsy")
     invariant(chainId, "chainId can't be falsy")
-    invariant(
-      environment.MINTABLE_COLLECTIONS.filter(({ address }) =>
-        isSameAddress(address, collectionAddress),
-      ).length > 0,
-      'collectionAddress is not mintable',
-    )
+    // invariant(
+    //   environment.MINTABLE_COLLECTIONS.filter(({ address }) =>
+    //     isSameAddress(address, collectionAddress),
+    //   ).length > 0,
+    //   'collectionAddress is not mintable',
+    // )
     const { data, error } = await client.query<
       FetchAccountAndCollectionQuery,
       FetchAccountAndCollectionQueryVariables
