@@ -135,7 +135,7 @@ const FixedPricePage: NextPage<Props> = ({ meta, now, userAddress }) => {
   })
 
   useEffect(()=>{
-    if (data && !data.account) replace('/404')
+    if (data && !data.account) void replace('/404')
   },[data, replace])
 
   const handleCancelOffer = useCallback(

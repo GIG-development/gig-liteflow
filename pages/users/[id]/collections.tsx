@@ -153,7 +153,7 @@ const CreatedPage: NextPage<Props> = ({
   ,[data])
   
   useEffect(()=>{
-    if (data && !data.account) replace('/404')
+    if (data && !data.account) void replace('/404')
   },[data, replace])
 
   if (!assets) return <></>
