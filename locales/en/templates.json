@@ -256,12 +256,12 @@
   "faqs": {
     "title": "Frequently Asked Questions",
     "question1": {
-      "question": "Do I need to have a digital wallet and cryptocurrencies?",
-      "answer": "That's how it is for the moment. We accept Metamask, Coinbase and Wallet Connect. Soon you will be able to upload your NFTs without needing to have these elements, since we will generate a wallet automatically and you will be able to pay and receive payments in your national currency."
+      "question": "Do I need to have a digital wallet?",
+      "answer": "While having your own wallet like Metamask is preferred, you can also create a wallet seamlessly with your email address."
     },
     "question2": {
       "question": "Is there anything I have to pay to upload and buy NFTs?",
-      "answer": "Because we will start working with the Ethereum network, a gas fee must be paid when uploading and buying non-fungible tokens, (amount for generating the transactions). By optimizing the management of our platform, very soon you will be able to upload NFTs without having to pay this fee, thanks to a technique called Lazy Minting."
+      "answer": "You don't have to pay anything when creating NFTs in our marketplace since we use Lazy Minting, which is a way to defer the payment of any gas fees related to the minting to the buyer of the NFT. If you want to buy NFTs, then yes, right now you need cryptocurrency to buy any piece, but very soon we will have credit card payments enabled."
     },
     "question3": {
       "question": "What blockchain do you support?",

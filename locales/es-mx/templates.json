@@ -270,12 +270,12 @@
   "faqs": {
     "title": "Preguntas Frecuentes",
     "question1": {
-      "question": "¿Necesito tener una cartera digital y criptomonedas?",
-      "answer": "Así es por el momento. De “wallet” aceptamos Metamask, Coinbase y Wallet Connect. Próximamente podrás subir tus NFTs sin necesitar tener estos elementos, ya que generaremos una “wallet” en automático y podrás pagar y recibir pagos en tu moneda nacional."
+      "question": "¿Necesito tener una cartera digital?",
+      "answer": "Si bien es preferible tener tu propia billetera como Metamask, también puedes crear una billetera sin problemas con tu dirección de correo electrónico."
     },
     "question2": {
       "question": "¿Hay algo que tengo que pagar por subir y comprar NFTs?",
-      "answer": "Debido a que empezaremos trabajando con la red de Ethereum, se debe pagar una tarifa de gas al subir y comprar tokens no fungibles, (monto por generar las transacciones). Optimizando el manejo de nuestra plataforma, muy pronto podrás subir NFTs sin necesidad de pagar esta tarifa, gracias a una técnica llamada Lazy Minting."
+      "answer": "No tiene que pagar nada al crear NFT en nuestro mercado, ya que usamos Lazy Minting, que es una forma de diferir el pago de cualquier tarifa de gas relacionada con la acuñación al comprador del NFT. Si desea comprar NFT, entonces sí, en este momento necesita criptomonedas para comprar cualquier pieza, pero muy pronto tendremos habilitados los pagos con tarjeta de crédito."
     },
     "question3": {
       "question": "¿Qué blockchain soportan?",

@@ -31,7 +31,7 @@ const AccordionItem: FC<PropsWithChildren<Props>> = ({
                     <AccordionIcon />
                 </AccordionButton>
             </h2>
-            <AccordionPanel pb={4}>
+            <AccordionPanel p={4}>
                 <Text color={'gray.500'} fontSize={{base: 'sm', md: 'md'}}>
                     {content}
                 </Text>
