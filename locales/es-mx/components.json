@@ -81,8 +81,8 @@
         "creating": "Creando Colección...",
         "loadingText": "La Colección está siendo creada...",
         "readyText": "¡Tu Colección está lista!",
-        "loadingModalText1": "Tu Colección esta siendo creada, esto puede tardar unos minutos mientras la transacción es procesada por la blockchain.",
-        "loadingModalText2": "Si cierrar esta ventana, puedes conseguir tu nueva colección en tu perfil cuando esté lista.",
+        "loadingModalText1": "Tu Colección esta siendo creada, este proceso puede tardar unos minutos mientras la transacción es procesada por la blockchain.",
+        "loadingModalText2": "Si cierras esta ventana, podrás ver tu nueva colección en tu perfil cuando se haya completado la creación.",
         "created": "¡Colección creada!",
         "goToCollectionButton": "Ver Colección",
         "checkTransactionButton": "Ver Transacción",
@@ -90,7 +90,7 @@
         "name": {
           "label": "Nombre",
           "tooltip": "Usa un nombre original y distintivo para tu Colección, haz que resalte.",
-          "placeholder": "Nobre para tu Colección"
+          "placeholder": "Nombre para tu Colección"
         },
         "description": {
           "label": "Descripción",

@@ -25,6 +25,7 @@ import useMoonpayCheckout from 'hooks/useMoonpayCheckout'
 import Link from '../../Link/Link'
 import type { Props as ModalProps } from './Modal'
 import SaleDirectModal from './Modal'
+import { CrossmintPayButton } from '@crossmint/client-sdk-react-ui'
 
 export type Props = {
   assetId: string
@@ -100,14 +101,23 @@ const SaleDirectButton: VFC<Props> = ({
               </Text>
             </MenuItem>
             <MenuItem onClick={onOpen}>
-              <BsCreditCard/>
-              <Text as="span" isTruncated pl={2}>
+              {/* <BsCreditCard/>
+               <Text as="span" isTruncated pl={2}>
                 {t('sales.direct.button.moonpay')}
                 <br/>
                 <Text fontSize={10}>
                   {t('sales.direct.button.moonpayLink')}
                 </Text>
-              </Text>
+              </Text> */}
+              <CrossmintPayButton 
+                clientId="9d29e69d-df58-4d8b-b377-bee4c15da8e2"
+                mintConfig={{
+                  type: "reservoir-secondary-eth",
+                  contractAddress: assetId.split('-')[1],
+                  tokenId: assetId
+                }}
+                environment="staging"
+              />
             </MenuItem>
           </MenuList>
         </Menu>
@@ -115,11 +125,24 @@ const SaleDirectButton: VFC<Props> = ({
     }
 
     return (
+      <>
       <Button as={Link} href={`/checkout/${sales[0].id}`} size="full" className='btn'>
         <Text as="span" isTruncated>
           {t('sales.direct.button.buy')}
         </Text>
       </Button>
+      { environment.CHAIN_ID === 5 &&
+      <CrossmintPayButton 
+      clientId="9d29e69d-df58-4d8b-b377-bee4c15da8e2"
+      mintConfig={{
+        type: "reservoir-secondary-eth",
+        contractAddress: assetId.split('-')[1],
+        tokenId: assetId
+      }}
+      environment="staging"
+    />
+      }
+      </>
     )
   }, [sales, ownAllSupply, t, moonpaySignedUrl, signer, onOpen])
 

@@ -257,7 +257,7 @@
     "title": "Frequently Asked Questions",
     "question1": {
       "question": "Do I need to have a digital wallet?",
-      "answer": "While having your own wallet like Metamask is preferred, you can also create a wallet seamlessly with your email address."
+      "answer": "While having your own digital wallet like Metamask is preferred, you can also create one seamlessly with your email address."
     },
     "question2": {
       "question": "Is there anything I have to pay to upload and buy NFTs?",
@@ -290,6 +290,10 @@
     "question9": {
       "question": "Can my NFTs appear on another marketplace?",
       "answer": "Yes. Any Marketplace that supports Ethereum can list your NFTs. If you minted/minted with us, your non-fungible tokens will appear within an open GIG collection."
+    },
+    "question10": {
+      "question": "Can I export/download the keys for the wallet I created with my email?",
+      "answer": "Yes, you can export/download the keys for the wallet that you created with your email. This is called a Magic Wallet, and you can export the keys on the following link: https://reveal.magic.link/gig"
     },
     "footerLine1": "If you have any other doubt, please visit",
     "footerLine2": "our tutorials",
@@ -899,7 +903,7 @@
       "view": "View Collection",
       "empty": {
         "title": "No Collections",
-        "description": "You have no Collections yet",
+        "description": "There's no collections to show",
         "button": "Explore Collections"
       }
     },

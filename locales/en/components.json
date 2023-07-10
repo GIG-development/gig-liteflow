@@ -82,7 +82,7 @@
         "loadingText": "Your collection is being created...",
         "readyText": "Your collection is ready!",
         "loadingModalText1": "Your collection is being prepared, this may take a few minutes while the transaction is being processed by the blockchain.",
-        "loadingModalText2": "If you close this window, you can find your new Collection on your profile once it's ready.",
+        "loadingModalText2": "If you close this window, you can find your new Collection on your profile once it has been created.",
         "created": "Collection Created!",
         "goToCollectionButton": "Go to Collection",
         "checkTransactionButton": "Check Transaction",

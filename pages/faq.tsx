@@ -65,6 +65,10 @@ const FAQ: NextPage = () => {
                     title={t('faqs.question9.question')}
                     content={t('faqs.question9.answer')}
                   />
+                  <AccordionItem
+                    title={t('faqs.question10.question')}
+                    content={t('faqs.question10.answer')}
+                  />
                 </Accordion>
                 <Lottie
                     loop={true}

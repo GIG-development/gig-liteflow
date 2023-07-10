@@ -175,8 +175,8 @@ const HomePage: NextPage<Props> = ({
         <Box
           my={6}
           textAlign='center'
-          width={useBreakpointValue({base: '360px', md:'640px'}) || '640px'}
-          height={useBreakpointValue({base: '240px', md:'118px'}) || '118px'}
+          width={useBreakpointValue({base: '100%', md:'640px'}) || '640px'}
+          height={useBreakpointValue({base: '54px', md:'118px'}) || '118px'}
           position='relative'
           margin='0 auto'
         >
@@ -219,31 +219,31 @@ const HomePage: NextPage<Props> = ({
             <Slider>
               {auctions.map((x, i) => (
                 <Flex
-                  key={i}
-                  grow={0}
-                  shrink={0}
-                  basis={{
-                    base: '100%',
-                    sm: '50%',
-                    md: '33.33%',
-                    lg: '25%',
-                  }}
-                  p="10px"
-                  justify={'center'}
-                >
-                  <TokenCard
-                    asset={convertAsset(x.asset)}
-                    creator={convertUser(
-                      x.asset.creator,
-                      x.asset.creator.address,
-                    )}
-                    auction={convertAuctionWithBestBid(x)}
-                    sale={undefined}
-                    numberOfSales={0}
-                    hasMultiCurrency={false}
-                    displayCreator
-                  />
-                </Flex>
+                key={i}
+                grow={0}
+                shrink={0}
+                basis={{
+                  base: '100%',
+                  sm: '50%',
+                  md: '33.33%',
+                  lg: '25%',
+                }}
+                p="10px"
+                justify={'center'}
+              >
+                <TokenCard
+                  asset={convertAsset(x.asset)}
+                  creator={convertUser(
+                    x.asset.creator,
+                    x.asset.creator.address,
+                  )}
+                  auction={convertAuctionWithBestBid(x)}
+                  sale={undefined}
+                  numberOfSales={0}
+                  hasMultiCurrency={false}
+                  displayCreator
+                />
+              </Flex>
               ))}
             </Slider>
           </Stack>

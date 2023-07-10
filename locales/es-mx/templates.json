@@ -271,7 +271,7 @@
     "title": "Preguntas Frecuentes",
     "question1": {
       "question": "¿Necesito tener una cartera digital?",
-      "answer": "Si bien es preferible tener tu propia billetera como Metamask, también puedes crear una billetera sin problemas con tu dirección de correo electrónico."
+      "answer": "Si bien es preferible tener tu propia cartera digital como Metamask, también puedes crear una sin problemas usando tu dirección de correo electrónico."
     },
     "question2": {
       "question": "¿Hay algo que tengo que pagar por subir y comprar NFTs?",
@@ -304,6 +304,10 @@
     "question9": {
       "question": "¿Mis NFTs pueden aparecer en otro marketplace?",
       "answer": "Sí. Cualquier Marketplace que soporte Ethereum puede listar tus NFTs. Si acuñaste / minteaste con nosotros, tus tokens no fungibles aparecerán dentro de una colección abierta de GIG."
+    },
+    "question10": {
+      "question": "¿Puedo exportar/descargar las claves de la billetera que creé con mi correo electrónico?",
+      "answer": "Sí, puede exportar/descargar las claves de la billetera que creó con su correo electrónico. Esto se llama Magic Wallet, y puede exportar las claves en el siguiente enlace: https://reveal.magic.link/gig"
     },
     "footerLine1": "Si tienes otras preguntas o comentarios, visita",
     "footerLine2": "nuestros tutoriales",
@@ -912,7 +916,7 @@
       "view": "Ver Colección",
       "empty": {
         "title": "Sin Colecciones",
-        "description": "No tienes ninguna Colección todavía",
+        "description": "No hay colecciones disponibles para mostrar",
         "button": "Explorar Colecciones"
       }
     },
