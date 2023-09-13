@@ -144,7 +144,7 @@ const SaleDirectButton: VFC<Props> = ({
       }
       </>
     )
-  }, [sales, ownAllSupply, t, moonpaySignedUrl, signer, onOpen])
+  }, [sales, ownAllSupply, t, moonpaySignedUrl, assetId, signer, onOpen])
 
   const seeOffers = useMemo(() => {
     if (sales.length <= 1) return
