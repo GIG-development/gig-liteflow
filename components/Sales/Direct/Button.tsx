@@ -1,6 +1,6 @@
-import { 
-  Button, 
-  Flex, 
+import {
+  Button,
+  Flex,
   Menu,
   MenuButton,
   MenuList,
@@ -15,7 +15,7 @@ import {
 import { Signer } from '@ethersproject/abstract-signer'
 import { HiArrowNarrowRight } from '@react-icons/all-files/hi/HiArrowNarrowRight'
 import { HiOutlineChevronDown } from '@react-icons/all-files/hi/HiOutlineChevronDown'
-import { BsCreditCard } from '@react-icons/all-files/bs/BsCreditCard' 
+//import { BsCreditCard } from '@react-icons/all-files/bs/BsCreditCard'
 import { FaEthereum } from '@react-icons/all-files/fa/FaEthereum'
 import environment from 'environment'
 import useTranslation from 'next-translate/useTranslation'
@@ -109,7 +109,7 @@ const SaleDirectButton: VFC<Props> = ({
                   {t('sales.direct.button.moonpayLink')}
                 </Text>
               </Text> */}
-              <CrossmintPayButton 
+              <CrossmintPayButton
                 clientId="9d29e69d-df58-4d8b-b377-bee4c15da8e2"
                 mintConfig={{
                   type: "reservoir-secondary-eth",
@@ -132,7 +132,7 @@ const SaleDirectButton: VFC<Props> = ({
         </Text>
       </Button>
       { environment.CHAIN_ID === 5 &&
-      <CrossmintPayButton 
+      <CrossmintPayButton
       clientId="9d29e69d-df58-4d8b-b377-bee4c15da8e2"
       mintConfig={{
         type: "reservoir-secondary-eth",
