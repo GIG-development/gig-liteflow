@@ -15,13 +15,14 @@ const nextConfig = {
           source: '/:id',
           destination: '/users/:id',
         },
-      ] 
+      ]
     }
   },
   images: {
     domains: [
               process.env.PINATA_GATEWAY || '',
               'gig.io',
+              'gig.mypinata.cloud',
               'gateway.pinata.cloud',
               'ipfs.pixura.io',
               "arweave.net",
